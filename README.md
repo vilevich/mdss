@@ -2,7 +2,7 @@
 
 Interactive HTML prototype for the MDSS Settings, Audit, and Components pages.
 
-**Live preview:** _link will be added after GitHub Pages deployment_
+**Live preview:** https://vilevich.github.io/mdss-ui-prototype/
 
 ---
 
