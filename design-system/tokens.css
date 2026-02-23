@@ -1,0 +1,112 @@
+/*
+ * MetaDefender Storage Security — Design Tokens
+ * Auto-extracted from the MDSS prototype.
+ * Import this file to get all CSS custom properties.
+ */
+
+:root {
+  /* ===== TYPOGRAPHY ===== */
+  --font:                  'Roboto', sans-serif;
+  --font-brand:            'Simplon Norm', sans-serif;
+
+  --text-xs:               10px;   /* logo subtitle */
+  --text-sm:               12px;   /* badges, footer tagline */
+  --text-md:               13px;   /* card descriptions, helper text */
+  --text-base:             14px;   /* body, labels, inputs, buttons */
+  --text-lg:               16px;   /* banner titles, modal headings */
+  --text-xl:               24px;   /* page title */
+
+  --weight-regular:        400;
+  --weight-medium:         500;
+  --weight-bold:           700;
+
+  --leading-tight:         1.14;
+  --leading-base:          1.5;
+  --leading-fixed:         16px;
+
+  /* ===== COLORS — TEXT ===== */
+  --text-strong:           #0c121d;
+  --text-subtle:           #344565;
+  --text-muted:            #6b7a90;
+  --text-inverse:          #ffffff;
+
+  /* ===== COLORS — SURFACES ===== */
+  --surface-bg:            #f8f9f9;
+  --surface-card:          #ffffff;
+
+  /* ===== COLORS — BORDERS ===== */
+  --border-200:            #dee0e4;
+  --border-card:           #ebecee;
+  --border-bg:             #ebecee;
+
+  /* ===== COLORS — PRIMARY ===== */
+  --primary:               #1d6bfc;
+  --primary-hover:         #1854c3;
+  --primary-light:         #e8f0ff;
+  --primary-focus-ring:    rgba(29, 107, 252, 0.15);
+
+  /* ===== COLORS — INTERACTIVE ===== */
+  --toggle-active:         #1d6bfc;
+  --toggle-inactive:       #c7ccd5;
+
+  /* ===== COLORS — TABS ===== */
+  --tab-bg:                #ebecee;
+  --tab-active-bg:         #1a2138;
+  --tab-text:              #344565;
+  --tab-active-text:       #ffffff;
+
+  /* ===== COLORS — STATUS ===== */
+  --danger:                #d9534f;
+  --danger-hover-bg:       rgba(217, 83, 79, 0.05);
+  --warning:               #e6a817;
+  --notification:          #FF003D;
+
+  /* ===== COLORS — PROMO ===== */
+  --promo-bg:              #e8f0fe;
+  --promo-border:          #c5d9fc;
+
+  /* ===== COLORS — HEADER ===== */
+  --header-bg:             #1a2138;
+
+  /* ===== COLORS — HOVER STATES ===== */
+  --hover-subtle:          rgba(0, 0, 0, 0.04);
+  --hover-light:           rgba(0, 0, 0, 0.03);
+  --hover-medium:          rgba(0, 0, 0, 0.06);
+
+  /* ===== SPACING ===== */
+  --space-2:               2px;
+  --space-4:               4px;
+  --space-8:               8px;
+  --space-12:              12px;
+  --space-16:              16px;
+  --space-20:              20px;
+
+  /* ===== SIZING ===== */
+  --header-height:         56px;
+  --sidebar-width:         260px;
+  --sidebar-collapsed:     60px;
+  --control-height:        32px;
+  --form-label-width:      266px;
+  --icon-size:             18px;
+  --icon-size-sm:          16px;
+
+  /* ===== BORDER RADIUS ===== */
+  --radius:                4px;
+  --radius-md:             8px;
+  --radius-pill:           9999px;
+  --radius-circle:         50%;
+
+  /* ===== SHADOWS ===== */
+  --shadow-card:           1px 3px 4px -2px rgba(12,18,29,0.04),
+                           2px 2px 4px 0px rgba(12,18,29,0.04);
+  --shadow-dropdown:       0 4px 16px rgba(12,18,29,0.12),
+                           0 1px 4px rgba(12,18,29,0.08);
+  --shadow-toggle:         0 0 6px -4px rgba(0,0,0,0.48),
+                           0 2px 6px -4px rgba(0,0,0,0.48);
+  --shadow-focus:          0 0 0 3px rgba(29,107,252,0.15);
+
+  /* ===== TRANSITIONS ===== */
+  --transition-fast:       0.12s ease;
+  --transition-default:    0.15s;
+  --transition-medium:     0.2s;
+}
