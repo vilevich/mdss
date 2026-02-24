@@ -35,7 +35,7 @@ Located in `/fonts/`:
 |-------|------|-------|
 | `--text-xs` | 10px | Logo subtitle |
 | `--text-sm` | 12px | Badges, footer tagline, section titles |
-| `--text-md` | 13px | Card descriptions, helper text |
+| `--text-md` | 14px | Card descriptions, helper text |
 | `--text-base` | 14px | Body, labels, inputs, buttons |
 | `--text-lg` | 16px | Banner titles, modal headings |
 | `--text-xl` | 24px | Page title |
@@ -142,23 +142,43 @@ Located in `/fonts/`:
 - **Nav items** — icon + label, active state uses `#E8F0FF` bg (light) / blue overlay (dark)
 
 ### Cards
-- **Settings card** — header (56px) + content area, supports dirty state with Save/Discard
-- **Pool card** — draggable, with header, table, and action menu
+- **Settings card** (`.settings-card`) — `bg: --surface-card`, `border: 1px solid --border-card`, `border-radius: 4px`, `shadow: --shadow-card`, `margin-bottom: 12px`
+  - **Card header** — `height: 56px`, `padding: 0 20px`, `border-bottom: 1px solid --border-card`
+  - Section headings use **`<h2>`** — `font-size: 14px`, `font-weight: 500`
+  - Supports **dirty state**: add `.dirty` class to show Discard/Save buttons
+- **Pool card** (`.pool-card`) — draggable via `.pool-drag-handle`, with table and action menu
 
 ### Forms
-- **Form row** — fixed-width label (266px) + flexible value area
-- **Input field** — 32px height, border on focus with ring, supports clear/eye icons
-- **Select** — native styled with custom chevron
-- **Radio group** — vertical list with circle indicators
-- **Toggle switch** — 28x16 pill with sliding thumb
-- **File upload** — dashed border field
+- **Form row** (`.form-row`) — `display: flex`, `gap: 12px`, `align-items: center`
+- **Form label** (`.form-label`) — `width: 266px`, `font-size: 14px`, `min-height: 32px`
+- **Input field** (`.input-field`) — `height: 32px`, `padding: 8px 12px`, `border: 1px solid --border-200`, `border-radius: 4px`
+  - Focus: `border-color: --primary`, `box-shadow: --shadow-focus`
+  - Supports clear icon (`.input-clear`) and password eye (`.input-eye`)
+- **Select** (`.select-field`) — native styled, custom SVG chevron via `background-image`
+- **Radio group** (`.radio-group`) — vertical, `gap: 12px`, circle: `16px`, selected: `--primary` fill
+- **Toggle switch** (`.toggle-switch`) — `28px x 16px`, pill shape, thumb: `12px`, active: `--toggle-active`
+- **File upload** (`.file-upload-field`) — dashed border, click-to-browse
 
 ### Buttons
-- **Primary** (`btn-primary`) — filled blue, white text
-- **Outline** (`btn-outline`) — bordered, transparent bg, supports `.danger` variant
-- **Export** (`btn-export`) — primary bg with icon
-- **Discard** (`btn-discard`) — only visible in dirty card state
-- **Save** (`btn-save`) — disabled by default, activates with dirty state
+
+All buttons share: `height: 32px`, `font-size: 14px`, `font-weight: 500`, `border-radius: 4px`, `font-family: var(--font)`
+
+| Class | Background | Text | Border | Hover | Usage |
+|-------|-----------|------|--------|-------|-------|
+| `.btn-primary` | `--primary` | `#fff` | none | `--primary-hover` | Main CTA (Activate, Add, Confirm) |
+| `.btn-outline` | transparent | `--text-strong` | `--border-200` | `rgba(0,0,0,0.03)` | Secondary action (Cancel, Generate, Add Header) |
+| `.btn-outline.danger` | transparent | `#d9534f` | `#d9534f` | `rgba(217,83,79,0.05)` | Destructive action (Delete, Remove) |
+| `.btn-export` | `--primary` | `#fff` | none | `--primary-hover` | Export button with icon |
+| `.btn-save` | `--surface-bg` | `--text-muted` | `--border-200` | — | Disabled by default |
+| `.btn-save` (dirty) | `--primary` | `#fff` | `--primary` | `--primary-hover` | Activates when card has changes |
+| `.btn-discard` | transparent | `--text-strong` | `--border-200` | `rgba(0,0,0,0.03)` | Only visible in dirty card state |
+
+**Padding:** `btn-primary` uses `0 16px`, `btn-outline` uses `0 12px`
+
+**Dark mode overrides:**
+- `btn-outline` → border: `--border-200`, text: `--text-subtle`, hover: `rgba(255,255,255,0.04)`
+- `btn-save` → bg: `--surface-bg`, border: `--border-200`
+- `btn-export` → border: `--border-200`, text: `--text-subtle`
 
 ### Data Display
 - **Tags** — status (filled bg) and keyword (bordered) variants, 9 color schemes

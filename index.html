@@ -70,7 +70,7 @@
       background: var(--header-bg);
       border-radius: 4px;
       display: flex; align-items: center; justify-content: center;
-      font-weight: 700; font-size: 11px; color: #fff;
+      font-weight: 700; font-size: 12px; color: #fff;
     }
     .header-logo-text { display: flex; flex-direction: column; gap: 4px; font-family: var(--font-brand); }
     .header-logo-text span:first-child { font-size: 10px; font-weight: 400; line-height: 10px; color: #0C121D; letter-spacing: 0.5px; text-transform: uppercase; }
@@ -106,7 +106,7 @@
       border: 2px solid rgba(0,0,0,0.1);
       margin-left: 12px;
       display: flex; align-items: center; justify-content: center;
-      font-size: 13px; font-weight: 500; color: #fff;
+      font-size: 14px; font-weight: 500; color: #fff;
       cursor: pointer;
     }
 
@@ -245,12 +245,12 @@
       min-height: 56px;
       border-bottom: 1px solid var(--border-card);
     }
-    .card-header h3 { font-size: 14px; font-weight: 500; color: var(--text-strong); }
+    .card-header h2 { font-size: 14px; font-weight: 500; color: var(--text-strong); }
     .card-header .btn-outline { align-self: center; }
     .card-header-actions { display: flex; gap: 8px; align-items: center; }
     .card-header-with-desc { height: auto; min-height: 56px; padding: 16px 20px; flex-direction: column; align-items: flex-start; }
     .card-header-with-desc .card-header-top { display: flex; align-items: center; justify-content: space-between; width: 100%; }
-    .card-header-desc { font-size: 13px; font-weight: 400; color: #344565; margin-top: 8px; line-height: 16px; }
+    .card-header-desc { font-size: 14px; font-weight: 400; color: #344565; margin-top: 8px; line-height: 16px; }
     .btn-discard {
       padding: 0 16px;
       background: transparent;
@@ -654,9 +654,9 @@
     .pool-drag-handle svg { width: 16px; height: 16px; }
     .pool-card.dragging { opacity: 0.4; }
     .pool-card.flip-animate { transition: transform 0.15s cubic-bezier(0.2,0,0,1); }
-    .pool-card-header-left h3 { font-size: 14px; font-weight: 500; color: var(--text-strong); }
+    .pool-card-header-left h2 { font-size: 14px; font-weight: 500; color: var(--text-strong); }
     .pool-instance-count {
-      font-size: 13px;
+      font-size: 14px;
       color: var(--primary);
       font-weight: 400;
     }
@@ -700,7 +700,7 @@
       padding: 4px 10px;
       border: 1px solid var(--border-200);
       border-radius: 0;
-      font-size: 13px;
+      font-size: 14px;
       color: var(--text-subtle);
       background: var(--surface-card);
     }
@@ -766,7 +766,7 @@
     .top-toast-icon svg { width: 16px; height: 16px; }
     .top-toast-content { flex: 1; }
     .top-toast-title { font-size: 14px; font-weight: 500; color: var(--text-strong); }
-    .top-toast-desc { font-size: 13px; color: var(--text-subtle); margin-top: 2px; }
+    .top-toast-desc { font-size: 14px; color: var(--text-subtle); margin-top: 2px; }
     .top-toast-close { cursor: pointer; color: var(--text-muted); flex-shrink: 0; }
     .top-toast-close:hover { color: var(--text-strong); }
     .top-toast-close svg { width: 14px; height: 14px; }
@@ -855,7 +855,7 @@
     .input-field input::placeholder { color: #566479; }
     .api-key-status { color: #566479; }
     .file-upload-text { color: #566479; }
-    .sidebar-footer-tagline { color: #566479; font-size: 11px; }
+    .sidebar-footer-tagline { color: #566479; font-size: 12px; }
 
     /* Improve line-height for readability (WCAG 1.4.12) */
     .banner-desc, .top-toast-desc, .encryption-status { line-height: 1.5; }
@@ -1010,7 +1010,7 @@
     .modal-divider { height: 1px; background: var(--border-200); margin: 16px 0; }
     .modal-body { display: flex; flex-direction: column; gap: 16px; }
     .modal-field { display: flex; flex-direction: column; gap: 6px; }
-    .modal-field-label { font-size: 13px; font-weight: 500; color: var(--text-subtle); }
+    .modal-field-label { font-size: 14px; font-weight: 500; color: var(--text-subtle); }
     .modal-footer {
       display: flex; justify-content: flex-end; gap: 8px;
       margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--border-200);
@@ -1225,7 +1225,7 @@
 
     /* ===== SLIDE-PANEL FIELD ROW ===== */
     .panel-field { display: flex; flex-direction: column; gap: 6px; }
-    .panel-field-label { font-size: 13px; font-weight: 500; color: var(--text-subtle); }
+    .panel-field-label { font-size: 14px; font-weight: 500; color: var(--text-subtle); }
     .panel-field .input-field { max-width: none; }
     .panel-field .select-field { max-width: none; }
 
@@ -1236,7 +1236,7 @@
       border: 1px solid var(--border-200);
       border-radius: 6px;
       padding: 8px 12px;
-      font-size: 13px;
+      font-size: 14px;
       color: var(--text-subtle);
       line-height: 1.4;
       box-shadow: 0 4px 16px rgba(12,18,29,0.12), 0 1px 4px rgba(12,18,29,0.08);
@@ -1348,8 +1348,8 @@
     .audit-card-header.with-desc .audit-card-title-row { display: flex; align-items: center; justify-content: space-between; width: 100%; }
     .audit-card-title { display: flex; align-items: center; gap: 8px; }
     .audit-card-title h3 { font-size: 14px; font-weight: 500; color: var(--text-strong); }
-    .audit-card-title .count { font-size: 13px; font-weight: 400; color: #344565; }
-    .audit-card-desc { font-size: 13px; font-weight: 400; color: #344565; line-height: 16px; }
+    .audit-card-title .count { font-size: 14px; font-weight: 400; color: #344565; }
+    .audit-card-desc { font-size: 14px; font-weight: 400; color: #344565; line-height: 16px; }
     .audit-card-actions { display: flex; align-items: center; gap: 8px; }
     .audit-search {
       display: flex;
@@ -1365,7 +1365,7 @@
     }
     .audit-search:focus-within { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(29,107,252,0.15); }
     .audit-search svg { width: 14px; height: 14px; color: #344565; flex-shrink: 0; }
-    .audit-search input { border: none; outline: none; font-size: 13px; font-family: var(--font); color: #344565; flex: 1; background: transparent; }
+    .audit-search input { border: none; outline: none; font-size: 14px; font-family: var(--font); color: #344565; flex: 1; background: transparent; }
     .audit-search input:not(:placeholder-shown) { color: #0C121D; }
     .audit-search input::placeholder { color: #344565; }
     .audit-search:focus-within svg { color: #0C121D; }
@@ -1437,7 +1437,7 @@
     .audit-expanded-row td {
       padding: 12px 16px 12px 60px !important;
       background: #ffffff;
-      font-size: 13px;
+      font-size: 14px;
       color: var(--text-subtle);
       line-height: 1.5;
       border-bottom: 1px solid var(--border-card);
@@ -1491,7 +1491,7 @@
       justify-content: space-between;
       padding: 12px 20px;
       border-top: 1px solid var(--border-card);
-      font-size: 13px;
+      font-size: 14px;
       color: var(--text-subtle);
     }
     .audit-pagination-left { display: flex; align-items: center; gap: 8px; }
@@ -1499,7 +1499,7 @@
       appearance: none; -webkit-appearance: none;
       padding: 4px 24px 4px 8px;
       border: 1px solid var(--border-200); border-radius: var(--radius);
-      font-size: 13px; font-family: var(--font); color: var(--text-strong);
+      font-size: 14px; font-family: var(--font); color: var(--text-strong);
       background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='M7.99994 10.7499C7.80994 10.7499 7.61994 10.6799 7.46994 10.5299L3.21994 6.27994C2.92994 5.98994 2.92994 5.50994 3.21994 5.21994C3.50994 4.92994 3.98994 4.92994 4.27994 5.21994L7.99994 8.93994L11.7199 5.21994C12.0099 4.92994 12.4899 4.92994 12.7799 5.21994C13.0699 5.50994 13.0699 5.98994 12.7799 6.27994L8.52994 10.5299C8.37994 10.6799 8.18994 10.7499 7.99994 10.7499Z' fill='%236b7a90'/%3E%3C/svg%3E") no-repeat right 4px center;
       cursor: pointer; height: 28px;
     }
@@ -1509,7 +1509,7 @@
       border: 1px solid var(--border-200); border-radius: var(--radius);
       background: #fff; cursor: pointer;
       display: flex; align-items: center; justify-content: center;
-      color: var(--text-muted); font-size: 13px;
+      color: var(--text-muted); font-size: 14px;
     }
     .audit-page-btn:hover { color: var(--text-strong); border-color: var(--text-muted); }
     .audit-page-btn:disabled { opacity: 0.4; cursor: default; }
@@ -1518,7 +1518,7 @@
       appearance: none; -webkit-appearance: none;
       padding: 4px 24px 4px 8px;
       border: 1px solid var(--border-200); border-radius: var(--radius);
-      font-size: 13px; font-family: var(--font); color: var(--text-strong);
+      font-size: 14px; font-family: var(--font); color: var(--text-strong);
       background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='M7.99994 10.7499C7.80994 10.7499 7.61994 10.6799 7.46994 10.5299L3.21994 6.27994C2.92994 5.98994 2.92994 5.50994 3.21994 5.21994C3.50994 4.92994 3.98994 4.92994 4.27994 5.21994L7.99994 8.93994L11.7199 5.21994C12.0099 4.92994 12.4899 4.92994 12.7799 5.21994C13.0699 5.50994 13.0699 5.98994 12.7799 6.27994L8.52994 10.5299C8.37994 10.6799 8.18994 10.7499 7.99994 10.7499Z' fill='%236b7a90'/%3E%3C/svg%3E") no-repeat right 4px center;
       cursor: pointer; height: 28px;
     }
@@ -1776,7 +1776,7 @@
     [data-theme="dark"] .content-title h1 { color: #fff; }
     [data-theme="dark"] .page-title h1 { color: #fff; }
     [data-theme="dark"] .pool-card-header { border-color: var(--border-card); }
-    [data-theme="dark"] .pool-card-header h3 { color: #fff; }
+    [data-theme="dark"] .pool-card-header h2 { color: #fff; }
     [data-theme="dark"] .sidebar-footer { border-color: var(--border-card); }
     [data-theme="dark"] .sidebar-footer-brand path { fill: #ffffff; }
     [data-theme="dark"] .av-badge { background: var(--surface-bg); border-color: var(--border-200); color: var(--text-subtle); }
@@ -1852,7 +1852,7 @@
       width: 100%;
       padding: 0 12px; height: 32px;
       border: 1px solid var(--border-200); border-radius: var(--radius);
-      font-size: 13px; font-family: var(--font); color: var(--text-strong);
+      font-size: 14px; font-family: var(--font); color: var(--text-strong);
       background: #fff; appearance: none; -webkit-appearance: none;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='M7.99994 10.7499C7.80994 10.7499 7.61994 10.6799 7.46994 10.5299L3.21994 6.27994C2.92994 5.98994 2.92994 5.50994 3.21994 5.21994C3.50994 4.92994 3.98994 4.92994 4.27994 5.21994L7.99994 8.93994L11.7199 5.21994C12.0099 4.92994 12.4899 4.92994 12.7799 5.21994C13.0699 5.50994 13.0699 5.98994 12.7799 6.27994L8.52994 10.5299C8.37994 10.6799 8.18994 10.7499 7.99994 10.7499Z' fill='%236b7a90'/%3E%3C/svg%3E");
       background-repeat: no-repeat;
@@ -1866,7 +1866,7 @@
       border-top: 1px solid var(--border-200);
       flex-shrink: 0;
     }
-    .af-footer-info { font-size: 13px; color: var(--text-muted); }
+    .af-footer-info { font-size: 14px; color: var(--text-muted); }
     .af-footer-actions { display: flex; gap: 8px; }
 
     /* ===== Avatar Dropdown Menu ===== */
@@ -2317,7 +2317,7 @@
           <!-- Personal Information Card -->
           <div class="settings-card">
             <div class="card-header">
-              <h3>Personal Information</h3>
+              <h2>Personal Information</h2>
               <div class="card-header-actions"><button class="btn-discard" aria-label="Discard changes">Discard</button><button class="btn-save" aria-label="Save changes" aria-disabled="true">Save</button></div>
             </div>
             <div class="card-content">
@@ -2354,7 +2354,7 @@
           <!-- Password Card -->
           <div class="settings-card">
             <div class="card-header">
-              <h3>Password</h3>
+              <h2>Password</h2>
               <div class="card-header-actions"><button class="btn-discard" aria-label="Discard changes">Discard</button><button class="btn-save" aria-label="Save changes" aria-disabled="true">Save</button></div>
             </div>
             <div class="card-content">
@@ -2403,7 +2403,7 @@
           <!-- Configure API Key Card -->
           <div class="settings-card">
             <div class="card-header">
-              <h3>Configure API Key</h3>
+              <h2>Configure API Key</h2>
               <div class="card-header-actions"><button class="btn-discard" aria-label="Discard changes">Discard</button><button class="btn-save" aria-label="Save changes" aria-disabled="true">Save</button></div>
             </div>
             <div class="card-content">
@@ -2429,7 +2429,7 @@
           <!-- Email Notifications Card -->
           <div class="settings-card">
             <div class="card-header">
-              <h3>Email Notifications</h3>
+              <h2>Email Notifications</h2>
               <div class="card-header-actions"><button class="btn-discard" aria-label="Discard changes">Discard</button><button class="btn-save" aria-label="Save changes" aria-disabled="true">Save</button></div>
             </div>
             <div class="card-content">
@@ -2506,7 +2506,7 @@
           <!-- Webhook Notifications Card -->
           <div class="settings-card">
             <div class="card-header">
-              <h3>Webhook Notifications</h3>
+              <h2>Webhook Notifications</h2>
               <div class="card-header-actions"><button class="btn-discard" aria-label="Discard changes">Discard</button><button class="btn-save" aria-label="Save changes" aria-disabled="true">Save</button></div>
             </div>
             <div class="card-content">
@@ -2611,7 +2611,7 @@
           <!-- RabbitMQ Notifications Card -->
           <div class="settings-card">
             <div class="card-header">
-              <h3>RabbitMQ Notifications</h3>
+              <h2>RabbitMQ Notifications</h2>
               <div class="card-header-actions"><button class="btn-discard" aria-label="Discard changes">Discard</button><button class="btn-save" aria-label="Save changes" aria-disabled="true">Save</button></div>
             </div>
             <div class="card-content">
@@ -2696,7 +2696,7 @@
             <div class="pool-card-header">
               <div class="pool-card-header-left">
                 <span class="pool-drag-handle" draggable="true"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.5 12C4.32843 12 5 11.3284 5 10.5C5 9.67157 4.32843 9 3.5 9C2.67157 9 2 9.67157 2 10.5C2 11.3284 2.67157 12 3.5 12Z"/><path d="M12.5 12C13.3284 12 14 11.3284 14 10.5C14 9.67157 13.3284 9 12.5 9C11.6716 9 11 9.67157 11 10.5C11 11.3284 11.6716 12 12.5 12Z"/><path d="M8 12C8.82843 12 9.5 11.3284 9.5 10.5C9.5 9.67157 8.82843 9 8 9C7.17157 9 6.5 9.67157 6.5 10.5C6.5 11.3284 7.17157 12 8 12Z"/><path d="M3.5 7C4.32843 7 5 6.32843 5 5.5C5 4.67157 4.32843 4 3.5 4C2.67157 4 2 4.67157 2 5.5C2 6.32843 2.67157 7 3.5 7Z"/><path d="M12.5 7C13.3284 7 14 6.32843 14 5.5C14 4.67157 13.3284 4 12.5 4C11.6716 4 11 4.67157 11 5.5C11 6.32843 11.6716 7 12.5 7Z"/><path d="M8 7C8.82843 7 9.5 6.32843 9.5 5.5C9.5 4.67157 8.82843 4 8 4C7.17157 4 6.5 4.67157 6.5 5.5C6.5 6.32843 7.17157 7 8 7Z"/></svg></span>
-                <h3>Default MetaDefender Cloud Scan Pool</h3>
+                <h2>Default MetaDefender Cloud Scan Pool</h2>
                 <span class="pool-instance-count">1 instance</span>
               </div>
               <div class="pool-card-header-right">
@@ -2730,7 +2730,7 @@
             <div class="pool-card-header">
               <div class="pool-card-header-left">
                 <span class="pool-drag-handle" draggable="true"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.5 12C4.32843 12 5 11.3284 5 10.5C5 9.67157 4.32843 9 3.5 9C2.67157 9 2 9.67157 2 10.5C2 11.3284 2.67157 12 3.5 12Z"/><path d="M12.5 12C13.3284 12 14 11.3284 14 10.5C14 9.67157 13.3284 9 12.5 9C11.6716 9 11 9.67157 11 10.5C11 11.3284 11.6716 12 12.5 12Z"/><path d="M8 12C8.82843 12 9.5 11.3284 9.5 10.5C9.5 9.67157 8.82843 9 8 9C7.17157 9 6.5 9.67157 6.5 10.5C6.5 11.3284 7.17157 12 8 12Z"/><path d="M3.5 7C4.32843 7 5 6.32843 5 5.5C5 4.67157 4.32843 4 3.5 4C2.67157 4 2 4.67157 2 5.5C2 6.32843 2.67157 7 3.5 7Z"/><path d="M12.5 7C13.3284 7 14 6.32843 14 5.5C14 4.67157 13.3284 4 12.5 4C11.6716 4 11 4.67157 11 5.5C11 6.32843 11.6716 7 12.5 7Z"/><path d="M8 7C8.82843 7 9.5 6.32843 9.5 5.5C9.5 4.67157 8.82843 4 8 4C7.17157 4 6.5 4.67157 6.5 5.5C6.5 6.32843 7.17157 7 8 7Z"/></svg></span>
-                <h3>Default MetaDefender Core Scan Pool</h3>
+                <h2>Default MetaDefender Core Scan Pool</h2>
                 <span class="pool-instance-count">1 instance</span>
               </div>
               <div class="pool-card-header-right">
@@ -2764,7 +2764,7 @@
             <div class="pool-card-header">
               <div class="pool-card-header-left">
                 <span class="pool-drag-handle" draggable="true"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.5 12C4.32843 12 5 11.3284 5 10.5C5 9.67157 4.32843 9 3.5 9C2.67157 9 2 9.67157 2 10.5C2 11.3284 2.67157 12 3.5 12Z"/><path d="M12.5 12C13.3284 12 14 11.3284 14 10.5C14 9.67157 13.3284 9 12.5 9C11.6716 9 11 9.67157 11 10.5C11 11.3284 11.6716 12 12.5 12Z"/><path d="M8 12C8.82843 12 9.5 11.3284 9.5 10.5C9.5 9.67157 8.82843 9 8 9C7.17157 9 6.5 9.67157 6.5 10.5C6.5 11.3284 7.17157 12 8 12Z"/><path d="M3.5 7C4.32843 7 5 6.32843 5 5.5C5 4.67157 4.32843 4 3.5 4C2.67157 4 2 4.67157 2 5.5C2 6.32843 2.67157 7 3.5 7Z"/><path d="M12.5 7C13.3284 7 14 6.32843 14 5.5C14 4.67157 13.3284 4 12.5 4C11.6716 4 11 4.67157 11 5.5C11 6.32843 11.6716 7 12.5 7Z"/><path d="M8 7C8.82843 7 9.5 6.32843 9.5 5.5C9.5 4.67157 8.82843 4 8 4C7.17157 4 6.5 4.67157 6.5 5.5C6.5 6.32843 7.17157 7 8 7Z"/></svg></span>
-                <h3>My Custom Scan Pool</h3>
+                <h2>My Custom Scan Pool</h2>
                 <span class="pool-instance-count">2 instances</span>
               </div>
               <div class="pool-card-header-right">
@@ -2805,7 +2805,7 @@
             <div class="pool-card-header">
               <div class="pool-card-header-left">
                 <span class="pool-drag-handle" draggable="true"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.5 12C4.32843 12 5 11.3284 5 10.5C5 9.67157 4.32843 9 3.5 9C2.67157 9 2 9.67157 2 10.5C2 11.3284 2.67157 12 3.5 12Z"/><path d="M12.5 12C13.3284 12 14 11.3284 14 10.5C14 9.67157 13.3284 9 12.5 9C11.6716 9 11 9.67157 11 10.5C11 11.3284 11.6716 12 12.5 12Z"/><path d="M8 12C8.82843 12 9.5 11.3284 9.5 10.5C9.5 9.67157 8.82843 9 8 9C7.17157 9 6.5 9.67157 6.5 10.5C6.5 11.3284 7.17157 12 8 12Z"/><path d="M3.5 7C4.32843 7 5 6.32843 5 5.5C5 4.67157 4.32843 4 3.5 4C2.67157 4 2 4.67157 2 5.5C2 6.32843 2.67157 7 3.5 7Z"/><path d="M12.5 7C13.3284 7 14 6.32843 14 5.5C14 4.67157 13.3284 4 12.5 4C11.6716 4 11 4.67157 11 5.5C11 6.32843 11.6716 7 12.5 7Z"/><path d="M8 7C8.82843 7 9.5 6.32843 9.5 5.5C9.5 4.67157 8.82843 4 8 4C7.17157 4 6.5 4.67157 6.5 5.5C6.5 6.32843 7.17157 7 8 7Z"/></svg></span>
-                <h3>Another Scan Pool</h3>
+                <h2>Another Scan Pool</h2>
                 <span class="pool-instance-count">21 instances</span>
               </div>
               <div class="pool-card-header-right">
@@ -2837,7 +2837,7 @@
           <!-- Encryption Key Card -->
           <div class="settings-card">
             <div class="card-header">
-              <h3>Encryption Key</h3>
+              <h2>Encryption Key</h2>
             </div>
             <div class="card-content">
               <div class="banner">
@@ -2866,7 +2866,7 @@
           <!-- SSL Card -->
           <div class="settings-card">
             <div class="card-header">
-              <h3>SSL</h3>
+              <h2>SSL</h2>
               <div class="card-header-actions"><button class="btn-discard" aria-label="Discard changes">Discard</button><button class="btn-save" aria-label="Save changes" aria-disabled="true">Save</button></div>
             </div>
             <div class="card-content">
@@ -2910,7 +2910,7 @@
           <!-- Single User Session Card -->
           <div class="settings-card">
             <div class="card-header">
-              <h3>Single User Session</h3>
+              <h2>Single User Session</h2>
               <div class="card-header-actions"><button class="btn-discard" aria-label="Discard changes">Discard</button><button class="btn-save" aria-label="Save changes" aria-disabled="true">Save</button></div>
             </div>
             <div class="card-content">
@@ -2935,7 +2935,7 @@
           <!-- Configuration Card -->
           <div class="settings-card">
             <div class="card-header">
-              <h3>Configuration</h3>
+              <h2>Configuration</h2>
               <div class="card-header-actions"><button class="btn-discard" aria-label="Discard changes">Discard</button><button class="btn-save" aria-label="Save changes" aria-disabled="true">Save</button></div>
             </div>
             <div class="card-content">
@@ -3019,7 +3019,7 @@
           <!-- Authentication Card -->
           <div class="settings-card">
             <div class="card-header">
-              <h3>Authentication</h3>
+              <h2>Authentication</h2>
               <div class="card-header-actions"><button class="btn-discard" aria-label="Discard changes">Discard</button><button class="btn-save" aria-label="Save changes" aria-disabled="true">Save</button></div>
             </div>
             <div class="card-content">
@@ -3060,7 +3060,7 @@
           <!-- Advanced Settings Card -->
           <div class="settings-card">
             <div class="card-header">
-              <h3>Advanced Settings</h3>
+              <h2>Advanced Settings</h2>
               <div class="card-header-actions"><button class="btn-discard" aria-label="Discard changes">Discard</button><button class="btn-save" aria-label="Save changes" aria-disabled="true">Save</button></div>
             </div>
             <div class="card-content">
@@ -3114,7 +3114,7 @@
           <div id="licenseEmptyState">
             <div class="settings-card">
               <div class="card-header">
-                <h3>Active License</h3>
+                <h2>Active License</h2>
               </div>
               <div class="license-empty-state">
                 <svg class="license-empty-illustration" viewBox="0 0 120 120" fill="none">
@@ -3139,7 +3139,7 @@
           <div id="licenseActiveState" style="display:none;">
             <div class="settings-card">
               <div class="card-header">
-                <h3>Active License</h3>
+                <h2>Active License</h2>
               </div>
               <div class="card-content">
                 <div class="form-row">
@@ -3179,7 +3179,7 @@
         <div class="tab-panel" id="panel-sso">
           <div class="settings-card">
             <div class="card-header">
-              <h3>SSO Configuration</h3>
+              <h2>SSO Configuration</h2>
               <div class="card-header-actions">
                 <button class="btn-discard" aria-label="Discard changes">Discard</button>
                 <button class="btn-save" aria-label="Save changes" aria-disabled="true">Save</button>
@@ -3262,7 +3262,7 @@
           <!-- Telemetry Card -->
           <div class="settings-card">
             <div class="card-header">
-              <h3>Telemetry</h3>
+              <h2>Telemetry</h2>
               <div class="card-header-actions">
                 <button class="btn-discard" aria-label="Discard changes">Discard</button>
                 <button class="btn-save" aria-label="Save changes" aria-disabled="true">Save</button>
@@ -3322,7 +3322,7 @@
           <!-- Data Retention Card -->
           <div class="settings-card">
             <div class="card-header">
-              <h3>Data Retention</h3>
+              <h2>Data Retention</h2>
               <div class="card-header-actions">
                 <button class="btn-discard" aria-label="Discard changes">Discard</button>
                 <button class="btn-save" aria-label="Save changes" aria-disabled="true">Save</button>
@@ -3392,7 +3392,7 @@
           <!-- External Loggers Configurations Card -->
           <div class="settings-card">
             <div class="card-header">
-              <h3>External Loggers Configurations</h3>
+              <h2>External Loggers Configurations</h2>
               <button class="btn-outline" onclick="openSlidePanel('addLoggerPanel')" style="display:flex; align-items:center; gap:6px;">
                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg>
                 Add Server
@@ -3439,7 +3439,7 @@
           <div class="audit-card">
             <div class="audit-card-header">
               <div class="audit-card-title">
-                <h3>System Events Log</h3>
+                <h2>System Events Log</h2>
                 <span class="count" id="auditTotalCount">1,256</span>
               </div>
               <div class="audit-card-actions">
@@ -4127,7 +4127,7 @@
       </div>
       <hr style="border:none; border-top:1px solid var(--border-200); margin:0;">
       <div class="panel-field">
-        <label class="panel-field-label" style="display:flex; align-items:baseline; gap:6px;">Add Scan Instance <span style="font-weight:400; color:var(--text-muted); font-size:13px;">(optional)</span></label>
+        <label class="panel-field-label" style="display:flex; align-items:baseline; gap:6px;">Add Scan Instance <span style="font-weight:400; color:var(--text-muted); font-size:14px;">(optional)</span></label>
       </div>
       <div class="panel-field">
         <label class="panel-field-label" for="scanPoolUrl">URL</label>
@@ -5194,7 +5194,7 @@
 
       const cardHtml = '<div class="settings-card pool-card">' +
         '<div class="pool-card-header">' +
-          '<div class="pool-card-header-left">' + dragSvg + '<h3>' + escapeHtml(name) + '</h3><span class="pool-instance-count">' + instanceCount + '</span></div>' +
+          '<div class="pool-card-header-left">' + dragSvg + '<h2>' + escapeHtml(name) + '</h2><span class="pool-instance-count">' + instanceCount + '</span></div>' +
           '<div class="pool-card-header-right"><button class="btn-outline" onclick="showToast(\'Add Instance dialog would open\')">Add Instance</button></div>' +
         '</div>' +
         '<table class="pool-table"><thead><tr>' +
