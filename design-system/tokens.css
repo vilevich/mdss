@@ -149,14 +149,14 @@
   --size-inset: 10px;
   --weight-regular: 400;
   --weight-medium: 500;
-  --lh-h1: 36.48px;
-  --lh-h2: 27.36px;
+  --lh-h1: 36px;
+  --lh-h2: 27.4px;
   --lh-h3: 22.8px;
-  --lh-h4: 18.24px;
-  --lh-body: 15.96px;
-  --lh-body-paragraph: 18.62px;
-  --lh-note: 13.68px;
-  --lh-note-paragraph: 15.96px;
+  --lh-h4: 18.2px;
+  --lh-body: 16px;
+  --lh-body-paragraph: 18.6px;
+  --lh-note: 13.7px;
+  --lh-note-paragraph: 16px;
   --lh-inset: 11.4px;
 
   /* ===== SPACING SCALE (Base 4) ===== */
