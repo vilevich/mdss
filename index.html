@@ -46,32 +46,7 @@
     .sidebar-toggle:hover { color: var(--text-strong); background: var(--hover-default); }
     .sidebar-toggle svg { width: 18px; height: 18px; }
     .header-right { display: flex; align-items: center; gap: 8px; }
-    .header-icon {
-      width: 32px; height: 32px; border-radius: var(--radius);
-      display: flex; align-items: center; justify-content: center;
-      cursor: pointer; color: var(--text-subtle);
-    }
-    .header-icon:hover { color: var(--text-strong); background: var(--hover-default); }
-    .header-icon svg { width: 18px; height: 18px; }
-    .notif-dot {
-      position: absolute;
-      top: 5px;
-      right: 5px;
-      width: 8px;
-      height: 8px;
-      border-radius: 9999px;
-      background: var(--red-700);
-      pointer-events: none;
-    }
-    .header-avatar {
-      width: 32px; height: 32px; border-radius: 50%;
-      background: linear-gradient(135deg, #6b7faa, #4a5f8a);
-      border: 2px solid rgba(0,0,0,0.1);
-      margin-left: 12px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 14px; font-weight: 500; color: var(--text-on-fill);
-      cursor: pointer;
-    }
+    /* header-icon, notif-dot, header-avatar → design-system/components.css */
 
     /* ===== MAIN ===== */
     .main { display: flex; flex: 1; min-height: 0; }
@@ -572,19 +547,7 @@
     #upcomingJobsTable td {
       overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
     }
-    /* Pinned Job Name column — sticky on scroll */
-    .col-pinned {
-      position: sticky; left: 0; z-index: 2; background: var(--surface-card);
-      border-right: 1px solid var(--border-card);
-    }
-    .data-table thead th.col-pinned { position: sticky; z-index: 3; }
-    .data-table tbody tr:hover .col-pinned { background: var(--surface-hover); }
-    .data-table tbody tr.selected .col-pinned { background: var(--blue-100); }
-    .data-table tbody tr.selected:hover .col-pinned { background: var(--blue-200); }
-    [data-theme="dark"] .col-pinned { background: var(--surface-card); border-right-color: var(--border-card); }
-    [data-theme="dark"] .data-table tbody tr:hover .col-pinned { background: var(--surface-hover); }
-    [data-theme="dark"] .data-table tbody tr.selected .col-pinned { background: rgba(29,107,252,0.10); }
-    [data-theme="dark"] .data-table tbody tr.selected:hover .col-pinned { background: rgba(29,107,252,0.16); }
+    /* col-pinned base styles → design-system/components.css */
     /* Checkbox column — sticky on scroll (no right border — pinned col next to it has it) */
     #processedFilesTable .col-cb {
       position: sticky; left: 0; z-index: 2; background: var(--surface-card);
@@ -667,58 +630,13 @@
     }
     .job-stopped-banner svg { width: 16px; height: 16px; color: var(--feedback-warning); flex-shrink: 0; }
 
-    /* Priority toggle group */
-    .priority-toggle { display: inline-flex; border: 1px solid var(--border-200); border-radius: var(--radius); overflow: hidden; }
-    .priority-toggle-btn {
-      padding: 0 16px; height: 30px; border: none; background: var(--surface-card);
-      font-family: var(--font); font-size: 14px; color: var(--text-subtle); cursor: pointer;
-      border-right: 1px solid var(--border-200);
-    }
-    .priority-toggle-btn:last-child { border-right: none; }
-    .priority-toggle-btn.active { background: var(--tab-active-bg); color: var(--text-on-fill); }
-    .priority-toggle-btn:hover:not(.active) { background: var(--hover-subtle); }
-
-    /* Advanced Filters panel - Specific to Jobs */
-    .af-section { display: flex; flex-direction: column; gap: 8px; }
-    .af-section-title { font-size: 12px; font-weight: 500; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.3px; }
-    .af-field { display: flex; flex-direction: column; gap: 6px; }
-    .af-field label { font-size: 14px; font-weight: 400; color: var(--text-strong); }
-    .af-field select { max-width: none; }
-    .af-chips { display: flex; flex-wrap: wrap; gap: 6px; }
-    .af-chip {
-      display: inline-flex; align-items: center; gap: 4px;
-      padding: 4px 10px; border-radius: var(--radius); font-size: 12px;
-      border: 1px solid var(--border-200); background: var(--surface-card); color: var(--text-subtle); cursor: pointer;
-    }
-    .af-chip.selected { background: var(--blue-100); border-color: var(--primary); color: var(--primary); }
+    /* priority-toggle, af-section/chips → design-system/components.css */
 
     /* ===== AUDIT PAGE ===== */
-    .page-view { display: none; }
-    .page-view.active { display: block; }
-
-    /* Full-height table page layout */
-    .page-view.table-page { display: none; flex-direction: column; height: calc(100vh - 56px - 40px); }
-    .page-view.table-page.active { display: flex; }
-    .table-page .audit-card { flex: 1; display: flex; flex-direction: column; min-height: 0; overflow: hidden; }
-    .table-page .audit-table-scroll { flex: 1; overflow: auto; min-height: 0; }
-    .table-page .audit-pagination { flex-shrink: 0; min-height: 72px; }
+    /* page-view, expand-btn → design-system/components.css */
 
     .audit-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
     .audit-header h1 { font-size: 24px; font-weight: 500; color: var(--text-strong); }
-
-    /* Expand/collapse chevron */
-    .expand-btn {
-      width: 16px; height: 16px;
-      border: none; background: none; cursor: pointer;
-      display: inline-flex; align-items: center; justify-content: center;
-      color: var(--text-muted);
-      border-radius: var(--radius);
-      transition: transform 0.15s ease;
-      padding: 0;
-    }
-    .expand-btn:hover { color: var(--text-strong); }
-    .expand-btn svg { width: 16px; height: 16px; }
-    .expand-btn.open { transform: rotate(180deg); }
 
     /* Expanded row */
     .audit-expanded-row td {
@@ -730,46 +648,7 @@
       border-bottom: 1px solid var(--border-card);
     }
 
-    /* User cell with avatar */
-    .audit-user { display: flex; align-items: center; gap: 8px; }
-    .audit-avatar {
-      width: 24px; height: 24px; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 10px; font-weight: 500; color: var(--text-on-fill);
-      flex-shrink: 0;
-    }
-    .audit-avatar.system { background: none; }
-
-    /* Level badge */
-    .level-badge {
-      display: inline-flex;
-      align-items: center;
-      padding: 2px 10px;
-      border-radius: var(--radius);
-      font-size: 12px;
-      font-weight: 500;
-      white-space: nowrap;
-    }
-    .level-badge.warning { background: var(--ds-caution-100); color: var(--ds-caution-text); }
-    .level-badge.error { background: var(--ds-alert-100); color: var(--ds-alert-text); }
-    .level-badge.info { background: #D1ECF1; color: #0C5460; }
-    .level-badge.success { background: var(--ds-success-100); color: var(--ds-success-text); }
-
-    /* Category badge */
-    .category-badge {
-      display: inline-flex;
-      align-items: center;
-      padding: 2px 10px;
-      border-radius: var(--radius);
-      font-size: 12px;
-      font-weight: 400;
-      border: 1px solid var(--border-200);
-      background: var(--surface-card);
-      color: var(--text-subtle);
-      white-space: nowrap;
-    }
-
-    /* Copy button (audit) — inherits from base .copy-btn above */
+    /* audit-user, audit-avatar, level-badge, category-badge → design-system/components.css */
 
     /* ===== DARK MODE (product-specific overrides only) ===== */
     [data-theme="dark"] body { background: var(--surface-bg); color: var(--text-subtle); }
@@ -780,8 +659,6 @@
     [data-theme="dark"] .main-header { background: var(--header-bg); border-color: var(--border-card); }
     [data-theme="dark"] .header { background: var(--surface-bg); border-color: var(--border-card); }
     [data-theme="dark"] .header .header-logo-text span { color: var(--text-strong); }
-    [data-theme="dark"] .header-icon { color: var(--text-strong); }
-    [data-theme="dark"] .header-icon:hover { background: var(--hover-default); color: var(--text-strong); }
     [data-theme="dark"] .sidebar-toggle { color: var(--text-strong); }
     [data-theme="dark"] .sidebar-toggle:hover { background: var(--hover-default); color: var(--text-strong); }
     [data-theme="dark"] .settings-card { background: var(--surface-card); border-color: var(--border-card); }
@@ -807,171 +684,10 @@
     [data-theme="dark"] .pool-action-menu { background: var(--surface-card); border-color: var(--border-200); }
     [data-theme="dark"] .pool-action-menu-item:hover { background: var(--hover-subtle); }
     [data-theme="dark"] .users-empty-icon { background: rgba(255,255,255,0.06); }
-    [data-theme="dark"] .audit-user { color: var(--text-strong); }
-    [data-theme="dark"] .expand-btn { color: var(--text-subtle); }
-    [data-theme="dark"] .expand-btn:hover { color: var(--text-strong); }
     [data-theme="dark"] .btn-export { border-color: var(--border-200); color: var(--text-subtle); }
     [data-theme="dark"] .audit-detail-row td { color: var(--text-muted); }
-    [data-theme="dark"] .notif-dot { background: var(--red-400); }
-    [data-theme="dark"] .header-avatar { border-color: rgba(255,255,255,0.1); }
-    [data-theme="dark"] .advanced-filters-panel { background: var(--surface-card); }
-    [data-theme="dark"] .af-header { border-color: var(--border-card); }
-    [data-theme="dark"] .af-header h3 { color: var(--text-strong); }
-    [data-theme="dark"] .af-field-label { color: var(--text-subtle); }
-    [data-theme="dark"] .af-footer { border-color: var(--border-card); }
-    [data-theme="dark"] .af-footer .af-results-text { color: var(--text-muted); }
 
-    /* Theme toggle button */
-    .theme-toggle {
-      width: 32px; height: 32px; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      cursor: pointer; color: var(--text-subtle); background: none; border: none;
-      margin-left: 4px; padding: 0;
-    }
-    .theme-toggle:hover { color: var(--text-strong); background: var(--hover-default); }
-    .theme-toggle svg { width: 18px; height: 18px; }
-    [data-theme="dark"] .theme-toggle { color: var(--text-strong); }
-    [data-theme="dark"] .theme-toggle:hover { background: var(--hover-default); }
-
-    /* Advanced Filters Drawer */
-    .advanced-filters-overlay {
-      position: fixed; inset: 0; z-index: 2000;
-      background: var(--overlay-medium);
-      opacity: 0; visibility: hidden;
-      transition: opacity 0.25s ease, visibility 0.25s ease;
-    }
-    .advanced-filters-overlay.open { opacity: 1; visibility: visible; }
-    .advanced-filters-panel {
-      position: fixed; top: 0; right: 0; z-index: 2001;
-      background: var(--surface-card);
-      width: 420px; height: 100vh;
-      box-shadow: var(--shadow-panel);
-      display: flex; flex-direction: column;
-      transform: translateX(100%);
-      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    .advanced-filters-overlay.open + .advanced-filters-panel,
-    .advanced-filters-panel.open { transform: translateX(0); }
-    .af-header {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 24px;
-      height: 56px;
-      border-bottom: 1px solid var(--border-200);
-      flex-shrink: 0;
-    }
-    .af-header h3 { font-size: 14px; font-weight: 500; color: var(--text-strong); }
-    .af-close {
-      width: 28px; height: 28px; border: none; background: none;
-      cursor: pointer; display: flex; align-items: center; justify-content: center;
-      color: var(--text-muted); border-radius: var(--radius);
-    }
-    .af-close:hover { color: var(--text-strong); background: var(--hover-subtle); }
-    .af-close svg { width: 16px; height: 16px; }
-    .af-body { padding: 24px; display: flex; flex-direction: column; gap: 16px; flex: 1; overflow-y: auto; }
-    .af-field { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; align-items: center; }
-    .af-field-label { font-size: 14px; color: var(--text-subtle); min-height: 32px; display: flex; align-items: center; }
-    .af-field select {
-      width: 100%;
-      padding: 0 28px 0 12px;
-    }
-    .af-field select:focus { border-color: var(--primary); }
-    .af-footer {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 16px 24px;
-      border-top: 1px solid var(--border-200);
-      flex-shrink: 0;
-    }
-    .af-footer-info { font-size: 14px; color: var(--text-muted); }
-    .af-footer-actions { display: flex; gap: 8px; }
-
-    /* ===== Avatar Dropdown Menu ===== */
-    .avatar-dropdown-wrap { position: relative; }
-    .avatar-dropdown {
-      position: absolute; top: calc(100% + 8px); right: 0; z-index: 3000;
-      width: 260px; padding: 12px;
-      background: var(--surface-card, #fff);
-      border: 1px solid var(--border-card, #EBECEE);
-      border-radius: 4px;
-      box-shadow: 2px 4px 4px -2px rgba(12,18,29,0.12), 0 3px 16px -2px rgba(12,18,29,0.12);
-      display: none; flex-direction: column; gap: 0;
-      font-family: var(--font);
-    }
-    .avatar-dropdown.open { display: flex; }
-
-    /* User info header */
-    .avd-user {
-      display: flex; align-items: center;
-      padding: 12px 16px 12px 12px; margin: 0;
-      width: 100%;
-      box-sizing: border-box;
-    }
-    .avd-user-info { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
-    .avd-user-name {
-      font-size: 14px; font-weight: 500; line-height: 16px; color: var(--text-strong);
-      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-    }
-    .avd-user-email {
-      font-size: 14px; line-height: 16px; color: var(--text-subtle);
-      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-    }
-
-    /* Divider */
-    .avd-divider {
-      height: 1px; background: var(--border-200);
-      width: 100%; margin: 12px 0;
-    }
-    .avd-back + .avd-divider {
-      margin: 12px -12px; width: calc(100% + 24px);
-    }
-
-    .avd-group {
-      display: flex; flex-direction: column;
-    }
-
-    /* Menu items */
-    .avd-item {
-      display: flex; align-items: center; gap: 8px;
-      padding: 8px 12px; margin: 0; border-radius: 4px;
-      font-size: 14px; line-height: 16px; color: var(--text-strong);
-      cursor: pointer; border: none; background: none;
-      width: 100%; height: 32px; box-sizing: border-box;
-      text-align: left; font-family: var(--font);
-      transition: background 0.15s;
-    }
-    .avd-item:hover { background: var(--hover-subtle); }
-    .avd-item svg { width: 16px; height: 16px; flex-shrink: 0; color: var(--text-subtle); }
-    .avd-item .avd-chevron { margin-left: auto; width: 16px; height: 16px; color: var(--text-muted); }
-    .avd-item .avd-flag { width: 20px; height: 16px; border-radius: 2px; flex-shrink: 0; }
-    .avd-item-text { flex: 1; min-width: 0; }
-    .avd-item-subtle { color: var(--text-subtle); font-size: 14px; }
-
-    /* Submenu */
-    .avd-submenu {
-      display: none; flex-direction: column; gap: 0;
-    }
-    .avd-submenu.open { display: flex; }
-    .avd-back {
-      display: flex; align-items: center; gap: 8px;
-      padding: 8px 12px; margin: 0; border-radius: 4px;
-      font-size: 14px; line-height: 16px; color: var(--text-subtle);
-      cursor: pointer; border: none; background: none;
-      width: 100%; height: 32px; box-sizing: border-box;
-      text-align: left; font-family: var(--font);
-    }
-    .avd-back:hover { background: var(--hover-subtle); }
-    .avd-back svg { width: 16px; height: 16px; }
-
-    /* Active check for theme/lang items */
-    .avd-item .avd-check { margin-left: auto; width: 16px; height: 16px; color: var(--primary); display: none; }
-    .avd-item.active .avd-check { display: block; }
-
-    /* Dark mode overrides */
-    [data-theme="dark"] .avatar-dropdown {
-      background: var(--surface-card); border-color: var(--border-card);
-      box-shadow: 2px 4px 4px rgba(0,0,0,0.3), 0 3px 16px rgba(0,0,0,0.3);
-    }
-    [data-theme="dark"] .avd-item:hover { background: var(--hover-default); }
-    [data-theme="dark"] .avd-back:hover { background: var(--hover-default); }
+    /* theme-toggle, advanced-filters, avatar-dropdown → design-system/components.css */
 
     /* Component demo wrapper for standalone previews */
     .avd-demo-container {
@@ -984,112 +700,7 @@
       position: static; display: flex;
     }
 
-    /* ===== Notifications Dropdown ===== */
-    .notif-dropdown-wrap { position: relative; }
-    .notif-dropdown {
-      position: absolute; top: calc(100% + 8px); right: 0; z-index: 3000;
-      width: 320px;
-      background: var(--surface-card, #fff);
-      border: 1px solid var(--border-card);
-      border-radius: 4px;
-      box-shadow: 2px 4px 4px rgba(12,18,29,0.12), 0 3px 16px rgba(12,18,29,0.12);
-      display: none; flex-direction: column;
-      font-family: var(--font);
-      overflow: hidden;
-    }
-    .notif-dropdown.open { display: flex; }
-
-    /* Header */
-    .notif-header {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 12px 16px;
-      border-bottom: 1px solid var(--border-200);
-    }
-    .notif-header-title {
-      font-size: 14px; font-weight: 500; color: var(--text-strong);
-    }
-    .notif-header-action {
-      font-size: 14px; font-weight: 500; color: var(--primary);
-      cursor: pointer; background: none; border: none; font-family: var(--font);
-      padding: 0;
-    }
-    .notif-header-action:hover { text-decoration: underline; }
-
-    /* Message list */
-    .notif-list {
-      display: flex; flex-direction: column; gap: 0;
-      max-height: 400px; overflow-y: auto;
-      padding: 8px;
-    }
-
-    /* Message item */
-    .notif-msg {
-      display: flex; flex-direction: column; gap: 12px;
-      padding: 12px; border-radius: 4px;
-      cursor: pointer;
-      transition: background 0.15s;
-    }
-    .notif-msg:hover { background: var(--hover-subtle); }
-    .notif-msg-top { display: flex; flex-direction: column; gap: 8px; }
-    .notif-msg-title-row {
-      display: flex; align-items: center; gap: 8px;
-    }
-    .notif-msg-title {
-      flex: 1; font-size: 14px; font-weight: 500; color: var(--text-strong);
-      min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
-    }
-    .notif-msg-dot {
-      width: 8px; height: 8px; border-radius: 50%;
-      background: var(--neutral-700); flex-shrink: 0;
-    }
-    .notif-msg-body {
-      font-size: 14px; font-weight: 400; color: var(--text-subtle);
-      line-height: 1.33; display: -webkit-box; -webkit-line-clamp: 3;
-      -webkit-box-orient: vertical; overflow: hidden;
-    }
-    .notif-msg-bottom {
-      display: flex; align-items: center; gap: 12px;
-    }
-    .notif-msg-time {
-      flex: 1; font-size: 12px; color: var(--text-subtle);
-    }
-
-    /* Divider between messages */
-    .notif-divider {
-      height: 1px; background: var(--border-200);
-      margin: 0 4px;
-    }
-
-    /* Empty state */
-    .notif-empty {
-      display: flex; flex-direction: column; align-items: center;
-      gap: 16px; padding: 32px 20px; text-align: center;
-    }
-    .notif-empty-icon {
-      position: relative; display: inline-flex;
-    }
-    .notif-empty-icon svg { width: 64px; height: 48px; }
-    .notif-empty-badge {
-      position: absolute; bottom: -4px; right: -8px;
-      display: inline-flex; height: 16px; min-height: 16px; max-height: 16px;
-      padding: 2px 4px; align-items: center;
-      border-radius: 4px; background: var(--exception-surface-badge-number, #344565);
-      color: var(--text-on-fill); font-size: 12px; font-weight: 400; line-height: 1;
-    }
-    .notif-empty-title {
-      font-size: 14px; font-weight: 500; color: var(--text-strong);
-    }
-    .notif-empty-subtitle {
-      font-size: 14px; color: var(--text-subtle); margin-top: -12px;
-    }
-
-    /* Dark mode overrides */
-    [data-theme="dark"] .notif-dropdown {
-      background: var(--surface-card); border-color: var(--border-card);
-      box-shadow: 2px 4px 4px rgba(0,0,0,0.3), 0 3px 16px rgba(0,0,0,0.3);
-    }
-    [data-theme="dark"] .notif-msg:hover { background: var(--hover-subtle); }
-    [data-theme="dark"] .notif-msg-dot { background: #6b7a90; }
+    /* notif-dropdown → design-system/components.css */
 
   </style>
 </head>

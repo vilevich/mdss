@@ -226,11 +226,18 @@ All buttons share: `height: 32px`, `font-size: 14px`, `font-weight: 500`, `borde
 
 | Class | Description |
 |-------|-------------|
-| `.data-table` | Generic data table |
+| `.data-table` | Generic data table (`border-collapse: separate`) |
 | `.audit-table` | Audit-specific table with column classes |
 | `.filter-icon` | Column sort/filter icon |
 | `.col-dropdown` | Sort/pin popover menu |
 | `.cell-action` | Table row action icon |
+| `.col-pinned` | Sticky column (`position: sticky; left: 0`) with right border stroke |
+| `.audit-user` | User cell layout (`display: flex; gap: 8px`) |
+| `.audit-avatar` | 24px circular avatar with fallback initial + `.system` variant |
+
+**Sticky / Pinned Columns:** Add `.col-pinned` to any `<th>`/`<td>` to pin it to the left edge during horizontal scroll. The outermost pinned column receives a `border-right` separator. `thead th.col-pinned` automatically gets `z-index: 3` so it stays above body cells. Hover, selected, and dark-mode background states are included.
+
+**Table padding:** First and last columns automatically receive `padding-left: 20px` / `padding-right: 20px` for outer gutter spacing.
 
 ### Search & Filter
 
@@ -243,7 +250,7 @@ All buttons share: `height: 32px`, `font-size: 14px`, `font-weight: 500`, `borde
 
 | Class | Description |
 |-------|-------------|
-| `.audit-pagination` | Pagination bar |
+| `.audit-pagination` | Pagination bar (56px height, compact padding) |
 | `.audit-page-btn` | Page navigation button |
 | `.audit-page-select` | Page number select |
 
@@ -263,6 +270,30 @@ All buttons share: `height: 32px`, `font-size: 14px`, `font-weight: 500`, `borde
 
 **Severities** — `.severity-{level}` with `.severity-icon` (critical, high, medium, low, none)
 
+### Level & Category Badges
+
+| Class | Description |
+|-------|-------------|
+| `.level-badge` | Inline pill badge (20px height, 10px padding, rounded) |
+| `.level-badge.warning` | Caution-themed (yellow bg, dark text) |
+| `.level-badge.error` | Alert-themed (red bg, dark text) |
+| `.level-badge.info` | Info-themed (teal bg, dark text) |
+| `.level-badge.success` | Success-themed (green bg, dark text) |
+| `.category-badge` | Bordered pill badge (no fill, neutral border + text) |
+
+Uses `--ds-*` semantic tokens — auto-adapts to dark mode.
+
+### Utility Components
+
+| Class | Description |
+|-------|-------------|
+| `.expand-btn` | 24×24 icon button for expand/collapse (chevron rotates via `.open`) |
+| `.theme-toggle` | 32×32 icon button for light/dark mode switching |
+| `.page-view` | View switcher bar (card/table) with `.active` state |
+| `.table-page` | Table-page wrapper (card border, radius, shadow) |
+| `.priority-toggle` | Segmented toggle bar (e.g. All / Active / Archived) |
+| `.priority-toggle-btn` | Individual toggle segment with `.active` state |
+
 ### Overlays
 
 | Class | Description |
@@ -270,6 +301,60 @@ All buttons share: `height: 32px`, `font-size: 14px`, `font-weight: 500`, `borde
 | `.modal-overlay` / `.modal` | Centered dialog |
 | `.slide-panel-overlay` / `.slide-panel` | Right-side drawer (400px) |
 | `.panel-field` | Field layout for slide panels |
+
+### Advanced Filters Panel
+
+| Class | Description |
+|-------|-------------|
+| `.advanced-filters-overlay` | Full-screen backdrop (`rgba(0,0,0,0.25)`) |
+| `.advanced-filters-panel` | Right-side drawer (400px, slide-in transition) |
+| `.af-header` | Panel header with title + close button |
+| `.af-close` | 32×32 close icon button |
+| `.af-body` | Scrollable content area (`flex: 1; overflow-y: auto`) |
+| `.af-section` | Grouped filter section with bottom border |
+| `.af-section-title` | Section heading (12px uppercase, neutral-600) |
+| `.af-field` | Two-column grid layout (`grid-template-columns: 1fr 1fr`) |
+| `.af-field-label` | Field label text |
+| `.af-chips` | Wrapped chip container (`display: flex; flex-wrap: wrap; gap: 6px`) |
+| `.af-chip` | Selectable filter chip (bordered pill) + `.selected` state |
+| `.af-footer` | Sticky footer with action buttons |
+
+### Dropdown Menus
+
+#### Avatar Dropdown
+
+| Class | Description |
+|-------|-------------|
+| `.avatar-dropdown-wrap` | Positioning wrapper (`position: relative`) |
+| `.avatar-dropdown` | Dropdown panel (280px, shadow-3, hidden by default) |
+| `.avatar-dropdown.open` | Visible state (`opacity: 1; pointer-events: auto`) |
+| `.avd-user` | User info block (avatar + name + email) |
+| `.avd-divider` | Horizontal separator line |
+| `.avd-group` | Grouped menu section |
+| `.avd-item` | Menu item row (icon + text + optional chevron) |
+| `.avd-submenu` | Nested submenu view (slides in on click) |
+| `.avd-back` | Back button for submenu navigation |
+| `.avd-flag` | 20×14 flag icon for language selection |
+| `.avd-check` | Checkmark icon for selected state |
+
+#### Notification Dropdown
+
+| Class | Description |
+|-------|-------------|
+| `.notif-dropdown-wrap` | Positioning wrapper |
+| `.notif-dropdown` | Dropdown panel (380px, shadow-3, hidden by default) |
+| `.notif-dropdown.open` | Visible state |
+| `.notif-header` | Header bar with title + "Mark all read" action |
+| `.notif-list` | Scrollable message list (`max-height: 360px`) |
+| `.notif-msg` | Individual notification message |
+| `.notif-msg-title` | Message title text |
+| `.notif-msg-dot` | Unread indicator dot (8px blue circle) |
+| `.notif-msg-body` | Message body text (neutral-700, 12px) |
+| `.notif-msg-time` | Timestamp text |
+| `.notif-divider` | Message separator |
+| `.notif-empty` | Empty state illustration container |
+| `.notif-empty-icon` | Empty state icon (80px) |
+| `.notif-empty-title` / `.notif-empty-subtitle` | Empty state text |
 
 ### Toasts
 
@@ -287,6 +372,9 @@ All buttons share: `height: 32px`, `font-size: 14px`, `font-weight: 500`, `borde
 | `.av-badge` | AV engine name badge |
 | `.copy-btn` | Copy action icon |
 | `.tooltip-popover` | Floating tooltip |
+| `.header-icon` | 32×32 header toolbar icon button (ghost style, hover bg) |
+| `.notif-dot` | 8px notification indicator dot (positioned top-right of parent) |
+| `.header-avatar` | 28×28 circular avatar for header toolbar |
 | `.skip-link` | WCAG skip-to-content link |
 | `.sr-only` | Screen-reader only utility |
 
