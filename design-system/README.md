@@ -2,7 +2,21 @@
 
 Design tokens and component patterns for **MetaDefender Storage Security**.
 
-> This is a living document — tokens and patterns are added as the prototype evolves.
+> Extracted from Figma Blue Line 2.2.2. This is a living system — tokens and components are added as the prototype evolves.
+
+---
+
+## Quick Start
+
+Add these two `<link>` tags to any HTML page **before** your product-specific `<style>`:
+
+```html
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="design-system/tokens.css">
+<link rel="stylesheet" href="design-system/components.css">
+```
+
+Everything cascades automatically — product-specific overrides go in your inline `<style>` after the links.
 
 ---
 
@@ -10,8 +24,9 @@ Design tokens and component patterns for **MetaDefender Storage Security**.
 
 | File | Purpose |
 |------|---------|
+| `tokens.css` | CSS custom properties, `@font-face`, dark mode variable overrides, body base styles |
+| `components.css` | All reusable component styles with colocated dark mode overrides |
 | `tokens.json` | Structured design tokens (consumable by Style Dictionary, Figma Tokens, etc.) |
-| `tokens.css` | CSS custom properties — drop into any project via `@import` |
 | `README.md` | This file — human-readable reference |
 
 ---
@@ -33,49 +48,76 @@ Located in `/fonts/`:
 
 | Token | Size | Usage |
 |-------|------|-------|
-| `--text-xs` | 10px | Logo subtitle |
-| `--text-sm` | 12px | Badges, footer tagline, section titles |
-| `--text-md` | 14px | Card descriptions, helper text |
-| `--text-base` | 14px | Body, labels, inputs, buttons |
-| `--text-lg` | 16px | Banner titles, modal headings |
-| `--text-xl` | 24px | Page title |
+| `--size-h1` | 32px | Page hero titles |
+| `--size-h2` | 24px | Page titles |
+| `--size-h3` | 20px | Section headings |
+| `--size-h4` | 16px | Card titles, banner titles, modal headings |
+| `--size-label` | 14px | Body, labels, inputs, buttons |
+| `--size-paragraph` | 14px | Body paragraphs, descriptions |
+| `--size-note` | 12px | Badges, footer tagline, small text |
+| `--size-inset` | 10px | Logo subtitle |
 
 ### Weights
 - **400** — body text, descriptions
 - **500** — labels, buttons, headings
-- **700** — logo icon text only
+
+### Line Heights
+| Token | Value |
+|-------|-------|
+| `--lh-h1` | 36.48px |
+| `--lh-h2` | 27.36px |
+| `--lh-h3` | 22.8px |
+| `--lh-h4` | 18.24px |
+| `--lh-body` | 15.96px |
+| `--lh-body-paragraph` | 18.62px |
+| `--lh-note` | 13.68px |
+| `--lh-note-paragraph` | 15.96px |
+| `--lh-inset` | 11.4px |
 
 ---
 
 ## Color Palette
 
-### Core
+Full scales from Figma Blue Line 2.2.2:
+
+| Scale | Range | Example |
+|-------|-------|---------|
+| Neutral | 100–1200 + white | `--neutral-700: #475b81` |
+| Blue | 100–1100 | `--blue-700: #1d6bfc` |
+| Red | 100–1000 | `--red-800: #d40031` |
+| Green | 100–1200 | `--green-1000: #006c4c` |
+| Orange | 100–1100 | `--orange-700: #ff6b00` |
+| Yellow | 100–1200 | `--yellow-700: #dbb600` |
+| Teal | 100–1200 | `--teal-600: #03e7f5` |
+| Purple | 100–1000 | `--purple-700: #9f2caa` |
+
+### Semantic Aliases
 
 | Token | Light | Dark | Usage |
 |-------|-------|------|-------|
-| `--text-strong` | `#0c121d` | `#ffffff` | Primary text |
-| `--text-subtle` | `#344565` | `#a9b2c4` | Secondary text |
-| `--text-muted` | `#6b7a90` | `#6b7a90` | Placeholder, hint text |
-| `--surface-bg` | `#f8f9f9` | `#0c121d` | Page background |
-| `--surface-card` | `#ffffff` | `#141b27` | Card background |
-| `--border-200` | `#dee0e4` | `#344565` | Input borders, dividers |
-| `--border-card` | `#ebecee` | `#24324b` | Card borders |
-| `--primary` | `#1d6bfc` | `#4d8dff` | Primary actions, links |
-| `--primary-hover` | `#1854c3` | `#3a7df5` | Primary button hover |
+| `--text-strong` | `neutral-1200` | `#ffffff` | Primary text |
+| `--text-subtle` | `neutral-800` | `neutral-500` | Secondary text |
+| `--text-muted` | `neutral-600` | `neutral-600` | Placeholder, hint text |
+| `--surface-bg` | `neutral-100` | `neutral-1200` | Page background |
+| `--surface-card` | `neutral-white` | `neutral-1100` | Card background |
+| `--border-200` | `neutral-300` | `neutral-800` | Input borders, dividers |
+| `--border-card` | `neutral-200` | `neutral-900` | Card borders |
+| `--primary` | `blue-700` | `#4d8dff` | Primary actions, links |
+| `--primary-hover` | `blue-800` | `#3a7df5` | Primary button hover |
 
-### Semantic Colors (Tags / Badges / Verdicts)
+### DS Semantic Colors (Tags / Badges / Verdicts)
 
 | Name | 100 (bg) | 700 (accent) | Text | Usage |
 |------|----------|-------------|------|-------|
-| Neutral | `#f8f9f9` | `#475b81` | `#0c121d` | Default, informational |
-| Inactive | `#f8f9f9` | `#a9b2c4` | `#6b7a90` | Disabled, inactive |
-| Secure | `#e0f5f0` | `#006c4c` | `#004d3a` | Verified, secure |
-| Success | `#dffff5` | `#00b37a` | `#002318` | Completed, passed |
-| Accent | `#e8f0ff` | `#1d6bfc` | `#0d2654` | Active, in-progress |
-| Guide | `#ede8ff` | `#7c5ce0` | `#2d1a6e` | Informational, guide |
-| Alert | `#ffdfdb` | `#e83b3b` | `#7e001d` | Error, detected, failed |
-| Warn | `#ffebde` | `#e87c1e` | `#802b00` | Warning |
-| Caution | `#fff4cc` | `#d4a800` | `#5d4200` | Low severity, caution |
+| Neutral | `neutral-100` | `neutral-700` | `neutral-1200` | Default, informational |
+| Inactive | `neutral-100` | `neutral-500` | `neutral-600` | Disabled, inactive |
+| Secure | `green-100` | `green-1000` | `green-1200` | Verified, secure |
+| Success | `green-100` | `green-800` | `green-1200` | Completed, passed |
+| Accent | `blue-100` | `blue-700` | `blue-1000` | Active, in-progress |
+| Guide | `#ede8ff` | `purple-700` | `#2d1a6e` | Informational, guide |
+| Alert | `red-100` | `red-700` | `red-1000` | Error, detected, failed |
+| Warn | `orange-100` | `orange-700` | `orange-1000` | Warning |
+| Caution | `yellow-100` | `yellow-700` | `yellow-1000` | Low severity, caution |
 
 ---
 
@@ -83,150 +125,209 @@ Located in `/fonts/`:
 
 | Token | Value | Usage |
 |-------|-------|-------|
-| `--space-2` | 2px | Nav divider margins |
-| `--space-4` | 4px | Logo gap, nav list gap |
-| `--space-8` | 8px | Header icon gap, input padding-y |
-| `--space-12` | 12px | Form row gaps, input padding-x |
-| `--space-16` | 16px | Card header desc padding, dropdown items |
-| `--space-20` | 20px | Card content padding, banner padding |
+| `--space-none` | 0px | — |
+| `--space-tiny` | 2px | Nav divider margins |
+| `--space-tight` | 4px | Logo gap, nav list gap |
+| `--space-xs` | 8px | Header icon gap, input padding-y |
+| `--space-sm` | 12px | Form row gaps, input padding-x |
+| `--space-std` | 20px | Card content padding, banner padding |
+| `--space-double` | 40px | Large section gaps |
+| `--space-gutter` | 12px | Default gutter |
+| `--space-gutter-compact` | 8px | Compact gutter |
 
 ---
 
-## Border Radius
+## Corner Radius
 
 | Token | Value | Usage |
 |-------|-------|-------|
+| `--radius-none` | 0px | No rounding |
 | `--radius` | 4px | Buttons, cards, inputs, tabs |
-| `--radius-md` | 8px | Dropdowns, popovers |
-| `--radius-pill` | 9999px | Toggle switch, notification dot |
-| `--radius-circle` | 50% | Avatar, radio buttons |
+| `--radius-graphics` | 8px | Dropdowns, popovers |
+| `--radius-modals` | 12px | Modal dialogs |
+| `--radius-circular` | 9999px | Toggle switch, pills, notification dot |
 
 ---
 
-## Shadows
+## Elevation / Shadows
 
-| Token | Value | Usage |
+| Token | Usage |
+|-------|-------|
+| `--shadow-1` | Subtle elevation |
+| `--shadow-2` | Medium elevation |
+| `--shadow-3` | High elevation |
+| `--shadow-4` | Highest elevation |
+| `--shadow-card` | Settings / data cards |
+
+---
+
+## Breakpoints
+
+| Token | Value | Range |
 |-------|-------|-------|
-| `--shadow-card` | `1px 3px 4px -2px rgba(12,18,29,0.04), ...` | Settings cards |
-| `--shadow-dropdown` | `0 4px 16px rgba(12,18,29,0.12), ...` | Dropdowns, popovers |
-| `--shadow-toggle` | `0 0 6px -4px rgba(0,0,0,0.48), ...` | Toggle thumb |
-| `--shadow-focus` | `0 0 0 3px rgba(29,107,252,0.15)` | Input focus ring |
-
----
-
-## Sizing
-
-| Element | Value |
-|---------|-------|
-| Header height | 56px |
-| Sidebar width | 260px |
-| Sidebar collapsed | 60px |
-| Control height | 32px (buttons, inputs) |
-| Form label width | 266px |
-| Icon size | 18px (header/sidebar), 16px (help/filter) |
-| Toggle switch | 28px x 16px |
-| Radio circle | 16px |
-| Avatar | 32px |
+| `--screen-lg` | 1920px | Large: 1461–1920 |
+| `--screen-md` | 1440px | Medium: 1025–1460 |
+| `--screen-sm` | 1024px | Small: 769–1024 |
+| `--screen-tb` | 768px | Tablet Portrait: ≤768 |
 
 ---
 
 ## Component Inventory
 
-### Layout
-- **Header** — fixed top bar with logo, sidebar toggle, theme toggle, notifications, avatar
-- **Sidebar** — collapsible nav with icon-only mode, nav items, dividers, footer with brand
-- **Content area** — page title + tab bar + scrollable card stack
-
-### Navigation
-- **Tab bar** — horizontal pills, dark active state (`--tab-active-bg`)
-- **Nav items** — icon + label, active state uses `#E8F0FF` bg (light) / blue overlay (dark)
-
-### Cards
-- **Settings card** (`.settings-card`) — `bg: --surface-card`, `border: 1px solid --border-card`, `border-radius: 4px`, `shadow: --shadow-card`, `margin-bottom: 12px`
-  - **Card header** — `height: 56px`, `padding: 0 20px`, `border-bottom: 1px solid --border-card`
-  - Section headings use **`<h2>`** — `font-size: 14px`, `font-weight: 500`
-  - Supports **dirty state**: add `.dirty` class to show Discard/Save buttons
-- **Pool card** (`.pool-card`) — draggable via `.pool-drag-handle`, with table and action menu
-
-### Forms
-- **Form row** (`.form-row`) — `display: flex`, `gap: 12px`, `align-items: center`
-- **Form label** (`.form-label`) — `width: 266px`, `font-size: 14px`, `min-height: 32px`
-- **Input field** (`.input-field`) — `height: 32px`, `padding: 8px 12px`, `border: 1px solid --border-200`, `border-radius: 4px`
-  - Focus: `border-color: --primary`, `box-shadow: --shadow-focus`
-  - Supports clear icon (`.input-clear`) and password eye (`.input-eye`)
-- **Select** (`.select-field`) — native styled, custom SVG chevron via `background-image`
-- **Radio group** (`.radio-group`) — vertical, `gap: 12px`, circle: `16px`, selected: `--primary` fill
-- **Toggle switch** (`.toggle-switch`) — `28px x 16px`, pill shape, thumb: `12px`, active: `--toggle-active`
-- **File upload** (`.file-upload-field`) — dashed border, click-to-browse
-
 ### Buttons
 
-All buttons share: `height: 32px`, `font-size: 14px`, `font-weight: 500`, `border-radius: 4px`, `font-family: var(--font)`
+All buttons share: `height: 32px`, `font-size: 14px`, `font-weight: 500`, `border-radius: var(--radius)`, `font-family: var(--font)`
 
-| Class | Background | Text | Border | Hover | Usage |
-|-------|-----------|------|--------|-------|-------|
-| `.btn-primary` | `--primary` | `#fff` | none | `--primary-hover` | Main CTA (Activate, Add, Confirm) |
-| `.btn-outline` | transparent | `--text-strong` | `--border-200` | `rgba(0,0,0,0.03)` | Secondary action (Cancel, Generate, Add Header) |
-| `.btn-outline.danger` | transparent | `#d9534f` | `#d9534f` | `rgba(217,83,79,0.05)` | Destructive action (Delete, Remove) |
-| `.btn-export` | `--primary` | `#fff` | none | `--primary-hover` | Export button with icon |
-| `.btn-save` | `--surface-bg` | `--text-muted` | `--border-200` | — | Disabled by default |
-| `.btn-save` (dirty) | `--primary` | `#fff` | `--primary` | `--primary-hover` | Activates when card has changes |
-| `.btn-discard` | transparent | `--text-strong` | `--border-200` | `rgba(0,0,0,0.03)` | Only visible in dirty card state |
+| Class | Style | Usage |
+|-------|-------|-------|
+| `.btn-primary` | Filled blue | Main CTA (Activate, Add, Confirm) |
+| `.btn-outline` | Bordered | Secondary action (Cancel, Generate) |
+| `.btn-outline.danger` | Bordered red | Destructive secondary action |
+| `.btn-text` | No border, blue text | Tertiary action |
+| `.btn-text.danger` | No border, red text | Destructive tertiary action |
+| `.btn-brand` | Gradient fill | Brand CTA |
+| `.btn-icon` | 32x32 bordered square | Icon-only button |
+| `.btn-danger` | Filled red | Destructive primary action |
+| `.btn-save` | Disabled by default, activates on dirty | Card save button |
+| `.btn-discard` | Hidden by default, shows on dirty | Card discard button |
 
-**Padding:** `btn-primary` uses `0 16px`, `btn-outline` uses `0 12px`
+**States:** `:disabled` / `.disabled` (opacity 0.4), `:focus-visible` (blue outline), `.btn-loading` (spinner animation)
 
-**Dark mode overrides:**
-- `btn-outline` → border: `--border-200`, text: `--text-subtle`, hover: `rgba(255,255,255,0.04)`
-- `btn-save` → bg: `--surface-bg`, border: `--border-200`
-- `btn-export` → border: `--border-200`, text: `--text-subtle`
+### Forms
 
-### Data Display
-- **Tags** — status (filled bg) and keyword (bordered) variants, 9 color schemes
-- **Badges** — dot (8px circle) and number (16px rounded rect) variants
-- **Chips** — 24px height, filled bg, supports selected/removable state
-- **Verdicts** — dot + text inline, semantic color mapping
-- **Severities** — triangle icon + text, 5 levels (critical → none)
-- **Tables** — header with sort/filter icons, hover rows, action column
-- **AV badge** — inline badge for antivirus engine names
+| Class | Description |
+|-------|-------------|
+| `.form-row` | Horizontal form layout (`display: flex; gap: 12px`) |
+| `.form-label` | Fixed 266px label |
+| `.input-field` | Standard text input (32px height) |
+| `.select-field` | Styled native select |
+| `.input-with-suffix` | Input + suffix unit (e.g. "days") |
+| `.radio-group` / `.radio-option` | Radio button group |
+| `.toggle-switch` | 28x16 toggle switch |
+| `.file-upload-field` | Click-to-browse file input |
+| `.help-icon` | 16px tooltip trigger icon |
+
+### Cards
+
+| Class | Description |
+|-------|-------------|
+| `.audit-card` | Base card (bg, border, shadow, radius) |
+| `.audit-card-header` | 56px header with title + actions |
+| `.audit-card-header.with-desc` | Header with description text |
+| `.card-body` | 20px padded content area |
+| `.audit-card-title-editable` | Editable inline title |
+| `.card-bulk-actions` | Multi-select bulk action bar |
+| `.column-vis-trigger` | Column visibility dropdown button |
+| `.card-filter-bar` / `.card-filter-chip` | Filter chip bar |
+| `.card-actions-dropdown` | Actions menu trigger |
+| `.audit-card-header.selected` | Blue background for multi-select state |
+
+### Tables
+
+| Class | Description |
+|-------|-------------|
+| `.data-table` | Generic data table |
+| `.audit-table` | Audit-specific table with column classes |
+| `.filter-icon` | Column sort/filter icon |
+| `.col-dropdown` | Sort/pin popover menu |
+| `.cell-action` | Table row action icon |
+
+### Search & Filter
+
+| Class | Description |
+|-------|-------------|
+| `.audit-search` | Search input with icon |
+| `.audit-filter-btn` | Filter toggle button |
+
+### Pagination
+
+| Class | Description |
+|-------|-------------|
+| `.audit-pagination` | Pagination bar |
+| `.audit-page-btn` | Page navigation button |
+| `.audit-page-select` | Page number select |
+
+### Tags / Badges / Chips / Verdicts / Severities
+
+**Tags** — 9 semantic colors: `.tag-neutral`, `.tag-inactive`, `.tag-secure`, `.tag-success`, `.tag-accent`, `.tag-guide`, `.tag-alert`, `.tag-warn`, `.tag-caution`
+
+**Keyword Tags** — `.tag-keyword` (bordered, no fill)
+
+**Badge Dots** — `.badge-dot-{color}` (8px circles)
+
+**Badge Numbers** — `.badge-number-{color}` (16px rounded rectangles)
+
+**Chips** — `.chip-{variant}` (24px height, filled) + `.chip-selected` with `.chip-remove`
+
+**Verdicts** — `.verdict-{state}` with `.verdict-dot` + `.verdict-text`
+
+**Severities** — `.severity-{level}` with `.severity-icon` (critical, high, medium, low, none)
 
 ### Overlays
-- **Modal** — centered dialog with header, body, footer, close button
-- **Slide-out panel** — right-side drawer (420px), used for add/edit forms
-- **Advanced filters drawer** — right-side panel with filter fields
-- **Column dropdown** — sort/pin popover on table columns
-- **Action menu** — context menu on table rows
-- **Toast** — bottom-right snackbar notification
-- **Notification toast** — top-right with icon, title, description
+
+| Class | Description |
+|-------|-------------|
+| `.modal-overlay` / `.modal` | Centered dialog |
+| `.slide-panel-overlay` / `.slide-panel` | Right-side drawer (400px) |
+| `.panel-field` | Field layout for slide panels |
+
+### Toasts
+
+| Class | Description |
+|-------|-------------|
+| `.toast` | Bottom-right snackbar |
+| `.top-toast` | Top-right notification with icon + title + description |
 
 ### Miscellaneous
-- **Promo banner** — blue bg with CTA button
-- **Warning banner** — icon + title + description
-- **Avatar dropdown** — user menu with settings, language, logout
-- **Notification dropdown** — bell icon with badge, scrollable list
+
+| Class | Description |
+|-------|-------------|
+| `.banner` | Warning banner with icon |
+| `.status-dot` | 8px colored status circle |
+| `.av-badge` | AV engine name badge |
+| `.copy-btn` | Copy action icon |
+| `.tooltip-popover` | Floating tooltip |
+| `.skip-link` | WCAG skip-to-content link |
+| `.sr-only` | Screen-reader only utility |
 
 ---
 
 ## Dark Mode
 
-Activated via `data-theme="dark"` on `<html>`. All CSS variables are overridden in a single `[data-theme="dark"]` block. Key changes:
+Activated via `data-theme="dark"` on `<html>`. All semantic variables are overridden in `tokens.css`. Component-level dark overrides are colocated in `components.css`.
 
+Key changes:
 - Surfaces invert: light gray → dark navy
 - Text inverts: dark → light
 - Primary shifts: `#1d6bfc` → `#4d8dff` (lighter blue for contrast)
-- Borders shift: `#ebecee` → `#24324b`
-- Semantic colors adjust for dark backgrounds (lighter tints)
+- Borders shift: `neutral-200` → `neutral-900`
+- Shadows increase opacity for dark backgrounds
+- Semantic DS colors adjust for dark backgrounds
 
 ---
 
 ## WCAG 2.2 AA Compliance
 
-The prototype includes:
+Included in `components.css`:
 - Focus-visible outlines (2px solid primary, 2px offset) on all interactive elements
 - Screen-reader only utility class (`.sr-only`)
 - `prefers-reduced-motion` support (disables transitions/animations)
 - Windows High Contrast Mode (`forced-colors`) support
-- ARIA labels on all icon buttons and interactive controls
-- Keyboard-accessible radio options, file uploads, and help icons
+- WCAG 2.5.8 minimum target sizes
+- Contrast-adjusted placeholder text (#566479 passes 4.5:1 on white)
+
+---
+
+## Responsive Breakpoints
+
+Handled in `components.css`:
+
+| Breakpoint | Behavior |
+|-----------|----------|
+| ≤1460px | Content padding adjustment |
+| ≤1024px | Forms stack vertically, tabs scroll |
+| ≤768px | Full responsive: forms, modals, tables adapt |
+| ≤480px | Compact spacing for small screens |
 
 ---
 
@@ -235,12 +336,14 @@ The prototype includes:
 | Page | Tab | Description |
 |------|-----|-------------|
 | Settings | Profile | User preferences, language, defaults |
-| Settings | Notifications | Email/webhook notification rules |
 | Settings | Scan Pools | MetaDefender Core pool management |
 | Settings | Security | Session, password, 2FA settings |
 | Settings | SMTP | Email server configuration |
+| Settings | Notifications | Email/webhook notification rules |
 | Settings | Licensing | License activation and management |
 | Settings | SSO | SAML/OIDC SSO configuration |
 | Settings | Data | Data retention, cleanup, export |
 | Audit | — | Audit log with filters, search, expandable rows |
+| Users | — | User management with roles and permissions |
+| Jobs | — | Scan job management with detail views |
 | Components | — | Design system showcase page |

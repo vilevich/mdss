@@ -5,66 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MetaDefender Storage Security - Settings</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="design-system/tokens.css">
+  <link rel="stylesheet" href="design-system/components.css">
   <style>
-    @font-face { font-family: 'Simplon Norm'; src: url('fonts/simplonnorm-regular-webfont.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
-    @font-face { font-family: 'Simplon Norm'; src: url('fonts/simplonnorm-medium-webfont.woff2') format('woff2'); font-weight: 500; font-style: normal; font-display: swap; }
-    @font-face { font-family: 'Simplon Norm'; src: url('fonts/simplonnorm-bold-webfont.woff2') format('woff2'); font-weight: 700; font-style: normal; font-display: swap; }
-
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --font: 'Roboto', sans-serif;
-      --font-brand: 'Simplon Norm', sans-serif;
-      --text-strong: #0c121d;
-      --text-subtle: #344565;
-      --text-muted: #6b7a90;
-      --surface-bg: #f8f9f9;
-      --surface-card: #ffffff;
-      --border-200: #dee0e4;
-      --border-card: #ebecee;
-      --border-bg: #ebecee;
-      --primary: #1d6bfc;
-      --primary-hover: #1854c3;
-      --toggle-active: #1d6bfc;
-      --toggle-inactive: #c7ccd5;
-      --tab-bg: #ebecee;
-      --tab-active-bg: #1a2138;
-      --tab-text: #344565;
-      --tab-active-text: #ffffff;
-      --shadow-card: 1px 3px 4px -2px rgba(12,18,29,0.04), 2px 2px 4px 0px rgba(12,18,29,0.04);
-      --radius: 4px;
-      --sidebar-width: 260px;
-      --sidebar-collapsed: 60px;
-      --header-bg: #1a2138;
-    }
-
-    body {
-      font-family: var(--font);
-      font-size: 14px;
-      line-height: 1.5;
-      color: var(--text-strong);
-      background: var(--surface-bg);
-      min-height: 100vh;
-    }
-
-    /* ===== GLOBAL SELECT (DS dropdown) ===== */
-    select {
-      appearance: none; -webkit-appearance: none;
-      font-family: var(--font);
-      font-size: 14px;
-      color: var(--text-strong);
-      background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='M7.99994 10.7499C7.80994 10.7499 7.61994 10.6799 7.46994 10.5299L3.21994 6.27994C2.92994 5.98994 2.92994 5.50994 3.21994 5.21994C3.50994 4.92994 3.98994 4.92994 4.27994 5.21994L7.99994 8.93994L11.7199 5.21994C12.0099 4.92994 12.4899 4.92994 12.7799 5.21994C13.0699 5.50994 13.0699 5.98994 12.7799 6.27994L8.52994 10.5299C8.37994 10.6799 8.18994 10.7499 7.99994 10.7499Z' fill='%236b7a90'/%3E%3C/svg%3E") no-repeat right 8px center;
-      border: 1px solid var(--border-200);
-      border-radius: var(--radius);
-      height: 32px;
-      padding: 0 28px 0 8px;
-      cursor: pointer;
-      outline: none;
-      box-sizing: border-box;
-    }
-    select:focus { border-color: var(--primary); outline: none; }
-    [data-theme="dark"] select { background-color: var(--surface-bg); border-color: var(--border-200); color: #fff; }
-    [data-theme="dark"] select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='M7.99994 10.7499C7.80994 10.7499 7.61994 10.6799 7.46994 10.5299L3.21994 6.27994C2.92994 5.98994 2.92994 5.50994 3.21994 5.21994C3.50994 4.92994 3.98994 4.92994 4.27994 5.21994L7.99994 8.93994L11.7199 5.21994C12.0099 4.92994 12.4899 4.92994 12.7799 5.21994C13.0699 5.50994 13.0699 5.98994 12.7799 6.27994L8.52994 10.5299C8.37994 10.6799 8.18994 10.7499 7.99994 10.7499Z' fill='%23a0a8b6'/%3E%3C/svg%3E"); }
+    /* Product-specific styles only. DS imported via <link> tags above. */
 
     /* ===== LAYOUT ===== */
     .app { display: flex; flex-direction: column; height: 100vh; }
@@ -89,17 +33,17 @@
       background: var(--header-bg);
       border-radius: 4px;
       display: flex; align-items: center; justify-content: center;
-      font-weight: 700; font-size: 12px; color: #fff;
+      font-weight: 700; font-size: 12px; color: var(--text-on-fill);
     }
     .header-logo-text { display: flex; flex-direction: column; gap: 4px; font-family: var(--font-brand); }
-    .header-logo-text span:first-child { font-size: 10px; font-weight: 400; line-height: 10px; color: #0C121D; letter-spacing: 0.5px; text-transform: uppercase; }
-    .header-logo-text span:last-child { font-size: 16px; font-weight: 500; line-height: 16px; color: #0C121D; }
+    .header-logo-text span:first-child { font-size: 10px; font-weight: 400; line-height: 10px; color: var(--text-strong); letter-spacing: 0.5px; text-transform: uppercase; }
+    .header-logo-text span:last-child { font-size: 16px; font-weight: 500; line-height: 16px; color: var(--text-strong); }
     .sidebar-toggle {
       width: 32px; height: 32px; border-radius: var(--radius);
       display: flex; align-items: center; justify-content: center;
       cursor: pointer; color: var(--text-subtle); background: none; border: none;
     }
-    .sidebar-toggle:hover { color: var(--text-strong); background: rgba(0,0,0,0.06); }
+    .sidebar-toggle:hover { color: var(--text-strong); background: var(--hover-default); }
     .sidebar-toggle svg { width: 18px; height: 18px; }
     .header-right { display: flex; align-items: center; gap: 8px; }
     .header-icon {
@@ -107,7 +51,7 @@
       display: flex; align-items: center; justify-content: center;
       cursor: pointer; color: var(--text-subtle);
     }
-    .header-icon:hover { color: var(--text-strong); background: rgba(0,0,0,0.06); }
+    .header-icon:hover { color: var(--text-strong); background: var(--hover-default); }
     .header-icon svg { width: 18px; height: 18px; }
     .notif-dot {
       position: absolute;
@@ -116,7 +60,7 @@
       width: 8px;
       height: 8px;
       border-radius: 9999px;
-      background: #FF003D;
+      background: var(--red-700);
       pointer-events: none;
     }
     .header-avatar {
@@ -125,7 +69,7 @@
       border: 2px solid rgba(0,0,0,0.1);
       margin-left: 12px;
       display: flex; align-items: center; justify-content: center;
-      font-size: 14px; font-weight: 500; color: #fff;
+      font-size: 14px; font-weight: 500; color: var(--text-on-fill);
       cursor: pointer;
     }
 
@@ -170,8 +114,8 @@
       white-space: nowrap;
       overflow: hidden;
     }
-    .nav-item:hover { background: rgba(0,0,0,0.04); }
-    .nav-item.active { background: #E8F0FF; color: var(--text-strong); font-weight: 500; }
+    .nav-item:hover { background: var(--hover-subtle); }
+    .nav-item.active { background: var(--blue-100); color: var(--text-strong); font-weight: 500; }
     .nav-item svg { width: 18px; height: 18px; flex-shrink: 0; }
     .nav-text { opacity: 1; transition: opacity 0.12s ease; }
     .sidebar.collapsed .nav-item { padding: 8px 12px; }
@@ -203,7 +147,7 @@
       padding: 0 12px;
       height: 32px;
       background: var(--primary);
-      color: #fff;
+      color: var(--text-on-fill);
       border: none;
       border-radius: var(--radius);
       font-family: var(--font);
@@ -212,38 +156,6 @@
       cursor: pointer;
     }
     .btn-export:hover { background: var(--primary-hover); }
-
-    /* Tabs */
-    .tabs {
-      display: flex;
-      gap: 0;
-      background: var(--tab-bg);
-      border-radius: var(--radius);
-      margin-bottom: 12px;
-      width: fit-content;
-    }
-    .tab {
-      padding: 8px 12px;
-      font-size: 14px;
-      color: var(--tab-text);
-      cursor: pointer;
-      border-radius: var(--radius);
-      white-space: nowrap;
-      border: none;
-      background: transparent;
-      font-family: var(--font);
-      transition: background 0.15s, color 0.15s;
-    }
-    .tab:hover { background: rgba(0,0,0,0.04); }
-    .tab.active {
-      background: var(--tab-active-bg);
-      color: var(--tab-active-text);
-      font-weight: 400;
-    }
-
-    /* Tab Panels */
-    .tab-panel { display: none; }
-    .tab-panel.active { display: block; }
 
     /* Settings Cards */
     .settings-card {
@@ -269,7 +181,7 @@
     .card-header-actions { display: flex; gap: 8px; align-items: center; }
     .card-header-with-desc { height: auto; min-height: 56px; padding: 16px 20px; flex-direction: column; align-items: flex-start; }
     .card-header-with-desc .card-header-top { display: flex; align-items: center; justify-content: space-between; width: 100%; }
-    .card-header-desc { font-size: 14px; font-weight: 400; color: #344565; margin-top: 8px; line-height: 16px; }
+    .card-header-desc { font-size: 14px; font-weight: 400; color: var(--text-subtle); margin-top: 8px; line-height: 16px; }
     .btn-discard {
       padding: 0 16px;
       background: transparent;
@@ -283,7 +195,7 @@
       display: none;
       height: 32px;
     }
-    .btn-discard:hover { background: rgba(0,0,0,0.03); }
+    .btn-discard:hover { background: var(--hover-subtle); }
     .btn-discard:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
     .settings-card.dirty .btn-discard { display: inline-flex; align-items: center; }
     .btn-save {
@@ -304,7 +216,7 @@
     }
     .settings-card.dirty .btn-save {
       background: var(--primary);
-      color: #fff;
+      color: var(--text-on-fill);
       border-color: var(--primary);
       cursor: pointer;
       pointer-events: auto;
@@ -322,161 +234,6 @@
       grid-column: 1 / -1;
     }
 
-    /* Banner */
-    .banner {
-      background: var(--surface-bg);
-      border-radius: var(--radius);
-      padding: 20px;
-      display: flex;
-      gap: 20px;
-    }
-    .banner-icon { flex-shrink: 0; color: #e6a817; }
-    .banner-icon svg { width: 16px; height: 16px; }
-    .banner-content { display: flex; flex-direction: column; gap: 2px; }
-    .banner-title { font-size: 16px; font-weight: 500; color: var(--text-strong); line-height: 1.14; }
-    .banner-desc { font-size: 14px; color: var(--text-subtle); line-height: 1.14; margin-top: 2px; }
-
-    /* Form Rows */
-    .form-row {
-      display: flex;
-      gap: 12px;
-      align-items: center;
-    }
-    .form-row--top {
-      align-items: flex-start;
-    }
-    .form-label {
-      width: 266px;
-      flex-shrink: 0;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      min-height: 32px;
-      font-size: 14px;
-      color: var(--text-strong);
-    }
-    .help-icon {
-      width: 16px; height: 16px;
-      color: var(--text-muted);
-      flex-shrink: 0;
-      cursor: help;
-    }
-    .help-icon svg { width: 16px; height: 16px; }
-    .form-value {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-    .form-value--inline {
-      flex-direction: row;
-      align-items: center;
-      gap: 8px;
-    }
-
-    /* Radio */
-    .radio-group { display: flex; flex-direction: column; gap: 12px; }
-    .radio-option {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      cursor: pointer;
-      min-height: 32px;
-      user-select: none;
-    }
-    .radio-circle {
-      width: 16px; height: 16px;
-      border-radius: 50%;
-      border: 2px solid var(--toggle-inactive);
-      flex-shrink: 0;
-      display: flex; align-items: center; justify-content: center;
-      transition: border-color 0.15s;
-    }
-    .radio-option.selected .radio-circle { border-color: var(--primary); }
-    .radio-option.selected .radio-circle::after {
-      content: '';
-      width: 8px; height: 8px;
-      border-radius: 50%;
-      background: var(--primary);
-    }
-    .radio-label { font-size: 14px; color: var(--text-strong); }
-
-    /* Toggle Switch */
-    .toggle-row { display: flex; align-items: center; gap: 12px; }
-    .toggle-switch {
-      width: 28px; height: 16px;
-      border-radius: 9999px;
-      background: var(--toggle-inactive);
-      position: relative;
-      cursor: pointer;
-      flex-shrink: 0;
-      border: 1px solid var(--toggle-inactive);
-      transition: background 0.15s, border-color 0.15s;
-    }
-    .toggle-switch.active {
-      background: var(--toggle-active);
-      border-color: var(--toggle-active);
-    }
-    .toggle-thumb {
-      width: 12px; height: 12px;
-      border-radius: 50%;
-      background: #fff;
-      position: absolute;
-      top: 1px; left: 1px;
-      box-shadow: 0 0 6px -4px rgba(0,0,0,0.48), 0 2px 6px -4px rgba(0,0,0,0.48);
-      transition: left 0.15s;
-    }
-    .toggle-switch.active .toggle-thumb { left: 13px; }
-    .toggle-label { font-size: 14px; color: var(--text-strong); }
-
-    /* Input */
-    .input-field {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 12px;
-      border: 1px solid var(--border-200);
-      border-radius: var(--radius);
-      background: #fff;
-      font-family: var(--font);
-      font-size: 14px;
-      color: var(--text-strong);
-      height: 32px;
-      min-width: 0;
-    }
-    .input-field:focus-within { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(29,107,252,0.15); }
-    .input-field input {
-      border: none;
-      outline: none;
-      font-family: var(--font);
-      font-size: 14px;
-      color: var(--text-subtle);
-      flex: 1;
-      min-width: 0;
-      background: transparent;
-    }
-    .input-field input::placeholder { color: var(--text-muted); }
-    .input-clear {
-      width: 14px; height: 14px;
-      cursor: pointer;
-      color: var(--text-muted);
-      flex-shrink: 0;
-      display: flex; align-items: center; justify-content: center;
-    }
-    .input-clear:hover { color: var(--text-strong); }
-    .input-clear svg { width: 14px; height: 14px; }
-
-    /* Password eye icon */
-    .input-eye {
-      width: 16px; height: 16px;
-      cursor: pointer;
-      color: var(--text-muted);
-      flex-shrink: 0;
-      display: flex; align-items: center; justify-content: center;
-    }
-    .input-eye:hover { color: var(--text-strong); }
-    .input-eye svg { width: 16px; height: 16px; }
-
     /* Table */
     .headers-table {
       width: 100%;
@@ -487,7 +244,7 @@
     .headers-table-head {
       display: flex;
       align-items: center;
-      background: #fff;
+      background: var(--surface-card);
       border-bottom: 1px solid var(--border-card);
       padding: 0 16px;
       height: 56px;
@@ -499,46 +256,6 @@
     .headers-table-head .col-value { flex: 1; display: flex; align-items: center; position: relative; padding-right: 36px; }
     .headers-table-head .filter-icon { position: absolute; right: 8px; top: 50%; transform: translateY(-50%); margin-left: 0; }
     .headers-table-head .col-actions { width: 40px; }
-    .filter-icon { display: inline-flex; width: 16px; height: 16px; justify-content: center; align-items: center; color: var(--text-muted); cursor: pointer; vertical-align: middle; margin-left: 4px; flex-shrink: 0; }
-    .filter-icon:hover { color: var(--text-strong); }
-    .filter-icon.active { color: var(--primary); }
-    .filter-icon svg { width: 16px; height: 16px; }
-
-    /* ===== COLUMN DROPDOWN (Sorting / Pinning) ===== */
-    .col-dropdown {
-      position: fixed;
-      z-index: 9999;
-      background: #fff;
-      border: 1px solid var(--border-200);
-      border-radius: 8px;
-      box-shadow: 0 4px 16px rgba(12,18,29,0.12), 0 1px 4px rgba(12,18,29,0.08);
-      min-width: 200px;
-      padding: 8px 0;
-      display: none;
-    }
-    .col-dropdown.open { display: block; }
-    .col-dropdown-section { padding: 8px 16px 4px; }
-    .col-dropdown-section-title {
-      font-size: 12px;
-      font-weight: 500;
-      color: var(--primary);
-      margin-bottom: 4px;
-    }
-    .col-dropdown-item {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 8px 16px;
-      cursor: pointer;
-      font-size: 14px;
-      color: var(--text-strong);
-      transition: background 0.1s;
-    }
-    .col-dropdown-item:hover { background: var(--surface-bg); }
-    .col-dropdown-item.active { color: var(--primary); font-weight: 500; }
-    .col-dropdown-item svg { width: 16px; height: 16px; flex-shrink: 0; }
-    .col-dropdown-divider { height: 1px; background: var(--border-200); margin: 4px 0; }
-
     .headers-table-row {
       display: flex;
       align-items: center;
@@ -576,10 +293,7 @@
       display: inline-flex;
       align-items: center;
     }
-    .btn-add-header:hover { background: rgba(0,0,0,0.03); }
-
-    /* Radio inline */
-    .radio-inline { display: flex; align-items: center; gap: 16px; }
+    .btn-add-header:hover { background: var(--hover-subtle); }
 
     /* API Key */
     .api-key-status { font-size: 14px; color: var(--text-muted); }
@@ -600,58 +314,21 @@
       align-self: flex-start;
       width: fit-content;
     }
-    .btn-generate:hover { background: rgba(0,0,0,0.03); }
+    .btn-generate:hover { background: var(--hover-subtle); }
 
     /* ===== SCAN POOLS ===== */
     .promo-banner {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background: #e8f0fe;
-      border: 1px solid #c5d9fc;
+      background: var(--blue-100);
+      border: 1px solid var(--blue-200);
       border-radius: var(--radius);
       padding: 12px 20px;
       margin-bottom: 12px;
     }
     .promo-banner-text { font-size: 14px; color: var(--text-strong); }
     .promo-banner-text strong { font-weight: 500; }
-    .btn-primary {
-      padding: 0 16px;
-      height: 32px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      background: var(--primary);
-      color: #fff;
-      border: none;
-      border-radius: var(--radius);
-      font-family: var(--font);
-      font-size: 14px;
-      font-weight: 500;
-      cursor: pointer;
-    }
-    .btn-primary:hover { background: var(--primary-hover); }
-    .btn-outline {
-      padding: 0 12px;
-      height: 32px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      background: transparent;
-      color: var(--text-strong);
-      border: 1px solid var(--border-200);
-      border-radius: var(--radius);
-      font-family: var(--font);
-      font-size: 14px;
-      font-weight: 500;
-      cursor: pointer;
-      white-space: nowrap;
-      align-self: flex-start;
-      width: fit-content;
-    }
-    .btn-outline:hover { background: rgba(0,0,0,0.03); }
-    .btn-outline.danger { color: #d9534f; border-color: #d9534f; }
-    .btn-outline.danger:hover { background: rgba(217,83,79,0.05); }
     .pool-card { margin-bottom: 12px; }
     .pool-card-header {
       display: flex;
@@ -691,7 +368,7 @@
       font-size: 14px;
       font-weight: 500;
       color: var(--text-strong);
-      background: #fff;
+      background: var(--surface-card);
       border-bottom: 1px solid var(--border-card);
       position: relative;
       padding-right: 44px;
@@ -708,21 +385,12 @@
       line-height: 16px;
     }
     .pool-table tbody tr:last-child td { border-bottom: none; }
-    .pool-table tbody tr:hover td { background: #F8F9F9; }
+    .pool-table tbody tr:hover td { background: var(--surface-hover); }
     .pool-table .col-url { width: 32%; }
     .pool-table .col-av { width: 22%; }
     .pool-table .col-api { width: 20%; }
     .pool-table .col-timeout { width: 20%; }
     .pool-table .col-actions { width: 48px; text-align: center; padding-right: 16px; overflow: visible; position: relative; }
-    .av-badge {
-      display: inline-block;
-      padding: 4px 10px;
-      border: 1px solid var(--border-200);
-      border-radius: 0;
-      font-size: 14px;
-      color: var(--text-subtle);
-      background: var(--surface-card);
-    }
     .api-dots { letter-spacing: 2px; color: var(--text-muted); }
     .pool-action-btn {
       display: inline-flex; align-items: center; justify-content: center;
@@ -730,12 +398,12 @@
       border-radius: 4px; cursor: pointer; color: var(--text-muted);
       position: relative;
     }
-    .pool-action-btn:hover { background: rgba(0,0,0,0.05); color: var(--text-strong); }
+    .pool-action-btn:hover { background: var(--hover-default); color: var(--text-strong); }
     .pool-action-btn svg { width: 16px; height: 16px; }
     .pool-action-menu {
       position: fixed;
       background: var(--surface-card); border: 1px solid var(--border-200);
-      border-radius: 8px; box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+      border-radius: 8px; box-shadow: var(--shadow-dropdown);
       min-width: 160px; padding: 4px; z-index: 9999;
       display: none;
     }
@@ -746,398 +414,25 @@
       width: 100%; font-size: 14px; color: var(--text-subtle);
       cursor: pointer; border-radius: 4px; white-space: nowrap;
     }
-    .pool-action-menu-item:hover { background: rgba(0,0,0,0.04); }
+    .pool-action-menu-item:hover { background: var(--hover-subtle); }
     .pool-action-menu-item svg { width: 16px; height: 16px; flex-shrink: 0; }
-    .pool-action-menu-item.danger { color: #d9534f; }
+    .pool-action-menu-item.danger { color: var(--danger); }
     .pool-action-menu-item.danger:hover { background: rgba(217,83,79,0.06); }
 
-    /* ===== NOTIFICATION TOAST (reusable) ===== */
-    .top-toast {
-      position: fixed;
-      top: 76px;
-      right: 20px;
-      background: var(--surface-card);
-      border: 1px solid var(--border-card);
-      border-left: 4px solid var(--primary);
-      border-radius: var(--radius);
-      padding: 16px 20px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      z-index: 1001;
-      display: flex;
-      gap: 12px;
-      align-items: flex-start;
-      max-width: 380px;
-      opacity: 0;
-      transform: translateX(100px);
-      pointer-events: none;
-      transition: opacity 0.3s, transform 0.3s;
-    }
-    .top-toast.visible { opacity: 1; transform: translateX(0); pointer-events: auto; }
-    .top-toast.type-info { border-left-color: var(--primary); }
-    .top-toast.type-success { border-left-color: #34a853; }
-    .top-toast.type-warning { border-left-color: #e6a817; }
-    .top-toast.type-error { border-left-color: #ea4335; }
-    .top-toast-icon { flex-shrink: 0; }
-    .top-toast.type-info .top-toast-icon { color: var(--primary); }
-    .top-toast.type-success .top-toast-icon { color: #34a853; }
-    .top-toast.type-warning .top-toast-icon { color: #e6a817; }
-    .top-toast.type-error .top-toast-icon { color: #ea4335; }
-    .top-toast-icon svg { width: 16px; height: 16px; }
-    .top-toast-content { flex: 1; }
-    .top-toast-title { font-size: 14px; font-weight: 500; color: var(--text-strong); }
-    .top-toast-desc { font-size: 14px; color: var(--text-subtle); margin-top: 2px; }
-    .top-toast-close { cursor: pointer; color: var(--text-muted); flex-shrink: 0; }
-    .top-toast-close:hover { color: var(--text-strong); }
-    .top-toast-close svg { width: 14px; height: 14px; }
-    .file-upload-field {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 12px;
-      border: 1px solid var(--border-200);
-      border-radius: var(--radius);
-      background: #fff;
-      height: 32px;
-      max-width: 340px;
-      cursor: pointer;
-    }
-    .file-upload-field:hover { border-color: var(--primary); }
-    .file-upload-field input[type="file"] { display: none; }
-    .file-upload-text { flex: 1; font-size: 14px; color: var(--text-muted); }
-    .file-upload-text.has-file { color: var(--text-strong); }
-    .file-upload-icon { color: var(--text-muted); flex-shrink: 0; }
-    .file-upload-icon svg { width: 16px; height: 16px; }
-    .encryption-status { font-size: 14px; color: var(--text-subtle); }
+    .encryption-status { font-size: 14px; color: var(--text-subtle); line-height: 1.5; }
 
-    /* Toast notification */
-    .toast {
-      position: fixed;
-      bottom: 24px;
-      right: 24px;
-      background: #1b2a4a;
-      color: #fff;
-      padding: 12px 20px;
-      border-radius: var(--radius);
-      font-family: var(--font);
-      font-size: 14px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-      transform: translateY(100px);
-      opacity: 0;
-      transition: transform 0.25s, opacity 0.25s;
-      z-index: 1000;
-    }
-    .toast.show {
-      transform: translateY(0);
-      opacity: 1;
-    }
-
-    /* ===== WCAG 2.2 AA Compliance ===== */
-
-    /* Skip-to-content link */
-    .skip-link {
-      position: absolute;
-      top: -100px;
-      left: 8px;
-      background: var(--primary);
-      color: #fff;
-      padding: 8px 16px;
-      border-radius: var(--radius);
-      font-size: 14px;
-      font-weight: 500;
-      z-index: 9999;
-      text-decoration: none;
-    }
-    .skip-link:focus { top: 8px; }
-
-    /* Global focus-visible indicator (WCAG 2.4.7 / 2.4.11) */
-    :focus-visible {
-      outline: 2px solid var(--primary);
-      outline-offset: 2px;
-    }
-    /* Remove default outline when not keyboard-navigating */
-    :focus:not(:focus-visible) { outline: none; }
-
-    /* Buttons & interactive elements: 24px minimum target (WCAG 2.5.8) */
-    .toggle-switch { min-width: 28px; min-height: 16px; }
-    .radio-option { min-height: 36px; padding: 4px 0; }
-    .input-clear, .input-eye, .edit-icon { min-width: 16px; min-height: 16px; display: inline-flex; align-items: center; justify-content: center; }
-    .pool-icons svg { min-width: 16px; min-height: 16px; padding: 0; }
-
-    /* Override input focus-within outline to not show double ring */
-    .input-field:focus-within { outline: none; }
-
-    /* Toggle keyboard focus */
-    .toggle-switch:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
-    .radio-option:focus-visible .radio-circle { outline: 2px solid var(--primary); outline-offset: 2px; }
-
-    /* Contrast fixes: bump muted text from #6b7a90 to #566479 (passes 4.5:1 on white) */
-    .input-field input::placeholder { color: #566479; }
-    .api-key-status { color: #566479; }
-    .file-upload-text { color: #566479; }
-    .sidebar-footer-tagline { color: #566479; font-size: 12px; }
-
-    /* Improve line-height for readability (WCAG 1.4.12) */
-    .banner-desc, .top-toast-desc, .encryption-status { line-height: 1.5; }
-
-    /* Toast live region styling */
-    .toast[role="status"] { /* inherits existing styles */ }
-
-    /* File upload focus */
-    .file-upload-field:focus-within { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(29,107,252,0.15); }
+    /* Product-specific contrast fixes */
+    .api-key-status { color: var(--text-muted-accessible); }
+    .sidebar-footer-tagline { color: var(--text-muted-accessible); font-size: 12px; }
 
     /* Nav item focus */
     .nav-item:focus-visible { outline: 2px solid var(--primary); outline-offset: -2px; }
 
-    /* Tab focus */
-    .tab:focus-visible { outline: 2px solid var(--primary); outline-offset: -2px; }
-
-    /* ===== WCAG 2.2 AA — Screen-reader only utility ===== */
-    .sr-only {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      padding: 0;
-      margin: -1px;
-      overflow: hidden;
-      clip: rect(0, 0, 0, 0);
-      white-space: nowrap;
-      border: 0;
-    }
-
-    /* ===== WCAG 2.2 AA — Radio option focus (2.4.7 / 2.4.13) ===== */
-    .radio-option:focus-visible {
-      outline: 2px solid var(--primary);
-      outline-offset: 2px;
-      border-radius: var(--radius);
-    }
-
-    /* ===== WCAG 2.2 AA — File upload keyboard focus ===== */
-    .file-upload-field:focus-visible {
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(29,107,252,0.15);
-      outline: none;
-    }
-
-    /* ===== WCAG 2.2 AA — Help icon focus ===== */
-    .help-icon:focus-visible {
-      outline: 2px solid var(--primary);
-      outline-offset: 2px;
-      border-radius: 50%;
-    }
-
-    /* ===== WCAG 2.2 AA — Icon button focus ===== */
-    .edit-icon:focus-visible,
-    .pool-icons svg:focus-visible,
-    .input-clear:focus-visible,
-    .input-eye:focus-visible,
-    .top-toast-close:focus-visible {
-      outline: 2px solid var(--primary);
-      outline-offset: 2px;
-      border-radius: 2px;
-    }
-
-    /* ===== WCAG 2.3.3 / 2.2 — Reduced motion (prefers-reduced-motion) ===== */
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
-      }
-      .toast { transition: none; }
-      .top-toast { transition: none; }
-      .toggle-thumb { transition: none; }
-      .toggle-switch { transition: none; }
-      .tab { transition: none; }
-    }
-
-    /* ===== WCAG — Windows High Contrast Mode (forced-colors) ===== */
-    @media (forced-colors: active) {
-      .toggle-switch {
-        border: 2px solid ButtonText;
-      }
-      .toggle-switch.active {
-        background: Highlight;
-        border-color: Highlight;
-      }
-      .toggle-thumb {
-        background: ButtonText;
-      }
-      .radio-circle {
-        border-color: ButtonText;
-      }
-      .radio-option.selected .radio-circle {
-        border-color: Highlight;
-      }
-      .radio-option.selected .radio-circle::after {
-        background: Highlight;
-      }
-      .input-field {
-        border-color: ButtonText;
-      }
-      .input-field:focus-within {
-        border-color: Highlight;
-      }
-      .btn-save, .btn-discard, .btn-primary, .btn-outline, .btn-export, .btn-generate, .btn-add-header {
-        border: 1px solid ButtonText;
-      }
-      .settings-card.dirty .btn-save {
-        background: Highlight;
-        color: HighlightText;
-        border-color: Highlight;
-      }
-      .tab.active {
-        border: 2px solid Highlight;
-      }
-      :focus-visible {
-        outline: 2px solid Highlight;
-      }
-    }
-
-    /* ===== MODAL / DIALOG ===== */
-    .modal-overlay {
-      position: fixed; inset: 0;
-      background: rgba(12,18,29,0.45);
-      z-index: 2000;
-      display: flex; align-items: center; justify-content: center;
-      opacity: 0; pointer-events: none;
-      transition: opacity 0.2s;
-    }
-    .modal-overlay.open { opacity: 1; pointer-events: auto; }
-    .modal {
-      background: var(--surface-card);
-      border-radius: 8px;
-      box-shadow: 0 8px 32px rgba(12,18,29,0.18);
-      width: 480px;
-      max-height: 90vh;
-      overflow-y: auto;
-      padding: 24px;
-    }
-    .modal-header {
-      display: flex; align-items: center; justify-content: space-between;
-      margin-bottom: 16px;
-    }
-    .modal-header h2 { font-size: 16px; font-weight: 500; color: var(--text-strong); margin: 0; }
-    .modal-close {
-      width: 28px; height: 28px;
-      display: flex; align-items: center; justify-content: center;
-      cursor: pointer; color: var(--text-muted); border: none; background: none;
-      border-radius: var(--radius);
-    }
-    .modal-close:hover { color: var(--text-strong); background: rgba(0,0,0,0.04); }
-    .modal-close svg { width: 16px; height: 16px; }
-    .modal-divider { height: 1px; background: var(--border-200); margin: 16px 0; }
-    .modal-body { display: flex; flex-direction: column; gap: 16px; }
-    .modal-field { display: flex; flex-direction: column; gap: 6px; }
-    .modal-field-label { font-size: 14px; font-weight: 500; color: var(--text-subtle); }
-    .modal-footer {
-      display: flex; justify-content: flex-end; gap: 8px;
-      margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--border-200);
-    }
-    .modal-instructions { font-size: 14px; color: var(--text-subtle); line-height: 1.5; }
-    .modal-instructions a { color: var(--primary); text-decoration: none; }
-    .modal-instructions a:hover { text-decoration: underline; }
-
-    /* ===== SLIDE-OUT PANEL ===== */
-    .slide-panel-overlay {
-      position: fixed; inset: 0;
-      background: rgba(12,18,29,0.3);
-      z-index: 2000;
-      opacity: 0; pointer-events: none;
-      transition: opacity 0.2s;
-    }
-    .slide-panel-overlay.open { opacity: 1; pointer-events: auto; }
-    .slide-panel {
-      position: fixed; top: 0; right: -400px; bottom: 0;
-      width: 400px;
-      background: var(--surface-card);
-      box-shadow: none;
-      z-index: 2001;
-      display: flex; flex-direction: column;
-      transition: right 0.25s ease, box-shadow 0.25s ease;
-    }
-    .slide-panel.open { right: 0; box-shadow: -4px 0 24px rgba(12,18,29,0.12); }
+    /* Product-specific panel size overrides */
     #addScanPoolPanel { width: 420px; right: -420px; }
     #addScanPoolPanel.open { right: 0; }
-    .slide-panel-header {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 24px;
-      height: 56px; min-height: 56px;
-      border-bottom: 1px solid var(--border-200);
-    }
-    .slide-panel-header h2 { font-size: 14px; font-weight: 500; line-height: 16px; margin: 0; }
-    .slide-panel-header .modal-close { width: 20px; height: 20px; }
-    .slide-panel-header .modal-close svg { width: 10px; height: 10px; }
-    .slide-panel-body {
-      flex: 1; overflow-y: auto;
-      padding: 20px;
-      display: flex; flex-direction: column; gap: 20px;
-    }
-    .slide-panel-footer {
-      display: flex; justify-content: flex-end; gap: 8px;
-      padding: 16px 24px;
-      border-top: 1px solid var(--border-200);
-    }
-
-    /* ===== SELECT / DROPDOWN ===== */
-    .select-field {
-      max-width: 340px;
-      padding: 0 28px 0 12px;
-    }
-    .select-field:focus { border-color: var(--primary); }
-
-    /* ===== INPUT WITH SUFFIX (e.g. "days") ===== */
-    .input-with-suffix {
-      display: flex; align-items: center; gap: 0;
-      max-width: 180px;
-    }
-    .input-with-suffix .input-field { border-radius: var(--radius) 0 0 var(--radius); flex: 1; }
-    .input-suffix {
-      padding: 0 12px; height: 32px;
-      display: flex; align-items: center;
-      font-size: 14px; color: var(--text-muted);
-      background: var(--surface-bg);
-      border: 1px solid var(--border-200);
-      border-left: none;
-      border-radius: 0 var(--radius) var(--radius) 0;
-    }
-
-    /* ===== STATUS DOT ===== */
-    .status-dot {
-      width: 8px; height: 8px;
-      border-radius: 50%;
-      display: inline-block;
-      margin-right: 6px;
-    }
-    .status-dot.green { background: #34a853; }
-    .status-dot.red { background: #ea4335; }
-
-    /* ===== CELL ACTION ICON (unified action column component) ===== */
-    /* Covers: expand chevron, copy, edit, delete, view — all 16×16 icon in 56×56 cell */
-    .cell-action {
-      width: 16px; height: 16px;
-      display: inline-flex; align-items: center; justify-content: center;
-      cursor: pointer; color: var(--text-muted);
-      background: none; border: none; border-radius: var(--radius);
-      flex-shrink: 0; padding: 0;
-    }
-    .cell-action:hover { color: var(--text-strong); }
-    .cell-action svg { width: 16px; height: 16px; }
-    /* Action column cell: 56px wide, centers the icon */
-    td.col-action, th.col-action {
-      width: 56px; text-align: center; padding: 0 !important;
-    }
-
-    /* ===== COPY BUTTON (legacy, maps to cell-action) ===== */
-    .copy-btn {
-      width: 16px; height: 16px;
-      display: inline-flex; align-items: center; justify-content: center;
-      cursor: pointer; color: var(--text-muted);
-      background: none; border: none; border-radius: var(--radius);
-      flex-shrink: 0; padding: 0;
-    }
-    .copy-btn:hover { color: var(--text-strong); }
-    .copy-btn svg { width: 16px; height: 16px; }
+    #editJobPanel { width: 420px; right: -420px; }
+    #editJobPanel.open { right: 0; }
 
     /* ===== LICENSE BADGE ===== */
     .license-badge {
@@ -1179,91 +474,30 @@
       align-items: center;
       gap: 8px;
       padding: 10px 16px;
-      background: #fce8e6;
-      color: #c5221f;
+      background: var(--ds-alert-100);
+      color: var(--ds-alert-text);
       font-size: 14px;
-      border-bottom: 1px solid #f5c6c2;
+      border-bottom: 1px solid var(--red-200);
     }
-    .license-warning-banner a { color: #c5221f; font-weight: 500; }
+    .license-warning-banner a { color: var(--ds-alert-text); font-weight: 500; }
     .license-warning-banner svg { width: 16px; height: 16px; flex-shrink: 0; }
 
-    /* ===== DATA TABLE (External Loggers) ===== */
-    .data-table {
-      width: 100%;
-      border-collapse: separate;
-      border-spacing: 0;
-    }
-    .data-table thead th {
-      text-align: left;
-      padding: 0 16px;
-      height: 56px;
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--text-strong);
-      background: #fff;
-      border-bottom: 1px solid var(--border-card);
-      position: relative;
-      padding-right: 44px;
-      line-height: 16px;
-    }
-    .data-table thead th .filter-icon { position: absolute; right: 16px; top: 50%; transform: translateY(-50%); margin-left: 0; }
-    .data-table tbody td {
-      padding: 0 16px;
-      height: 56px;
-      font-size: 14px;
-      color: var(--text-subtle);
-      border-bottom: 1px solid var(--border-card);
-      vertical-align: middle;
-      line-height: 16px;
-    }
-    .data-table tbody tr:last-child td { border-bottom: none; }
-    .data-table tbody tr:hover td { background: #F8F9F9; }
-    .data-table .col-actions-cell {
-      display: flex; gap: 8px; align-items: center; justify-content: flex-end;
-    }
-    .data-table .col-actions-cell svg {
-      width: 16px; height: 16px; cursor: pointer; color: var(--text-muted);
-    }
-    .data-table .col-actions-cell svg:hover { color: var(--text-strong); }
-
-    /* ===== SLIDE-PANEL FIELD ROW ===== */
-    .panel-field { display: flex; flex-direction: column; gap: 6px; }
-    .panel-field-label { font-size: 14px; font-weight: 500; color: var(--text-subtle); }
-    .panel-field .input-field { max-width: none; }
-    .panel-field .select-field { max-width: none; }
-
-    /* Tooltip popover */
-    .tooltip-popover {
-      position: fixed;
-      background: var(--surface-card);
-      border: 1px solid var(--border-200);
-      border-radius: 6px;
-      padding: 8px 12px;
-      font-size: 14px;
-      color: var(--text-subtle);
-      line-height: 1.4;
-      box-shadow: 0 4px 16px rgba(12,18,29,0.12), 0 1px 4px rgba(12,18,29,0.08);
-      max-width: 260px;
-      z-index: 10000;
-      pointer-events: none;
-    }
 
     @media (prefers-reduced-motion: reduce) {
-      .modal-overlay, .slide-panel-overlay { transition: none; }
-      .slide-panel { transition: none; }
       .sidebar { transition: none; }
     }
 
-    /* ===== RESPONSIVE: Tablet (<=1024px) ===== */
+    /* ===== RESPONSIVE: Medium (<=1460px) — Figma "Medium" breakpoint ===== */
+    @media (max-width: 1460px) {
+      .content { padding: 20px; }
+    }
+
+    /* ===== RESPONSIVE: Small / Tablet (<=1024px) — Figma "Small" breakpoint ===== */
     @media (max-width: 1024px) {
       .sidebar { width: var(--sidebar-collapsed); }
       .sidebar .nav-item { padding: 8px 12px; }
       .sidebar .nav-text { opacity: 0; pointer-events: none; }
       .sidebar .sidebar-footer { opacity: 0; pointer-events: none; }
-      .form-row { flex-direction: column; gap: 4px; align-items: flex-start; }
-      .form-label { width: auto; min-height: auto; padding: 0; }
-      .input-field, .select-field { max-width: none !important; }
-      .tabs { overflow-x: auto; -webkit-overflow-scrolling: touch; }
     }
 
     /* ===== RESPONSIVE: Mobile (<=768px) ===== */
@@ -1280,25 +514,14 @@
       .app.sidebar-open .sidebar-mobile-overlay {
         display: block;
         position: fixed; inset: 0; top: 56px;
-        background: rgba(0,0,0,0.3);
+        background: var(--overlay-medium);
         z-index: 1499;
       }
       .sidebar-mobile-overlay { display: none; }
       .content { padding: 16px; }
       .page-header { flex-direction: column; align-items: flex-start; gap: 12px; }
-      .tabs { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
-      .tab { flex-shrink: 0; }
-      .form-row { flex-direction: column; gap: 4px; align-items: flex-start; }
-      .form-label { width: auto; }
-      .input-field, .select-field { max-width: none !important; }
-      .input-with-suffix { max-width: none; }
-      .modal { width: calc(100vw - 32px); max-width: 480px; }
-      .slide-panel { width: 100%; right: -100%; }
-      .slide-panel.open { right: 0; }
       .pool-table { display: block; overflow-x: auto; }
-      .data-table { display: block; overflow-x: auto; }
       .header-logo-text { display: none; }
-      .radio-inline { flex-wrap: wrap; }
     }
 
     /* ===== RESPONSIVE: Small Mobile (<=480px) ===== */
@@ -1321,7 +544,7 @@
     .user-avatar {
       width: 20px; height: 20px; border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
-      font-size: 10px; font-weight: 500; color: #fff;
+      font-size: 10px; font-weight: 500; color: var(--text-on-fill);
       flex-shrink: 0;
     }
     .users-empty-state {
@@ -1341,6 +564,134 @@
       font-size: 14px; color: var(--text-muted); margin: 0;
     }
 
+    /* ===== JOBS PAGE ===== */
+    /* Jobs tables: fixed layout + truncation */
+    #activeJobsTable,
+    #pastJobsTable,
+    #upcomingJobsTable,
+    #processedFilesTable { table-layout: fixed; width: 100%; }
+    #activeJobsTable td,
+    #pastJobsTable td,
+    #processedFilesTable td,
+    #upcomingJobsTable td {
+      overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    }
+    /* Checkbox column — pinned first col */
+    #activeJobsTable th:first-child,
+    #activeJobsTable td:first-child,
+    #pastJobsTable th:first-child,
+    #pastJobsTable td:first-child,
+    #upcomingJobsTable th:first-child,
+    #upcomingJobsTable td:first-child,
+    #processedFilesTable th:first-child,
+    #processedFilesTable td:first-child {
+      position: sticky; left: 0; z-index: 2; background: var(--surface-card);
+      padding: 0; text-align: center; width: 40px; min-width: 40px; max-width: 40px;
+      overflow: visible;
+    }
+    #activeJobsTable th:first-child,
+    #pastJobsTable th:first-child,
+    #upcomingJobsTable th:first-child,
+    #processedFilesTable th:first-child {
+      padding-right: 0;
+    }
+    .jobs-table-cb { width: 16px; height: 16px; accent-color: var(--primary); cursor: pointer; margin: 0; }
+    .jobs-filter-btn { color: var(--primary); border-color: var(--primary); }
+    .jobs-filter-btn:hover { color: var(--text-on-fill); background: var(--primary); border-color: var(--primary); }
+    .jobs-filter-btn:hover svg { color: var(--text-on-fill); }
+
+    .jobs-row-with-progress { position: relative; }
+    .jobs-row-with-progress td:last-child { position: relative; }
+    .jobs-row-with-progress::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+      height: 3px; background: var(--border-card); pointer-events: none;
+    }
+    .jobs-row-with-progress .jobs-progress-fill {
+      position: absolute; bottom: 0; left: 0; height: 3px;
+      background: var(--primary); border-radius: 0 2px 2px 0;
+      pointer-events: none; z-index: 1;
+    }
+    .jobs-detections { color: var(--danger); font-weight: 500; }
+    .jobs-detections.none { color: var(--text-subtle); font-weight: 400; }
+    .jobs-elapsed { font-variant-numeric: tabular-nums; }
+    .jobs-files-progress { display: flex; align-items: center; gap: 8px; }
+    .jobs-files-bar { flex: 1; max-width: 80px; height: 4px; background: var(--border-card); border-radius: 2px; overflow: hidden; }
+    .jobs-files-bar-fill { height: 100%; background: var(--primary); border-radius: 2px; }
+    .jobs-edit-btn {
+      width: 32px; height: 32px; border: 1px solid var(--border-200); border-radius: var(--radius);
+      background: var(--surface-card); cursor: pointer; display: flex; align-items: center; justify-content: center;
+      color: var(--text-muted);
+    }
+    .jobs-edit-btn:hover { color: var(--text-strong); border-color: var(--text-muted); }
+    .jobs-edit-btn svg { width: 14px; height: 14px; }
+
+    /* Job Detail Page */
+    .job-detail-breadcrumb { display: flex; align-items: center; gap: 8px; margin-bottom: 16px; font-size: 14px; color: var(--text-muted); }
+    .job-detail-breadcrumb a { color: var(--primary); text-decoration: none; cursor: pointer; }
+    .job-detail-breadcrumb a:hover { text-decoration: underline; }
+    .job-detail-breadcrumb svg { width: 12px; height: 12px; color: var(--text-muted); }
+    .job-detail-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+    .job-detail-header h1 { font-size: 24px; font-weight: 400; color: var(--text-strong); }
+    .job-detail-header-actions { display: flex; gap: 8px; }
+    .job-info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0; padding: 20px; }
+    .job-info-item { display: flex; flex-direction: column; gap: 4px; padding: 0 20px 0 0; }
+    .job-info-label { font-size: 12px; font-weight: 500; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.3px; }
+    .job-info-value { font-size: 14px; color: var(--text-strong); display: flex; align-items: center; gap: 6px; }
+
+    /* Job summary stats */
+    .job-summary-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 12px; }
+    .job-summary-stat {
+      background: var(--surface-card); border: 1px solid var(--border-card); border-radius: var(--radius);
+      box-shadow: var(--shadow-card); padding: 20px; display: flex; flex-direction: column; gap: 8px;
+    }
+    .job-summary-stat-label { font-size: 12px; font-weight: 500; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.3px; }
+    .job-summary-stat-value { font-size: 28px; font-weight: 500; color: var(--text-strong); }
+    .job-summary-stat-value.alert { color: var(--danger); }
+    .job-summary-stat-value.success { color: #0f8a56; }
+
+    /* Completed job banner */
+    .job-completed-banner {
+      display: flex; align-items: center; gap: 12px;
+      padding: 12px 20px; margin-bottom: 12px;
+      border-radius: var(--radius); border: 1px solid #b6e3cc;
+      background: var(--green-100); color: var(--text-strong);
+      font-size: 14px; font-weight: 400;
+    }
+    .job-completed-banner svg { width: 16px; height: 16px; color: #0f8a56; flex-shrink: 0; }
+    .job-stopped-banner {
+      display: flex; align-items: center; gap: 12px;
+      padding: 12px 20px; margin-bottom: 12px;
+      border-radius: var(--radius); border: 1px solid #ffe0a3;
+      background: var(--yellow-100); color: var(--text-strong);
+      font-size: 14px; font-weight: 400;
+    }
+    .job-stopped-banner svg { width: 16px; height: 16px; color: var(--feedback-warning); flex-shrink: 0; }
+
+    /* Priority toggle group */
+    .priority-toggle { display: inline-flex; border: 1px solid var(--border-200); border-radius: var(--radius); overflow: hidden; }
+    .priority-toggle-btn {
+      padding: 0 16px; height: 30px; border: none; background: var(--surface-card);
+      font-family: var(--font); font-size: 14px; color: var(--text-subtle); cursor: pointer;
+      border-right: 1px solid var(--border-200);
+    }
+    .priority-toggle-btn:last-child { border-right: none; }
+    .priority-toggle-btn.active { background: var(--tab-active-bg); color: var(--text-on-fill); }
+    .priority-toggle-btn:hover:not(.active) { background: var(--hover-subtle); }
+
+    /* Advanced Filters panel - Specific to Jobs */
+    .af-section { display: flex; flex-direction: column; gap: 8px; }
+    .af-section-title { font-size: 12px; font-weight: 500; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.3px; }
+    .af-field { display: flex; flex-direction: column; gap: 6px; }
+    .af-field label { font-size: 14px; font-weight: 400; color: var(--text-strong); }
+    .af-field select { max-width: none; }
+    .af-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+    .af-chip {
+      display: inline-flex; align-items: center; gap: 4px;
+      padding: 4px 10px; border-radius: var(--radius); font-size: 12px;
+      border: 1px solid var(--border-200); background: var(--surface-card); color: var(--text-subtle); cursor: pointer;
+    }
+    .af-chip.selected { background: var(--blue-100); border-color: var(--primary); color: var(--primary); }
+
     /* ===== AUDIT PAGE ===== */
     .page-view { display: none; }
     .page-view.active { display: block; }
@@ -1354,100 +705,6 @@
 
     .audit-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
     .audit-header h1 { font-size: 24px; font-weight: 500; color: var(--text-strong); }
-
-    .audit-card {
-      background: var(--surface-card);
-      border: 1px solid var(--border-card);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow-card);
-      overflow: hidden;
-    }
-    .audit-card-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 20px;
-      height: 56px;
-      border-bottom: 1px solid var(--border-card);
-    }
-    .audit-card-header.with-desc {
-      height: auto; min-height: 56px; padding: 16px 20px;
-      flex-wrap: wrap;
-    }
-    .audit-card-header.with-desc .audit-card-title-group { display: flex; flex-direction: column; gap: 8px; }
-    .audit-card-header.with-desc .audit-card-title-row { display: flex; align-items: center; justify-content: space-between; width: 100%; }
-    .audit-card-title { display: flex; align-items: center; gap: 8px; }
-    .audit-card-title h3 { font-size: 14px; font-weight: 500; color: var(--text-strong); }
-    .audit-card-title .count { font-size: 14px; font-weight: 400; color: #344565; }
-    .audit-card-desc { font-size: 14px; font-weight: 400; color: #344565; line-height: 16px; }
-    .audit-card-actions { display: flex; align-items: center; gap: 8px; }
-    .audit-search {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 4px 4px 4px 8px;
-      height: 32px;
-      border: 1px solid var(--border-200);
-      border-radius: var(--radius);
-      background: #fff;
-      width: 240px;
-      box-sizing: border-box;
-    }
-    .audit-search:focus-within { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(29,107,252,0.15); }
-    .audit-search svg { width: 14px; height: 14px; color: #344565; flex-shrink: 0; }
-    .audit-search input { border: none; outline: none; font-size: 14px; font-family: var(--font); color: #344565; flex: 1; background: transparent; }
-    .audit-search input:not(:placeholder-shown) { color: #0C121D; }
-    .audit-search input::placeholder { color: #344565; }
-    .audit-search:focus-within svg { color: #0C121D; }
-    .audit-filter-btn {
-      width: 32px; height: 32px; border-radius: var(--radius);
-      border: 1px solid var(--border-200);
-      background: #fff; cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
-      color: var(--text-muted);
-    }
-    .audit-filter-btn:hover { color: var(--text-strong); border-color: var(--text-muted); }
-    .audit-filter-btn:focus-within, .audit-filter-btn:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(29,107,252,0.15); outline: none; }
-    .audit-filter-btn svg { width: 16px; height: 16px; }
-
-    /* Audit Table */
-    .audit-table { width: 100%; border-collapse: separate; border-spacing: 0; }
-    .audit-table thead th {
-      text-align: left;
-      padding: 0 16px;
-      height: 56px;
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--text-strong);
-      background: #fff;
-      border-bottom: 1px solid var(--border-card);
-      white-space: nowrap;
-      position: relative;
-      padding-right: 44px;
-      line-height: 16px;
-    }
-    .audit-table thead th .filter-icon { position: absolute; right: 16px; top: 50%; transform: translateY(-50%); margin-left: 0; }
-    .audit-table tbody td {
-      padding: 0 16px;
-      height: 56px;
-      font-size: 14px;
-      color: var(--text-subtle);
-      border-bottom: 1px solid var(--border-card);
-      vertical-align: middle;
-      line-height: 16px;
-      white-space: nowrap;
-    }
-    .audit-table tbody tr:last-child td { border-bottom: none; }
-    .audit-table tbody tr:hover td { background: #F8F9F9; }
-    .audit-table .col-expand { width: 56px; text-align: center; padding: 0 !important; }
-    .audit-table .col-user { min-width: 150px; }
-    .audit-table .col-level { width: 100px; }
-    .audit-table .col-category { width: 130px; }
-    .audit-table .col-type { min-width: 180px; }
-    .audit-table .col-date { min-width: 180px; white-space: nowrap; }
-    .audit-table .col-details { min-width: 120px; max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding-right: 8px; }
-    .audit-table .col-copy { width: 56px; text-align: center; padding: 0 !important; }
-    .audit-table td.col-details { max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
     /* Expand/collapse chevron */
     .expand-btn {
@@ -1466,7 +723,7 @@
     /* Expanded row */
     .audit-expanded-row td {
       padding: 12px 16px 12px 60px !important;
-      background: #ffffff;
+      background: var(--surface-card);
       font-size: 14px;
       color: var(--text-subtle);
       line-height: 1.5;
@@ -1478,7 +735,7 @@
     .audit-avatar {
       width: 24px; height: 24px; border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
-      font-size: 10px; font-weight: 500; color: #fff;
+      font-size: 10px; font-weight: 500; color: var(--text-on-fill);
       flex-shrink: 0;
     }
     .audit-avatar.system { background: none; }
@@ -1493,10 +750,10 @@
       font-weight: 500;
       white-space: nowrap;
     }
-    .level-badge.warning { background: #FFF3CD; color: #856404; }
-    .level-badge.error { background: #F8D7DA; color: #721C24; }
+    .level-badge.warning { background: var(--ds-caution-100); color: var(--ds-caution-text); }
+    .level-badge.error { background: var(--ds-alert-100); color: var(--ds-alert-text); }
     .level-badge.info { background: #D1ECF1; color: #0C5460; }
-    .level-badge.success { background: #D4EDDA; color: #155724; }
+    .level-badge.success { background: var(--ds-success-100); color: var(--ds-success-text); }
 
     /* Category badge */
     .category-badge {
@@ -1507,331 +764,61 @@
       font-size: 12px;
       font-weight: 400;
       border: 1px solid var(--border-200);
-      background: #fff;
+      background: var(--surface-card);
       color: var(--text-subtle);
       white-space: nowrap;
     }
 
     /* Copy button (audit) — inherits from base .copy-btn above */
 
-    /* Pagination */
-    .audit-pagination {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 20px;
-      height: 72px;
-      box-sizing: border-box;
-      border-top: 1px solid var(--border-card);
-      font-size: 14px;
-      font-weight: 400;
-      color: #344565;
-    }
-    .audit-pagination-left { display: flex; align-items: center; gap: 8px; }
-    .audit-pagination-left select {
-      min-width: 64px;
-    }
-    .audit-pagination-right { display: flex; align-items: center; }
-    .audit-page-btn {
-      width: 32px; height: 32px;
-      border: 1px solid var(--border-200);
-      background: #fff; cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
-      padding: 8px;
-      box-sizing: border-box;
-      color: var(--text-muted); font-size: 14px;
-      position: relative;
-    }
-    .audit-page-btn:first-child { border-radius: var(--radius) 0 0 var(--radius); }
-    .audit-page-btn:last-child { border-radius: 0 var(--radius) var(--radius) 0; margin-left: -1px; }
-    .audit-page-btn:hover:not(:disabled) { color: var(--text-strong); border-color: var(--text-muted); z-index: 1; }
-    .audit-page-btn:disabled { opacity: 0.4; cursor: default; }
-    .audit-page-btn svg { width: 14px; height: 14px; }
-    .audit-page-select {
-      border: 1px solid var(--border-200);
-      border-radius: 0;
-      margin-left: -1px;
-      min-width: 64px;
-      position: relative;
-    }
-    .audit-page-select:hover { border-color: var(--text-muted); z-index: 1; }
-    .audit-page-select:focus { border-color: var(--text-muted); z-index: 1; }
-    .audit-page-btn:focus { outline: none; }
-
-    /* ===== DESIGN SYSTEM: Tags, Badges, Chips, Verdicts, Severities ===== */
-
-    /* --- Color Tokens (Light Mode) --- */
-    :root {
-      --ds-neutral-100: #f8f9f9;   --ds-neutral-text: #0c121d;   --ds-neutral-700: #475b81;
-      --ds-inactive-100: #f8f9f9;  --ds-inactive-text: #6b7a90;  --ds-inactive-700: #a9b2c4;
-      --ds-secure-100: #e0f5f0;    --ds-secure-text: #004d3a;    --ds-secure-700: #006c4c;   --ds-secure-fill: #006c4c;
-      --ds-success-100: #dffff5;   --ds-success-text: #002318;   --ds-success-700: #00b37a;  --ds-success-fill: #00b37a;
-      --ds-accent-100: #e8f0ff;    --ds-accent-text: #0d2654;    --ds-accent-700: #1d6bfc;   --ds-accent-fill: #1d6bfc;
-      --ds-guide-100: #ede8ff;     --ds-guide-text: #2d1a6e;     --ds-guide-700: #7c5ce0;    --ds-guide-fill: #7c5ce0;
-      --ds-alert-100: #ffdfdb;     --ds-alert-text: #7e001d;     --ds-alert-700: #e83b3b;    --ds-alert-fill: #e83b3b;
-      --ds-warn-100: #ffebde;      --ds-warn-text: #802b00;      --ds-warn-700: #e87c1e;     --ds-warn-fill: #e87c1e;
-      --ds-caution-100: #fff4cc;   --ds-caution-text: #5d4200;   --ds-caution-700: #d4a800;  --ds-caution-fill: #d4a800;
-    }
-
-    /* --- Tags (Status) — filled background, no border --- */
-    .tag {
-      display: inline-flex; align-items: center; justify-content: center;
-      padding: 8px; font-size: 14px; font-family: var(--font);
-      font-weight: 400; line-height: 16px; white-space: nowrap;
-    }
-    .tag-neutral   { background: var(--ds-neutral-100);  color: var(--ds-neutral-text); }
-    .tag-inactive  { background: var(--ds-inactive-100); color: var(--ds-inactive-text); }
-    .tag-secure    { background: var(--ds-secure-fill);   color: #fff; }
-    .tag-success   { background: var(--ds-success-100);  color: var(--ds-success-text); }
-    .tag-accent    { background: var(--ds-accent-100);   color: var(--ds-accent-text); }
-    .tag-guide     { background: var(--ds-guide-fill);    color: #fff; }
-    .tag-alert     { background: var(--ds-alert-100);    color: var(--ds-alert-text); }
-    .tag-warn      { background: var(--ds-warn-100);     color: var(--ds-warn-text); }
-    .tag-caution   { background: var(--ds-caution-100);  color: var(--ds-caution-text); }
-
-    /* --- Tags (Keyword) — bordered, no fill --- */
-    .tag-keyword {
-      display: inline-flex; align-items: center; justify-content: center;
-      padding: 8px; font-size: 14px; font-family: var(--font);
-      font-weight: 400; line-height: 16px; white-space: nowrap;
-      border: 1px solid var(--border-200); color: var(--text-subtle);
-    }
-
-    /* Tag Group */
-    .tag-group { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
-
-    /* --- Badges (Dots) — 8px colored circles --- */
-    .badge-dot {
-      width: 8px; height: 8px; border-radius: 9999px; flex-shrink: 0; display: inline-block;
-    }
-    .badge-dot-neutral   { background: var(--ds-neutral-700); }
-    .badge-dot-inactive  { background: var(--ds-inactive-700); }
-    .badge-dot-secure    { background: var(--ds-secure-700); }
-    .badge-dot-success   { background: var(--ds-success-700); }
-    .badge-dot-accent    { background: var(--ds-accent-700); }
-    .badge-dot-guide     { background: var(--ds-guide-700); }
-    .badge-dot-alert     { background: var(--ds-alert-700); }
-    .badge-dot-warn      { background: var(--ds-warn-700); }
-    .badge-dot-caution   { background: var(--ds-caution-700); }
-
-    /* --- Badges (Numbers) — 16px tall rounded rectangles with count --- */
-    .badge-number {
-      display: inline-flex; align-items: center; justify-content: center;
-      height: 16px; min-width: 16px; padding: 2px 4px;
-      border-radius: 4px; font-size: 12px; font-family: var(--font);
-      font-weight: 400; line-height: 14px; color: #fff; white-space: nowrap;
-    }
-    .badge-number-neutral   { background: #344565; }
-    .badge-number-inactive  { background: #a9b2c4; }
-    .badge-number-secure    { background: var(--ds-secure-700); }
-    .badge-number-success   { background: var(--ds-success-700); }
-    .badge-number-accent    { background: var(--ds-accent-700); }
-    .badge-number-guide     { background: var(--ds-guide-700); }
-    .badge-number-alert     { background: var(--ds-alert-700); }
-    .badge-number-warn      { background: var(--ds-warn-700); }
-    .badge-number-caution   { background: var(--ds-caution-700); color: #1a1400; }
-
-    /* --- Chips — 24px height, rounded-2px, filled bg --- */
-    .chip {
-      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-      padding: 4px 8px; height: 24px; box-sizing: border-box;
-      border-radius: 2px; font-size: 14px; font-family: var(--font);
-      font-weight: 400; line-height: 16px; white-space: nowrap;
-      border: 1px solid transparent;
-    }
-    .chip-default    { background: #ebecee; color: #0c121d; }
-    .chip-disabled   { background: #ebecee; color: #a9b2c4; cursor: not-allowed; opacity: 0.6; }
-    .chip-inactive   { background: transparent; color: #6b7a90; border-color: var(--border-200); }
-    .chip-secure     { background: var(--ds-secure-700); color: #fff; }
-    .chip-success    { background: var(--ds-success-700); color: #fff; }
-    .chip-accent     { background: var(--ds-accent-700); color: #fff; }
-    .chip-guide      { background: var(--ds-guide-700); color: #fff; }
-    .chip-alert      { background: var(--ds-alert-700); color: #fff; }
-    .chip-warn       { background: var(--ds-warn-700); color: #fff; }
-    .chip-caution    { background: var(--ds-caution-700); color: #1a1400; }
-    /* Chip selected (removable) */
-    .chip-selected { position: relative; padding-right: 24px; }
-    .chip-selected .chip-remove {
-      position: absolute; right: 4px; top: 50%; transform: translateY(-50%);
-      width: 12px; height: 12px; display: flex; align-items: center; justify-content: center;
-      cursor: pointer; opacity: 0.7; border: none; background: none; color: inherit; padding: 0;
-    }
-    .chip-selected .chip-remove:hover { opacity: 1; }
-    .chip-selected .chip-remove svg { width: 10px; height: 10px; }
-
-    /* --- Verdicts — dot + text inline --- */
-    .verdict {
-      display: inline-flex; align-items: center; gap: 8px;
-      font-size: 14px; font-family: var(--font); font-weight: 400;
-      line-height: 16px; white-space: nowrap;
-    }
-    .verdict-dot {
-      width: 8px; height: 8px; border-radius: 9999px; flex-shrink: 0;
-    }
-    .verdict-text { color: var(--ds-neutral-text); }
-    /* Verdict color variants */
-    .verdict-neutral .verdict-dot     { background: var(--ds-neutral-700); }
-    .verdict-neutral .verdict-text    { color: #a9b2c4; }
-    .verdict-not-active .verdict-dot  { background: var(--ds-inactive-700); }
-    .verdict-not-active .verdict-text { color: #a9b2c4; }
-    .verdict-detected .verdict-dot    { background: var(--ds-alert-700); }
-    .verdict-detected .verdict-text   { color: var(--ds-alert-text); }
-    .verdict-progress .verdict-dot    { background: var(--ds-accent-700); }
-    .verdict-progress .verdict-text   { color: var(--ds-accent-text); }
-    .verdict-completed .verdict-dot   { background: var(--ds-success-700); }
-    .verdict-completed .verdict-text  { color: var(--ds-success-text); }
-    .verdict-failed .verdict-dot      { background: var(--ds-alert-700); }
-    .verdict-failed .verdict-text     { color: var(--ds-alert-text); }
-    .verdict-secure .verdict-dot      { background: var(--ds-secure-700); }
-    .verdict-secure .verdict-text     { color: var(--ds-secure-text); }
-    .verdict-warn .verdict-dot        { background: var(--ds-warn-700); }
-    .verdict-warn .verdict-text       { color: var(--ds-warn-text); }
-    .verdict-accent .verdict-dot      { background: var(--ds-accent-700); }
-    .verdict-accent .verdict-text     { color: var(--ds-accent-text); }
-    .verdict-guide .verdict-dot       { background: var(--ds-guide-700); }
-    .verdict-guide .verdict-text      { color: var(--ds-guide-text); }
-    .verdict-caution .verdict-dot     { background: var(--ds-caution-700); }
-    .verdict-caution .verdict-text    { color: var(--ds-caution-text); }
-
-    /* --- Severities — triangle icon + text inline --- */
-    .severity {
-      display: inline-flex; align-items: center; gap: 8px;
-      font-size: 14px; font-family: var(--font); font-weight: 400;
-      line-height: 16px; white-space: nowrap; color: var(--text-subtle);
-    }
-    .severity-icon {
-      width: 16px; height: 16px; flex-shrink: 0; display: inline-flex;
-      align-items: center; justify-content: center;
-    }
-    .severity-icon svg { width: 16px; height: 16px; }
-    .severity-critical .severity-icon { color: var(--ds-alert-700); }
-    .severity-high .severity-icon     { color: var(--ds-alert-700); }
-    .severity-medium .severity-icon   { color: var(--ds-warn-700); }
-    .severity-low .severity-icon      { color: var(--ds-caution-700); }
-    .severity-none .severity-icon     { color: var(--ds-neutral-700); }
-
-    /* ===== DARK MODE ===== */
-    [data-theme="dark"] {
-      --surface-bg: #0c121d;
-      --surface-card: #141b27;
-      --header-bg: #0c121d;
-      --tab-bg: #141b27;
-      --border-bg: #141b27;
-      --border-200: #344565;
-      --border-card: #24324b;
-      --text-strong: #ffffff;
-      --text-subtle: #a9b2c4;
-      --text-muted: #6b7a90;
-      --primary: #4d8dff;
-      --primary-hover: #3a7df5;
-
-      /* Tag/badge tokens dark */
-      --ds-neutral-100: #172234;   --ds-neutral-text: #ffffff;   --ds-neutral-700: #6b7a90;
-      --ds-inactive-100: #172234;  --ds-inactive-text: #6b7a90;  --ds-inactive-700: #475b81;
-      --ds-secure-100: #003d2b;    --ds-secure-text: #b3ffe8;    --ds-secure-700: #00b37a;   --ds-secure-fill: #006c4c;
-      --ds-success-100: #003d2b;   --ds-success-text: #b3ffe8;   --ds-success-700: #00b37a;  --ds-success-fill: #006c4c;
-      --ds-accent-100: #0d2654;    --ds-accent-text: #c6dafe;    --ds-accent-700: #4d8dff;   --ds-accent-fill: #0d2654;
-      --ds-guide-100: #1e1250;     --ds-guide-text: #c8b8ff;     --ds-guide-700: #a78bfa;    --ds-guide-fill: #7c5ce0;
-      --ds-alert-100: #4d0011;     --ds-alert-text: #ffbab7;     --ds-alert-700: #ff6b6b;    --ds-alert-fill: #7e001d;
-      --ds-warn-100: #4d1a00;      --ds-warn-text: #ffab6f;      --ds-warn-700: #ffab6f;     --ds-warn-fill: #802b00;
-      --ds-caution-100: #3d3200;   --ds-caution-text: #ffe599;   --ds-caution-700: #ffe599;  --ds-caution-fill: #5d4200;
-    }
+    /* ===== DARK MODE (product-specific overrides only) ===== */
     [data-theme="dark"] body { background: var(--surface-bg); color: var(--text-subtle); }
     [data-theme="dark"] .sidebar { background: var(--header-bg); border-color: var(--border-card); }
     [data-theme="dark"] .sidebar .nav-item { color: var(--text-subtle); }
-    [data-theme="dark"] .sidebar .nav-item.active { background: rgba(29,107,252,0.25); color: #fff; }
+    [data-theme="dark"] .sidebar .nav-item.active { background: rgba(29,107,252,0.25); color: var(--text-strong); }
     [data-theme="dark"] .sidebar .nav-item:hover:not(.active) { background: rgba(255,255,255,0.04); }
     [data-theme="dark"] .main-header { background: var(--header-bg); border-color: var(--border-card); }
     [data-theme="dark"] .header { background: var(--surface-bg); border-color: var(--border-card); }
-    [data-theme="dark"] .header .header-logo-text span { color: #fff; }
-    [data-theme="dark"] .header-icon { color: #fff; }
-    [data-theme="dark"] .header-icon:hover { background: rgba(255,255,255,0.08); color: #fff; }
-    [data-theme="dark"] .sidebar-toggle { color: #fff; }
-    [data-theme="dark"] .sidebar-toggle:hover { background: rgba(255,255,255,0.08); color: #fff; }
-    [data-theme="dark"] .tabs { background: var(--tab-bg); border-color: var(--border-card); }
-    [data-theme="dark"] .tab { color: var(--text-subtle); }
-    [data-theme="dark"] .tab.active { color: #fff; border-bottom-color: var(--primary); }
+    [data-theme="dark"] .header .header-logo-text span { color: var(--text-strong); }
+    [data-theme="dark"] .header-icon { color: var(--text-strong); }
+    [data-theme="dark"] .header-icon:hover { background: var(--hover-default); color: var(--text-strong); }
+    [data-theme="dark"] .sidebar-toggle { color: var(--text-strong); }
+    [data-theme="dark"] .sidebar-toggle:hover { background: var(--hover-default); color: var(--text-strong); }
     [data-theme="dark"] .settings-card { background: var(--surface-card); border-color: var(--border-card); }
     [data-theme="dark"] .card-header { border-color: var(--border-card); }
-    [data-theme="dark"] .card-header h2 { color: #fff; }
-    [data-theme="dark"] .form-label { color: var(--text-subtle); }
-    [data-theme="dark"] .input-field { background: var(--surface-bg); border-color: var(--border-200); color: #fff; }
-    [data-theme="dark"] .input-field input { color: #fff; }
-    /* select-field dark mode handled by global select rule */
+    [data-theme="dark"] .card-header h2 { color: var(--text-strong); }
     [data-theme="dark"] .btn-save { background: var(--surface-bg); border-color: var(--border-200); color: var(--text-muted); }
-    [data-theme="dark"] .settings-card.dirty .btn-save { background: var(--primary); color: #fff; border-color: var(--primary); }
+    [data-theme="dark"] .settings-card.dirty .btn-save { background: var(--primary); color: var(--text-on-fill); border-color: var(--primary); }
     [data-theme="dark"] .btn-discard { border-color: var(--border-200); color: var(--text-subtle); }
-    [data-theme="dark"] .btn-outline { border-color: var(--border-200); color: var(--text-subtle); }
-    [data-theme="dark"] .btn-outline:hover { background: rgba(255,255,255,0.04); }
     [data-theme="dark"] .pool-table thead th,
-    [data-theme="dark"] .data-table thead th,
     [data-theme="dark"] .headers-table-head { background: var(--surface-card); color: var(--text-subtle); border-color: var(--border-card); }
     [data-theme="dark"] .pool-table tbody td,
-    [data-theme="dark"] .data-table tbody td,
     [data-theme="dark"] .headers-table-row { border-color: var(--border-card); color: var(--text-subtle); }
-    [data-theme="dark"] .pool-table tbody tr:hover td,
-    [data-theme="dark"] .data-table tbody tr:hover td,
-    [data-theme="dark"] .audit-table tbody tr:hover td { background: rgba(255,255,255,0.03); }
-    [data-theme="dark"] .audit-card { background: var(--surface-card); border-color: var(--border-card); }
-    [data-theme="dark"] .audit-card-header { border-color: var(--border-card); }
-    [data-theme="dark"] .audit-card-title h3 { color: #fff; }
-    [data-theme="dark"] .audit-table thead th { background: var(--surface-card); color: var(--text-subtle); border-color: var(--border-card); }
-    [data-theme="dark"] .audit-table tbody td { border-color: var(--border-card); color: var(--text-subtle); }
-    [data-theme="dark"] .audit-search { background: var(--surface-bg); border-color: var(--border-200); }
-    [data-theme="dark"] .audit-search input { color: #fff; }
-    [data-theme="dark"] .audit-search svg { color: var(--text-subtle); }
-    [data-theme="dark"] .audit-filter-btn { background: var(--surface-bg); border-color: var(--border-200); color: var(--text-muted); }
-    [data-theme="dark"] .audit-pagination { border-color: var(--border-card); color: var(--text-muted); }
-    [data-theme="dark"] .audit-page-btn { background: var(--surface-bg); border-color: var(--border-200); color: var(--text-muted); }
-    /* pagination select dark mode handled by global select rule */
-    [data-theme="dark"] .advanced-filters-panel { background: var(--surface-card); }
-    [data-theme="dark"] .af-header { border-color: var(--border-card); }
-    [data-theme="dark"] .af-header h3 { color: #fff; }
-    /* af-field select dark mode handled by global select rule */
-    [data-theme="dark"] .af-field-label { color: var(--text-subtle); }
-    [data-theme="dark"] .af-footer { border-color: var(--border-card); }
-    [data-theme="dark"] .toast { background: #344565; }
-    [data-theme="dark"] .tag-keyword { border-color: var(--border-200); color: var(--text-subtle); }
-    [data-theme="dark"] .chip-default { background: #24324b; color: #fff; }
-    [data-theme="dark"] .chip-inactive { border-color: var(--border-200); color: var(--text-muted); }
-    [data-theme="dark"] .badge-number-neutral { background: #6b7a90; }
-    [data-theme="dark"] .file-upload-field { background: var(--surface-bg); border-color: var(--border-200); }
-    [data-theme="dark"] .modal-content { background: var(--surface-card); border-color: var(--border-card); }
-    [data-theme="dark"] .modal-header { border-color: var(--border-card); }
-    [data-theme="dark"] .modal-header h2 { color: #fff; }
-    [data-theme="dark"] .panel-content { background: var(--surface-card); border-color: var(--border-card); }
-    [data-theme="dark"] .panel-header { border-color: var(--border-card); }
-    [data-theme="dark"] .panel-header h2 { color: #fff; }
-    [data-theme="dark"] .toggle-slider { background: #344565; }
-    [data-theme="dark"] .form-value { color: var(--text-subtle); }
-    [data-theme="dark"] .radio-circle { border-color: var(--border-200); }
+    [data-theme="dark"] .pool-table tbody tr:hover td { background: var(--surface-hover); }
     [data-theme="dark"] .promo-banner { background: rgba(29,107,252,0.08); border-color: rgba(29,107,252,0.2); }
     [data-theme="dark"] .warning-banner { background: rgba(232,123,30,0.08); border-color: rgba(232,123,30,0.2); }
-    [data-theme="dark"] .content-title h1 { color: #fff; }
-    [data-theme="dark"] .page-title h1 { color: #fff; }
+    [data-theme="dark"] .content-title h1 { color: var(--text-strong); }
+    [data-theme="dark"] .page-title h1 { color: var(--text-strong); }
     [data-theme="dark"] .pool-card-header { border-color: var(--border-card); }
-    [data-theme="dark"] .pool-card-header h2 { color: #fff; }
+    [data-theme="dark"] .pool-card-header h2 { color: var(--text-strong); }
     [data-theme="dark"] .sidebar-footer { border-color: var(--border-card); }
-    [data-theme="dark"] .sidebar-footer-brand path { fill: #ffffff; }
-    [data-theme="dark"] .av-badge { background: var(--surface-bg); border-color: var(--border-200); color: var(--text-subtle); }
-    [data-theme="dark"] .pool-action-btn:hover { background: rgba(255,255,255,0.06); }
+    [data-theme="dark"] .sidebar-footer-brand path { fill: var(--text-on-fill); }
+    [data-theme="dark"] .pool-action-btn:hover { background: var(--hover-default); }
     [data-theme="dark"] .pool-action-menu { background: var(--surface-card); border-color: var(--border-200); }
-    [data-theme="dark"] .pool-action-menu-item:hover { background: rgba(255,255,255,0.04); }
+    [data-theme="dark"] .pool-action-menu-item:hover { background: var(--hover-subtle); }
     [data-theme="dark"] .users-empty-icon { background: rgba(255,255,255,0.06); }
-    [data-theme="dark"] .filter-icon { color: var(--text-muted); }
-    [data-theme="dark"] .audit-user { color: #fff; }
-    [data-theme="dark"] .audit-table tbody td .audit-user { color: #fff; }
+    [data-theme="dark"] .audit-user { color: var(--text-strong); }
     [data-theme="dark"] .expand-btn { color: var(--text-subtle); }
-    [data-theme="dark"] .expand-btn:hover { color: #fff; }
-    [data-theme="dark"] .copy-btn { color: var(--text-subtle); }
-    [data-theme="dark"] .copy-btn:hover { color: #fff; }
-    [data-theme="dark"] .btn-primary { background: var(--primary); border-color: var(--primary); color: #fff; }
+    [data-theme="dark"] .expand-btn:hover { color: var(--text-strong); }
     [data-theme="dark"] .btn-export { border-color: var(--border-200); color: var(--text-subtle); }
     [data-theme="dark"] .audit-detail-row td { color: var(--text-muted); }
-    [data-theme="dark"] .notif-dot { background: #ff6e75; }
+    [data-theme="dark"] .notif-dot { background: var(--red-400); }
     [data-theme="dark"] .header-avatar { border-color: rgba(255,255,255,0.1); }
-    [data-theme="dark"] .af-footer .btn-outline { border-color: var(--border-200); color: var(--text-subtle); }
-    [data-theme="dark"] .af-footer .btn-primary { background: var(--primary); color: #fff; }
+    [data-theme="dark"] .advanced-filters-panel { background: var(--surface-card); }
+    [data-theme="dark"] .af-header { border-color: var(--border-card); }
+    [data-theme="dark"] .af-header h3 { color: var(--text-strong); }
+    [data-theme="dark"] .af-field-label { color: var(--text-subtle); }
+    [data-theme="dark"] .af-footer { border-color: var(--border-card); }
     [data-theme="dark"] .af-footer .af-results-text { color: var(--text-muted); }
 
     /* Theme toggle button */
@@ -1841,24 +828,24 @@
       cursor: pointer; color: var(--text-subtle); background: none; border: none;
       margin-left: 4px; padding: 0;
     }
-    .theme-toggle:hover { color: var(--text-strong); background: rgba(0,0,0,0.06); }
+    .theme-toggle:hover { color: var(--text-strong); background: var(--hover-default); }
     .theme-toggle svg { width: 18px; height: 18px; }
-    [data-theme="dark"] .theme-toggle { color: #fff; }
-    [data-theme="dark"] .theme-toggle:hover { background: rgba(255,255,255,0.08); }
+    [data-theme="dark"] .theme-toggle { color: var(--text-strong); }
+    [data-theme="dark"] .theme-toggle:hover { background: var(--hover-default); }
 
     /* Advanced Filters Drawer */
     .advanced-filters-overlay {
       position: fixed; inset: 0; z-index: 2000;
-      background: rgba(0,0,0,0.4);
+      background: var(--overlay-medium);
       opacity: 0; visibility: hidden;
       transition: opacity 0.25s ease, visibility 0.25s ease;
     }
     .advanced-filters-overlay.open { opacity: 1; visibility: visible; }
     .advanced-filters-panel {
       position: fixed; top: 0; right: 0; z-index: 2001;
-      background: #fff;
+      background: var(--surface-card);
       width: 420px; height: 100vh;
-      box-shadow: -4px 0 24px rgba(12,18,29,0.12);
+      box-shadow: var(--shadow-panel);
       display: flex; flex-direction: column;
       transform: translateX(100%);
       transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -1878,7 +865,7 @@
       cursor: pointer; display: flex; align-items: center; justify-content: center;
       color: var(--text-muted); border-radius: var(--radius);
     }
-    .af-close:hover { color: var(--text-strong); background: rgba(0,0,0,0.04); }
+    .af-close:hover { color: var(--text-strong); background: var(--hover-subtle); }
     .af-close svg { width: 16px; height: 16px; }
     .af-body { padding: 24px; display: flex; flex-direction: column; gap: 16px; flex: 1; overflow-y: auto; }
     .af-field { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; align-items: center; }
@@ -1951,7 +938,7 @@
       text-align: left; font-family: var(--font);
       transition: background 0.15s;
     }
-    .avd-item:hover { background: rgba(0,0,0,0.04); }
+    .avd-item:hover { background: var(--hover-subtle); }
     .avd-item svg { width: 16px; height: 16px; flex-shrink: 0; color: var(--text-subtle); }
     .avd-item .avd-chevron { margin-left: auto; width: 16px; height: 16px; color: var(--text-muted); }
     .avd-item .avd-flag { width: 20px; height: 16px; border-radius: 2px; flex-shrink: 0; }
@@ -1971,7 +958,7 @@
       width: 100%; height: 32px; box-sizing: border-box;
       text-align: left; font-family: var(--font);
     }
-    .avd-back:hover { background: rgba(0,0,0,0.04); }
+    .avd-back:hover { background: var(--hover-subtle); }
     .avd-back svg { width: 16px; height: 16px; }
 
     /* Active check for theme/lang items */
@@ -1983,8 +970,8 @@
       background: var(--surface-card); border-color: var(--border-card);
       box-shadow: 2px 4px 4px rgba(0,0,0,0.3), 0 3px 16px rgba(0,0,0,0.3);
     }
-    [data-theme="dark"] .avd-item:hover { background: rgba(255,255,255,0.06); }
-    [data-theme="dark"] .avd-back:hover { background: rgba(255,255,255,0.06); }
+    [data-theme="dark"] .avd-item:hover { background: var(--hover-default); }
+    [data-theme="dark"] .avd-back:hover { background: var(--hover-default); }
 
     /* Component demo wrapper for standalone previews */
     .avd-demo-container {
@@ -2042,7 +1029,7 @@
       cursor: pointer;
       transition: background 0.15s;
     }
-    .notif-msg:hover { background: rgba(0,0,0,0.02); }
+    .notif-msg:hover { background: var(--hover-subtle); }
     .notif-msg-top { display: flex; flex-direction: column; gap: 8px; }
     .notif-msg-title-row {
       display: flex; align-items: center; gap: 8px;
@@ -2053,7 +1040,7 @@
     }
     .notif-msg-dot {
       width: 8px; height: 8px; border-radius: 50%;
-      background: #475b81; flex-shrink: 0;
+      background: var(--neutral-700); flex-shrink: 0;
     }
     .notif-msg-body {
       font-size: 14px; font-weight: 400; color: var(--text-subtle);
@@ -2087,7 +1074,7 @@
       display: inline-flex; height: 16px; min-height: 16px; max-height: 16px;
       padding: 2px 4px; align-items: center;
       border-radius: 4px; background: var(--exception-surface-badge-number, #344565);
-      color: #fff; font-size: 12px; font-weight: 400; line-height: 1;
+      color: var(--text-on-fill); font-size: 12px; font-weight: 400; line-height: 1;
     }
     .notif-empty-title {
       font-size: 14px; font-weight: 500; color: var(--text-strong);
@@ -2101,7 +1088,7 @@
       background: var(--surface-card); border-color: var(--border-card);
       box-shadow: 2px 4px 4px rgba(0,0,0,0.3), 0 3px 16px rgba(0,0,0,0.3);
     }
-    [data-theme="dark"] .notif-msg:hover { background: rgba(255,255,255,0.04); }
+    [data-theme="dark"] .notif-msg:hover { background: var(--hover-subtle); }
     [data-theme="dark"] .notif-msg-dot { background: #6b7a90; }
 
   </style>
@@ -3648,6 +2635,235 @@
           </div>
         </div><!-- /usersPage -->
 
+        <!-- ==================== JOBS PAGE ==================== -->
+        <div id="jobsPage" class="page-view">
+          <!-- Jobs List View -->
+          <div id="jobsListView">
+            <div class="page-header">
+              <h1 class="page-title">Jobs</h1>
+              <button class="btn-primary" onclick="openSlidePanel('editJobPanel')">New Job</button>
+            </div>
+
+            <!-- Active Jobs Card -->
+            <div class="audit-card" id="activeJobsCard" style="margin-bottom:12px;">
+              <div class="audit-card-header">
+                <div class="audit-card-title">
+                  <h3>Active Jobs</h3>
+                  <span class="count" id="activeJobsCount">0</span>
+                </div>
+                <div class="audit-card-actions">
+                  <button class="audit-filter-btn jobs-filter-btn" onclick="openSlidePanel('jobsFiltersPanel')" title="Advanced Filters">
+                    <svg viewBox="0 0 16 16" fill="currentColor"><path d="M4.75 7.15V2H3.25V7.15C2.52 7.45 2 8.16 2 9C2 9.84 2.52 10.55 3.25 10.85V14H4.75V10.85C5.48 10.55 6 9.84 6 9C6 8.16 5.48 7.45 4.75 7.15Z"/><path d="M10 5C10 4.16 9.48 3.45 8.75 3.15V2H7.25V3.15C6.52 3.45 6 4.16 6 5C6 5.84 6.52 6.55 7.25 6.85V14H8.75V6.85C9.48 6.55 10 5.84 10 5Z"/><path d="M14 11C14 10.16 13.48 9.45 12.75 9.15V2H11.25V9.15C10.52 9.45 10 10.16 10 11C10 11.84 10.52 12.55 11.25 12.85V14H12.75V12.85C13.48 12.55 14 11.84 14 11Z"/></svg>
+                  </button>
+                </div>
+              </div>
+              <!-- Empty state -->
+              <div class="users-empty-state" id="activeJobsEmpty" style="display:none;">
+                <div class="users-empty-icon">
+                  <svg viewBox="0 0 16 16" fill="currentColor"><path d="M10 6V4.75H8.75V11.25H10V10H14V14H10V12.75H8C7.59 12.75 7.25 12.41 7.25 12V8.75H6.25L4 11L1 8L4 5L6.25 7.25H7.25V4C7.25 3.59 7.59 3.25 8 3.25H10V2H14V6H10Z"/></svg>
+                </div>
+                <p class="users-empty-title">No Active Jobs</p>
+                <p class="users-empty-desc">Active and running jobs will appear here.</p>
+              </div>
+              <div id="activeJobsTableWrap">
+                <table class="data-table" id="activeJobsTable">
+                  <thead>
+                    <tr>
+                      <th style="width:40px;"><input type="checkbox" class="jobs-table-cb" onchange="toggleAllJobsCb(this,'activeJobsBody')"></th>
+                      <th style="width:9%;">Status <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77C3.635 8.77 3.455 8.7 3.315 8.56C3.175 8.42 3.105 8.25 3.105 8.05C3.105 7.85 3.175 7.68 3.315 7.54C3.455 7.4 3.625 7.33 3.825 7.33H12.155C12.355 7.33 12.535 7.4 12.675 7.54C12.815 7.68 12.885 7.85 12.885 8.05C12.885 8.25 12.815 8.42 12.675 8.56C12.535 8.7 12.365 8.77 12.165 8.77H3.835Z"/><path d="M1.715 5.44C1.515 5.44 1.345 5.37 1.205 5.23C1.065 5.09 0.994995 4.92 0.994995 4.72C0.994995 4.52 1.065 4.35 1.205 4.21C1.345 4.07 1.515 4 1.715 4H14.275C14.475 4 14.645 4.07 14.785 4.21C14.925 4.35 14.995 4.52 14.995 4.72C14.995 4.92 14.925 5.09 14.785 5.23C14.645 5.37 14.475 5.44 14.275 5.44H1.715Z"/><path d="M5.515 12.09C5.315 12.09 5.14499 12.02 5.00499 11.88C4.86499 11.74 4.795 11.57 4.795 11.37C4.795 11.17 4.86499 11 5.00499 10.86C5.14499 10.72 5.315 10.65 5.515 10.65H10.475C10.675 10.65 10.845 10.72 10.985 10.86C11.125 11 11.195 11.17 11.195 11.37C11.195 11.57 11.125 11.74 10.985 11.88C10.845 12.02 10.675 12.09 10.475 12.09H5.515Z"/></svg></span></th>
+                      <th style="width:15%;">Job Name <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77C3.635 8.77 3.455 8.7 3.315 8.56C3.175 8.42 3.105 8.25 3.105 8.05C3.105 7.85 3.175 7.68 3.315 7.54C3.455 7.4 3.625 7.33 3.825 7.33H12.155C12.355 7.33 12.535 7.4 12.675 7.54C12.815 7.68 12.885 7.85 12.885 8.05C12.885 8.25 12.815 8.42 12.675 8.56C12.535 8.7 12.365 8.77 12.165 8.77H3.835Z"/><path d="M1.715 5.44C1.515 5.44 1.345 5.37 1.205 5.23C1.065 5.09 0.994995 4.92 0.994995 4.72C0.994995 4.52 1.065 4.35 1.205 4.21C1.345 4.07 1.515 4 1.715 4H14.275C14.475 4 14.645 4.07 14.785 4.21C14.925 4.35 14.995 4.52 14.995 4.72C14.995 4.92 14.925 5.09 14.785 5.23C14.645 5.37 14.475 5.44 14.275 5.44H1.715Z"/><path d="M5.515 12.09C5.315 12.09 5.14499 12.02 5.00499 11.88C4.86499 11.74 4.795 11.57 4.795 11.37C4.795 11.17 4.86499 11 5.00499 10.86C5.14499 10.72 5.315 10.65 5.515 10.65H10.475C10.675 10.65 10.845 10.72 10.985 10.86C11.125 11 11.195 11.17 11.195 11.37C11.195 11.57 11.125 11.74 10.985 11.88C10.845 12.02 10.675 12.09 10.475 12.09H5.515Z"/></svg></span></th>
+                      <th style="width:12%;">Job Type <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77C3.635 8.77 3.455 8.7 3.315 8.56C3.175 8.42 3.105 8.25 3.105 8.05C3.105 7.85 3.175 7.68 3.315 7.54C3.455 7.4 3.625 7.33 3.825 7.33H12.155C12.355 7.33 12.535 7.4 12.675 7.54C12.815 7.68 12.885 7.85 12.885 8.05C12.885 8.25 12.815 8.42 12.675 8.56C12.535 8.7 12.365 8.77 12.165 8.77H3.835Z"/><path d="M1.715 5.44C1.515 5.44 1.345 5.37 1.205 5.23C1.065 5.09 0.994995 4.92 0.994995 4.72C0.994995 4.52 1.065 4.35 1.205 4.21C1.345 4.07 1.515 4 1.715 4H14.275C14.475 4 14.645 4.07 14.785 4.21C14.925 4.35 14.995 4.52 14.995 4.72C14.995 4.92 14.925 5.09 14.785 5.23C14.645 5.37 14.475 5.44 14.275 5.44H1.715Z"/><path d="M5.515 12.09C5.315 12.09 5.14499 12.02 5.00499 11.88C4.86499 11.74 4.795 11.57 4.795 11.37C4.795 11.17 4.86499 11 5.00499 10.86C5.14499 10.72 5.315 10.65 5.515 10.65H10.475C10.675 10.65 10.845 10.72 10.985 10.86C11.125 11 11.195 11.17 11.195 11.37C11.195 11.57 11.125 11.74 10.985 11.88C10.845 12.02 10.675 12.09 10.475 12.09H5.515Z"/></svg></span></th>
+                      <th style="width:10%;">Detections <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77C3.635 8.77 3.455 8.7 3.315 8.56C3.175 8.42 3.105 8.25 3.105 8.05C3.105 7.85 3.175 7.68 3.315 7.54C3.455 7.4 3.625 7.33 3.825 7.33H12.155C12.355 7.33 12.535 7.4 12.675 7.54C12.815 7.68 12.885 7.85 12.885 8.05C12.885 8.25 12.815 8.42 12.675 8.56C12.535 8.7 12.365 8.77 12.165 8.77H3.835Z"/><path d="M1.715 5.44C1.515 5.44 1.345 5.37 1.205 5.23C1.065 5.09 0.994995 4.92 0.994995 4.72C0.994995 4.52 1.065 4.35 1.205 4.21C1.345 4.07 1.515 4 1.715 4H14.275C14.475 4 14.645 4.07 14.785 4.21C14.925 4.35 14.995 4.52 14.995 4.72C14.995 4.92 14.925 5.09 14.785 5.23C14.645 5.37 14.475 5.44 14.275 5.44H1.715Z"/><path d="M5.515 12.09C5.315 12.09 5.14499 12.02 5.00499 11.88C4.86499 11.74 4.795 11.57 4.795 11.37C4.795 11.17 4.86499 11 5.00499 10.86C5.14499 10.72 5.315 10.65 5.515 10.65H10.475C10.675 10.65 10.845 10.72 10.985 10.86C11.125 11 11.195 11.17 11.195 11.37C11.195 11.57 11.125 11.74 10.985 11.88C10.845 12.02 10.675 12.09 10.475 12.09H5.515Z"/></svg></span></th>
+                      <th style="width:13%;">Files Processed <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77C3.635 8.77 3.455 8.7 3.315 8.56C3.175 8.42 3.105 8.25 3.105 8.05C3.105 7.85 3.175 7.68 3.315 7.54C3.455 7.4 3.625 7.33 3.825 7.33H12.155C12.355 7.33 12.535 7.4 12.675 7.54C12.815 7.68 12.885 7.85 12.885 8.05C12.885 8.25 12.815 8.42 12.675 8.56C12.535 8.7 12.365 8.77 12.165 8.77H3.835Z"/><path d="M1.715 5.44C1.515 5.44 1.345 5.37 1.205 5.23C1.065 5.09 0.994995 4.92 0.994995 4.72C0.994995 4.52 1.065 4.35 1.205 4.21C1.345 4.07 1.515 4 1.715 4H14.275C14.475 4 14.645 4.07 14.785 4.21C14.925 4.35 14.995 4.52 14.995 4.72C14.995 4.92 14.925 5.09 14.785 5.23C14.645 5.37 14.475 5.44 14.275 5.44H1.715Z"/><path d="M5.515 12.09C5.315 12.09 5.14499 12.02 5.00499 11.88C4.86499 11.74 4.795 11.57 4.795 11.37C4.795 11.17 4.86499 11 5.00499 10.86C5.14499 10.72 5.315 10.65 5.515 10.65H10.475C10.675 10.65 10.845 10.72 10.985 10.86C11.125 11 11.195 11.17 11.195 11.37C11.195 11.57 11.125 11.74 10.985 11.88C10.845 12.02 10.675 12.09 10.475 12.09H5.515Z"/></svg></span></th>
+                      <th style="width:17%;">Storage Unit <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77C3.635 8.77 3.455 8.7 3.315 8.56C3.175 8.42 3.105 8.25 3.105 8.05C3.105 7.85 3.175 7.68 3.315 7.54C3.455 7.4 3.625 7.33 3.825 7.33H12.155C12.355 7.33 12.535 7.4 12.675 7.54C12.815 7.68 12.885 7.85 12.885 8.05C12.885 8.25 12.815 8.42 12.675 8.56C12.535 8.7 12.365 8.77 12.165 8.77H3.835Z"/><path d="M1.715 5.44C1.515 5.44 1.345 5.37 1.205 5.23C1.065 5.09 0.994995 4.92 0.994995 4.72C0.994995 4.52 1.065 4.35 1.205 4.21C1.345 4.07 1.515 4 1.715 4H14.275C14.475 4 14.645 4.07 14.785 4.21C14.925 4.35 14.995 4.52 14.995 4.72C14.995 4.92 14.925 5.09 14.785 5.23C14.645 5.37 14.475 5.44 14.275 5.44H1.715Z"/><path d="M5.515 12.09C5.315 12.09 5.14499 12.02 5.00499 11.88C4.86499 11.74 4.795 11.57 4.795 11.37C4.795 11.17 4.86499 11 5.00499 10.86C5.14499 10.72 5.315 10.65 5.515 10.65H10.475C10.675 10.65 10.845 10.72 10.985 10.86C11.125 11 11.195 11.17 11.195 11.37C11.195 11.57 11.125 11.74 10.985 11.88C10.845 12.02 10.675 12.09 10.475 12.09H5.515Z"/></svg></span></th>
+                      <th style="width:10%;">Elapsed Time <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77C3.635 8.77 3.455 8.7 3.315 8.56C3.175 8.42 3.105 8.25 3.105 8.05C3.105 7.85 3.175 7.68 3.315 7.54C3.455 7.4 3.625 7.33 3.825 7.33H12.155C12.355 7.33 12.535 7.4 12.675 7.54C12.815 7.68 12.885 7.85 12.885 8.05C12.885 8.25 12.815 8.42 12.675 8.56C12.535 8.7 12.365 8.77 12.165 8.77H3.835Z"/><path d="M1.715 5.44C1.515 5.44 1.345 5.37 1.205 5.23C1.065 5.09 0.994995 4.92 0.994995 4.72C0.994995 4.52 1.065 4.35 1.205 4.21C1.345 4.07 1.515 4 1.715 4H14.275C14.475 4 14.645 4.07 14.785 4.21C14.925 4.35 14.995 4.52 14.995 4.72C14.995 4.92 14.925 5.09 14.785 5.23C14.645 5.37 14.475 5.44 14.275 5.44H1.715Z"/><path d="M5.515 12.09C5.315 12.09 5.14499 12.02 5.00499 11.88C4.86499 11.74 4.795 11.57 4.795 11.37C4.795 11.17 4.86499 11 5.00499 10.86C5.14499 10.72 5.315 10.65 5.515 10.65H10.475C10.675 10.65 10.845 10.72 10.985 10.86C11.125 11 11.195 11.17 11.195 11.37C11.195 11.57 11.125 11.74 10.985 11.88C10.845 12.02 10.675 12.09 10.475 12.09H5.515Z"/></svg></span></th>
+                      <th style="width:10%;">Start Time <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77C3.635 8.77 3.455 8.7 3.315 8.56C3.175 8.42 3.105 8.25 3.105 8.05C3.105 7.85 3.175 7.68 3.315 7.54C3.455 7.4 3.625 7.33 3.825 7.33H12.155C12.355 7.33 12.535 7.4 12.675 7.54C12.815 7.68 12.885 7.85 12.885 8.05C12.885 8.25 12.815 8.42 12.675 8.56C12.535 8.7 12.365 8.77 12.165 8.77H3.835Z"/><path d="M1.715 5.44C1.515 5.44 1.345 5.37 1.205 5.23C1.065 5.09 0.994995 4.92 0.994995 4.72C0.994995 4.52 1.065 4.35 1.205 4.21C1.345 4.07 1.515 4 1.715 4H14.275C14.475 4 14.645 4.07 14.785 4.21C14.925 4.35 14.995 4.52 14.995 4.72C14.995 4.92 14.925 5.09 14.785 5.23C14.645 5.37 14.475 5.44 14.275 5.44H1.715Z"/><path d="M5.515 12.09C5.315 12.09 5.14499 12.02 5.00499 11.88C4.86499 11.74 4.795 11.57 4.795 11.37C4.795 11.17 4.86499 11 5.00499 10.86C5.14499 10.72 5.315 10.65 5.515 10.65H10.475C10.675 10.65 10.845 10.72 10.985 10.86C11.125 11 11.195 11.17 11.195 11.37C11.195 11.57 11.125 11.74 10.985 11.88C10.845 12.02 10.675 12.09 10.475 12.09H5.515Z"/></svg></span></th>
+                    </tr>
+                  </thead>
+                  <tbody id="activeJobsBody">
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Upcoming Jobs Card -->
+            <div class="audit-card" id="upcomingJobsCard" style="margin-bottom:12px;">
+              <div class="audit-card-header">
+                <div class="audit-card-title">
+                  <h3>Upcoming Jobs</h3>
+                  <span class="count" id="upcomingJobsCount">0</span>
+                </div>
+                <div class="audit-card-actions">
+                  <button class="audit-filter-btn jobs-filter-btn" onclick="openSlidePanel('jobsFiltersPanel')" title="Advanced Filters">
+                    <svg viewBox="0 0 16 16" fill="currentColor"><path d="M4.75 7.15V2H3.25V7.15C2.52 7.45 2 8.16 2 9C2 9.84 2.52 10.55 3.25 10.85V14H4.75V10.85C5.48 10.55 6 9.84 6 9C6 8.16 5.48 7.45 4.75 7.15Z"/><path d="M10 5C10 4.16 9.48 3.45 8.75 3.15V2H7.25V3.15C6.52 3.45 6 4.16 6 5C6 5.84 6.52 6.55 7.25 6.85V14H8.75V6.85C9.48 6.55 10 5.84 10 5Z"/><path d="M14 11C14 10.16 13.48 9.45 12.75 9.15V2H11.25V9.15C10.52 9.45 10 10.16 10 11C10 11.84 10.52 12.55 11.25 12.85V14H12.75V12.85C13.48 12.55 14 11.84 14 11Z"/></svg>
+                  </button>
+                </div>
+              </div>
+              <!-- Empty state -->
+              <div class="users-empty-state" id="upcomingJobsEmpty" style="display:none;">
+                <div class="users-empty-icon">
+                  <svg viewBox="0 0 16 16" fill="currentColor"><path d="M10 6V4.75H8.75V11.25H10V10H14V14H10V12.75H8C7.59 12.75 7.25 12.41 7.25 12V8.75H6.25L4 11L1 8L4 5L6.25 7.25H7.25V4C7.25 3.59 7.59 3.25 8 3.25H10V2H14V6H10Z"/></svg>
+                </div>
+                <p class="users-empty-title">No Upcoming Jobs</p>
+                <p class="users-empty-desc">Scheduled jobs will appear here when configured.</p>
+              </div>
+              <div id="upcomingJobsTableWrap">
+                <table class="data-table" id="upcomingJobsTable">
+                  <thead>
+                    <tr>
+                      <th style="width:40px;"><input type="checkbox" class="jobs-table-cb" onchange="toggleAllJobsCb(this,'upcomingJobsBody')"></th>
+                      <th style="width:26%;">Job Name <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77C3.635 8.77 3.455 8.7 3.315 8.56C3.175 8.42 3.105 8.25 3.105 8.05C3.105 7.85 3.175 7.68 3.315 7.54C3.455 7.4 3.625 7.33 3.825 7.33H12.155C12.355 7.33 12.535 7.4 12.675 7.54C12.815 7.68 12.885 7.85 12.885 8.05C12.885 8.25 12.815 8.42 12.675 8.56C12.535 8.7 12.365 8.77 12.165 8.77H3.835Z"/><path d="M1.715 5.44C1.515 5.44 1.345 5.37 1.205 5.23C1.065 5.09 0.994995 4.92 0.994995 4.72C0.994995 4.52 1.065 4.35 1.205 4.21C1.345 4.07 1.515 4 1.715 4H14.275C14.475 4 14.645 4.07 14.785 4.21C14.925 4.35 14.995 4.52 14.995 4.72C14.995 4.92 14.925 5.09 14.785 5.23C14.645 5.37 14.475 5.44 14.275 5.44H1.715Z"/><path d="M5.515 12.09C5.315 12.09 5.14499 12.02 5.00499 11.88C4.86499 11.74 4.795 11.57 4.795 11.37C4.795 11.17 4.86499 11 5.00499 10.86C5.14499 10.72 5.315 10.65 5.515 10.65H10.475C10.675 10.65 10.845 10.72 10.985 10.86C11.125 11 11.195 11.17 11.195 11.37C11.195 11.57 11.125 11.74 10.985 11.88C10.845 12.02 10.675 12.09 10.475 12.09H5.515Z"/></svg></span></th>
+                      <th style="width:15%;">Frequency <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77C3.635 8.77 3.455 8.7 3.315 8.56C3.175 8.42 3.105 8.25 3.105 8.05C3.105 7.85 3.175 7.68 3.315 7.54C3.455 7.4 3.625 7.33 3.825 7.33H12.155C12.355 7.33 12.535 7.4 12.675 7.54C12.815 7.68 12.885 7.85 12.885 8.05C12.885 8.25 12.815 8.42 12.675 8.56C12.535 8.7 12.365 8.77 12.165 8.77H3.835Z"/><path d="M1.715 5.44C1.515 5.44 1.345 5.37 1.205 5.23C1.065 5.09 0.994995 4.92 0.994995 4.72C0.994995 4.52 1.065 4.35 1.205 4.21C1.345 4.07 1.515 4 1.715 4H14.275C14.475 4 14.645 4.07 14.785 4.21C14.925 4.35 14.995 4.52 14.995 4.72C14.995 4.92 14.925 5.09 14.785 5.23C14.645 5.37 14.475 5.44 14.275 5.44H1.715Z"/><path d="M5.515 12.09C5.315 12.09 5.14499 12.02 5.00499 11.88C4.86499 11.74 4.795 11.57 4.795 11.37C4.795 11.17 4.86499 11 5.00499 10.86C5.14499 10.72 5.315 10.65 5.515 10.65H10.475C10.675 10.65 10.845 10.72 10.985 10.86C11.125 11 11.195 11.17 11.195 11.37C11.195 11.57 11.125 11.74 10.985 11.88C10.845 12.02 10.675 12.09 10.475 12.09H5.515Z"/></svg></span></th>
+                      <th style="width:31%;">Storage Unit <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77C3.635 8.77 3.455 8.7 3.315 8.56C3.175 8.42 3.105 8.25 3.105 8.05C3.105 7.85 3.175 7.68 3.315 7.54C3.455 7.4 3.625 7.33 3.825 7.33H12.155C12.355 7.33 12.535 7.4 12.675 7.54C12.815 7.68 12.885 7.85 12.885 8.05C12.885 8.25 12.815 8.42 12.675 8.56C12.535 8.7 12.365 8.77 12.165 8.77H3.835Z"/><path d="M1.715 5.44C1.515 5.44 1.345 5.37 1.205 5.23C1.065 5.09 0.994995 4.92 0.994995 4.72C0.994995 4.52 1.065 4.35 1.205 4.21C1.345 4.07 1.515 4 1.715 4H14.275C14.475 4 14.645 4.07 14.785 4.21C14.925 4.35 14.995 4.52 14.995 4.72C14.995 4.92 14.925 5.09 14.785 5.23C14.645 5.37 14.475 5.44 14.275 5.44H1.715Z"/><path d="M5.515 12.09C5.315 12.09 5.14499 12.02 5.00499 11.88C4.86499 11.74 4.795 11.57 4.795 11.37C4.795 11.17 4.86499 11 5.00499 10.86C5.14499 10.72 5.315 10.65 5.515 10.65H10.475C10.675 10.65 10.845 10.72 10.985 10.86C11.125 11 11.195 11.17 11.195 11.37C11.195 11.57 11.125 11.74 10.985 11.88C10.845 12.02 10.675 12.09 10.475 12.09H5.515Z"/></svg></span></th>
+                      <th style="width:13%;">Starts In <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77C3.635 8.77 3.455 8.7 3.315 8.56C3.175 8.42 3.105 8.25 3.105 8.05C3.105 7.85 3.175 7.68 3.315 7.54C3.455 7.4 3.625 7.33 3.825 7.33H12.155C12.355 7.33 12.535 7.4 12.675 7.54C12.815 7.68 12.885 7.85 12.885 8.05C12.885 8.25 12.815 8.42 12.675 8.56C12.535 8.7 12.365 8.77 12.165 8.77H3.835Z"/><path d="M1.715 5.44C1.515 5.44 1.345 5.37 1.205 5.23C1.065 5.09 0.994995 4.92 0.994995 4.72C0.994995 4.52 1.065 4.35 1.205 4.21C1.345 4.07 1.515 4 1.715 4H14.275C14.475 4 14.645 4.07 14.785 4.21C14.925 4.35 14.995 4.52 14.995 4.72C14.995 4.92 14.925 5.09 14.785 5.23C14.645 5.37 14.475 5.44 14.275 5.44H1.715Z"/><path d="M5.515 12.09C5.315 12.09 5.14499 12.02 5.00499 11.88C4.86499 11.74 4.795 11.57 4.795 11.37C4.795 11.17 4.86499 11 5.00499 10.86C5.14499 10.72 5.315 10.65 5.515 10.65H10.475C10.675 10.65 10.845 10.72 10.985 10.86C11.125 11 11.195 11.17 11.195 11.37C11.195 11.57 11.125 11.74 10.985 11.88C10.845 12.02 10.675 12.09 10.475 12.09H5.515Z"/></svg></span></th>
+                      <th style="width:10%;"></th>
+                    </tr>
+                  </thead>
+                  <tbody id="upcomingJobsBody">
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Past Jobs Card -->
+            <div class="audit-card" id="pastJobsCard">
+              <div class="audit-card-header">
+                <div class="audit-card-title">
+                  <h3>Past Jobs</h3>
+                  <span class="count" id="pastJobsCount">0</span>
+                </div>
+                <div class="audit-card-actions">
+                  <div class="audit-search">
+                    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="7" cy="7" r="5.5"/><path d="M11 11l3.5 3.5"/></svg>
+                    <input type="text" placeholder="Search jobs" id="pastJobsSearch">
+                  </div>
+                  <button class="audit-filter-btn jobs-filter-btn" onclick="openSlidePanel('jobsFiltersPanel')" title="Advanced Filters">
+                    <svg viewBox="0 0 16 16" fill="currentColor"><path d="M4.75 7.15V2H3.25V7.15C2.52 7.45 2 8.16 2 9C2 9.84 2.52 10.55 3.25 10.85V14H4.75V10.85C5.48 10.55 6 9.84 6 9C6 8.16 5.48 7.45 4.75 7.15Z"/><path d="M10 5C10 4.16 9.48 3.45 8.75 3.15V2H7.25V3.15C6.52 3.45 6 4.16 6 5C6 5.84 6.52 6.55 7.25 6.85V14H8.75V6.85C9.48 6.55 10 5.84 10 5Z"/><path d="M14 11C14 10.16 13.48 9.45 12.75 9.15V2H11.25V9.15C10.52 9.45 10 10.16 10 11C10 11.84 10.52 12.55 11.25 12.85V14H12.75V12.85C13.48 12.55 14 11.84 14 11Z"/></svg>
+                  </button>
+                </div>
+              </div>
+              <table class="data-table" id="pastJobsTable">
+                <thead>
+                  <tr>
+                    <th style="width:40px;"><input type="checkbox" class="jobs-table-cb" onchange="toggleAllJobsCb(this,'pastJobsBody')"></th>
+                    <th style="width:9%;">Status <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77C3.635 8.77 3.455 8.7 3.315 8.56C3.175 8.42 3.105 8.25 3.105 8.05C3.105 7.85 3.175 7.68 3.315 7.54C3.455 7.4 3.625 7.33 3.825 7.33H12.155C12.355 7.33 12.535 7.4 12.675 7.54C12.815 7.68 12.885 7.85 12.885 8.05C12.885 8.25 12.815 8.42 12.675 8.56C12.535 8.7 12.365 8.77 12.165 8.77H3.835Z"/><path d="M1.715 5.44C1.515 5.44 1.345 5.37 1.205 5.23C1.065 5.09 0.994995 4.92 0.994995 4.72C0.994995 4.52 1.065 4.35 1.205 4.21C1.345 4.07 1.515 4 1.715 4H14.275C14.475 4 14.645 4.07 14.785 4.21C14.925 4.35 14.995 4.52 14.995 4.72C14.995 4.92 14.925 5.09 14.785 5.23C14.645 5.37 14.475 5.44 14.275 5.44H1.715Z"/><path d="M5.515 12.09C5.315 12.09 5.14499 12.02 5.00499 11.88C4.86499 11.74 4.795 11.57 4.795 11.37C4.795 11.17 4.86499 11 5.00499 10.86C5.14499 10.72 5.315 10.65 5.515 10.65H10.475C10.675 10.65 10.845 10.72 10.985 10.86C11.125 11 11.195 11.17 11.195 11.37C11.195 11.57 11.125 11.74 10.985 11.88C10.845 12.02 10.675 12.09 10.475 12.09H5.515Z"/></svg></span></th>
+                    <th style="width:15%;">Job Name <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77C3.635 8.77 3.455 8.7 3.315 8.56C3.175 8.42 3.105 8.25 3.105 8.05C3.105 7.85 3.175 7.68 3.315 7.54C3.455 7.4 3.625 7.33 3.825 7.33H12.155C12.355 7.33 12.535 7.4 12.675 7.54C12.815 7.68 12.885 7.85 12.885 8.05C12.885 8.25 12.815 8.42 12.675 8.56C12.535 8.7 12.365 8.77 12.165 8.77H3.835Z"/><path d="M1.715 5.44C1.515 5.44 1.345 5.37 1.205 5.23C1.065 5.09 0.994995 4.92 0.994995 4.72C0.994995 4.52 1.065 4.35 1.205 4.21C1.345 4.07 1.515 4 1.715 4H14.275C14.475 4 14.645 4.07 14.785 4.21C14.925 4.35 14.995 4.52 14.995 4.72C14.995 4.92 14.925 5.09 14.785 5.23C14.645 5.37 14.475 5.44 14.275 5.44H1.715Z"/><path d="M5.515 12.09C5.315 12.09 5.14499 12.02 5.00499 11.88C4.86499 11.74 4.795 11.57 4.795 11.37C4.795 11.17 4.86499 11 5.00499 10.86C5.14499 10.72 5.315 10.65 5.515 10.65H10.475C10.675 10.65 10.845 10.72 10.985 10.86C11.125 11 11.195 11.17 11.195 11.37C11.195 11.57 11.125 11.74 10.985 11.88C10.845 12.02 10.675 12.09 10.475 12.09H5.515Z"/></svg></span></th>
+                    <th style="width:12%;">Job Type <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77C3.635 8.77 3.455 8.7 3.315 8.56C3.175 8.42 3.105 8.25 3.105 8.05C3.105 7.85 3.175 7.68 3.315 7.54C3.455 7.4 3.625 7.33 3.825 7.33H12.155C12.355 7.33 12.535 7.4 12.675 7.54C12.815 7.68 12.885 7.85 12.885 8.05C12.885 8.25 12.815 8.42 12.675 8.56C12.535 8.7 12.365 8.77 12.165 8.77H3.835Z"/><path d="M1.715 5.44C1.515 5.44 1.345 5.37 1.205 5.23C1.065 5.09 0.994995 4.92 0.994995 4.72C0.994995 4.52 1.065 4.35 1.205 4.21C1.345 4.07 1.515 4 1.715 4H14.275C14.475 4 14.645 4.07 14.785 4.21C14.925 4.35 14.995 4.52 14.995 4.72C14.995 4.92 14.925 5.09 14.785 5.23C14.645 5.37 14.475 5.44 14.275 5.44H1.715Z"/><path d="M5.515 12.09C5.315 12.09 5.14499 12.02 5.00499 11.88C4.86499 11.74 4.795 11.57 4.795 11.37C4.795 11.17 4.86499 11 5.00499 10.86C5.14499 10.72 5.315 10.65 5.515 10.65H10.475C10.675 10.65 10.845 10.72 10.985 10.86C11.125 11 11.195 11.17 11.195 11.37C11.195 11.57 11.125 11.74 10.985 11.88C10.845 12.02 10.675 12.09 10.475 12.09H5.515Z"/></svg></span></th>
+                    <th style="width:10%;">Detections <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77C3.635 8.77 3.455 8.7 3.315 8.56C3.175 8.42 3.105 8.25 3.105 8.05C3.105 7.85 3.175 7.68 3.315 7.54C3.455 7.4 3.625 7.33 3.825 7.33H12.155C12.355 7.33 12.535 7.4 12.675 7.54C12.815 7.68 12.885 7.85 12.885 8.05C12.885 8.25 12.815 8.42 12.675 8.56C12.535 8.7 12.365 8.77 12.165 8.77H3.835Z"/><path d="M1.715 5.44C1.515 5.44 1.345 5.37 1.205 5.23C1.065 5.09 0.994995 4.92 0.994995 4.72C0.994995 4.52 1.065 4.35 1.205 4.21C1.345 4.07 1.515 4 1.715 4H14.275C14.475 4 14.645 4.07 14.785 4.21C14.925 4.35 14.995 4.52 14.995 4.72C14.995 4.92 14.925 5.09 14.785 5.23C14.645 5.37 14.475 5.44 14.275 5.44H1.715Z"/><path d="M5.515 12.09C5.315 12.09 5.14499 12.02 5.00499 11.88C4.86499 11.74 4.795 11.57 4.795 11.37C4.795 11.17 4.86499 11 5.00499 10.86C5.14499 10.72 5.315 10.65 5.515 10.65H10.475C10.675 10.65 10.845 10.72 10.985 10.86C11.125 11 11.195 11.17 11.195 11.37C11.195 11.57 11.125 11.74 10.985 11.88C10.845 12.02 10.675 12.09 10.475 12.09H5.515Z"/></svg></span></th>
+                    <th style="width:13%;">Files Processed <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77C3.635 8.77 3.455 8.7 3.315 8.56C3.175 8.42 3.105 8.25 3.105 8.05C3.105 7.85 3.175 7.68 3.315 7.54C3.455 7.4 3.625 7.33 3.825 7.33H12.155C12.355 7.33 12.535 7.4 12.675 7.54C12.815 7.68 12.885 7.85 12.885 8.05C12.885 8.25 12.815 8.42 12.675 8.56C12.535 8.7 12.365 8.77 12.165 8.77H3.835Z"/><path d="M1.715 5.44C1.515 5.44 1.345 5.37 1.205 5.23C1.065 5.09 0.994995 4.92 0.994995 4.72C0.994995 4.52 1.065 4.35 1.205 4.21C1.345 4.07 1.515 4 1.715 4H14.275C14.475 4 14.645 4.07 14.785 4.21C14.925 4.35 14.995 4.52 14.995 4.72C14.995 4.92 14.925 5.09 14.785 5.23C14.645 5.37 14.475 5.44 14.275 5.44H1.715Z"/><path d="M5.515 12.09C5.315 12.09 5.14499 12.02 5.00499 11.88C4.86499 11.74 4.795 11.57 4.795 11.37C4.795 11.17 4.86499 11 5.00499 10.86C5.14499 10.72 5.315 10.65 5.515 10.65H10.475C10.675 10.65 10.845 10.72 10.985 10.86C11.125 11 11.195 11.17 11.195 11.37C11.195 11.57 11.125 11.74 10.985 11.88C10.845 12.02 10.675 12.09 10.475 12.09H5.515Z"/></svg></span></th>
+                    <th style="width:17%;">Storage Unit <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77C3.635 8.77 3.455 8.7 3.315 8.56C3.175 8.42 3.105 8.25 3.105 8.05C3.105 7.85 3.175 7.68 3.315 7.54C3.455 7.4 3.625 7.33 3.825 7.33H12.155C12.355 7.33 12.535 7.4 12.675 7.54C12.815 7.68 12.885 7.85 12.885 8.05C12.885 8.25 12.815 8.42 12.675 8.56C12.535 8.7 12.365 8.77 12.165 8.77H3.835Z"/><path d="M1.715 5.44C1.515 5.44 1.345 5.37 1.205 5.23C1.065 5.09 0.994995 4.92 0.994995 4.72C0.994995 4.52 1.065 4.35 1.205 4.21C1.345 4.07 1.515 4 1.715 4H14.275C14.475 4 14.645 4.07 14.785 4.21C14.925 4.35 14.995 4.52 14.995 4.72C14.995 4.92 14.925 5.09 14.785 5.23C14.645 5.37 14.475 5.44 14.275 5.44H1.715Z"/><path d="M5.515 12.09C5.315 12.09 5.14499 12.02 5.00499 11.88C4.86499 11.74 4.795 11.57 4.795 11.37C4.795 11.17 4.86499 11 5.00499 10.86C5.14499 10.72 5.315 10.65 5.515 10.65H10.475C10.675 10.65 10.845 10.72 10.985 10.86C11.125 11 11.195 11.17 11.195 11.37C11.195 11.57 11.125 11.74 10.985 11.88C10.845 12.02 10.675 12.09 10.475 12.09H5.515Z"/></svg></span></th>
+                    <th style="width:10%;">Duration <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77C3.635 8.77 3.455 8.7 3.315 8.56C3.175 8.42 3.105 8.25 3.105 8.05C3.105 7.85 3.175 7.68 3.315 7.54C3.455 7.4 3.625 7.33 3.825 7.33H12.155C12.355 7.33 12.535 7.4 12.675 7.54C12.815 7.68 12.885 7.85 12.885 8.05C12.885 8.25 12.815 8.42 12.675 8.56C12.535 8.7 12.365 8.77 12.165 8.77H3.835Z"/><path d="M1.715 5.44C1.515 5.44 1.345 5.37 1.205 5.23C1.065 5.09 0.994995 4.92 0.994995 4.72C0.994995 4.52 1.065 4.35 1.205 4.21C1.345 4.07 1.515 4 1.715 4H14.275C14.475 4 14.645 4.07 14.785 4.21C14.925 4.35 14.995 4.52 14.995 4.72C14.995 4.92 14.925 5.09 14.785 5.23C14.645 5.37 14.475 5.44 14.275 5.44H1.715Z"/><path d="M5.515 12.09C5.315 12.09 5.14499 12.02 5.00499 11.88C4.86499 11.74 4.795 11.57 4.795 11.37C4.795 11.17 4.86499 11 5.00499 10.86C5.14499 10.72 5.315 10.65 5.515 10.65H10.475C10.675 10.65 10.845 10.72 10.985 10.86C11.125 11 11.195 11.17 11.195 11.37C11.195 11.57 11.125 11.74 10.985 11.88C10.845 12.02 10.675 12.09 10.475 12.09H5.515Z"/></svg></span></th>
+                    <th style="width:10%;">Date <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77C3.635 8.77 3.455 8.7 3.315 8.56C3.175 8.42 3.105 8.25 3.105 8.05C3.105 7.85 3.175 7.68 3.315 7.54C3.455 7.4 3.625 7.33 3.825 7.33H12.155C12.355 7.33 12.535 7.4 12.675 7.54C12.815 7.68 12.885 7.85 12.885 8.05C12.885 8.25 12.815 8.42 12.675 8.56C12.535 8.7 12.365 8.77 12.165 8.77H3.835Z"/><path d="M1.715 5.44C1.515 5.44 1.345 5.37 1.205 5.23C1.065 5.09 0.994995 4.92 0.994995 4.72C0.994995 4.52 1.065 4.35 1.205 4.21C1.345 4.07 1.515 4 1.715 4H14.275C14.475 4 14.645 4.07 14.785 4.21C14.925 4.35 14.995 4.52 14.995 4.72C14.995 4.92 14.925 5.09 14.785 5.23C14.645 5.37 14.475 5.44 14.275 5.44H1.715Z"/><path d="M5.515 12.09C5.315 12.09 5.14499 12.02 5.00499 11.88C4.86499 11.74 4.795 11.57 4.795 11.37C4.795 11.17 4.86499 11 5.00499 10.86C5.14499 10.72 5.315 10.65 5.515 10.65H10.475C10.675 10.65 10.845 10.72 10.985 10.86C11.125 11 11.195 11.17 11.195 11.37C11.195 11.57 11.125 11.74 10.985 11.88C10.845 12.02 10.675 12.09 10.475 12.09H5.515Z"/></svg></span></th>
+                  </tr>
+                </thead>
+                <tbody id="pastJobsBody">
+                </tbody>
+              </table>
+              <div class="audit-pagination" id="pastJobsPagination">
+                <div class="audit-pagination-left">
+                  <select id="pastJobsPerPage">
+                    <option selected>10</option>
+                    <option>25</option>
+                    <option>50</option>
+                  </select>
+                  <span>items per page</span>
+                  <span style="margin-left: 8px; color: var(--text-muted);">|</span>
+                  <span id="pastJobsPageInfo" style="margin-left: 8px;">1-10 of 25 items</span>
+                </div>
+                <div class="audit-pagination-right">
+                  <button class="audit-page-btn" id="pastJobsPrev" disabled><svg viewBox="0 0 16 16" fill="currentColor"><path d="M11.354 1.646a.5.5 0 010 .708L5.707 8l5.647 5.646a.5.5 0 01-.708.708l-6-6a.5.5 0 010-.708l6-6a.5.5 0 01.708 0z"/></svg></button>
+                  <select class="audit-page-select" id="pastJobsPageSelect">
+                    <option selected>Page 1</option>
+                  </select>
+                  <button class="audit-page-btn" id="pastJobsNext"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M4.646 1.646a.5.5 0 01.708 0l6 6a.5.5 0 010 .708l-6 6a.5.5 0 01-.708-.708L10.293 8 4.646 2.354a.5.5 0 010-.708z"/></svg></button>
+                </div>
+              </div>
+            </div>
+          </div><!-- /jobsListView -->
+
+          <!-- Job Detail View (hidden by default) -->
+          <div id="jobDetailView" style="display:none;">
+            <div class="job-detail-breadcrumb">
+              <a onclick="showJobsList()">Jobs</a>
+              <svg viewBox="0 0 16 16" fill="currentColor"><path d="M6.47 4.22a.75.75 0 011.06 0l3.25 3.25a.75.75 0 010 1.06l-3.25 3.25a.75.75 0 01-1.06-1.06L9.19 8 6.47 5.28a.75.75 0 010-1.06z"/></svg>
+              <span id="jobDetailBreadcrumbName">Job Name</span>
+            </div>
+            <div class="job-detail-header">
+              <h1 id="jobDetailTitle">Scheduled File Scan</h1>
+              <div class="job-detail-header-actions">
+                <button class="btn-outline" onclick="openSlidePanel('jobDetailsPanel')">Job Details</button>
+                <button class="btn-outline" id="jobDetailCancelBtn" onclick="openCancelJobModal()">Cancel Job</button>
+                <button class="btn-primary" id="jobDetailReportBtn" style="display:none;">View Report</button>
+              </div>
+            </div>
+
+            <!-- Status banner (shown for completed/stopped) -->
+            <div id="jobStatusBanner" style="display:none;"></div>
+
+            <!-- Job Info Card -->
+            <div class="audit-card" style="margin-bottom:12px;">
+              <div class="job-info-grid" id="jobInfoGrid">
+                <!-- Populated by JS -->
+              </div>
+            </div>
+
+            <!-- Summary Stats -->
+            <div class="job-summary-row" id="jobSummaryStats">
+              <!-- Populated by JS -->
+            </div>
+
+            <!-- Processed Files Table -->
+            <div class="audit-card">
+              <div class="audit-card-header">
+                <div class="audit-card-title">
+                  <h3>Processed Files</h3>
+                  <span class="count" id="processedFilesCount">0</span>
+                </div>
+                <div class="audit-card-actions">
+                  <div class="audit-search">
+                    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="7" cy="7" r="5.5"/><path d="M11 11l3.5 3.5"/></svg>
+                    <input type="text" placeholder="Search files" id="processedFilesSearch">
+                  </div>
+                  <button class="audit-filter-btn jobs-filter-btn" onclick="openSlidePanel('jobsFiltersPanel')" title="Advanced Filters">
+                    <svg viewBox="0 0 16 16" fill="currentColor"><path d="M4.75 7.15V2H3.25V7.15C2.52 7.45 2 8.16 2 9C2 9.84 2.52 10.55 3.25 10.85V14H4.75V10.85C5.48 10.55 6 9.84 6 9C6 8.16 5.48 7.45 4.75 7.15Z"/><path d="M10 5C10 4.16 9.48 3.45 8.75 3.15V2H7.25V3.15C6.52 3.45 6 4.16 6 5C6 5.84 6.52 6.55 7.25 6.85V14H8.75V6.85C9.48 6.55 10 5.84 10 5Z"/><path d="M14 11C14 10.16 13.48 9.45 12.75 9.15V2H11.25V9.15C10.52 9.45 10 10.16 10 11C10 11.84 10.52 12.55 11.25 12.85V14H12.75V12.85C13.48 12.55 14 11.84 14 11Z"/></svg>
+                  </button>
+                </div>
+              </div>
+              <table class="data-table" id="processedFilesTable">
+                <thead>
+                  <tr>
+                    <th style="width:40px;"><input type="checkbox" class="jobs-table-cb" onchange="toggleAllJobsCb(this,'processedFilesBody')"></th>
+                    <th style="width:27%;">File Name <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77C3.635 8.77 3.455 8.7 3.315 8.56C3.175 8.42 3.105 8.25 3.105 8.05C3.105 7.85 3.175 7.68 3.315 7.54C3.455 7.4 3.625 7.33 3.825 7.33H12.155C12.355 7.33 12.535 7.4 12.675 7.54C12.815 7.68 12.885 7.85 12.885 8.05C12.885 8.25 12.815 8.42 12.675 8.56C12.535 8.7 12.365 8.77 12.165 8.77H3.835Z"/><path d="M1.715 5.44C1.515 5.44 1.345 5.37 1.205 5.23C1.065 5.09 0.994995 4.92 0.994995 4.72C0.994995 4.52 1.065 4.35 1.205 4.21C1.345 4.07 1.515 4 1.715 4H14.275C14.475 4 14.645 4.07 14.785 4.21C14.925 4.35 14.995 4.52 14.995 4.72C14.995 4.92 14.925 5.09 14.785 5.23C14.645 5.37 14.475 5.44 14.275 5.44H1.715Z"/><path d="M5.515 12.09C5.315 12.09 5.14499 12.02 5.00499 11.88C4.86499 11.74 4.795 11.57 4.795 11.37C4.795 11.17 4.86499 11 5.00499 10.86C5.14499 10.72 5.315 10.65 5.515 10.65H10.475C10.675 10.65 10.845 10.72 10.985 10.86C11.125 11 11.195 11.17 11.195 11.37C11.195 11.57 11.125 11.74 10.985 11.88C10.845 12.02 10.675 12.09 10.475 12.09H5.515Z"/></svg></span></th>
+                    <th style="width:17%;">Verdict <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77C3.635 8.77 3.455 8.7 3.315 8.56C3.175 8.42 3.105 8.25 3.105 8.05C3.105 7.85 3.175 7.68 3.315 7.54C3.455 7.4 3.625 7.33 3.825 7.33H12.155C12.355 7.33 12.535 7.4 12.675 7.54C12.815 7.68 12.885 7.85 12.885 8.05C12.885 8.25 12.815 8.42 12.675 8.56C12.535 8.7 12.365 8.77 12.165 8.77H3.835Z"/><path d="M1.715 5.44C1.515 5.44 1.345 5.37 1.205 5.23C1.065 5.09 0.994995 4.92 0.994995 4.72C0.994995 4.52 1.065 4.35 1.205 4.21C1.345 4.07 1.515 4 1.715 4H14.275C14.475 4 14.645 4.07 14.785 4.21C14.925 4.35 14.995 4.52 14.995 4.72C14.995 4.92 14.925 5.09 14.785 5.23C14.645 5.37 14.475 5.44 14.275 5.44H1.715Z"/><path d="M5.515 12.09C5.315 12.09 5.14499 12.02 5.00499 11.88C4.86499 11.74 4.795 11.57 4.795 11.37C4.795 11.17 4.86499 11 5.00499 10.86C5.14499 10.72 5.315 10.65 5.515 10.65H10.475C10.675 10.65 10.845 10.72 10.985 10.86C11.125 11 11.195 11.17 11.195 11.37C11.195 11.57 11.125 11.74 10.985 11.88C10.845 12.02 10.675 12.09 10.475 12.09H5.515Z"/></svg></span></th>
+                    <th style="width:13%;">Detections <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77C3.635 8.77 3.455 8.7 3.315 8.56C3.175 8.42 3.105 8.25 3.105 8.05C3.105 7.85 3.175 7.68 3.315 7.54C3.455 7.4 3.625 7.33 3.825 7.33H12.155C12.355 7.33 12.535 7.4 12.675 7.54C12.815 7.68 12.885 7.85 12.885 8.05C12.885 8.25 12.815 8.42 12.675 8.56C12.535 8.7 12.365 8.77 12.165 8.77H3.835Z"/><path d="M1.715 5.44C1.515 5.44 1.345 5.37 1.205 5.23C1.065 5.09 0.994995 4.92 0.994995 4.72C0.994995 4.52 1.065 4.35 1.205 4.21C1.345 4.07 1.515 4 1.715 4H14.275C14.475 4 14.645 4.07 14.785 4.21C14.925 4.35 14.995 4.52 14.995 4.72C14.995 4.92 14.925 5.09 14.785 5.23C14.645 5.37 14.475 5.44 14.275 5.44H1.715Z"/><path d="M5.515 12.09C5.315 12.09 5.14499 12.02 5.00499 11.88C4.86499 11.74 4.795 11.57 4.795 11.37C4.795 11.17 4.86499 11 5.00499 10.86C5.14499 10.72 5.315 10.65 5.515 10.65H10.475C10.675 10.65 10.845 10.72 10.985 10.86C11.125 11 11.195 11.17 11.195 11.37C11.195 11.57 11.125 11.74 10.985 11.88C10.845 12.02 10.675 12.09 10.475 12.09H5.515Z"/></svg></span></th>
+                    <th style="width:13%;">File Type <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77C3.635 8.77 3.455 8.7 3.315 8.56C3.175 8.42 3.105 8.25 3.105 8.05C3.105 7.85 3.175 7.68 3.315 7.54C3.455 7.4 3.625 7.33 3.825 7.33H12.155C12.355 7.33 12.535 7.4 12.675 7.54C12.815 7.68 12.885 7.85 12.885 8.05C12.885 8.25 12.815 8.42 12.675 8.56C12.535 8.7 12.365 8.77 12.165 8.77H3.835Z"/><path d="M1.715 5.44C1.515 5.44 1.345 5.37 1.205 5.23C1.065 5.09 0.994995 4.92 0.994995 4.72C0.994995 4.52 1.065 4.35 1.205 4.21C1.345 4.07 1.515 4 1.715 4H14.275C14.475 4 14.645 4.07 14.785 4.21C14.925 4.35 14.995 4.52 14.995 4.72C14.995 4.92 14.925 5.09 14.785 5.23C14.645 5.37 14.475 5.44 14.275 5.44H1.715Z"/><path d="M5.515 12.09C5.315 12.09 5.14499 12.02 5.00499 11.88C4.86499 11.74 4.795 11.57 4.795 11.37C4.795 11.17 4.86499 11 5.00499 10.86C5.14499 10.72 5.315 10.65 5.515 10.65H10.475C10.675 10.65 10.845 10.72 10.985 10.86C11.125 11 11.195 11.17 11.195 11.37C11.195 11.57 11.125 11.74 10.985 11.88C10.845 12.02 10.675 12.09 10.475 12.09H5.515Z"/></svg></span></th>
+                    <th style="width:25%;">Scan Date <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77C3.635 8.77 3.455 8.7 3.315 8.56C3.175 8.42 3.105 8.25 3.105 8.05C3.105 7.85 3.175 7.68 3.315 7.54C3.455 7.4 3.625 7.33 3.825 7.33H12.155C12.355 7.33 12.535 7.4 12.675 7.54C12.815 7.68 12.885 7.85 12.885 8.05C12.885 8.25 12.815 8.42 12.675 8.56C12.535 8.7 12.365 8.77 12.165 8.77H3.835Z"/><path d="M1.715 5.44C1.515 5.44 1.345 5.37 1.205 5.23C1.065 5.09 0.994995 4.92 0.994995 4.72C0.994995 4.52 1.065 4.35 1.205 4.21C1.345 4.07 1.515 4 1.715 4H14.275C14.475 4 14.645 4.07 14.785 4.21C14.925 4.35 14.995 4.52 14.995 4.72C14.995 4.92 14.925 5.09 14.785 5.23C14.645 5.37 14.475 5.44 14.275 5.44H1.715Z"/><path d="M5.515 12.09C5.315 12.09 5.14499 12.02 5.00499 11.88C4.86499 11.74 4.795 11.57 4.795 11.37C4.795 11.17 4.86499 11 5.00499 10.86C5.14499 10.72 5.315 10.65 5.515 10.65H10.475C10.675 10.65 10.845 10.72 10.985 10.86C11.125 11 11.195 11.17 11.195 11.37C11.195 11.57 11.125 11.74 10.985 11.88C10.845 12.02 10.675 12.09 10.475 12.09H5.515Z"/></svg></span></th>
+                  </tr>
+                </thead>
+                <tbody id="processedFilesBody">
+                </tbody>
+              </table>
+              <div class="audit-pagination" id="processedFilesPagination">
+                <div class="audit-pagination-left">
+                  <select id="processedFilesPerPage">
+                    <option selected>10</option>
+                    <option>25</option>
+                    <option>50</option>
+                  </select>
+                  <span>items per page</span>
+                  <span style="margin-left: 8px; color: var(--text-muted);">|</span>
+                  <span id="processedFilesPageInfo" style="margin-left: 8px;"></span>
+                </div>
+                <div class="audit-pagination-right">
+                  <button class="audit-page-btn" id="processedFilesPrev" disabled><svg viewBox="0 0 16 16" fill="currentColor"><path d="M11.354 1.646a.5.5 0 010 .708L5.707 8l5.647 5.646a.5.5 0 01-.708.708l-6-6a.5.5 0 010-.708l6-6a.5.5 0 01.708 0z"/></svg></button>
+                  <select class="audit-page-select" id="processedFilesPageSelect"><option selected>Page 1</option></select>
+                  <button class="audit-page-btn" id="processedFilesNext"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M4.646 1.646a.5.5 0 01.708 0l6 6a.5.5 0 010 .708l-6 6a.5.5 0 01-.708-.708L10.293 8 4.646 2.354a.5.5 0 010-.708z"/></svg></button>
+                </div>
+              </div>
+            </div>
+          </div><!-- /jobDetailView -->
+        </div><!-- /jobsPage -->
+
         <!-- ==================== COMPONENTS SHOWCASE ==================== -->
         <div id="componentsPage" class="page-view" style="display:none; flex-direction:column; gap:20px; padding:20px;">
           <div style="display:flex; align-items:center; justify-content:space-between;">
@@ -4294,7 +3510,7 @@
     </div>
     <div class="slide-panel-body">
       <div class="panel-field">
-        <label class="panel-field-label" for="addUserFullName">Full Name <span style="color:#d9534f;">*</span></label>
+        <label class="panel-field-label" for="addUserFullName">Full Name <span style="color:#d40031;">*</span></label>
         <div class="input-field"><input type="text" id="addUserFullName" placeholder="Enter full name"></div>
       </div>
       <div class="panel-field">
@@ -4368,6 +3584,173 @@
     <div class="slide-panel-footer">
       <button class="btn-outline" onclick="closeSlidePanel('editUserPanel')">Discard</button>
       <button class="btn-primary" onclick="saveUser()">Save</button>
+    </div>
+  </div>
+
+  <!-- ==================== JOB DETAILS SLIDE-OUT PANEL ==================== -->
+  <div class="slide-panel-overlay" id="jobDetailsOverlay" onclick="closeSlidePanel('jobDetailsPanel')"></div>
+  <div class="slide-panel" id="jobDetailsPanel" role="dialog" aria-labelledby="jobDetailsTitle" aria-modal="true">
+    <div class="slide-panel-header">
+      <h2 id="jobDetailsTitle">Job Details</h2>
+      <button class="modal-close" aria-label="Close panel" onclick="closeSlidePanel('jobDetailsPanel')">
+        <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><line x1="2" y1="2" x2="12" y2="12"/><line x1="12" y1="2" x2="2" y2="12"/></svg>
+      </button>
+    </div>
+    <div class="slide-panel-body" id="jobDetailsPanelBody">
+      <!-- Populated by JS -->
+    </div>
+    <div class="slide-panel-footer">
+      <button class="btn-outline" onclick="closeSlidePanel('jobDetailsPanel')">Close</button>
+    </div>
+  </div>
+
+  <!-- ==================== EDIT JOB SLIDE-OUT PANEL ==================== -->
+  <div class="slide-panel-overlay" id="editJobOverlay" onclick="closeSlidePanel('editJobPanel')"></div>
+  <div class="slide-panel" id="editJobPanel" role="dialog" aria-labelledby="editJobTitle" aria-modal="true">
+    <div class="slide-panel-header">
+      <h2 id="editJobTitle">New Job</h2>
+      <button class="modal-close" aria-label="Close panel" onclick="closeSlidePanel('editJobPanel')">
+        <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><line x1="2" y1="2" x2="12" y2="12"/><line x1="12" y1="2" x2="2" y2="12"/></svg>
+      </button>
+    </div>
+    <div class="slide-panel-body">
+      <div class="panel-field">
+        <span class="panel-field-label">Scan Type</span>
+        <div class="tabs" id="editJobScanTypeTabs" style="margin-bottom:0;">
+          <button class="tab active" data-tab="scan-now">Scan Now</button>
+          <button class="tab" data-tab="schedule-scan">Schedule Scan</button>
+          <button class="tab" data-tab="realtime-scan">Real-Time Scan</button>
+        </div>
+      </div>
+      <div class="panel-field">
+        <label class="panel-field-label" for="editJobName">Scan Name</label>
+        <div class="input-field"><input type="text" id="editJobName" placeholder="Enter scan name"></div>
+      </div>
+      <div class="panel-field">
+        <label class="panel-field-label" for="editJobWorkflow">Workflow</label>
+        <select class="select-field" id="editJobWorkflow" style="max-width:none;">
+          <option selected>Default Workflow</option>
+          <option>Quick Scan</option>
+          <option>Deep Scan</option>
+          <option>Custom Workflow</option>
+        </select>
+      </div>
+      <div class="panel-field">
+        <span class="panel-field-label">Priority</span>
+        <div class="priority-toggle" id="editJobPriority">
+          <button class="priority-toggle-btn" data-priority="Low">Low</button>
+          <button class="priority-toggle-btn active" data-priority="Medium">Medium</button>
+          <button class="priority-toggle-btn" data-priority="High">High</button>
+        </div>
+      </div>
+      <div class="panel-field" id="editJobReoccurrenceField" style="display:none;">
+        <label class="panel-field-label" for="editJobReoccurrence">Reoccurrence</label>
+        <select class="select-field" id="editJobReoccurrence" style="max-width:none;">
+          <option selected>Once</option>
+          <option>Daily</option>
+          <option>Weekly</option>
+          <option>Monthly</option>
+        </select>
+      </div>
+      <div class="panel-field">
+        <label class="panel-field-label" for="editJobPartition">Partition</label>
+        <select class="select-field" id="editJobPartition" style="max-width:none;">
+          <option selected>All Partitions</option>
+          <option>Partition A</option>
+          <option>Partition B</option>
+          <option>Partition C</option>
+        </select>
+      </div>
+      <div class="panel-field">
+        <label class="panel-field-label" for="editJobStorageUnit">Storage Unit</label>
+        <select class="select-field" id="editJobStorageUnit" style="max-width:none;">
+          <option selected>Azure Blob – prod-container-01</option>
+          <option>AWS S3 – backup-bucket</option>
+          <option>GCP Storage – archive-2024</option>
+          <option>Azure Blob – staging-container</option>
+        </select>
+      </div>
+    </div>
+    <div class="slide-panel-footer">
+      <button class="btn-outline" onclick="closeSlidePanel('editJobPanel')">Cancel</button>
+      <button class="btn-primary" onclick="createJob()">Create Job</button>
+    </div>
+  </div>
+
+  <!-- ==================== JOBS ADVANCED FILTERS SLIDE-OUT PANEL ==================== -->
+  <div class="slide-panel-overlay" id="jobsFiltersOverlay" onclick="closeSlidePanel('jobsFiltersPanel')"></div>
+  <div class="slide-panel" id="jobsFiltersPanel" role="dialog" aria-labelledby="jobsFiltersTitle" aria-modal="true">
+    <div class="slide-panel-header">
+      <h2 id="jobsFiltersTitle">Advanced Filters</h2>
+      <button class="modal-close" aria-label="Close panel" onclick="closeSlidePanel('jobsFiltersPanel')">
+        <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><line x1="2" y1="2" x2="12" y2="12"/><line x1="12" y1="2" x2="2" y2="12"/></svg>
+      </button>
+    </div>
+    <div class="slide-panel-body">
+      <div class="af-section">
+        <div class="af-section-title">Job Type</div>
+        <div class="af-chips" id="jobsFilterType">
+          <span class="af-chip" data-value="all" onclick="toggleAfChip(this)">All</span>
+          <span class="af-chip" data-value="scheduled" onclick="toggleAfChip(this)">Scheduled File Scan</span>
+          <span class="af-chip" data-value="realtime" onclick="toggleAfChip(this)">Real-Time Scan</span>
+        </div>
+      </div>
+      <div class="af-section">
+        <div class="af-section-title">Status</div>
+        <div class="af-chips" id="jobsFilterStatus">
+          <span class="af-chip" data-value="all" onclick="toggleAfChip(this)">All</span>
+          <span class="af-chip" data-value="completed" onclick="toggleAfChip(this)">Completed</span>
+          <span class="af-chip" data-value="stopped" onclick="toggleAfChip(this)">Stopped</span>
+          <span class="af-chip" data-value="cancelled" onclick="toggleAfChip(this)">Cancelled</span>
+        </div>
+      </div>
+      <div class="af-section">
+        <div class="af-section-title">Detections</div>
+        <div class="af-field">
+          <select id="jobsFilterDetections">
+            <option selected>Any</option>
+            <option>With Detections</option>
+            <option>No Detections</option>
+          </select>
+        </div>
+      </div>
+      <div class="af-section">
+        <div class="af-section-title">Date Range</div>
+        <div class="af-field">
+          <label for="jobsFilterDateFrom">From</label>
+          <div class="input-field"><input type="date" id="jobsFilterDateFrom"></div>
+        </div>
+        <div class="af-field">
+          <label for="jobsFilterDateTo">To</label>
+          <div class="input-field"><input type="date" id="jobsFilterDateTo"></div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-panel-footer">
+      <button class="btn-outline" onclick="resetJobsFilters()">Reset</button>
+      <button class="btn-primary" onclick="applyJobsFilters()">Apply Filters</button>
+    </div>
+  </div>
+
+  <!-- ==================== CANCEL JOB CONFIRMATION MODAL ==================== -->
+  <div class="modal-overlay" id="cancelJobModal" aria-hidden="true">
+    <div class="modal" role="alertdialog" aria-labelledby="cancelJobTitle" aria-describedby="cancelJobDesc" aria-modal="true" style="width:420px;">
+      <div class="modal-header">
+        <h2 id="cancelJobTitle">Cancel Job</h2>
+        <button class="modal-close" aria-label="Close dialog" onclick="closeCancelJobModal()">
+          <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><line x1="2" y1="2" x2="12" y2="12"/><line x1="12" y1="2" x2="2" y2="12"/></svg>
+        </button>
+      </div>
+      <div style="display:flex; align-items:flex-start; gap:12px; margin-bottom:20px;">
+        <svg viewBox="0 0 16 16" fill="currentColor" style="width:20px; height:20px; flex-shrink:0; color:#e6a817; margin-top:2px;"><path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/></svg>
+        <p id="cancelJobDesc" style="font-size:14px; color:var(--text-subtle); line-height:1.5; margin:0;">
+          Are you sure you want to cancel this job? This action cannot be undone. Any files currently being processed will be stopped.
+        </p>
+      </div>
+      <div class="modal-footer" style="border-top:none; padding-top:0; margin-top:0;">
+        <button class="btn-outline" onclick="closeCancelJobModal()">Keep Running</button>
+        <button class="btn-danger" onclick="confirmCancelJob()">Cancel Job</button>
+      </div>
     </div>
   </div>
 
@@ -5954,6 +5337,12 @@
         } else if (text === 'Users') {
           document.getElementById('usersPage').classList.add('active');
           document.getElementById('componentsPage').style.display = 'none';
+        } else if (text === 'Jobs') {
+          document.getElementById('jobsPage').classList.add('active');
+          document.getElementById('componentsPage').style.display = 'none';
+          // Always show list view when navigating to Jobs
+          document.getElementById('jobsListView').style.display = 'block';
+          document.getElementById('jobDetailView').style.display = 'none';
         } else {
           // For other nav items, show settings by default or show toast
           document.getElementById('componentsPage').style.display = 'none';
@@ -6637,6 +6026,612 @@
       document.getElementById('pendingUsersSearch').addEventListener('input', function() {
         renderPendingUsers();
       });
+    })();
+
+    // ===============================================================
+    // JOBS PAGE — data and interactions
+    // ===============================================================
+    (function initJobsPage() {
+
+      // ---- Data ----
+      const activeJobs = [
+        { id: 1, name: 'Scheduled File Scan', type: 'Scheduled File Scan', status: 'Running', detections: 3, filesProcessed: 1247, filesTotal: 3500, storageUnit: 'Azure Blob – prod-container-01', elapsedTime: '02:34:12', startTime: 'Feb 24, 2026 08:15:00', progress: 36, workflow: 'Default Workflow', partition: 'Partition A', priority: 'High' },
+        { id: 2, name: 'Real-Time Scan (Polling)', type: 'Real-Time Scan', status: 'Running', detections: 0, filesProcessed: 892, filesTotal: 892, storageUnit: 'AWS S3 – backup-bucket', elapsedTime: '05:12:45', startTime: 'Feb 24, 2026 03:00:00', progress: 100, workflow: 'Quick Scan', partition: 'All Partitions', priority: 'Medium' },
+        { id: 3, name: 'Deep Scan – Archive', type: 'Scheduled File Scan', status: 'Running', detections: 12, filesProcessed: 456, filesTotal: 2100, storageUnit: 'GCP Storage – archive-2024', elapsedTime: '01:08:33', startTime: 'Feb 24, 2026 07:05:00', progress: 22, workflow: 'Deep Scan', partition: 'Partition B', priority: 'Low' }
+      ];
+
+      const upcomingJobs = [
+        { id: 10, name: 'Weekly Security Scan', frequency: 'Weekly', storageUnit: 'Azure Blob – prod-container-01', startsIn: '2d 14h', workflow: 'Default Workflow', partition: 'All Partitions', priority: 'Medium' },
+        { id: 11, name: 'Daily Quick Scan', frequency: 'Daily', storageUnit: 'AWS S3 – backup-bucket', startsIn: '6h 22m', workflow: 'Quick Scan', partition: 'Partition A', priority: 'High' },
+        { id: 12, name: 'Monthly Deep Analysis', frequency: 'Monthly', storageUnit: 'GCP Storage – archive-2024', startsIn: '12d 8h', workflow: 'Deep Scan', partition: 'Partition C', priority: 'Low' },
+        { id: 13, name: 'Compliance Scan', frequency: 'Weekly', storageUnit: 'Azure Blob – staging-container', startsIn: '4d 2h', workflow: 'Custom Workflow', partition: 'All Partitions', priority: 'Medium' },
+        { id: 14, name: 'Staging Environment Scan', frequency: 'Daily', storageUnit: 'Azure Blob – staging-container', startsIn: '18h 45m', workflow: 'Quick Scan', partition: 'Partition A', priority: 'Low' }
+      ];
+
+      const pastJobs = [];
+      // Generate 25 past jobs
+      const pastStatuses = ['Completed', 'Completed', 'Completed', 'Stopped', 'Completed', 'Cancelled'];
+      const pastTypes = ['Scheduled File Scan', 'Real-Time Scan', 'Scheduled File Scan', 'Scheduled File Scan', 'Real-Time Scan'];
+      const pastNames = ['Weekly Security Scan', 'Real-Time Monitoring', 'Full Deep Scan', 'Archive Scan', 'Staging Quick Scan', 'Compliance Audit Scan', 'Nightly File Check', 'Production Sweep', 'Backup Verification Scan'];
+      const pastUnits = ['Azure Blob – prod-container-01', 'AWS S3 – backup-bucket', 'GCP Storage – archive-2024', 'Azure Blob – staging-container'];
+      for (let i = 0; i < 25; i++) {
+        const day = 23 - Math.floor(i / 3);
+        const month = day < 1 ? 'Jan' : 'Feb';
+        const d = day < 1 ? 28 + day : day;
+        const det = i % 5 === 0 ? Math.floor(Math.random() * 8) + 1 : 0;
+        const total = 1000 + Math.floor(Math.random() * 4000);
+        pastJobs.push({
+          id: 100 + i,
+          name: pastNames[i % pastNames.length],
+          type: pastTypes[i % pastTypes.length],
+          status: pastStatuses[i % pastStatuses.length],
+          detections: det,
+          filesProcessed: total,
+          filesTotal: total,
+          storageUnit: pastUnits[i % pastUnits.length],
+          duration: ['00:45:12', '01:23:45', '02:10:30', '00:32:18', '03:15:22', '01:05:44'][i % 6],
+          date: month + ' ' + String(d).padStart(2, '0') + ', 2026 ' + String((8 + i * 2) % 24).padStart(2, '0') + ':00:00',
+          workflow: ['Default Workflow', 'Quick Scan', 'Deep Scan', 'Custom Workflow'][i % 4],
+          partition: ['All Partitions', 'Partition A', 'Partition B', 'Partition C'][i % 4],
+          priority: ['High', 'Medium', 'Low'][i % 3]
+        });
+      }
+
+      // Processed files data for job detail
+      const processedFiles = [];
+      const fileNames = ['document_report_2026.pdf', 'user_data_export.csv', 'config_backup.json', 'application_logs.zip', 'financial_statement_q4.xlsx', 'employee_records.docx', 'system_image_v2.iso', 'database_dump.sql', 'analytics_dashboard.html', 'security_audit.pdf', 'network_traffic.pcap', 'firmware_update.bin', 'email_archive.mbox', 'codebase_snapshot.tar.gz', 'customer_feedback.csv'];
+      const verdicts = ['No Threat', 'No Threat', 'No Threat', 'Detected', 'No Threat', 'No Threat', 'Suspicious', 'No Threat', 'No Threat', 'No Threat', 'Detected', 'No Threat', 'No Threat', 'No Threat', 'Benign'];
+      const fileTypes = ['PDF', 'CSV', 'JSON', 'ZIP', 'XLSX', 'DOCX', 'ISO', 'SQL', 'HTML', 'PDF', 'PCAP', 'BIN', 'MBOX', 'TAR.GZ', 'CSV'];
+      for (let i = 0; i < 35; i++) {
+        processedFiles.push({
+          name: fileNames[i % fileNames.length],
+          verdict: verdicts[i % verdicts.length],
+          detections: verdicts[i % verdicts.length] === 'Detected' ? Math.floor(Math.random() * 5) + 1 : 0,
+          fileType: fileTypes[i % fileTypes.length],
+          scanDate: 'Feb ' + String(24 - Math.floor(i / 8)).padStart(2, '0') + ', 2026 ' + String(8 + (i % 12)).padStart(2, '0') + ':' + String((i * 7) % 60).padStart(2, '0') + ':00'
+        });
+      }
+
+      let pastJobsPage = 1;
+      let pastJobsPerPage = 10;
+      let processedFilesPageNum = 1;
+      let processedFilesPerPageNum = 10;
+      let currentDetailJob = null;
+
+      // ---- Checkbox select-all helper ----
+      window.toggleAllJobsCb = function(headerCb, tbodyId) {
+        const tbody = document.getElementById(tbodyId);
+        if (!tbody) return;
+        const cbs = tbody.querySelectorAll('.jobs-table-cb');
+        cbs.forEach(cb => cb.checked = headerCb.checked);
+      };
+
+      // ---- Render Active Jobs ----
+      function renderActiveJobs() {
+        const tbody = document.getElementById('activeJobsBody');
+        const countEl = document.getElementById('activeJobsCount');
+        const emptyEl = document.getElementById('activeJobsEmpty');
+        const tableWrap = document.getElementById('activeJobsTableWrap');
+        if (!tbody) return;
+
+        countEl.textContent = activeJobs.length;
+        if (activeJobs.length === 0) {
+          emptyEl.style.display = 'flex';
+          tableWrap.style.display = 'none';
+          return;
+        }
+        emptyEl.style.display = 'none';
+        tableWrap.style.display = 'block';
+
+        tbody.innerHTML = activeJobs.map((j, i) => {
+          const detClass = j.detections > 0 ? 'jobs-detections' : 'jobs-detections none';
+          const statusTag = j.status === 'Running' ? 'tag-success' : 'tag-caution';
+          const pct = Math.round((j.filesProcessed / j.filesTotal) * 100);
+          return `<tr class="jobs-row-with-progress" style="cursor:pointer;" onclick="openJobDetail(${i}, 'active')">
+            <td onclick="event.stopPropagation()"><input type="checkbox" class="jobs-table-cb"></td>
+            <td><span class="tag ${statusTag}">${j.status}</span></td>
+            <td>${j.name}</td>
+            <td>${j.type}</td>
+            <td><span class="${detClass}">${j.detections > 0 ? j.detections : '—'}</span></td>
+            <td>${j.filesProcessed.toLocaleString()} / ${j.filesTotal.toLocaleString()}</td>
+            <td>${j.storageUnit}</td>
+            <td class="jobs-elapsed">${j.elapsedTime}</td>
+            <td>${j.startTime}<span class="jobs-progress-fill" style="width:${pct}%"></span></td>
+          </tr>`;
+        }).join('');
+      }
+
+      // ---- Render Upcoming Jobs ----
+      function renderUpcomingJobs() {
+        const tbody = document.getElementById('upcomingJobsBody');
+        const countEl = document.getElementById('upcomingJobsCount');
+        const emptyEl = document.getElementById('upcomingJobsEmpty');
+        const tableWrap = document.getElementById('upcomingJobsTableWrap');
+        if (!tbody) return;
+
+        countEl.textContent = upcomingJobs.length;
+        if (upcomingJobs.length === 0) {
+          emptyEl.style.display = 'flex';
+          tableWrap.style.display = 'none';
+          return;
+        }
+        emptyEl.style.display = 'none';
+        tableWrap.style.display = 'block';
+
+        tbody.innerHTML = upcomingJobs.map((j, i) => `<tr>
+          <td><input type="checkbox" class="jobs-table-cb"></td>
+          <td>${j.name}</td>
+          <td>${j.frequency}</td>
+          <td>${j.storageUnit}</td>
+          <td>${j.startsIn}</td>
+          <td><button class="jobs-edit-btn" onclick="editUpcomingJob(${i})" title="Edit Job"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M12.146.854a.5.5 0 01.708 0l2.292 2.292a.5.5 0 010 .708L5.354 13.646a.5.5 0 01-.233.131l-3 .875a.5.5 0 01-.631-.631l.875-3a.5.5 0 01.131-.233L12.146.854z"/></svg></button></td>
+        </tr>`).join('');
+      }
+
+      // ---- Render Past Jobs ----
+      function renderPastJobs() {
+        const tbody = document.getElementById('pastJobsBody');
+        const countEl = document.getElementById('pastJobsCount');
+        if (!tbody) return;
+
+        const searchTerm = (document.getElementById('pastJobsSearch').value || '').trim().toLowerCase();
+        const filtered = pastJobs.map((j, i) => ({ job: j, origIndex: i }))
+          .filter(({ job: j }) => {
+            if (!searchTerm) return true;
+            return j.name.toLowerCase().includes(searchTerm) ||
+                   j.type.toLowerCase().includes(searchTerm) ||
+                   j.status.toLowerCase().includes(searchTerm) ||
+                   j.storageUnit.toLowerCase().includes(searchTerm);
+          });
+
+        const total = filtered.length;
+        countEl.textContent = pastJobs.length;
+        const totalPages = Math.max(1, Math.ceil(total / pastJobsPerPage));
+        if (pastJobsPage > totalPages) pastJobsPage = totalPages;
+        const start = (pastJobsPage - 1) * pastJobsPerPage;
+        const end = Math.min(start + pastJobsPerPage, total);
+        const page = filtered.slice(start, end);
+
+        tbody.innerHTML = page.map(({ job: j, origIndex: i }) => {
+          const detClass = j.detections > 0 ? 'jobs-detections' : 'jobs-detections none';
+          const statusTag = j.status === 'Completed' ? 'tag-success' : j.status === 'Stopped' ? 'tag-caution' : 'tag-neutral';
+          return `<tr style="cursor:pointer;" onclick="openJobDetail(${i}, 'past')">
+            <td onclick="event.stopPropagation()"><input type="checkbox" class="jobs-table-cb"></td>
+            <td><span class="tag ${statusTag}">${j.status}</span></td>
+            <td>${j.name}</td>
+            <td>${j.type}</td>
+            <td><span class="${detClass}">${j.detections > 0 ? j.detections : '—'}</span></td>
+            <td>${j.filesProcessed.toLocaleString()} / ${j.filesTotal.toLocaleString()}</td>
+            <td>${j.storageUnit}</td>
+            <td class="jobs-elapsed">${j.duration}</td>
+            <td>${j.date}</td>
+          </tr>`;
+        }).join('');
+
+        // Update pagination
+        const pageInfo = document.getElementById('pastJobsPageInfo');
+        if (pageInfo) pageInfo.textContent = total === 0 ? '0 of 0 items' : (start + 1) + '-' + end + ' of ' + total + ' items';
+        const prevBtn = document.getElementById('pastJobsPrev');
+        const nextBtn = document.getElementById('pastJobsNext');
+        if (prevBtn) prevBtn.disabled = pastJobsPage <= 1;
+        if (nextBtn) nextBtn.disabled = pastJobsPage >= totalPages;
+        const pageSelect = document.getElementById('pastJobsPageSelect');
+        if (pageSelect) {
+          pageSelect.innerHTML = '';
+          for (let p = 1; p <= totalPages; p++) {
+            const opt = document.createElement('option');
+            opt.textContent = 'Page ' + p;
+            opt.selected = p === pastJobsPage;
+            pageSelect.appendChild(opt);
+          }
+        }
+        const paginationEl = document.getElementById('pastJobsPagination');
+        if (paginationEl) paginationEl.style.display = total <= pastJobsPerPage ? 'none' : 'flex';
+      }
+
+      // ---- Render Processed Files (Job Detail) ----
+      function renderProcessedFiles() {
+        const tbody = document.getElementById('processedFilesBody');
+        if (!tbody) return;
+        const searchTerm = (document.getElementById('processedFilesSearch').value || '').trim().toLowerCase();
+        const filtered = processedFiles.filter(f => {
+          if (!searchTerm) return true;
+          return f.name.toLowerCase().includes(searchTerm) || f.fileType.toLowerCase().includes(searchTerm) || f.verdict.toLowerCase().includes(searchTerm);
+        });
+        const total = filtered.length;
+        const totalPages = Math.max(1, Math.ceil(total / processedFilesPerPageNum));
+        if (processedFilesPageNum > totalPages) processedFilesPageNum = totalPages;
+        const start = (processedFilesPageNum - 1) * processedFilesPerPageNum;
+        const end = Math.min(start + processedFilesPerPageNum, total);
+        const page = filtered.slice(start, end);
+
+        document.getElementById('processedFilesCount').textContent = processedFiles.length;
+
+        tbody.innerHTML = page.map(f => {
+          let verdictClass = 'verdict-neutral';
+          if (f.verdict === 'Detected') verdictClass = 'verdict-detected';
+          else if (f.verdict === 'Suspicious') verdictClass = 'verdict-warn';
+          else if (f.verdict === 'Benign') verdictClass = 'verdict-completed';
+          const detClass = f.detections > 0 ? 'jobs-detections' : 'jobs-detections none';
+          return `<tr>
+            <td><input type="checkbox" class="jobs-table-cb"></td>
+            <td>${f.name}</td>
+            <td><span class="verdict ${verdictClass}"><span class="verdict-dot"></span><span class="verdict-text">${f.verdict}</span></span></td>
+            <td><span class="${detClass}">${f.detections > 0 ? f.detections : '—'}</span></td>
+            <td><span class="tag-keyword">${f.fileType}</span></td>
+            <td>${f.scanDate}</td>
+          </tr>`;
+        }).join('');
+
+        // Update pagination
+        const pageInfo = document.getElementById('processedFilesPageInfo');
+        if (pageInfo) pageInfo.textContent = total === 0 ? '0 of 0 items' : (start + 1) + '-' + end + ' of ' + total + ' items';
+        const prevBtn = document.getElementById('processedFilesPrev');
+        const nextBtn = document.getElementById('processedFilesNext');
+        if (prevBtn) prevBtn.disabled = processedFilesPageNum <= 1;
+        if (nextBtn) nextBtn.disabled = processedFilesPageNum >= totalPages;
+        const pageSelect = document.getElementById('processedFilesPageSelect');
+        if (pageSelect) {
+          pageSelect.innerHTML = '';
+          for (let p = 1; p <= totalPages; p++) {
+            const opt = document.createElement('option');
+            opt.textContent = 'Page ' + p;
+            opt.selected = p === processedFilesPageNum;
+            pageSelect.appendChild(opt);
+          }
+        }
+        const paginationEl = document.getElementById('processedFilesPagination');
+        if (paginationEl) paginationEl.style.display = total <= processedFilesPerPageNum ? 'none' : 'flex';
+      }
+
+      // ---- Open Job Detail ----
+      window.openJobDetail = function(index, source) {
+        const job = source === 'active' ? activeJobs[index] : pastJobs[index];
+        if (!job) return;
+        currentDetailJob = job;
+
+        document.getElementById('jobsListView').style.display = 'none';
+        document.getElementById('jobDetailView').style.display = 'block';
+        document.getElementById('jobDetailBreadcrumbName').textContent = job.name;
+        document.getElementById('jobDetailTitle').textContent = job.name;
+
+        // Show/hide cancel and report buttons
+        const cancelBtn = document.getElementById('jobDetailCancelBtn');
+        const reportBtn = document.getElementById('jobDetailReportBtn');
+        if (job.status === 'Running') {
+          cancelBtn.style.display = '';
+          reportBtn.style.display = 'none';
+        } else {
+          cancelBtn.style.display = 'none';
+          reportBtn.style.display = job.status === 'Completed' ? '' : 'none';
+        }
+
+        // Status banner
+        const bannerEl = document.getElementById('jobStatusBanner');
+        if (job.status === 'Completed') {
+          bannerEl.style.display = '';
+          bannerEl.innerHTML = '<div class="job-completed-banner"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 1a7 7 0 100 14A7 7 0 008 1zm3.78 5.28l-4.25 4.25a.75.75 0 01-1.06 0l-2.25-2.25a.75.75 0 111.06-1.06L7 8.94l3.72-3.72a.75.75 0 111.06 1.06z"/></svg>Job completed successfully on ' + (job.date || job.startTime) + '</div>';
+        } else if (job.status === 'Stopped') {
+          bannerEl.style.display = '';
+          bannerEl.innerHTML = '<div class="job-stopped-banner"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/></svg>Job was stopped on ' + (job.date || job.startTime) + '</div>';
+        } else {
+          bannerEl.style.display = 'none';
+        }
+
+        // Job info grid
+        const statusTag = job.status === 'Running' ? 'tag-success' : job.status === 'Completed' ? 'tag-success' : job.status === 'Stopped' ? 'tag-caution' : 'tag-neutral';
+        const infoGrid = document.getElementById('jobInfoGrid');
+        infoGrid.innerHTML = `
+          <div class="job-info-item">
+            <span class="job-info-label">Storage Unit</span>
+            <span class="job-info-value">${job.storageUnit}</span>
+          </div>
+          <div class="job-info-item">
+            <span class="job-info-label">Scan Type</span>
+            <span class="job-info-value">${job.type}</span>
+          </div>
+          <div class="job-info-item">
+            <span class="job-info-label">Status</span>
+            <span class="job-info-value"><span class="tag ${statusTag}">${job.status}</span></span>
+          </div>
+          <div class="job-info-item">
+            <span class="job-info-label">Workflow</span>
+            <span class="job-info-value">${job.workflow || 'Default Workflow'}</span>
+          </div>
+          <div class="job-info-item">
+            <span class="job-info-label">Partition</span>
+            <span class="job-info-value">${job.partition || 'All Partitions'}</span>
+          </div>
+          <div class="job-info-item">
+            <span class="job-info-label">Started</span>
+            <span class="job-info-value">${job.startTime || job.date}</span>
+          </div>
+          <div class="job-info-item">
+            <span class="job-info-label">Priority</span>
+            <span class="job-info-value">${job.priority || 'Medium'}</span>
+          </div>
+        `;
+
+        // Summary stats
+        const summaryEl = document.getElementById('jobSummaryStats');
+        const threats = job.detections || 0;
+        const clean = (job.filesProcessed || 0) - threats;
+        summaryEl.innerHTML = `
+          <div class="job-summary-stat">
+            <span class="job-summary-stat-label">Files Processed</span>
+            <span class="job-summary-stat-value">${(job.filesProcessed || 0).toLocaleString()}</span>
+          </div>
+          <div class="job-summary-stat">
+            <span class="job-summary-stat-label">Threats Detected</span>
+            <span class="job-summary-stat-value${threats > 0 ? ' alert' : ''}">${threats}</span>
+          </div>
+          <div class="job-summary-stat">
+            <span class="job-summary-stat-label">Clean Files</span>
+            <span class="job-summary-stat-value success">${clean.toLocaleString()}</span>
+          </div>
+        `;
+
+        processedFilesPageNum = 1;
+        renderProcessedFiles();
+        document.querySelector('.content').scrollTop = 0;
+      };
+
+      // ---- Show Jobs List ----
+      window.showJobsList = function() {
+        document.getElementById('jobsListView').style.display = 'block';
+        document.getElementById('jobDetailView').style.display = 'none';
+        currentDetailJob = null;
+        document.querySelector('.content').scrollTop = 0;
+      };
+
+      // ---- Edit Upcoming Job ----
+      window.editUpcomingJob = function(index) {
+        const j = upcomingJobs[index];
+        if (!j) return;
+        document.getElementById('editJobTitle').textContent = 'Edit Job';
+        document.getElementById('editJobName').value = j.name;
+        // Set priority
+        document.querySelectorAll('#editJobPriority .priority-toggle-btn').forEach(b => {
+          b.classList.toggle('active', b.dataset.priority === j.priority);
+        });
+        openSlidePanel('editJobPanel');
+      };
+
+      // ---- Create Job ----
+      window.createJob = function() {
+        const name = document.getElementById('editJobName').value.trim();
+        if (!name) { showToast('Scan Name is required'); return; }
+        const activePriorityBtn = document.querySelector('#editJobPriority .priority-toggle-btn.active');
+        const priority = activePriorityBtn ? activePriorityBtn.dataset.priority : 'Medium';
+        const workflow = document.getElementById('editJobWorkflow').value;
+        const partition = document.getElementById('editJobPartition').value;
+        const storageUnit = document.getElementById('editJobStorageUnit').value;
+
+        // Check which scan type is selected
+        const activeTab = document.querySelector('#editJobScanTypeTabs .tab.active');
+        const scanType = activeTab ? activeTab.dataset.tab : 'scan-now';
+
+        if (scanType === 'schedule-scan') {
+          upcomingJobs.push({
+            id: Date.now(),
+            name: name,
+            frequency: document.getElementById('editJobReoccurrence')?.value || 'Once',
+            storageUnit: storageUnit,
+            startsIn: '24h 0m',
+            workflow: workflow,
+            partition: partition,
+            priority: priority
+          });
+          renderUpcomingJobs();
+          showToast('Scheduled job created: ' + name);
+        } else {
+          activeJobs.push({
+            id: Date.now(),
+            name: name,
+            type: scanType === 'realtime-scan' ? 'Real-Time Scan' : 'Scheduled File Scan',
+            status: 'Running',
+            detections: 0,
+            filesProcessed: 0,
+            filesTotal: 1000,
+            storageUnit: storageUnit,
+            elapsedTime: '00:00:00',
+            startTime: new Date().toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' }) + ' ' + new Date().toLocaleTimeString('en-US', { hour12: false }),
+            progress: 0,
+            workflow: workflow,
+            partition: partition,
+            priority: priority
+          });
+          renderActiveJobs();
+          showToast('Job started: ' + name);
+        }
+
+        closeSlidePanel('editJobPanel');
+        // Reset form
+        document.getElementById('editJobName').value = '';
+        document.getElementById('editJobTitle').textContent = 'New Job';
+      };
+
+      // ---- Cancel Job Modal ----
+      window.openCancelJobModal = function() {
+        document.getElementById('cancelJobModal').classList.add('open');
+      };
+      window.closeCancelJobModal = function() {
+        document.getElementById('cancelJobModal').classList.remove('open');
+      };
+      window.confirmCancelJob = function() {
+        if (currentDetailJob) {
+          const idx = activeJobs.findIndex(j => j.id === currentDetailJob.id);
+          if (idx !== -1) {
+            const cancelled = activeJobs.splice(idx, 1)[0];
+            cancelled.status = 'Cancelled';
+            cancelled.duration = cancelled.elapsedTime;
+            cancelled.date = cancelled.startTime;
+            pastJobs.unshift(cancelled);
+          }
+          closeCancelJobModal();
+          showJobsList();
+          renderActiveJobs();
+          renderPastJobs();
+          showToast('Job cancelled');
+        }
+      };
+
+      // ---- Job Details Panel ----
+      window.populateJobDetailsPanel = function() {
+        if (!currentDetailJob) return;
+        const j = currentDetailJob;
+        const body = document.getElementById('jobDetailsPanelBody');
+        body.innerHTML = `
+          <div class="panel-field">
+            <span class="panel-field-label">Job Name</span>
+            <span style="font-size:14px; color:var(--text-strong);">${j.name}</span>
+          </div>
+          <div class="panel-field">
+            <span class="panel-field-label">Job Type</span>
+            <span style="font-size:14px; color:var(--text-strong);">${j.type}</span>
+          </div>
+          <div class="panel-field">
+            <span class="panel-field-label">Status</span>
+            <span class="tag ${j.status === 'Running' ? 'tag-success' : j.status === 'Completed' ? 'tag-success' : 'tag-caution'}">${j.status}</span>
+          </div>
+          <div class="panel-field">
+            <span class="panel-field-label">Storage Unit</span>
+            <span style="font-size:14px; color:var(--text-strong);">${j.storageUnit}</span>
+          </div>
+          <div class="panel-field">
+            <span class="panel-field-label">Workflow</span>
+            <span style="font-size:14px; color:var(--text-strong);">${j.workflow || 'Default Workflow'}</span>
+          </div>
+          <div class="panel-field">
+            <span class="panel-field-label">Partition</span>
+            <span style="font-size:14px; color:var(--text-strong);">${j.partition || 'All Partitions'}</span>
+          </div>
+          <div class="panel-field">
+            <span class="panel-field-label">Priority</span>
+            <span style="font-size:14px; color:var(--text-strong);">${j.priority || 'Medium'}</span>
+          </div>
+          <div class="panel-field">
+            <span class="panel-field-label">Started</span>
+            <span style="font-size:14px; color:var(--text-strong);">${j.startTime || j.date}</span>
+          </div>
+          <div class="panel-field">
+            <span class="panel-field-label">Duration / Elapsed</span>
+            <span style="font-size:14px; color:var(--text-strong);">${j.elapsedTime || j.duration || '—'}</span>
+          </div>
+          <div class="panel-field">
+            <span class="panel-field-label">Files Processed</span>
+            <span style="font-size:14px; color:var(--text-strong);">${(j.filesProcessed || 0).toLocaleString()} / ${(j.filesTotal || 0).toLocaleString()}</span>
+          </div>
+          <div class="panel-field">
+            <span class="panel-field-label">Detections</span>
+            <span style="font-size:14px; color:${j.detections > 0 ? '#d40031' : 'var(--text-strong)'}; font-weight:${j.detections > 0 ? '500' : '400'};">${j.detections || 0}</span>
+          </div>
+        `;
+      };
+
+      // Override openSlidePanel for job details to populate content
+      const origOpenSlidePanel = window.openSlidePanel || openSlidePanel;
+      const wrappedOpen = function(id) {
+        if (id === 'jobDetailsPanel') {
+          populateJobDetailsPanel();
+        }
+        origOpenSlidePanel(id);
+      };
+      // Don't override globally - instead use event delegation
+      // Patch the onclick for job details button
+      const jobDetailsBtn = document.querySelector('#jobDetailView .btn-outline[onclick*="jobDetailsPanel"]');
+      if (jobDetailsBtn) {
+        jobDetailsBtn.onclick = function() {
+          populateJobDetailsPanel();
+          openSlidePanel('jobDetailsPanel');
+        };
+      }
+
+      // ---- Advanced Filters ----
+      window.toggleAfChip = function(el) {
+        el.classList.toggle('selected');
+      };
+      window.resetJobsFilters = function() {
+        document.querySelectorAll('.af-chip.selected').forEach(c => c.classList.remove('selected'));
+        document.getElementById('jobsFilterDetections').value = 'Any';
+        document.getElementById('jobsFilterDateFrom').value = '';
+        document.getElementById('jobsFilterDateTo').value = '';
+      };
+      window.applyJobsFilters = function() {
+        closeSlidePanel('jobsFiltersPanel');
+        renderPastJobs();
+        showToast('Filters applied');
+      };
+
+      // ---- Edit Job Panel: Scan Type Tabs ----
+      document.querySelectorAll('#editJobScanTypeTabs .tab').forEach(tab => {
+        tab.addEventListener('click', function() {
+          document.querySelectorAll('#editJobScanTypeTabs .tab').forEach(t => t.classList.remove('active'));
+          this.classList.add('active');
+          // Show reoccurrence field only for schedule scan
+          const reoccField = document.getElementById('editJobReoccurrenceField');
+          if (reoccField) reoccField.style.display = this.dataset.tab === 'schedule-scan' ? '' : 'none';
+        });
+      });
+
+      // ---- Priority Toggle ----
+      document.querySelectorAll('#editJobPriority .priority-toggle-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          document.querySelectorAll('#editJobPriority .priority-toggle-btn').forEach(b => b.classList.remove('active'));
+          this.classList.add('active');
+        });
+      });
+
+      // ---- Past Jobs Pagination ----
+      document.getElementById('pastJobsPrev').addEventListener('click', function() {
+        if (pastJobsPage > 1) { pastJobsPage--; renderPastJobs(); }
+      });
+      document.getElementById('pastJobsNext').addEventListener('click', function() {
+        const searchTerm = (document.getElementById('pastJobsSearch').value || '').trim().toLowerCase();
+        const filteredCount = searchTerm ? pastJobs.filter(j => j.name.toLowerCase().includes(searchTerm) || j.type.toLowerCase().includes(searchTerm)).length : pastJobs.length;
+        const totalPages = Math.ceil(filteredCount / pastJobsPerPage);
+        if (pastJobsPage < totalPages) { pastJobsPage++; renderPastJobs(); }
+      });
+      document.getElementById('pastJobsPageSelect').addEventListener('change', function() {
+        pastJobsPage = this.selectedIndex + 1;
+        renderPastJobs();
+      });
+      document.getElementById('pastJobsPerPage').addEventListener('change', function() {
+        pastJobsPerPage = parseInt(this.value);
+        pastJobsPage = 1;
+        renderPastJobs();
+      });
+      document.getElementById('pastJobsSearch').addEventListener('input', function() {
+        pastJobsPage = 1;
+        renderPastJobs();
+      });
+
+      // ---- Processed Files Pagination ----
+      document.getElementById('processedFilesPrev').addEventListener('click', function() {
+        if (processedFilesPageNum > 1) { processedFilesPageNum--; renderProcessedFiles(); }
+      });
+      document.getElementById('processedFilesNext').addEventListener('click', function() {
+        const totalPages = Math.ceil(processedFiles.length / processedFilesPerPageNum);
+        if (processedFilesPageNum < totalPages) { processedFilesPageNum++; renderProcessedFiles(); }
+      });
+      document.getElementById('processedFilesPageSelect').addEventListener('change', function() {
+        processedFilesPageNum = this.selectedIndex + 1;
+        renderProcessedFiles();
+      });
+      document.getElementById('processedFilesPerPage').addEventListener('change', function() {
+        processedFilesPerPageNum = parseInt(this.value);
+        processedFilesPageNum = 1;
+        renderProcessedFiles();
+      });
+      document.getElementById('processedFilesSearch').addEventListener('input', function() {
+        processedFilesPageNum = 1;
+        renderProcessedFiles();
+      });
+
+      // ---- Initial Render ----
+      renderActiveJobs();
+      renderUpcomingJobs();
+      renderPastJobs();
     })();
 
   </script>
