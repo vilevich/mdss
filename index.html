@@ -6160,6 +6160,25 @@
     initAccessibility();
     initDirtyTracking();
 
+    // ===============================================================
+    // HASH ROUTING — #components accessible via URL only (hidden from nav)
+    // ===============================================================
+    function showComponentsPage() {
+      document.querySelectorAll('.page-view').forEach(p => p.classList.remove('active'));
+      document.getElementById('componentsPage').style.display = 'flex';
+      document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+      document.querySelector('.content').scrollTop = 0;
+    }
+
+    function handleHash() {
+      if (window.location.hash === '#components') {
+        showComponentsPage();
+      }
+    }
+
+    handleHash();
+    window.addEventListener('hashchange', handleHash);
+
   </script>
 </body>
 </html>
