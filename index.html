@@ -1032,12 +1032,12 @@
       position: fixed; top: 0; right: -400px; bottom: 0;
       width: 400px;
       background: var(--surface-card);
-      box-shadow: -4px 0 24px rgba(12,18,29,0.12);
+      box-shadow: none;
       z-index: 2001;
       display: flex; flex-direction: column;
-      transition: right 0.25s ease;
+      transition: right 0.25s ease, box-shadow 0.25s ease;
     }
-    .slide-panel.open { right: 0; }
+    .slide-panel.open { right: 0; box-shadow: -4px 0 24px rgba(12,18,29,0.12); }
     #addScanPoolPanel { width: 420px; right: -420px; }
     #addScanPoolPanel.open { right: 0; }
     .slide-panel-header {
@@ -1046,7 +1046,7 @@
       height: 56px; min-height: 56px;
       border-bottom: 1px solid var(--border-200);
     }
-    .slide-panel-header h2 { font-size: 16px; font-weight: 500; line-height: 18px; margin: 0; }
+    .slide-panel-header h2 { font-size: 14px; font-weight: 500; line-height: 16px; margin: 0; }
     .slide-panel-header .modal-close { width: 20px; height: 20px; }
     .slide-panel-header .modal-close svg { width: 10px; height: 10px; }
     .slide-panel-body {
@@ -1311,6 +1311,33 @@
       .pool-card-header-right { flex-wrap: wrap; }
     }
 
+    /* ===== USERS PAGE ===== */
+    .user-name-cell {
+      display: flex; align-items: center; gap: 10px;
+    }
+    .user-avatar {
+      width: 20px; height: 20px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 10px; font-weight: 500; color: #fff;
+      flex-shrink: 0;
+    }
+    .users-empty-state {
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: 48px 20px; text-align: center;
+    }
+    .users-empty-icon {
+      width: 48px; height: 48px; border-radius: 50%;
+      background: var(--tab-bg); display: flex; align-items: center; justify-content: center;
+      margin-bottom: 16px;
+    }
+    .users-empty-icon svg { width: 24px; height: 24px; color: var(--text-muted); }
+    .users-empty-title {
+      font-size: 14px; font-weight: 500; color: var(--text-strong); margin: 0 0 4px;
+    }
+    .users-empty-desc {
+      font-size: 14px; color: var(--text-muted); margin: 0;
+    }
+
     /* ===== AUDIT PAGE ===== */
     .page-view { display: none; }
     .page-view.active { display: block; }
@@ -1320,7 +1347,7 @@
     .page-view.table-page.active { display: flex; }
     .table-page .audit-card { flex: 1; display: flex; flex-direction: column; min-height: 0; overflow: hidden; }
     .table-page .audit-table-scroll { flex: 1; overflow: auto; min-height: 0; }
-    .table-page .audit-pagination { flex-shrink: 0; }
+    .table-page .audit-pagination { flex-shrink: 0; min-height: 72px; }
 
     .audit-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
     .audit-header h1 { font-size: 24px; font-weight: 500; color: var(--text-strong); }
@@ -1489,38 +1516,52 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 12px 20px;
+      padding: 20px;
+      height: 72px;
+      box-sizing: border-box;
       border-top: 1px solid var(--border-card);
       font-size: 14px;
-      color: var(--text-subtle);
+      font-weight: 400;
+      color: #344565;
     }
     .audit-pagination-left { display: flex; align-items: center; gap: 8px; }
     .audit-pagination-left select {
       appearance: none; -webkit-appearance: none;
-      padding: 4px 24px 4px 8px;
+      padding: 8px;
+      padding-right: 28px;
       border: 1px solid var(--border-200); border-radius: var(--radius);
       font-size: 14px; font-family: var(--font); color: var(--text-strong);
-      background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='M7.99994 10.7499C7.80994 10.7499 7.61994 10.6799 7.46994 10.5299L3.21994 6.27994C2.92994 5.98994 2.92994 5.50994 3.21994 5.21994C3.50994 4.92994 3.98994 4.92994 4.27994 5.21994L7.99994 8.93994L11.7199 5.21994C12.0099 4.92994 12.4899 4.92994 12.7799 5.21994C13.0699 5.50994 13.0699 5.98994 12.7799 6.27994L8.52994 10.5299C8.37994 10.6799 8.18994 10.7499 7.99994 10.7499Z' fill='%236b7a90'/%3E%3C/svg%3E") no-repeat right 4px center;
-      cursor: pointer; height: 28px;
+      background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='M7.99994 10.7499C7.80994 10.7499 7.61994 10.6799 7.46994 10.5299L3.21994 6.27994C2.92994 5.98994 2.92994 5.50994 3.21994 5.21994C3.50994 4.92994 3.98994 4.92994 4.27994 5.21994L7.99994 8.93994L11.7199 5.21994C12.0099 4.92994 12.4899 4.92994 12.7799 5.21994C13.0699 5.50994 13.0699 5.98994 12.7799 6.27994L8.52994 10.5299C8.37994 10.6799 8.18994 10.7499 7.99994 10.7499Z' fill='%236b7a90'/%3E%3C/svg%3E") no-repeat right 8px center;
+      cursor: pointer; height: 32px;
+      box-sizing: border-box;
     }
-    .audit-pagination-right { display: flex; align-items: center; gap: 4px; }
+    .audit-pagination-right { display: flex; align-items: center; }
     .audit-page-btn {
-      width: 28px; height: 28px;
-      border: 1px solid var(--border-200); border-radius: var(--radius);
+      width: 32px; height: 32px;
+      border: 1px solid var(--border-200);
       background: #fff; cursor: pointer;
       display: flex; align-items: center; justify-content: center;
+      padding: 8px;
+      box-sizing: border-box;
       color: var(--text-muted); font-size: 14px;
     }
+    .audit-page-btn:first-child { border-radius: var(--radius) 0 0 var(--radius); }
+    .audit-page-btn:last-child { border-radius: 0 var(--radius) var(--radius) 0; border-left: none; }
     .audit-page-btn:hover { color: var(--text-strong); border-color: var(--text-muted); }
     .audit-page-btn:disabled { opacity: 0.4; cursor: default; }
     .audit-page-btn svg { width: 14px; height: 14px; }
     .audit-page-select {
       appearance: none; -webkit-appearance: none;
-      padding: 4px 24px 4px 8px;
-      border: 1px solid var(--border-200); border-radius: var(--radius);
+      padding: 8px;
+      padding-right: 28px;
+      border-top: 1px solid var(--border-200);
+      border-bottom: 1px solid var(--border-200);
+      border-left: none; border-right: none;
+      border-radius: 0;
       font-size: 14px; font-family: var(--font); color: var(--text-strong);
-      background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='M7.99994 10.7499C7.80994 10.7499 7.61994 10.6799 7.46994 10.5299L3.21994 6.27994C2.92994 5.98994 2.92994 5.50994 3.21994 5.21994C3.50994 4.92994 3.98994 4.92994 4.27994 5.21994L7.99994 8.93994L11.7199 5.21994C12.0099 4.92994 12.4899 4.92994 12.7799 5.21994C13.0699 5.50994 13.0699 5.98994 12.7799 6.27994L8.52994 10.5299C8.37994 10.6799 8.18994 10.7499 7.99994 10.7499Z' fill='%236b7a90'/%3E%3C/svg%3E") no-repeat right 4px center;
-      cursor: pointer; height: 28px;
+      background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='M7.99994 10.7499C7.80994 10.7499 7.61994 10.6799 7.46994 10.5299L3.21994 6.27994C2.92994 5.98994 2.92994 5.50994 3.21994 5.21994C3.50994 4.92994 3.98994 4.92994 4.27994 5.21994L7.99994 8.93994L11.7199 5.21994C12.0099 4.92994 12.4899 4.92994 12.7799 5.21994C13.0699 5.50994 13.0699 5.98994 12.7799 6.27994L8.52994 10.5299C8.37994 10.6799 8.18994 10.7499 7.99994 10.7499Z' fill='%236b7a90'/%3E%3C/svg%3E") no-repeat right 8px center;
+      cursor: pointer; height: 32px;
+      box-sizing: border-box;
     }
 
     /* ===== DESIGN SYSTEM: Tags, Badges, Chips, Verdicts, Severities ===== */
@@ -1783,6 +1824,7 @@
     [data-theme="dark"] .pool-action-btn:hover { background: rgba(255,255,255,0.06); }
     [data-theme="dark"] .pool-action-menu { background: var(--surface-card); border-color: var(--border-200); }
     [data-theme="dark"] .pool-action-menu-item:hover { background: rgba(255,255,255,0.04); }
+    [data-theme="dark"] .users-empty-icon { background: rgba(255,255,255,0.06); }
     [data-theme="dark"] .filter-icon { color: var(--text-muted); }
     [data-theme="dark"] .audit-user { color: #fff; }
     [data-theme="dark"] .audit-table tbody td .audit-user { color: #fff; }
@@ -2277,8 +2319,8 @@
           <a class="nav-item" href="#"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M10 14H14V10H12.75V8C12.75 7.59 12.41 7.25 12 7.25L8.75 7.25V6H10V2L6 2V6H7.25V7.25L4 7.25C3.59 7.25 3.25 7.59 3.25 8L3.25 10H2L2 14H6V10H4.75L4.75 8.75L11.25 8.75V10H10L10 14Z"/></svg><span class="nav-text">Workflows</span></a>
           <a class="nav-item" href="#"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M10 6V4.75H8.75V11.25H10V10H14V14H10V12.75H8C7.59 12.75 7.25 12.41 7.25 12V8.75H6.25L4 11L1 8L4 5L6.25 7.25H7.25V4C7.25 3.59 7.59 3.25 8 3.25H10V2H14V6H10Z"/></svg><span class="nav-text">Jobs</span></a>
           <div class="nav-divider"></div>
-          <a class="nav-item" href="#"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M13 6C13 7.57 11.8 8.85 10.27 8.98C10.18 9 10.09 9 10 9C10.03 8.97 10.06 8.93 10.08 8.89C10.66 8.07 11 7.08 11 6C11 4.92 10.63 3.83 10 3C11.66 3 13 4.34 13 6Z"/><path d="M15 12.64V14H13V12.64C13 11.71 12.64 10.92 12.05 10.28C13.58 10.69 15 11.51 15 12.64Z"/><path d="M9 6C9 6.89 8.62 7.69 8 8.22C7.47 8.71 6.77 9 6 9C5.23 9 4.53 8.71 4 8.22C3.38 7.69 3 6.89 3 6C3 4.34 4.34 3 6 3C6.77 3 7.47 3.29 8 3.77C8.62 4.31 9 5.11 9 6Z"/><path d="M11 12.64V14H1V12.64C1 11.6 2.2 10.82 3.59 10.38C4.39 10.13 5.26 10 5.99 10C6.6 10 7.3 10.09 7.99 10.27C8.12 10.3 8.26 10.34 8.39 10.38C9.78 10.82 10.98 11.6 10.98 12.64H11Z"/></svg><span class="nav-text">Users</span></a>
-          <a class="nav-item active" href="#"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M13.2101 8.46C13.2201 8.31 13.2301 8.16 13.2301 8C13.2301 7.84 13.2201 7.69 13.2101 7.54C13.2001 7.4 13.1801 7.25 13.1601 7.11L14.1201 6.26C14.4801 5.95 14.5601 5.42 14.3301 5.01L13.7501 4.01C13.5101 3.6 13.0201 3.41 12.5701 3.56L11.3301 3.97C11.1001 3.78 10.8601 3.61 10.6001 3.46C10.3301 3.32 10.0601 3.19 9.78005 3.08L9.54005 1.81C9.45005 1.34 9.04005 1 8.56005 1H7.41005C6.93005 1 6.52005 1.34 6.43005 1.81L6.19005 3.08C5.91005 3.19 5.64005 3.32 5.37005 3.46C5.11005 3.61 4.87005 3.78 4.64005 3.97L3.40005 3.56C2.95005 3.41 2.46005 3.6 2.22005 4.01L1.64005 5.01C1.40005 5.42 1.49005 5.95 1.85005 6.26L2.81005 7.11C2.79005 7.25 2.77005 7.4 2.76005 7.54C2.75005 7.69 2.74005 7.84 2.74005 8C2.74005 8.16 2.75005 8.31 2.76005 8.46C2.77005 8.6 2.79005 8.75 2.81005 8.89L1.85005 9.74C1.49005 10.05 1.41005 10.58 1.64005 10.99L2.22005 11.99C2.46005 12.4 2.95005 12.59 3.40005 12.44L4.64005 12.03C4.87005 12.22 5.11005 12.39 5.37005 12.54C5.64005 12.68 5.91005 12.81 6.19005 12.92L6.43005 14.19C6.52005 14.66 6.93005 15 7.41005 15H8.56005C9.04005 15 9.45005 14.66 9.54005 14.19L9.78005 12.92C10.0601 12.81 10.3301 12.68 10.6001 12.54C10.8601 12.39 11.1001 12.22 11.3301 12.03L12.5701 12.44C13.0201 12.59 13.5101 12.4 13.7501 11.99L14.3301 10.99C14.5701 10.58 14.4801 10.05 14.1201 9.74L13.1601 8.89C13.1801 8.75 13.2001 8.6 13.2101 8.46ZM8.57005 10.94C6.45005 11.34 4.64005 9.53 5.04005 7.41C5.26005 6.23 6.22005 5.27 7.40005 5.05C9.52005 4.65 11.3301 6.46 10.9301 8.58C10.7101 9.76 9.75005 10.72 8.57005 10.94Z"/></svg><span class="nav-text">Settings</span></a>
+          <a class="nav-item active" href="#"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M13 6C13 7.57 11.8 8.85 10.27 8.98C10.18 9 10.09 9 10 9C10.03 8.97 10.06 8.93 10.08 8.89C10.66 8.07 11 7.08 11 6C11 4.92 10.63 3.83 10 3C11.66 3 13 4.34 13 6Z"/><path d="M15 12.64V14H13V12.64C13 11.71 12.64 10.92 12.05 10.28C13.58 10.69 15 11.51 15 12.64Z"/><path d="M9 6C9 6.89 8.62 7.69 8 8.22C7.47 8.71 6.77 9 6 9C5.23 9 4.53 8.71 4 8.22C3.38 7.69 3 6.89 3 6C3 4.34 4.34 3 6 3C6.77 3 7.47 3.29 8 3.77C8.62 4.31 9 5.11 9 6Z"/><path d="M11 12.64V14H1V12.64C1 11.6 2.2 10.82 3.59 10.38C4.39 10.13 5.26 10 5.99 10C6.6 10 7.3 10.09 7.99 10.27C8.12 10.3 8.26 10.34 8.39 10.38C9.78 10.82 10.98 11.6 10.98 12.64H11Z"/></svg><span class="nav-text">Users</span></a>
+          <a class="nav-item" href="#"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M13.2101 8.46C13.2201 8.31 13.2301 8.16 13.2301 8C13.2301 7.84 13.2201 7.69 13.2101 7.54C13.2001 7.4 13.1801 7.25 13.1601 7.11L14.1201 6.26C14.4801 5.95 14.5601 5.42 14.3301 5.01L13.7501 4.01C13.5101 3.6 13.0201 3.41 12.5701 3.56L11.3301 3.97C11.1001 3.78 10.8601 3.61 10.6001 3.46C10.3301 3.32 10.0601 3.19 9.78005 3.08L9.54005 1.81C9.45005 1.34 9.04005 1 8.56005 1H7.41005C6.93005 1 6.52005 1.34 6.43005 1.81L6.19005 3.08C5.91005 3.19 5.64005 3.32 5.37005 3.46C5.11005 3.61 4.87005 3.78 4.64005 3.97L3.40005 3.56C2.95005 3.41 2.46005 3.6 2.22005 4.01L1.64005 5.01C1.40005 5.42 1.49005 5.95 1.85005 6.26L2.81005 7.11C2.79005 7.25 2.77005 7.4 2.76005 7.54C2.75005 7.69 2.74005 7.84 2.74005 8C2.74005 8.16 2.75005 8.31 2.76005 8.46C2.77005 8.6 2.79005 8.75 2.81005 8.89L1.85005 9.74C1.49005 10.05 1.41005 10.58 1.64005 10.99L2.22005 11.99C2.46005 12.4 2.95005 12.59 3.40005 12.44L4.64005 12.03C4.87005 12.22 5.11005 12.39 5.37005 12.54C5.64005 12.68 5.91005 12.81 6.19005 12.92L6.43005 14.19C6.52005 14.66 6.93005 15 7.41005 15H8.56005C9.04005 15 9.45005 14.66 9.54005 14.19L9.78005 12.92C10.0601 12.81 10.3301 12.68 10.6001 12.54C10.8601 12.39 11.1001 12.22 11.3301 12.03L12.5701 12.44C13.0201 12.59 13.5101 12.4 13.7501 11.99L14.3301 10.99C14.5701 10.58 14.4801 10.05 14.1201 9.74L13.1601 8.89C13.1801 8.75 13.2001 8.6 13.2101 8.46ZM8.57005 10.94C6.45005 11.34 4.64005 9.53 5.04005 7.41C5.26005 6.23 6.22005 5.27 7.40005 5.05C9.52005 4.65 11.3301 6.46 10.9301 8.58C10.7101 9.76 9.75005 10.72 8.57005 10.94Z"/></svg><span class="nav-text">Settings</span></a>
           <div class="nav-divider"></div>
           <a class="nav-item" href="#"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M12 2H11.5V5H4.5V2H4C3.45 2 3 2.45 3 3V13C3 13.55 3.45 14 4 14H12C12.55 14 13 13.55 13 13V3C13 2.45 12.55 2 12 2ZM11 11.5H5C4.59 11.5 4.25 11.16 4.25 10.75C4.25 10.34 4.59 10 5 10H11C11.41 10 11.75 10.34 11.75 10.75C11.75 11.16 11.41 11.5 11 11.5ZM11 8.5H5C4.59 8.5 4.25 8.16 4.25 7.75C4.25 7.34 4.59 7 5 7H11C11.41 7 11.75 7.34 11.75 7.75C11.75 8.16 11.41 8.5 11 8.5Z"/><path d="M10 2V3.5H6V2H7C7 1.45 7.45 1 8 1C8.55 1 9 1.45 9 2H10Z"/></svg><span class="nav-text">Audit</span></a>
         </nav>
@@ -2292,7 +2334,7 @@
       <main class="content" id="main-content" role="main">
 
         <!-- ==================== SETTINGS PAGE ==================== -->
-        <div id="settingsPage" class="page-view active">
+        <div id="settingsPage" class="page-view">
         <!-- Page Header -->
         <div class="page-header">
           <h1 class="page-title">Settings</h1>
@@ -3521,6 +3563,105 @@
           </div>
         </div><!-- /auditPage -->
 
+        <!-- ==================== USERS PAGE ==================== -->
+        <div id="usersPage" class="page-view active">
+          <div class="page-header">
+            <h1 class="page-title">Users</h1>
+            <button class="btn-primary" onclick="openSlidePanel('addUserPanel')">Add User</button>
+          </div>
+
+          <!-- Pending Users Card -->
+          <div class="audit-card" id="pendingUsersCard" style="margin-bottom:12px;">
+            <div class="audit-card-header">
+              <div class="audit-card-title">
+                <h3>Pending Users</h3>
+                <span class="count" id="pendingUsersCount">0</span>
+              </div>
+              <div class="audit-card-actions">
+                <div class="audit-search">
+                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="7" cy="7" r="5.5"/><path d="M11 11l3.5 3.5"/></svg>
+                  <input type="text" placeholder="Search users" id="pendingUsersSearch">
+                </div>
+              </div>
+            </div>
+            <!-- Empty state (shown when 0 pending) -->
+            <div class="users-empty-state" id="pendingEmptyState">
+              <div class="users-empty-icon">
+                <svg viewBox="0 0 16 16" fill="currentColor"><path d="M13 6C13 7.57 11.8 8.85 10.27 8.98C10.18 9 10.09 9 10 9C10.03 8.97 10.06 8.93 10.08 8.89C10.66 8.07 11 7.08 11 6C11 4.92 10.63 3.83 10 3C11.66 3 13 4.34 13 6Z"/><path d="M15 12.64V14H13V12.64C13 11.71 12.64 10.92 12.05 10.28C13.58 10.69 15 11.51 15 12.64Z"/><path d="M9 6C9 6.89 8.62 7.69 8 8.22C7.47 8.71 6.77 9 6 9C5.23 9 4.53 8.71 4 8.22C3.38 7.69 3 6.89 3 6C3 4.34 4.34 3 6 3C6.77 3 7.47 3.29 8 3.77C8.62 4.31 9 5.11 9 6Z"/><path d="M11 12.64V14H1V12.64C1 11.6 2.2 10.82 3.59 10.38C4.39 10.13 5.26 10 5.99 10C6.6 10 7.3 10.09 7.99 10.27C8.12 10.3 8.26 10.34 8.39 10.38C9.78 10.82 10.98 11.6 10.98 12.64H11Z"/></svg>
+              </div>
+              <p class="users-empty-title">No Pending Users</p>
+              <p class="users-empty-desc">New requests will appear here when submitted.</p>
+            </div>
+            <!-- Pending users table (hidden when empty) -->
+            <div id="pendingUsersTableWrap" style="display:none;">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Name <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77C3.635 8.77 3.455 8.7 3.315 8.56C3.175 8.42 3.105 8.25 3.105 8.05C3.105 7.85 3.175 7.68 3.315 7.54C3.455 7.4 3.625 7.33 3.825 7.33H12.155C12.355 7.33 12.535 7.4 12.675 7.54C12.815 7.68 12.885 7.85 12.885 8.05C12.885 8.25 12.815 8.42 12.675 8.56C12.535 8.7 12.365 8.77 12.165 8.77H3.835Z"/><path d="M1.715 5.44C1.515 5.44 1.345 5.37 1.205 5.23C1.065 5.09 0.994995 4.92 0.994995 4.72C0.994995 4.52 1.065 4.35 1.205 4.21C1.345 4.07 1.515 4 1.715 4H14.275C14.475 4 14.645 4.07 14.785 4.21C14.925 4.35 14.995 4.52 14.995 4.72C14.995 4.92 14.925 5.09 14.785 5.23C14.645 5.37 14.475 5.44 14.275 5.44H1.715Z"/><path d="M5.515 12.09C5.315 12.09 5.14499 12.02 5.00499 11.88C4.86499 11.74 4.795 11.57 4.795 11.37C4.795 11.17 4.86499 11 5.00499 10.86C5.14499 10.72 5.315 10.65 5.515 10.65H10.475C10.675 10.65 10.845 10.72 10.985 10.86C11.125 11 11.195 11.17 11.195 11.37C11.195 11.57 11.125 11.74 10.985 11.88C10.845 12.02 10.675 12.09 10.475 12.09H5.515Z"/></svg></span></th>
+                    <th>Username <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77C3.635 8.77 3.455 8.7 3.315 8.56C3.175 8.42 3.105 8.25 3.105 8.05C3.105 7.85 3.175 7.68 3.315 7.54C3.455 7.4 3.625 7.33 3.825 7.33H12.155C12.355 7.33 12.535 7.4 12.675 7.54C12.815 7.68 12.885 7.85 12.885 8.05C12.885 8.25 12.815 8.42 12.675 8.56C12.535 8.7 12.365 8.77 12.165 8.77H3.835Z"/><path d="M1.715 5.44C1.515 5.44 1.345 5.37 1.205 5.23C1.065 5.09 0.994995 4.92 0.994995 4.72C0.994995 4.52 1.065 4.35 1.205 4.21C1.345 4.07 1.515 4 1.715 4H14.275C14.475 4 14.645 4.07 14.785 4.21C14.925 4.35 14.995 4.52 14.995 4.72C14.995 4.92 14.925 5.09 14.785 5.23C14.645 5.37 14.475 5.44 14.275 5.44H1.715Z"/><path d="M5.515 12.09C5.315 12.09 5.14499 12.02 5.00499 11.88C4.86499 11.74 4.795 11.57 4.795 11.37C4.795 11.17 4.86499 11 5.00499 10.86C5.14499 10.72 5.315 10.65 5.515 10.65H10.475C10.675 10.65 10.845 10.72 10.985 10.86C11.125 11 11.195 11.17 11.195 11.37C11.195 11.57 11.125 11.74 10.985 11.88C10.845 12.02 10.675 12.09 10.475 12.09H5.515Z"/></svg></span></th>
+                    <th>Email <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77C3.635 8.77 3.455 8.7 3.315 8.56C3.175 8.42 3.105 8.25 3.105 8.05C3.105 7.85 3.175 7.68 3.315 7.54C3.455 7.4 3.625 7.33 3.825 7.33H12.155C12.355 7.33 12.535 7.4 12.675 7.54C12.815 7.68 12.885 7.85 12.885 8.05C12.885 8.25 12.815 8.42 12.675 8.56C12.535 8.7 12.365 8.77 12.165 8.77H3.835Z"/><path d="M1.715 5.44C1.515 5.44 1.345 5.37 1.205 5.23C1.065 5.09 0.994995 4.92 0.994995 4.72C0.994995 4.52 1.065 4.35 1.205 4.21C1.345 4.07 1.515 4 1.715 4H14.275C14.475 4 14.645 4.07 14.785 4.21C14.925 4.35 14.995 4.52 14.995 4.72C14.995 4.92 14.925 5.09 14.785 5.23C14.645 5.37 14.475 5.44 14.275 5.44H1.715Z"/><path d="M5.515 12.09C5.315 12.09 5.14499 12.02 5.00499 11.88C4.86499 11.74 4.795 11.57 4.795 11.37C4.795 11.17 4.86499 11 5.00499 10.86C5.14499 10.72 5.315 10.65 5.515 10.65H10.475C10.675 10.65 10.845 10.72 10.985 10.86C11.125 11 11.195 11.17 11.195 11.37C11.195 11.57 11.125 11.74 10.985 11.88C10.845 12.02 10.675 12.09 10.475 12.09H5.515Z"/></svg></span></th>
+                    <th>Permissions <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77C3.635 8.77 3.455 8.7 3.315 8.56C3.175 8.42 3.105 8.25 3.105 8.05C3.105 7.85 3.175 7.68 3.315 7.54C3.455 7.4 3.625 7.33 3.825 7.33H12.155C12.355 7.33 12.535 7.4 12.675 7.54C12.815 7.68 12.885 7.85 12.885 8.05C12.885 8.25 12.815 8.42 12.675 8.56C12.535 8.7 12.365 8.77 12.165 8.77H3.835Z"/><path d="M1.715 5.44C1.515 5.44 1.345 5.37 1.205 5.23C1.065 5.09 0.994995 4.92 0.994995 4.72C0.994995 4.52 1.065 4.35 1.205 4.21C1.345 4.07 1.515 4 1.715 4H14.275C14.475 4 14.645 4.07 14.785 4.21C14.925 4.35 14.995 4.52 14.995 4.72C14.995 4.92 14.925 5.09 14.785 5.23C14.645 5.37 14.475 5.44 14.275 5.44H1.715Z"/><path d="M5.515 12.09C5.315 12.09 5.14499 12.02 5.00499 11.88C4.86499 11.74 4.795 11.57 4.795 11.37C4.795 11.17 4.86499 11 5.00499 10.86C5.14499 10.72 5.315 10.65 5.515 10.65H10.475C10.675 10.65 10.845 10.72 10.985 10.86C11.125 11 11.195 11.17 11.195 11.37C11.195 11.57 11.125 11.74 10.985 11.88C10.845 12.02 10.675 12.09 10.475 12.09H5.515Z"/></svg></span></th>
+                    <th>Status <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77C3.635 8.77 3.455 8.7 3.315 8.56C3.175 8.42 3.105 8.25 3.105 8.05C3.105 7.85 3.175 7.68 3.315 7.54C3.455 7.4 3.625 7.33 3.825 7.33H12.155C12.355 7.33 12.535 7.4 12.675 7.54C12.815 7.68 12.885 7.85 12.885 8.05C12.885 8.25 12.815 8.42 12.675 8.56C12.535 8.7 12.365 8.77 12.165 8.77H3.835Z"/><path d="M1.715 5.44C1.515 5.44 1.345 5.37 1.205 5.23C1.065 5.09 0.994995 4.92 0.994995 4.72C0.994995 4.52 1.065 4.35 1.205 4.21C1.345 4.07 1.515 4 1.715 4H14.275C14.475 4 14.645 4.07 14.785 4.21C14.925 4.35 14.995 4.52 14.995 4.72C14.995 4.92 14.925 5.09 14.785 5.23C14.645 5.37 14.475 5.44 14.275 5.44H1.715Z"/><path d="M5.515 12.09C5.315 12.09 5.14499 12.02 5.00499 11.88C4.86499 11.74 4.795 11.57 4.795 11.37C4.795 11.17 4.86499 11 5.00499 10.86C5.14499 10.72 5.315 10.65 5.515 10.65H10.475C10.675 10.65 10.845 10.72 10.985 10.86C11.125 11 11.195 11.17 11.195 11.37C11.195 11.57 11.125 11.74 10.985 11.88C10.845 12.02 10.675 12.09 10.475 12.09H5.515Z"/></svg></span></th>
+                    <th style="width:40px;"></th>
+                  </tr>
+                </thead>
+                <tbody id="pendingUsersBody">
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Active Users Card -->
+          <div class="audit-card">
+            <div class="audit-card-header">
+              <div class="audit-card-title">
+                <h3>Active Users</h3>
+                <span class="count" id="activeUsersCount">5</span>
+              </div>
+              <div class="audit-card-actions">
+                <div class="audit-search">
+                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="7" cy="7" r="5.5"/><path d="M11 11l3.5 3.5"/></svg>
+                  <input type="text" placeholder="Search users" id="activeUsersSearch">
+                </div>
+              </div>
+            </div>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Name <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77C3.635 8.77 3.455 8.7 3.315 8.56C3.175 8.42 3.105 8.25 3.105 8.05C3.105 7.85 3.175 7.68 3.315 7.54C3.455 7.4 3.625 7.33 3.825 7.33H12.155C12.355 7.33 12.535 7.4 12.675 7.54C12.815 7.68 12.885 7.85 12.885 8.05C12.885 8.25 12.815 8.42 12.675 8.56C12.535 8.7 12.365 8.77 12.165 8.77H3.835Z"/><path d="M1.715 5.44C1.515 5.44 1.345 5.37 1.205 5.23C1.065 5.09 0.994995 4.92 0.994995 4.72C0.994995 4.52 1.065 4.35 1.205 4.21C1.345 4.07 1.515 4 1.715 4H14.275C14.475 4 14.645 4.07 14.785 4.21C14.925 4.35 14.995 4.52 14.995 4.72C14.995 4.92 14.925 5.09 14.785 5.23C14.645 5.37 14.475 5.44 14.275 5.44H1.715Z"/><path d="M5.515 12.09C5.315 12.09 5.14499 12.02 5.00499 11.88C4.86499 11.74 4.795 11.57 4.795 11.37C4.795 11.17 4.86499 11 5.00499 10.86C5.14499 10.72 5.315 10.65 5.515 10.65H10.475C10.675 10.65 10.845 10.72 10.985 10.86C11.125 11 11.195 11.17 11.195 11.37C11.195 11.57 11.125 11.74 10.985 11.88C10.845 12.02 10.675 12.09 10.475 12.09H5.515Z"/></svg></span></th>
+                  <th>Username <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77C3.635 8.77 3.455 8.7 3.315 8.56C3.175 8.42 3.105 8.25 3.105 8.05C3.105 7.85 3.175 7.68 3.315 7.54C3.455 7.4 3.625 7.33 3.825 7.33H12.155C12.355 7.33 12.535 7.4 12.675 7.54C12.815 7.68 12.885 7.85 12.885 8.05C12.885 8.25 12.815 8.42 12.675 8.56C12.535 8.7 12.365 8.77 12.165 8.77H3.835Z"/><path d="M1.715 5.44C1.515 5.44 1.345 5.37 1.205 5.23C1.065 5.09 0.994995 4.92 0.994995 4.72C0.994995 4.52 1.065 4.35 1.205 4.21C1.345 4.07 1.515 4 1.715 4H14.275C14.475 4 14.645 4.07 14.785 4.21C14.925 4.35 14.995 4.52 14.995 4.72C14.995 4.92 14.925 5.09 14.785 5.23C14.645 5.37 14.475 5.44 14.275 5.44H1.715Z"/><path d="M5.515 12.09C5.315 12.09 5.14499 12.02 5.00499 11.88C4.86499 11.74 4.795 11.57 4.795 11.37C4.795 11.17 4.86499 11 5.00499 10.86C5.14499 10.72 5.315 10.65 5.515 10.65H10.475C10.675 10.65 10.845 10.72 10.985 10.86C11.125 11 11.195 11.17 11.195 11.37C11.195 11.57 11.125 11.74 10.985 11.88C10.845 12.02 10.675 12.09 10.475 12.09H5.515Z"/></svg></span></th>
+                  <th>Email <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77C3.635 8.77 3.455 8.7 3.315 8.56C3.175 8.42 3.105 8.25 3.105 8.05C3.105 7.85 3.175 7.68 3.315 7.54C3.455 7.4 3.625 7.33 3.825 7.33H12.155C12.355 7.33 12.535 7.4 12.675 7.54C12.815 7.68 12.885 7.85 12.885 8.05C12.885 8.25 12.815 8.42 12.675 8.56C12.535 8.7 12.365 8.77 12.165 8.77H3.835Z"/><path d="M1.715 5.44C1.515 5.44 1.345 5.37 1.205 5.23C1.065 5.09 0.994995 4.92 0.994995 4.72C0.994995 4.52 1.065 4.35 1.205 4.21C1.345 4.07 1.515 4 1.715 4H14.275C14.475 4 14.645 4.07 14.785 4.21C14.925 4.35 14.995 4.52 14.995 4.72C14.995 4.92 14.925 5.09 14.785 5.23C14.645 5.37 14.475 5.44 14.275 5.44H1.715Z"/><path d="M5.515 12.09C5.315 12.09 5.14499 12.02 5.00499 11.88C4.86499 11.74 4.795 11.57 4.795 11.37C4.795 11.17 4.86499 11 5.00499 10.86C5.14499 10.72 5.315 10.65 5.515 10.65H10.475C10.675 10.65 10.845 10.72 10.985 10.86C11.125 11 11.195 11.17 11.195 11.37C11.195 11.57 11.125 11.74 10.985 11.88C10.845 12.02 10.675 12.09 10.475 12.09H5.515Z"/></svg></span></th>
+                  <th>Permissions <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77C3.635 8.77 3.455 8.7 3.315 8.56C3.175 8.42 3.105 8.25 3.105 8.05C3.105 7.85 3.175 7.68 3.315 7.54C3.455 7.4 3.625 7.33 3.825 7.33H12.155C12.355 7.33 12.535 7.4 12.675 7.54C12.815 7.68 12.885 7.85 12.885 8.05C12.885 8.25 12.815 8.42 12.675 8.56C12.535 8.7 12.365 8.77 12.165 8.77H3.835Z"/><path d="M1.715 5.44C1.515 5.44 1.345 5.37 1.205 5.23C1.065 5.09 0.994995 4.92 0.994995 4.72C0.994995 4.52 1.065 4.35 1.205 4.21C1.345 4.07 1.515 4 1.715 4H14.275C14.475 4 14.645 4.07 14.785 4.21C14.925 4.35 14.995 4.52 14.995 4.72C14.995 4.92 14.925 5.09 14.785 5.23C14.645 5.37 14.475 5.44 14.275 5.44H1.715Z"/><path d="M5.515 12.09C5.315 12.09 5.14499 12.02 5.00499 11.88C4.86499 11.74 4.795 11.57 4.795 11.37C4.795 11.17 4.86499 11 5.00499 10.86C5.14499 10.72 5.315 10.65 5.515 10.65H10.475C10.675 10.65 10.845 10.72 10.985 10.86C11.125 11 11.195 11.17 11.195 11.37C11.195 11.57 11.125 11.74 10.985 11.88C10.845 12.02 10.675 12.09 10.475 12.09H5.515Z"/></svg></span></th>
+                  <th>Status <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77C3.635 8.77 3.455 8.7 3.315 8.56C3.175 8.42 3.105 8.25 3.105 8.05C3.105 7.85 3.175 7.68 3.315 7.54C3.455 7.4 3.625 7.33 3.825 7.33H12.155C12.355 7.33 12.535 7.4 12.675 7.54C12.815 7.68 12.885 7.85 12.885 8.05C12.885 8.25 12.815 8.42 12.675 8.56C12.535 8.7 12.365 8.77 12.165 8.77H3.835Z"/><path d="M1.715 5.44C1.515 5.44 1.345 5.37 1.205 5.23C1.065 5.09 0.994995 4.92 0.994995 4.72C0.994995 4.52 1.065 4.35 1.205 4.21C1.345 4.07 1.515 4 1.715 4H14.275C14.475 4 14.645 4.07 14.785 4.21C14.925 4.35 14.995 4.52 14.995 4.72C14.995 4.92 14.925 5.09 14.785 5.23C14.645 5.37 14.475 5.44 14.275 5.44H1.715Z"/><path d="M5.515 12.09C5.315 12.09 5.14499 12.02 5.00499 11.88C4.86499 11.74 4.795 11.57 4.795 11.37C4.795 11.17 4.86499 11 5.00499 10.86C5.14499 10.72 5.315 10.65 5.515 10.65H10.475C10.675 10.65 10.845 10.72 10.985 10.86C11.125 11 11.195 11.17 11.195 11.37C11.195 11.57 11.125 11.74 10.985 11.88C10.845 12.02 10.675 12.09 10.475 12.09H5.515Z"/></svg></span></th>
+                  <th style="width:40px;"></th>
+                </tr>
+              </thead>
+              <tbody id="activeUsersBody">
+              </tbody>
+            </table>
+            <div class="audit-pagination" id="activeUsersPagination">
+              <div class="audit-pagination-left">
+                <select id="activeUsersPerPage">
+                  <option selected>10</option>
+                  <option>25</option>
+                  <option>50</option>
+                </select>
+                <span>items per page</span>
+                <span style="margin-left: 8px; color: var(--text-muted);">|</span>
+                <span id="activeUsersPageInfo" style="margin-left: 8px;">1-10 of 12 items</span>
+              </div>
+              <div class="audit-pagination-right">
+                <button class="audit-page-btn" id="activeUsersPrev" disabled><svg viewBox="0 0 16 16" fill="currentColor"><path d="M11.354 1.646a.5.5 0 010 .708L5.707 8l5.647 5.646a.5.5 0 01-.708.708l-6-6a.5.5 0 010-.708l6-6a.5.5 0 01.708 0z"/></svg></button>
+                <select class="audit-page-select" id="activeUsersPageSelect">
+                  <option selected>Page 1</option>
+                  <option>Page 2</option>
+                </select>
+                <button class="audit-page-btn" id="activeUsersNext"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M4.646 1.646a.5.5 0 01.708 0l6 6a.5.5 0 010 .708l-6 6a.5.5 0 01-.708-.708L10.293 8 4.646 2.354a.5.5 0 010-.708z"/></svg></button>
+              </div>
+            </div>
+          </div>
+        </div><!-- /usersPage -->
+
         <!-- ==================== COMPONENTS SHOWCASE ==================== -->
         <div id="componentsPage" class="page-view" style="display:none; flex-direction:column; gap:20px; padding:20px;">
           <div style="display:flex; align-items:center; justify-content:space-between;">
@@ -4153,6 +4294,94 @@
     <div class="slide-panel-footer">
       <button class="btn-outline" onclick="closeSlidePanel('addScanPoolPanel')">Cancel</button>
       <button class="btn-primary" onclick="addScanPool()">Add Scan Pool</button>
+    </div>
+  </div>
+
+  <!-- ==================== ADD USER SLIDE-OUT PANEL ==================== -->
+  <div class="slide-panel-overlay" id="addUserOverlay" onclick="closeSlidePanel('addUserPanel')"></div>
+  <div class="slide-panel" id="addUserPanel" role="dialog" aria-labelledby="addUserTitle" aria-modal="true">
+    <div class="slide-panel-header">
+      <h2 id="addUserTitle">Add User</h2>
+      <button class="modal-close" aria-label="Close panel" onclick="closeSlidePanel('addUserPanel')">
+        <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><line x1="2" y1="2" x2="12" y2="12"/><line x1="12" y1="2" x2="2" y2="12"/></svg>
+      </button>
+    </div>
+    <div class="slide-panel-body">
+      <div class="panel-field">
+        <label class="panel-field-label" for="addUserFullName">Full Name <span style="color:#d9534f;">*</span></label>
+        <div class="input-field"><input type="text" id="addUserFullName" placeholder="Enter full name"></div>
+      </div>
+      <div class="panel-field">
+        <label class="panel-field-label" for="addUserUsername">Username</label>
+        <div class="input-field"><input type="text" id="addUserUsername" placeholder="Enter username"></div>
+      </div>
+      <div class="panel-field">
+        <label class="panel-field-label" for="addUserEmail">Email</label>
+        <div class="input-field"><input type="email" id="addUserEmail" placeholder="Enter email address"></div>
+      </div>
+      <div class="panel-field">
+        <label class="panel-field-label" for="addUserPassword">Password</label>
+        <div class="input-field">
+          <input type="password" id="addUserPassword" placeholder="Enter password">
+          <span class="input-eye" onclick="togglePassword(this)"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 3C4.364 3 1.258 5.073 0 8c1.258 2.927 4.364 5 8 5s6.742-2.073 8-5c-1.258-2.927-4.364-5-8-5zm0 8.333A3.335 3.335 0 014.667 8 3.335 3.335 0 018 4.667 3.335 3.335 0 0111.333 8 3.335 3.335 0 018 11.333zM8 6a2 2 0 100 4 2 2 0 000-4z"/></svg></span>
+        </div>
+      </div>
+      <div class="panel-field">
+        <label class="panel-field-label" for="addUserConfirmPassword">Confirm Password</label>
+        <div class="input-field">
+          <input type="password" id="addUserConfirmPassword" placeholder="Confirm password">
+          <span class="input-eye" onclick="togglePassword(this)"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 3C4.364 3 1.258 5.073 0 8c1.258 2.927 4.364 5 8 5s6.742-2.073 8-5c-1.258-2.927-4.364-5-8-5zm0 8.333A3.335 3.335 0 014.667 8 3.335 3.335 0 018 4.667 3.335 3.335 0 0111.333 8 3.335 3.335 0 018 11.333zM8 6a2 2 0 100 4 2 2 0 000-4z"/></svg></span>
+        </div>
+      </div>
+      <div class="panel-field">
+        <label class="panel-field-label" for="addUserPermissions">Permissions</label>
+        <select class="select-field" id="addUserPermissions" style="max-width:none;">
+          <option selected>Read-Only</option>
+          <option>Read-Write</option>
+          <option>Admin</option>
+        </select>
+      </div>
+    </div>
+    <div class="slide-panel-footer">
+      <button class="btn-outline" onclick="closeSlidePanel('addUserPanel')">Cancel</button>
+      <button class="btn-primary" onclick="addUser()">Add</button>
+    </div>
+  </div>
+
+  <!-- ==================== EDIT USER SLIDE-OUT PANEL ==================== -->
+  <div class="slide-panel-overlay" id="editUserOverlay" onclick="closeSlidePanel('editUserPanel')"></div>
+  <div class="slide-panel" id="editUserPanel" role="dialog" aria-labelledby="editUserTitle" aria-modal="true">
+    <div class="slide-panel-header">
+      <h2 id="editUserTitle">Edit User</h2>
+      <button class="modal-close" aria-label="Close panel" onclick="closeSlidePanel('editUserPanel')">
+        <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><line x1="2" y1="2" x2="12" y2="12"/><line x1="12" y1="2" x2="2" y2="12"/></svg>
+      </button>
+    </div>
+    <div class="slide-panel-body">
+      <div class="panel-field">
+        <label class="panel-field-label" for="editUserFullName">Full Name</label>
+        <div class="input-field"><input type="text" id="editUserFullName" placeholder="Enter full name"></div>
+      </div>
+      <div class="panel-field">
+        <label class="panel-field-label" for="editUserUsername">Username</label>
+        <div class="input-field"><input type="text" id="editUserUsername" placeholder="Enter username"></div>
+      </div>
+      <div class="panel-field">
+        <label class="panel-field-label" for="editUserEmail">Email</label>
+        <div class="input-field"><input type="email" id="editUserEmail" placeholder="Enter email address"></div>
+      </div>
+      <div class="panel-field">
+        <label class="panel-field-label" for="editUserPermissions">Permissions</label>
+        <select class="select-field" id="editUserPermissions" style="max-width:none;">
+          <option selected>Read-Only</option>
+          <option>Read-Write</option>
+          <option>Admin</option>
+        </select>
+      </div>
+    </div>
+    <div class="slide-panel-footer">
+      <button class="btn-outline" onclick="closeSlidePanel('editUserPanel')">Discard</button>
+      <button class="btn-primary" onclick="saveUser()">Save</button>
     </div>
   </div>
 
@@ -5736,6 +5965,9 @@
         } else if (text === 'Settings') {
           document.getElementById('settingsPage').classList.add('active');
           document.getElementById('componentsPage').style.display = 'none';
+        } else if (text === 'Users') {
+          document.getElementById('usersPage').classList.add('active');
+          document.getElementById('componentsPage').style.display = 'none';
         } else {
           // For other nav items, show settings by default or show toast
           document.getElementById('componentsPage').style.display = 'none';
@@ -6178,6 +6410,248 @@
 
     handleHash();
     window.addEventListener('hashchange', handleHash);
+
+    // ===============================================================
+    // USERS PAGE — data and interactions
+    // ===============================================================
+    (function initUsersPage() {
+      const avatarColors = [
+        '#c17a5a', '#6b8faa', '#8a7faa', '#7aaa6b', '#aa8a6b',
+        '#6b7aaa', '#aa6b8a', '#5a9a8a', '#9a6b5a', '#7a8aaa'
+      ];
+
+      const activeUsers = [
+        { name: 'Alex Johnson', initials: 'A', username: 'alex.johnson', email: 'alex.johnson@opswat.com', permissions: 'Admin', color: avatarColors[0] },
+        { name: 'Emily Chen', initials: 'E', username: 'emily.chen', email: 'emily.chen@opswat.com', permissions: 'Read-Write', color: avatarColors[1] },
+        { name: 'Michael Davis', initials: 'M', username: 'michael.davis', email: 'michael.davis@opswat.com', permissions: 'Read-Only', color: avatarColors[2] },
+        { name: 'Sarah Wilson', initials: 'S', username: 'sarah.wilson', email: 'sarah.wilson@opswat.com', permissions: 'Read-Write', color: avatarColors[3] },
+        { name: 'David Brown', initials: 'D', username: 'david.brown', email: 'david.brown@opswat.com', permissions: 'Read-Only', color: avatarColors[4] },
+        { name: 'Rachel Kim', initials: 'R', username: 'rachel.kim', email: 'rachel.kim@opswat.com', permissions: 'Read-Write', color: avatarColors[5] },
+        { name: 'James Miller', initials: 'J', username: 'james.miller', email: 'james.miller@opswat.com', permissions: 'Admin', color: avatarColors[6] },
+        { name: 'Olivia Garcia', initials: 'O', username: 'olivia.garcia', email: 'olivia.garcia@opswat.com', permissions: 'Read-Only', color: avatarColors[7] },
+        { name: 'William Lee', initials: 'W', username: 'william.lee', email: 'william.lee@opswat.com', permissions: 'Read-Write', color: avatarColors[8] },
+        { name: 'Sophia Martinez', initials: 'S', username: 'sophia.martinez', email: 'sophia.martinez@opswat.com', permissions: 'Read-Only', color: avatarColors[9] },
+        { name: 'Lucas Anderson', initials: 'L', username: 'lucas.anderson', email: 'lucas.anderson@opswat.com', permissions: 'Read-Write', color: avatarColors[0] },
+        { name: 'Natalie Thomas', initials: 'N', username: 'natalie.thomas', email: 'natalie.thomas@opswat.com', permissions: 'Admin', color: avatarColors[1] }
+      ];
+      let activeUsersPage = 1;
+      let activeUsersPerPage = 10;
+
+      const pendingUsers = [];
+
+      function renderActiveUsers() {
+        const tbody = document.getElementById('activeUsersBody');
+        if (!tbody) return;
+        const searchTerm = (document.getElementById('activeUsersSearch').value || '').trim().toLowerCase();
+        // Filter with original indices preserved
+        const filtered = activeUsers.map((u, i) => ({ user: u, origIndex: i }))
+          .filter(({ user: u }) => {
+            if (!searchTerm) return true;
+            return u.name.toLowerCase().includes(searchTerm) ||
+                   u.username.toLowerCase().includes(searchTerm) ||
+                   u.email.toLowerCase().includes(searchTerm) ||
+                   u.permissions.toLowerCase().includes(searchTerm);
+          });
+        const total = filtered.length;
+        const totalPages = Math.max(1, Math.ceil(total / activeUsersPerPage));
+        if (activeUsersPage > totalPages) activeUsersPage = totalPages;
+        const start = (activeUsersPage - 1) * activeUsersPerPage;
+        const end = Math.min(start + activeUsersPerPage, total);
+        const pageUsers = filtered.slice(start, end);
+
+        tbody.innerHTML = pageUsers.map(({ user: u, origIndex: i }) => {
+          return `
+          <tr>
+            <td>
+              <div class="user-name-cell">
+                <div class="user-avatar" style="background:${u.color}">${u.initials}</div>
+                <span class="user-name-text">${u.name}</span>
+              </div>
+            </td>
+            <td>${u.username}</td>
+            <td>${u.email}</td>
+            <td>${u.permissions}</td>
+            <td><span class="tag tag-success">Active</span></td>
+            <td><div class="pool-action-btn" onclick="togglePoolActionMenu(this)"><svg viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="3" r="1.5"/><circle cx="8" cy="8" r="1.5"/><circle cx="8" cy="13" r="1.5"/></svg><div class="pool-action-menu"><button class="pool-action-menu-item" onclick="editActiveUser(${i})"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M12.146.854a.5.5 0 01.708 0l2.292 2.292a.5.5 0 010 .708L5.354 13.646a.5.5 0 01-.233.131l-3 .875a.5.5 0 01-.631-.631l.875-3a.5.5 0 01.131-.233L12.146.854z"/></svg>Edit</button><button class="pool-action-menu-item danger" onclick="deleteActiveUser(${i})"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M5.5 5.5A.5.5 0 016 6v6a.5.5 0 01-1 0V6a.5.5 0 01.5-.5zm2.5 0a.5.5 0 01.5.5v6a.5.5 0 01-1 0V6a.5.5 0 01.5-.5zm3 .5a.5.5 0 00-1 0v6a.5.5 0 001 0V6z"/><path fill-rule="evenodd" d="M14.5 3a1 1 0 01-1 1H13v9a2 2 0 01-2 2H5a2 2 0 01-2-2V4h-.5a1 1 0 01-1-1V2a1 1 0 011-1H6a1 1 0 011-1h2a1 1 0 011 1h3.5a1 1 0 011 1v1zM4.118 4L4 4.059V13a1 1 0 001 1h6a1 1 0 001-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/></svg>Delete</button></div></div></td>
+          </tr>`;
+        }).join('');
+        document.getElementById('activeUsersCount').textContent = activeUsers.length;
+
+        // Update pagination controls
+        const pageInfo = document.getElementById('activeUsersPageInfo');
+        if (pageInfo) pageInfo.textContent = total === 0 ? '0 of 0 items' : (start + 1) + '-' + end + ' of ' + total + ' items';
+        const prevBtn = document.getElementById('activeUsersPrev');
+        const nextBtn = document.getElementById('activeUsersNext');
+        if (prevBtn) prevBtn.disabled = activeUsersPage <= 1;
+        if (nextBtn) nextBtn.disabled = activeUsersPage >= totalPages;
+        const pageSelect = document.getElementById('activeUsersPageSelect');
+        if (pageSelect) {
+          pageSelect.innerHTML = '';
+          for (let p = 1; p <= totalPages; p++) {
+            const opt = document.createElement('option');
+            opt.textContent = 'Page ' + p;
+            opt.selected = p === activeUsersPage;
+            pageSelect.appendChild(opt);
+          }
+        }
+        // Hide pagination when items fit on one page
+        const paginationEl = document.getElementById('activeUsersPagination');
+        if (paginationEl) paginationEl.style.display = total <= activeUsersPerPage ? 'none' : 'flex';
+      }
+
+      function renderPendingUsers() {
+        const emptyState = document.getElementById('pendingEmptyState');
+        const tableWrap = document.getElementById('pendingUsersTableWrap');
+        const tbody = document.getElementById('pendingUsersBody');
+        const countEl = document.getElementById('pendingUsersCount');
+        if (!tbody) return;
+
+        countEl.textContent = pendingUsers.length;
+
+        if (pendingUsers.length === 0) {
+          emptyState.style.display = 'flex';
+          tableWrap.style.display = 'none';
+          return;
+        }
+
+        const searchTerm = (document.getElementById('pendingUsersSearch').value || '').trim().toLowerCase();
+        const filtered = pendingUsers.map((u, i) => ({ user: u, origIndex: i }))
+          .filter(({ user: u }) => {
+            if (!searchTerm) return true;
+            return u.name.toLowerCase().includes(searchTerm) ||
+                   u.username.toLowerCase().includes(searchTerm) ||
+                   u.email.toLowerCase().includes(searchTerm) ||
+                   u.permissions.toLowerCase().includes(searchTerm);
+          });
+
+        emptyState.style.display = 'none';
+        tableWrap.style.display = 'block';
+        tbody.innerHTML = filtered.map(({ user: u, origIndex: i }) => `
+          <tr>
+            <td>
+              <div class="user-name-cell">
+                <div class="user-avatar" style="background:${u.color}">${u.initials}</div>
+                <span class="user-name-text">${u.name}</span>
+              </div>
+            </td>
+            <td>${u.username}</td>
+            <td>${u.email}</td>
+            <td>${u.permissions}</td>
+            <td><span class="tag tag-caution">Pending</span></td>
+            <td><div class="pool-action-btn" onclick="togglePoolActionMenu(this)"><svg viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="3" r="1.5"/><circle cx="8" cy="8" r="1.5"/><circle cx="8" cy="13" r="1.5"/></svg><div class="pool-action-menu"><button class="pool-action-menu-item" onclick="approvePendingUser(${i})"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"/></svg>Approve</button><button class="pool-action-menu-item danger" onclick="denyPendingUser(${i})"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.72 3.72a.75.75 0 011.06 0L8 6.94l3.22-3.22a.75.75 0 111.06 1.06L9.06 8l3.22 3.22a.75.75 0 11-1.06 1.06L8 9.06l-3.22 3.22a.75.75 0 01-1.06-1.06L6.94 8 3.72 4.78a.75.75 0 010-1.06z"/></svg>Deny</button></div></div></td>
+          </tr>
+        `).join('');
+      }
+
+      // Global functions for action menus
+      window.editActiveUser = function(index) {
+        if (event) event.stopPropagation();
+        const u = activeUsers[index];
+        if (!u) return;
+        document.querySelectorAll('.pool-action-menu.open').forEach(m => m.classList.remove('open'));
+        document.getElementById('editUserFullName').value = u.name;
+        document.getElementById('editUserUsername').value = u.username;
+        document.getElementById('editUserEmail').value = u.email;
+        document.getElementById('editUserPermissions').value = u.permissions;
+        openSlidePanel('editUserPanel');
+        window._editingUserIndex = index;
+      };
+
+      window.deleteActiveUser = function(index) {
+        if (event) event.stopPropagation();
+        document.querySelectorAll('.pool-action-menu.open').forEach(m => m.classList.remove('open'));
+        activeUsers.splice(index, 1);
+        renderActiveUsers();
+        showToast('User deleted');
+      };
+
+      window.approvePendingUser = function(index) {
+        if (event) event.stopPropagation();
+        const u = pendingUsers.splice(index, 1)[0];
+        document.querySelectorAll('.pool-action-menu.open').forEach(m => m.classList.remove('open'));
+        if (u) {
+          activeUsers.push(u);
+          renderPendingUsers();
+          renderActiveUsers();
+          showToast(u.name + ' approved');
+        }
+      };
+
+      window.denyPendingUser = function(index) {
+        if (event) event.stopPropagation();
+        const u = pendingUsers.splice(index, 1)[0];
+        document.querySelectorAll('.pool-action-menu.open').forEach(m => m.classList.remove('open'));
+        renderPendingUsers();
+        if (u) showToast(u.name + ' denied');
+      };
+
+      window.addUser = function() {
+        const name = document.getElementById('addUserFullName').value.trim();
+        if (!name) { showToast('Full Name is required'); return; }
+        const username = document.getElementById('addUserUsername').value.trim() || name.toLowerCase().replace(/\s+/g, '.');
+        const email = document.getElementById('addUserEmail').value.trim() || username + '@opswat.com';
+        const permissions = document.getElementById('addUserPermissions').value;
+        const initials = name.charAt(0).toUpperCase();
+        const color = avatarColors[activeUsers.length % avatarColors.length];
+
+        pendingUsers.push({ name, initials, username, email, permissions, color });
+        renderPendingUsers();
+        closeSlidePanel('addUserPanel');
+        // Clear form
+        document.getElementById('addUserFullName').value = '';
+        document.getElementById('addUserUsername').value = '';
+        document.getElementById('addUserEmail').value = '';
+        document.getElementById('addUserPassword').value = '';
+        document.getElementById('addUserConfirmPassword').value = '';
+        document.getElementById('addUserPermissions').value = 'Read-Only';
+        showToast(name + ' added to pending');
+      };
+
+      window.saveUser = function() {
+        const index = window._editingUserIndex;
+        if (index == null || !activeUsers[index]) return;
+        activeUsers[index].name = document.getElementById('editUserFullName').value.trim();
+        activeUsers[index].username = document.getElementById('editUserUsername').value.trim();
+        activeUsers[index].email = document.getElementById('editUserEmail').value.trim();
+        activeUsers[index].permissions = document.getElementById('editUserPermissions').value;
+        activeUsers[index].initials = activeUsers[index].name.charAt(0).toUpperCase();
+        renderActiveUsers();
+        closeSlidePanel('editUserPanel');
+        showToast('User updated');
+      };
+
+      renderActiveUsers();
+      renderPendingUsers();
+
+      // Pagination controls
+      document.getElementById('activeUsersPrev').addEventListener('click', function() {
+        if (activeUsersPage > 1) { activeUsersPage--; renderActiveUsers(); }
+      });
+      document.getElementById('activeUsersNext').addEventListener('click', function() {
+        const searchTerm = (document.getElementById('activeUsersSearch').value || '').trim().toLowerCase();
+        const filteredCount = searchTerm ? activeUsers.filter(u => u.name.toLowerCase().includes(searchTerm) || u.username.toLowerCase().includes(searchTerm) || u.email.toLowerCase().includes(searchTerm) || u.permissions.toLowerCase().includes(searchTerm)).length : activeUsers.length;
+        const totalPages = Math.ceil(filteredCount / activeUsersPerPage);
+        if (activeUsersPage < totalPages) { activeUsersPage++; renderActiveUsers(); }
+      });
+      document.getElementById('activeUsersPageSelect').addEventListener('change', function() {
+        activeUsersPage = this.selectedIndex + 1;
+        renderActiveUsers();
+      });
+      document.getElementById('activeUsersPerPage').addEventListener('change', function() {
+        activeUsersPerPage = parseInt(this.value);
+        activeUsersPage = 1;
+        renderActiveUsers();
+      });
+
+      // Search event listeners
+      document.getElementById('activeUsersSearch').addEventListener('input', function() {
+        activeUsersPage = 1;
+        renderActiveUsers();
+      });
+      document.getElementById('pendingUsersSearch').addEventListener('input', function() {
+        renderPendingUsers();
+      });
+    })();
 
   </script>
 </body>
