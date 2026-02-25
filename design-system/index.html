@@ -3,7 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <base href="/design-system/">
+  <script>
+    // Set base href dynamically so CSS/anchors resolve correctly on any host (localhost, GitHub Pages, etc.)
+    var p = location.pathname;
+    // If path has no file extension, treat it as a directory (add trailing slash)
+    if (p.lastIndexOf('.') <= p.lastIndexOf('/')) p = p.replace(/\/?$/, '/');
+    else p = p.substring(0, p.lastIndexOf('/') + 1);
+    var b = document.createElement('base'); b.href = p;
+    document.head.appendChild(b);
+  </script>
   <title>Blue Line Design System</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="tokens.css">
