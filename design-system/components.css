@@ -1196,6 +1196,16 @@ select:focus { border-color: var(--primary); outline: none; }
 .priority-toggle-btn.active { background: var(--tab-active-bg); color: var(--text-on-fill); }
 .priority-toggle-btn:hover:not(.active) { background: var(--hover-subtle); }
 
+/* --- Detail Breadcrumb --- */
+.detail-breadcrumb {
+  display: flex; align-items: center; gap: 8px;
+  margin-bottom: 16px;
+  font-size: 14px; color: var(--text-muted);
+}
+.detail-breadcrumb a { color: var(--primary); text-decoration: none; cursor: pointer; }
+.detail-breadcrumb a:hover { text-decoration: underline; }
+.detail-breadcrumb svg { width: 12px; height: 12px; color: var(--text-muted); }
+
 /* ========================================================================
    OVERLAYS
    ======================================================================== */

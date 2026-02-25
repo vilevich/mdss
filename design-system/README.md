@@ -293,6 +293,7 @@ Uses `--ds-*` semantic tokens — auto-adapts to dark mode.
 | `.table-page` | Table-page wrapper (card border, radius, shadow) |
 | `.priority-toggle` | Segmented toggle bar (e.g. All / Active / Archived) |
 | `.priority-toggle-btn` | Individual toggle segment with `.active` state |
+| `.detail-breadcrumb` | Breadcrumb navigation for detail views (Jobs, Workflows) — flex, 14px, linked parent + current |
 
 ### Overlays
 
@@ -434,4 +435,5 @@ Handled in `components.css`:
 | Audit | — | Audit log with filters, search, expandable rows |
 | Users | — | User management with roles and permissions |
 | Jobs | — | Scan job management with detail views |
+| Workflows | — | Workflow list + detail flow diagram with 9 config panels |
 | Components | — | Design system showcase page |

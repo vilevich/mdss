@@ -589,10 +589,7 @@
     .jobs-edit-btn svg { width: 14px; height: 14px; }
 
     /* Job Detail Page */
-    .job-detail-breadcrumb { display: flex; align-items: center; gap: 8px; margin-bottom: 16px; font-size: 14px; color: var(--text-muted); }
-    .job-detail-breadcrumb a { color: var(--primary); text-decoration: none; cursor: pointer; }
-    .job-detail-breadcrumb a:hover { text-decoration: underline; }
-    .job-detail-breadcrumb svg { width: 12px; height: 12px; color: var(--text-muted); }
+    /* job-detail-breadcrumb → design-system/components.css (.detail-breadcrumb) */
     .job-detail-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
     .job-detail-header h1 { font-size: 24px; font-weight: 400; color: var(--text-strong); }
     .job-detail-header-actions { display: flex; gap: 8px; }
@@ -701,6 +698,203 @@
     }
 
     /* notif-dropdown → design-system/components.css */
+
+    /* ===== WORKFLOWS PAGE ===== */
+    .wf-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+    .wf-header h1 { font-size: 24px; font-weight: 500; color: var(--text-strong); }
+
+    /* wf-breadcrumb → design-system/components.css (.detail-breadcrumb) */
+
+    .wf-detail-title { font-size: 24px; font-weight: 500; color: var(--text-strong); margin-bottom: 20px; }
+
+    /* Remediation mini-tags in table */
+    .wf-rem-tag {
+      display: inline-flex; align-items: center; height: 24px; padding: 0 8px;
+      font-size: 12px; font-weight: 500; border-radius: var(--radius);
+      white-space: nowrap;
+    }
+    .wf-rem-tag.keep { background: var(--neutral-100); color: var(--neutral-800); }
+    .wf-rem-tag.copy { background: var(--blue-100); color: var(--blue-900); }
+    .wf-rem-tag.move { background: var(--blue-100); color: var(--blue-900); }
+    .wf-rem-tag.delete { background: var(--red-100); color: var(--red-800); }
+    .wf-rem-tag.failed { background: var(--red-100); color: var(--red-800); }
+    .wf-rem-tag.none { background: transparent; color: var(--text-muted); font-weight: 400; padding: 0; }
+    .wf-rem-tags { display: flex; gap: 4px; flex-wrap: wrap; }
+
+    /* Dot + text status in table cells */
+    .wf-status { display: flex; align-items: center; gap: 6px; font-size: 14px; color: var(--text-strong); }
+    .wf-status-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green-800); flex-shrink: 0; }
+
+    /* Default workflow gear icon */
+    .wf-default-icon { width: 16px; height: 16px; color: var(--text-muted); margin-right: 4px; vertical-align: middle; }
+
+    /* ===== WORKFLOW FLOW DIAGRAM ===== */
+    .wf-canvas {
+      background: var(--neutral-100); border-radius: var(--radius);
+      padding: 40px; overflow: auto; min-height: 480px;
+      position: relative;
+    }
+    .wf-flow {
+      display: flex; align-items: flex-start; gap: 0;
+      min-width: max-content;
+    }
+    .wf-pipeline {
+      display: flex; align-items: center; gap: 0;
+    }
+    .wf-step {
+      display: flex; align-items: center; gap: 0; cursor: pointer;
+    }
+    .wf-node {
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+    }
+    .wf-node-box {
+      width: 64px; height: 64px; border: 1px solid var(--border-200);
+      border-radius: var(--radius-graphics); background: var(--surface-card);
+      display: flex; align-items: center; justify-content: center;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .wf-step:hover .wf-node-box { border-color: var(--primary); box-shadow: 0 0 0 2px rgba(29,107,252,0.15); }
+    .wf-node-box svg { width: 32px; height: 32px; color: var(--neutral-700); }
+    .wf-node-label { font-size: 12px; font-weight: 500; color: var(--text-strong); text-align: center; white-space: nowrap; }
+    .wf-node-sublabel { font-size: 11px; color: var(--text-muted); text-align: center; margin-top: -4px; }
+    .wf-connector {
+      width: 40px; height: 0; border-top: 2px dashed var(--border-200);
+      flex-shrink: 0;
+    }
+    .wf-start-label, .wf-end-label {
+      font-size: 12px; font-weight: 500; color: var(--text-muted);
+      white-space: nowrap;
+    }
+    .wf-start-node, .wf-end-node {
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+    }
+    .wf-end-node .wf-node-box { background: var(--neutral-200); border-color: var(--neutral-300); }
+    .wf-end-node .wf-node-box svg { color: var(--neutral-600); }
+
+    /* Decision diamond */
+    .wf-decision {
+      display: flex; align-items: center; gap: 0;
+    }
+    .wf-diamond {
+      width: 24px; height: 24px; background: var(--surface-card); border: 1px solid var(--border-200);
+      transform: rotate(45deg); flex-shrink: 0;
+    }
+
+    /* Branches after decision */
+    .wf-branches-wrap {
+      display: flex; flex-direction: column; gap: 0; margin-left: 0;
+    }
+    .wf-branch {
+      display: flex; align-items: center; gap: 0; padding: 6px 0;
+    }
+    .wf-branch-line {
+      width: 24px; height: 0; border-top: 2px dashed var(--border-200); flex-shrink: 0;
+    }
+    .wf-branch-label {
+      font-size: 11px; font-weight: 500; color: var(--text-muted);
+      min-width: 60px; text-align: right; padding-right: 8px;
+    }
+    .wf-branch-group {
+      display: flex; flex-direction: column; gap: 4px;
+    }
+    .wf-sub-branch {
+      display: flex; align-items: center; gap: 8px;
+    }
+    .wf-sub-label {
+      font-size: 11px; color: var(--text-muted); min-width: 56px;
+    }
+    .wf-action-btns {
+      display: flex; gap: 4px;
+    }
+    .wf-action-btn {
+      display: flex; align-items: center; justify-content: center;
+      width: 32px; height: 32px; border-radius: var(--radius);
+      border: 1px solid var(--border-200); background: var(--surface-card);
+      cursor: pointer; transition: background 0.15s;
+    }
+    .wf-action-btn:hover { background: var(--hover-subtle); }
+    .wf-action-btn svg { width: 16px; height: 16px; color: var(--text-subtle); }
+    .wf-action-btn.active { border-color: var(--primary); background: var(--blue-100); }
+    .wf-action-btn.active svg { color: var(--primary); }
+    .wf-action-btn-label { font-size: 10px; color: var(--text-muted); text-align: center; }
+
+    .wf-other-rem {
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+      padding: 12px 16px; border: 1px solid var(--border-200); border-radius: var(--radius-graphics);
+      background: var(--surface-card); cursor: pointer;
+      transition: border-color 0.15s;
+    }
+    .wf-other-rem:hover { border-color: var(--primary); }
+    .wf-other-rem-label { font-size: 12px; font-weight: 500; color: var(--text-strong); white-space: nowrap; text-align: center; }
+
+    /* Panel banners (warning/error inside slide panels) */
+    .wf-panel-banner {
+      display: flex; gap: 10px; padding: 12px; border-radius: var(--radius);
+      font-size: 13px; line-height: 1.4; margin-bottom: 16px;
+    }
+    .wf-panel-banner.warning { background: var(--ds-caution-100); color: var(--ds-caution-text); }
+    .wf-panel-banner.error { background: var(--ds-alert-100); color: var(--ds-alert-text); }
+    .wf-panel-banner svg { width: 16px; height: 16px; flex-shrink: 0; margin-top: 1px; }
+    .wf-panel-banner a { color: inherit; font-weight: 500; cursor: pointer; }
+
+    /* Tech list in Technologies panel */
+    .wf-tech-item {
+      padding: 16px 0; border-bottom: 1px solid var(--border-card);
+    }
+    .wf-tech-item:last-child { border-bottom: none; }
+    .wf-tech-name { font-size: 14px; font-weight: 500; color: var(--text-strong); }
+    .wf-tech-desc { font-size: 13px; color: var(--text-subtle); margin-top: 2px; }
+    .wf-tech-status { margin-top: 6px; }
+
+    /* Checkbox with sub-fields (File Tagging) */
+    .wf-tag-group { padding: 12px 0; border-bottom: 1px solid var(--border-card); }
+    .wf-tag-group:last-child { border-bottom: none; }
+    .wf-tag-check { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+    .wf-tag-check input[type="checkbox"] { width: 16px; height: 16px; accent-color: var(--primary); }
+    .wf-tag-check label { font-size: 14px; font-weight: 500; color: var(--text-strong); }
+    .wf-tag-fields { padding-left: 24px; display: flex; flex-direction: column; gap: 8px; }
+    .wf-tag-field-label { font-size: 12px; color: var(--text-subtle); }
+    .wf-tag-field-value { font-size: 13px; color: var(--text-strong); padding: 6px 8px; border: 1px solid var(--border-200); border-radius: var(--radius); background: var(--surface-card); }
+    .wf-show-verdicts { font-size: 13px; color: var(--primary); cursor: pointer; padding-left: 24px; }
+    .wf-show-verdicts:hover { text-decoration: underline; }
+    .wf-verdicts { padding-left: 24px; margin-top: 8px; display: flex; flex-direction: column; gap: 8px; }
+    .wf-verdict-row { display: flex; flex-direction: column; gap: 4px; }
+    .wf-verdict-label { font-size: 12px; font-weight: 500; color: var(--text-strong); }
+    .wf-verdict-input { font-size: 13px; padding: 6px 8px; border: 1px solid var(--border-200); border-radius: var(--radius); background: var(--surface-card); color: var(--text-strong); display: flex; align-items: center; justify-content: space-between; }
+    .wf-verdict-input .clear-x { cursor: pointer; color: var(--text-muted); font-size: 14px; }
+
+    /* Remediation radio with conditional content */
+    .wf-rem-option { padding: 8px 0; }
+    .wf-rem-radio { display: flex; align-items: center; gap: 8px; }
+    .wf-rem-radio input[type="radio"] { width: 16px; height: 16px; accent-color: var(--primary); }
+    .wf-rem-radio label { font-size: 14px; font-weight: 500; color: var(--text-strong); }
+    .wf-rem-content { padding-left: 24px; margin-top: 8px; }
+    .wf-storage-tags { display: flex; gap: 4px; flex-wrap: wrap; align-items: center; margin-bottom: 12px; }
+    .wf-storage-tag {
+      display: inline-flex; align-items: center; gap: 4px; padding: 4px 8px;
+      background: var(--neutral-100); border-radius: var(--radius); font-size: 13px; color: var(--text-strong);
+    }
+    .wf-storage-tag .remove-x { cursor: pointer; color: var(--text-muted); font-size: 14px; }
+    .wf-folder-check { display: flex; align-items: center; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--border-card); }
+    .wf-folder-check:last-child { border-bottom: none; }
+    .wf-folder-check label { font-size: 14px; color: var(--text-strong); }
+    .wf-folder-check input[type="checkbox"] { width: 16px; height: 16px; accent-color: var(--primary); }
+
+    /* Dark mode - Workflows */
+    [data-theme="dark"] .wf-canvas { background: var(--neutral-1100); }
+    [data-theme="dark"] .wf-node-box { background: var(--surface-card); border-color: var(--border-200); }
+    [data-theme="dark"] .wf-diamond { background: var(--surface-card); border-color: var(--border-200); }
+    [data-theme="dark"] .wf-action-btn { background: var(--surface-card); border-color: var(--border-200); }
+    [data-theme="dark"] .wf-action-btn.active { background: rgba(29,107,252,0.15); border-color: var(--primary); }
+    [data-theme="dark"] .wf-other-rem { background: var(--surface-card); border-color: var(--border-200); }
+    [data-theme="dark"] .wf-end-node .wf-node-box { background: var(--neutral-900); border-color: var(--neutral-800); }
+    [data-theme="dark"] .wf-rem-tag.keep { background: var(--neutral-900); color: var(--neutral-400); }
+    [data-theme="dark"] .wf-rem-tag.copy, [data-theme="dark"] .wf-rem-tag.move { background: rgba(29,107,252,0.15); color: var(--blue-400); }
+    [data-theme="dark"] .wf-rem-tag.delete, [data-theme="dark"] .wf-rem-tag.failed { background: rgba(212,0,49,0.15); color: var(--red-400); }
+    [data-theme="dark"] .wf-storage-tag { background: var(--neutral-900); color: var(--text-strong); }
+    [data-theme="dark"] .wf-tag-field-value, [data-theme="dark"] .wf-verdict-input { background: var(--surface-bg); border-color: var(--border-200); color: var(--text-strong); }
+    [data-theme="dark"] .wf-panel-banner.warning { background: rgba(219,182,0,0.12); }
+    [data-theme="dark"] .wf-panel-banner.error { background: rgba(212,0,49,0.12); }
 
   </style>
 </head>
@@ -2405,7 +2599,7 @@
 
           <!-- Job Detail View (hidden by default) -->
           <div id="jobDetailView" style="display:none;">
-            <div class="job-detail-breadcrumb">
+            <div class="detail-breadcrumb">
               <a onclick="showJobsList()">Jobs</a>
               <svg viewBox="0 0 16 16" fill="currentColor"><path d="M6.47 4.22a.75.75 0 011.06 0l3.25 3.25a.75.75 0 010 1.06l-3.25 3.25a.75.75 0 01-1.06-1.06L9.19 8 6.47 5.28a.75.75 0 010-1.06z"/></svg>
               <span id="jobDetailBreadcrumbName">Job Name</span>
@@ -2494,6 +2688,338 @@
             </div>
           </div><!-- /jobDetailView -->
         </div><!-- /jobsPage -->
+
+        <!-- ==================== WORKFLOWS ==================== -->
+        <div id="workflowsPage" class="page-view">
+          <div id="workflowsListView">
+            <div class="wf-header">
+              <h1>Workflows</h1>
+              <button class="btn-primary" onclick="openSlidePanel('createWorkflowPanel')">Add New Workflow</button>
+            </div>
+
+            <div class="audit-card">
+              <div class="audit-card-header">
+                <div class="audit-card-title"><h3>Workflows</h3> <span>10</span></div>
+                <div style="display:flex; gap:8px; align-items:center;">
+                  <div class="audit-search"><svg viewBox="0 0 16 16" fill="currentColor" style="width:16px;height:16px;color:var(--text-muted);"><path d="M11.742 10.344a6.5 6.5 0 10-1.397 1.398h-.001l3.85 3.85a1 1 0 001.415-1.414l-3.85-3.85-.017.016zm-5.442.156a5 5 0 110-10 5 5 0 010 10z"/></svg><input type="text" placeholder="Search for Files or Hash" class="audit-search-input"></div>
+                </div>
+              </div>
+              <div class="table-scroll">
+                <table class="data-table" id="workflowsTable">
+                  <thead>
+                    <tr>
+                      <th style="padding-right:20px;">Name <svg class="filter-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M2 4h12M4 8h8M6 12h4" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></th>
+                      <th>File Discovery <svg class="filter-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M2 4h12M4 8h8M6 12h4" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></th>
+                      <th>Scan Pool <svg class="filter-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M2 4h12M4 8h8M6 12h4" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></th>
+                      <th>Security <svg class="filter-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M2 4h12M4 8h8M6 12h4" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></th>
+                      <th>File Tagging <svg class="filter-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M2 4h12M4 8h8M6 12h4" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></th>
+                      <th>Deep CDR™ <svg class="filter-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M2 4h12M4 8h8M6 12h4" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></th>
+                      <th>Remediations <svg class="filter-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M2 4h12M4 8h8M6 12h4" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></th>
+                      <th style="width:56px;"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr onclick="openWorkflowDetail(0)" style="cursor:pointer;">
+                      <td><svg class="wf-default-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1a1.5 1.5 0 00-1.5 1.5v.7A6.02 6.02 0 003.2 5.05l-.6-.35a1.5 1.5 0 10-1.5 2.6l.6.35a6.02 6.02 0 000 2.7l-.6.35a1.5 1.5 0 101.5 2.6l.6-.35A6.02 6.02 0 006.5 14.8v.7a1.5 1.5 0 003 0v-.7a6.02 6.02 0 003.3-1.85l.6.35a1.5 1.5 0 101.5-2.6l-.6-.35a6.02 6.02 0 000-2.7l.6-.35a1.5 1.5 0 10-1.5-2.6l-.6.35A6.02 6.02 0 009.5 3.2v-.7A1.5 1.5 0 008 1zM8 10.5a2.5 2.5 0 110-5 2.5 2.5 0 010 5z"/></svg> Default Workflow</td>
+                      <td><span class="wf-status"><span class="wf-status-dot"></span> Enabled</span></td>
+                      <td>Scan Pool Name</td>
+                      <td><span class="wf-status"><span class="wf-status-dot"></span> 3/4 Enabled</span></td>
+                      <td><span class="wf-status"><span class="wf-status-dot"></span> Enabled</span></td>
+                      <td><span class="wf-status"><span class="wf-status-dot"></span> Enabled</span></td>
+                      <td><span class="wf-rem-tag none">None</span></td>
+                      <td><button class="cell-action" onclick="event.stopPropagation();">⋯</button></td>
+                    </tr>
+                    <tr onclick="openWorkflowDetail(1)" style="cursor:pointer;">
+                      <td>Email 2025</td>
+                      <td><span class="wf-status"><span class="wf-status-dot"></span> Enabled</span></td>
+                      <td>Scan Pool Name</td>
+                      <td><span class="wf-status"><span class="wf-status-dot"></span> 3/4 Enabled</span></td>
+                      <td><span class="wf-status"><span class="wf-status-dot"></span> Enabled</span></td>
+                      <td><span class="wf-status"><span class="wf-status-dot"></span> Enabled</span></td>
+                      <td><span class="wf-rem-tag none">Keep</span></td>
+                      <td><button class="cell-action" onclick="event.stopPropagation();">⋯</button></td>
+                    </tr>
+                    <tr onclick="openWorkflowDetail(2)" style="cursor:pointer;">
+                      <td>Finance</td>
+                      <td><span class="wf-status"><span class="wf-status-dot"></span> Enabled</span></td>
+                      <td>Scan Pool Name</td>
+                      <td><span class="wf-status"><span class="wf-status-dot"></span> 3/4 Enabled</span></td>
+                      <td><span class="wf-status"><span class="wf-status-dot"></span> Enabled</span></td>
+                      <td><span class="wf-status"><span class="wf-status-dot"></span> Enabled</span></td>
+                      <td><span class="wf-rem-tags"><span class="wf-rem-tag copy">Copy</span></span></td>
+                      <td><button class="cell-action" onclick="event.stopPropagation();">⋯</button></td>
+                    </tr>
+                    <tr onclick="openWorkflowDetail(3)" style="cursor:pointer;">
+                      <td>Weekly Scan</td>
+                      <td><span class="wf-status"><span class="wf-status-dot"></span> Enabled</span></td>
+                      <td>Scan Pool Name</td>
+                      <td><span class="wf-status"><span class="wf-status-dot"></span> 3/4 Enabled</span></td>
+                      <td><span class="wf-status"><span class="wf-status-dot"></span> Enabled</span></td>
+                      <td><span class="wf-status"><span class="wf-status-dot"></span> Enabled</span></td>
+                      <td><span class="wf-rem-tags"><span class="wf-rem-tag copy">Copy</span></span></td>
+                      <td><button class="cell-action" onclick="event.stopPropagation();">⋯</button></td>
+                    </tr>
+                    <tr onclick="openWorkflowDetail(4)" style="cursor:pointer;">
+                      <td>Doc Library</td>
+                      <td><span class="wf-status"><span class="wf-status-dot"></span> Enabled</span></td>
+                      <td>Scan Pool Name</td>
+                      <td><span class="wf-status"><span class="wf-status-dot"></span> 3/4 Enabled</span></td>
+                      <td><span class="wf-status"><span class="wf-status-dot"></span> Enabled</span></td>
+                      <td><span class="wf-status"><span class="wf-status-dot"></span> Enabled</span></td>
+                      <td><span class="wf-rem-tags"><span class="wf-rem-tag copy">Copy</span></span></td>
+                      <td><button class="cell-action" onclick="event.stopPropagation();">⋯</button></td>
+                    </tr>
+                    <tr onclick="openWorkflowDetail(5)" style="cursor:pointer;">
+                      <td>User Data</td>
+                      <td><span class="wf-status"><span class="wf-status-dot"></span> Enabled</span></td>
+                      <td>Scan Pool Name</td>
+                      <td><span class="wf-status"><span class="wf-status-dot"></span> 3/4 Enabled</span></td>
+                      <td><span class="wf-status"><span class="wf-status-dot"></span> Enabled</span></td>
+                      <td><span class="wf-status"><span class="wf-status-dot"></span> Enabled</span></td>
+                      <td><span class="wf-rem-tags"><span class="wf-rem-tag delete">Delete</span></span></td>
+                      <td><button class="cell-action" onclick="event.stopPropagation();">⋯</button></td>
+                    </tr>
+                    <tr onclick="openWorkflowDetail(6)" style="cursor:pointer;">
+                      <td>Email 2024</td>
+                      <td><span class="wf-status"><span class="wf-status-dot"></span> Enabled</span></td>
+                      <td>Scan Pool Name</td>
+                      <td><span class="wf-status"><span class="wf-status-dot"></span> 3/4 Enabled</span></td>
+                      <td><span class="wf-status"><span class="wf-status-dot"></span> Enabled</span></td>
+                      <td><span class="wf-status"><span class="wf-status-dot"></span> Enabled</span></td>
+                      <td><span class="wf-rem-tags"><span class="wf-rem-tag move">Move</span></span></td>
+                      <td><button class="cell-action" onclick="event.stopPropagation();">⋯</button></td>
+                    </tr>
+                    <tr onclick="openWorkflowDetail(7)" style="cursor:pointer;">
+                      <td>Test WF</td>
+                      <td><span class="wf-status"><span class="wf-status-dot"></span> Enabled</span></td>
+                      <td>Scan Pool Name</td>
+                      <td><span class="wf-status"><span class="wf-status-dot"></span> 3/4 Enabled</span></td>
+                      <td><span class="wf-status"><span class="wf-status-dot"></span> Enabled</span></td>
+                      <td><span class="wf-status"><span class="wf-status-dot"></span> Enabled</span></td>
+                      <td><span class="wf-rem-tags"><span class="wf-rem-tag none">Keep</span> <span class="wf-rem-tag copy">Copy</span> <span class="wf-rem-tag delete">Delete</span></span></td>
+                      <td><button class="cell-action" onclick="event.stopPropagation();">⋯</button></td>
+                    </tr>
+                    <tr onclick="openWorkflowDetail(8)" style="cursor:pointer;">
+                      <td>Full Disk</td>
+                      <td><span class="wf-status"><span class="wf-status-dot"></span> Enabled</span></td>
+                      <td>Scan Pool Name</td>
+                      <td><span class="wf-status"><span class="wf-status-dot"></span> 3/4 Enabled</span></td>
+                      <td><span class="wf-status"><span class="wf-status-dot"></span> Enabled</span></td>
+                      <td><span class="wf-status"><span class="wf-status-dot"></span> Enabled</span></td>
+                      <td><span class="wf-rem-tags"><span class="wf-rem-tag failed">Failed</span></span></td>
+                      <td><button class="cell-action" onclick="event.stopPropagation();">⋯</button></td>
+                    </tr>
+                    <tr onclick="openWorkflowDetail(9)" style="cursor:pointer;">
+                      <td>Quick Scan</td>
+                      <td><span class="wf-status"><span class="wf-status-dot"></span> Enabled</span></td>
+                      <td>Scan Pool Name</td>
+                      <td><span class="wf-status"><span class="wf-status-dot"></span> 3/4 Enabled</span></td>
+                      <td><span class="wf-status"><span class="wf-status-dot"></span> Enabled</span></td>
+                      <td><span class="wf-status"><span class="wf-status-dot"></span> Enabled</span></td>
+                      <td><span class="wf-rem-tags"><span class="wf-rem-tag copy">Copy</span></span></td>
+                      <td><button class="cell-action" onclick="event.stopPropagation();">⋯</button></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="audit-pagination">
+                <div class="audit-pagination-left">
+                  <select class="audit-page-select"><option selected>10</option><option>25</option><option>50</option></select>
+                  <span>items per page</span>
+                  <span>|</span>
+                  <span>1-10 of 15 items</span>
+                </div>
+                <div class="audit-pagination-right">
+                  <button class="audit-page-btn" disabled><svg viewBox="0 0 16 16" fill="currentColor"><path d="M11.354 1.646a.5.5 0 010 .708L5.707 8l5.647 5.646a.5.5 0 01-.708.708l-6-6a.5.5 0 010-.708l6-6a.5.5 0 01.708 0z"/></svg></button>
+                  <select class="audit-page-select"><option selected>Page 1</option><option>Page 2</option></select>
+                  <button class="audit-page-btn"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M4.646 1.646a.5.5 0 01.708 0l6 6a.5.5 0 010 .708l-6 6a.5.5 0 01-.708-.708L10.293 8 4.646 2.354a.5.5 0 010-.708z"/></svg></button>
+                </div>
+              </div>
+            </div>
+          </div><!-- /workflowsListView -->
+
+          <!-- Workflow Detail View -->
+          <div id="workflowDetailView" style="display:none;">
+            <div class="detail-breadcrumb">
+              <a onclick="showWorkflowsList()">Workflows</a>
+              <svg viewBox="0 0 16 16" fill="currentColor"><path d="M6.47 4.22a.75.75 0 011.06 0l3.25 3.25a.75.75 0 010 1.06l-3.25 3.25a.75.75 0 01-1.06-1.06L9.19 8 6.47 5.28a.75.75 0 010-1.06z"/></svg>
+              <span id="wfDetailBreadcrumbName">Default Workflow</span>
+            </div>
+            <h1 class="wf-detail-title" id="wfDetailTitle">Default Workflow</h1>
+
+            <div class="audit-card">
+              <div class="audit-card-header"><div class="audit-card-title"><h3>Workflow Details</h3></div></div>
+              <div class="wf-canvas">
+                <div class="wf-flow">
+                  <!-- Pipeline: Start → nodes → Decision -->
+                  <div class="wf-pipeline">
+                    <!-- Start -->
+                    <div class="wf-start-node">
+                      <div class="wf-start-label">Start</div>
+                    </div>
+                    <div class="wf-connector"></div>
+
+                    <!-- File Discovery -->
+                    <div class="wf-step" onclick="openSlidePanel('wfDiscoveryPanel')">
+                      <div class="wf-node">
+                        <div class="wf-node-box"><svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="12" stroke="currentColor" stroke-width="2"/><circle cx="16" cy="16" r="5" fill="currentColor"/></svg></div>
+                        <div class="wf-node-label">File Discovery</div>
+                      </div>
+                    </div>
+                    <div class="wf-connector"></div>
+
+                    <!-- Scan Pool -->
+                    <div class="wf-step" onclick="openSlidePanel('wfScanConfigPanel')">
+                      <div class="wf-node">
+                        <div class="wf-node-box"><svg viewBox="0 0 32 32" fill="none"><path d="M16 4L24 9V15L16 20L8 15V9L16 4Z" stroke="currentColor" stroke-width="2"/><path d="M16 20V28" stroke="currentColor" stroke-width="2"/><path d="M8 15L16 20L24 15" stroke="currentColor" stroke-width="2"/></svg></div>
+                        <div class="wf-node-label">Scan Pool</div>
+                      </div>
+                    </div>
+                    <div class="wf-connector"></div>
+
+                    <!-- Security -->
+                    <div class="wf-step" onclick="openSlidePanel('wfTechnologiesPanel')">
+                      <div class="wf-node">
+                        <div class="wf-node-box"><svg viewBox="0 0 32 32" fill="none"><path d="M16 4L6 9V16C6 22.6 10.4 28.7 16 30C21.6 28.7 26 22.6 26 16V9L16 4Z" stroke="currentColor" stroke-width="2"/></svg></div>
+                        <div class="wf-node-label">Security</div>
+                      </div>
+                    </div>
+                    <div class="wf-connector"></div>
+
+                    <!-- File Tagging -->
+                    <div class="wf-step" onclick="openSlidePanel('wfFileTaggingPanel')">
+                      <div class="wf-node">
+                        <div class="wf-node-box"><svg viewBox="0 0 32 32" fill="none"><path d="M6 8H18L26 16L18 24H6V8Z" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="16" r="2" fill="currentColor"/></svg></div>
+                        <div class="wf-node-label">File Tagging</div>
+                        <div class="wf-node-sublabel">Inactive</div>
+                      </div>
+                    </div>
+                    <div class="wf-connector"></div>
+
+                    <!-- Deep CDR -->
+                    <div class="wf-step" onclick="openSlidePanel('wfDeepCdrPanel')">
+                      <div class="wf-node">
+                        <div class="wf-node-box"><svg viewBox="0 0 32 32" fill="none"><rect x="6" y="6" width="20" height="6" rx="1" stroke="currentColor" stroke-width="2"/><rect x="6" y="14" width="20" height="6" rx="1" stroke="currentColor" stroke-width="2"/><rect x="6" y="22" width="12" height="4" rx="1" stroke="currentColor" stroke-width="1.5"/></svg></div>
+                        <div class="wf-node-label">Deep CDR™</div>
+                        <div class="wf-node-sublabel">Active</div>
+                      </div>
+                    </div>
+                    <div class="wf-connector"></div>
+
+                    <!-- Decision Diamond -->
+                    <div class="wf-decision">
+                      <div class="wf-diamond"></div>
+                    </div>
+                  </div>
+
+                  <!-- Branches after Decision -->
+                  <div style="display:flex; align-items:stretch; margin-left:8px;">
+                    <div style="display:flex; flex-direction:column; justify-content:center;">
+                      <!-- Allowed branch -->
+                      <div style="margin-bottom:12px;">
+                        <div class="wf-branch-label" style="text-align:left; margin-bottom:4px; margin-left:4px;">Allowed</div>
+                        <div class="wf-branch-group">
+                          <div class="wf-sub-branch">
+                            <div class="wf-branch-line"></div>
+                            <div class="wf-sub-label">Original</div>
+                            <div class="wf-action-btns">
+                              <div style="text-align:center;"><div class="wf-action-btn active"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"/></svg></div><div class="wf-action-btn-label">Keep</div></div>
+                              <div style="text-align:center;"><div class="wf-action-btn"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M4 2v2H2v10h10v-2h2V2H4zm8 8H6V4h6v6z"/></svg></div><div class="wf-action-btn-label">Copy</div></div>
+                              <div style="text-align:center;"><div class="wf-action-btn"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M1 8h12M10 5l3 3-3 3"/></svg></div><div class="wf-action-btn-label">Move</div></div>
+                              <div style="text-align:center;"><div class="wf-action-btn"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M5.5 5.5l5 5M10.5 5.5l-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div><div class="wf-action-btn-label">Delete</div></div>
+                            </div>
+                          </div>
+                          <div class="wf-sub-branch">
+                            <div class="wf-branch-line"></div>
+                            <div class="wf-sub-label">Sanitized</div>
+                            <div class="wf-action-btns">
+                              <div style="text-align:center;"><div class="wf-action-btn active"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"/></svg></div><div class="wf-action-btn-label">Keep</div></div>
+                              <div style="text-align:center;"><div class="wf-action-btn"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M4 2v2H2v10h10v-2h2V2H4zm8 8H6V4h6v6z"/></svg></div><div class="wf-action-btn-label">Copy</div></div>
+                              <div style="text-align:center;"><div class="wf-action-btn"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M1 8h12M10 5l3 3-3 3"/></svg></div><div class="wf-action-btn-label">Move</div></div>
+                              <div style="text-align:center;"><div class="wf-action-btn"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M5.5 5.5l5 5M10.5 5.5l-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div><div class="wf-action-btn-label">Delete</div></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Blocked branch -->
+                      <div style="margin-bottom:12px;">
+                        <div class="wf-branch-label" style="text-align:left; margin-bottom:4px; margin-left:4px;">Blocked</div>
+                        <div class="wf-branch-group">
+                          <div class="wf-sub-branch">
+                            <div class="wf-branch-line"></div>
+                            <div class="wf-sub-label">Original</div>
+                            <div class="wf-action-btns">
+                              <div style="text-align:center;"><div class="wf-action-btn active"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"/></svg></div><div class="wf-action-btn-label">Keep</div></div>
+                              <div style="text-align:center;"><div class="wf-action-btn"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M4 2v2H2v10h10v-2h2V2H4zm8 8H6V4h6v6z"/></svg></div><div class="wf-action-btn-label">Copy</div></div>
+                              <div style="text-align:center;"><div class="wf-action-btn"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M1 8h12M10 5l3 3-3 3"/></svg></div><div class="wf-action-btn-label">Move</div></div>
+                              <div style="text-align:center;"><div class="wf-action-btn"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M5.5 5.5l5 5M10.5 5.5l-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div><div class="wf-action-btn-label">Delete</div></div>
+                            </div>
+                          </div>
+                          <div class="wf-sub-branch">
+                            <div class="wf-branch-line"></div>
+                            <div class="wf-sub-label">Sanitized</div>
+                            <div class="wf-action-btns">
+                              <div style="text-align:center;"><div class="wf-action-btn active"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"/></svg></div><div class="wf-action-btn-label">Keep</div></div>
+                              <div style="text-align:center;"><div class="wf-action-btn"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M4 2v2H2v10h10v-2h2V2H4zm8 8H6V4h6v6z"/></svg></div><div class="wf-action-btn-label">Copy</div></div>
+                              <div style="text-align:center;"><div class="wf-action-btn"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M1 8h12M10 5l3 3-3 3"/></svg></div><div class="wf-action-btn-label">Move</div></div>
+                              <div style="text-align:center;"><div class="wf-action-btn"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M5.5 5.5l5 5M10.5 5.5l-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div><div class="wf-action-btn-label">Delete</div></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Sanitized branch -->
+                      <div>
+                        <div class="wf-branch-label" style="text-align:left; margin-bottom:4px; margin-left:4px;">Sanitized</div>
+                        <div class="wf-branch-group">
+                          <div class="wf-sub-branch">
+                            <div class="wf-branch-line"></div>
+                            <div class="wf-sub-label">Original</div>
+                            <div class="wf-action-btns">
+                              <div style="text-align:center;"><div class="wf-action-btn active"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"/></svg></div><div class="wf-action-btn-label">Keep</div></div>
+                              <div style="text-align:center;"><div class="wf-action-btn"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M4 2v2H2v10h10v-2h2V2H4zm8 8H6V4h6v6z"/></svg></div><div class="wf-action-btn-label">Copy</div></div>
+                              <div style="text-align:center;"><div class="wf-action-btn"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M1 8h12M10 5l3 3-3 3"/></svg></div><div class="wf-action-btn-label">Move</div></div>
+                              <div style="text-align:center;"><div class="wf-action-btn"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M5.5 5.5l5 5M10.5 5.5l-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div><div class="wf-action-btn-label">Delete</div></div>
+                            </div>
+                          </div>
+                          <div class="wf-sub-branch">
+                            <div class="wf-branch-line"></div>
+                            <div class="wf-sub-label">Sanitized</div>
+                            <div class="wf-action-btns">
+                              <div style="text-align:center;"><div class="wf-action-btn active"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"/></svg></div><div class="wf-action-btn-label">Keep</div></div>
+                              <div style="text-align:center;"><div class="wf-action-btn"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M4 2v2H2v10h10v-2h2V2H4zm8 8H6V4h6v6z"/></svg></div><div class="wf-action-btn-label">Copy</div></div>
+                              <div style="text-align:center;"><div class="wf-action-btn"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M1 8h12M10 5l3 3-3 3"/></svg></div><div class="wf-action-btn-label">Move</div></div>
+                              <div style="text-align:center;"><div class="wf-action-btn"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M5.5 5.5l5 5M10.5 5.5l-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div><div class="wf-action-btn-label">Delete</div></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="wf-connector" style="align-self:center;"></div>
+
+                    <!-- Other Remediations -->
+                    <div style="align-self:center;" onclick="openSlidePanel('wfOtherRemPanel')">
+                      <div class="wf-other-rem">
+                        <svg viewBox="0 0 32 32" fill="none" style="width:24px; height:24px;"><circle cx="16" cy="16" r="12" stroke="currentColor" stroke-width="2"/><path d="M16 10v12M10 16h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                        <div class="wf-other-rem-label">Other<br>Remediations</div>
+                      </div>
+                    </div>
+
+                    <div class="wf-connector" style="align-self:center;"></div>
+
+                    <!-- End -->
+                    <div class="wf-end-node" style="align-self:center;">
+                      <div class="wf-node-box"><svg viewBox="0 0 32 32" fill="currentColor"><path d="M10 8v16l14-8-14-8z"/></svg></div>
+                      <div class="wf-end-label">End</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div><!-- /workflowDetailView -->
+        </div><!-- /workflowsPage -->
 
         <!-- ==================== COMPONENTS SHOWCASE ==================== -->
         <div id="componentsPage" class="page-view" style="display:none; flex-direction:column; gap:20px; padding:20px;">
@@ -2846,6 +3372,185 @@
     <div class="row-action-menu-item" data-action="duplicate">Duplicate</div>
     <div class="row-action-menu-divider"></div>
     <div class="row-action-menu-item danger" data-action="delete">Delete</div>
+  </div>
+
+  <!-- ==================== WORKFLOW SLIDE PANELS ==================== -->
+
+  <!-- Create Workflow -->
+  <div class="slide-panel-overlay" id="createWorkflowOverlay" onclick="closeSlidePanel('createWorkflowPanel')"></div>
+  <div class="slide-panel" id="createWorkflowPanel" role="dialog" aria-modal="true">
+    <div class="slide-panel-header"><h2>Create Workflow</h2><button class="modal-close" onclick="closeSlidePanel('createWorkflowPanel')"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><line x1="2" y1="2" x2="12" y2="12"/><line x1="12" y1="2" x2="2" y2="12"/></svg></button></div>
+    <div class="slide-panel-body">
+      <p style="font-size:13px; color:var(--text-subtle); margin-bottom:12px;">Create a new workflow to automate your processes. It can be used when instantiating a scan. <a href="#" style="color:var(--primary);">Learn more</a></p>
+      <div class="panel-field"><label class="panel-field-label">Workflow Name</label><input class="input-field" placeholder="e.g. Weekly Scan" style="width:100%;"></div>
+      <div class="panel-field"><span class="panel-field-label">Workflow Type</span>
+        <div class="radio-group" style="flex-direction:column; gap:8px;">
+          <label class="radio-option"><input type="radio" name="wfType" checked><span>Standard (with scanning)</span></label>
+          <label class="radio-option"><input type="radio" name="wfType"><span>Discovery only</span></label>
+        </div>
+      </div>
+      <div style="font-size:14px; font-weight:500; color:var(--text-strong); margin:16px 0 8px;">Scan Configuration</div>
+      <div class="panel-field"><label class="panel-field-label">Scan Pool</label><select class="select-field" style="width:100%;"><option>Default MD Core Scan Pool</option></select></div>
+      <div class="panel-field"><label class="panel-field-label">Rule</label><select class="select-field" style="width:100%;"><option>MetaDefender Software Supply Chain</option></select></div>
+    </div>
+    <div class="slide-panel-footer"><button class="btn-outline" onclick="closeSlidePanel('createWorkflowPanel')">Cancel</button><button class="btn-primary">Save Changes</button></div>
+  </div>
+
+  <!-- Discovery -->
+  <div class="slide-panel-overlay" id="wfDiscoveryOverlay" onclick="closeSlidePanel('wfDiscoveryPanel')"></div>
+  <div class="slide-panel" id="wfDiscoveryPanel" role="dialog" aria-modal="true">
+    <div class="slide-panel-header"><h2>Discovery</h2><button class="modal-close" onclick="closeSlidePanel('wfDiscoveryPanel')"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><line x1="2" y1="2" x2="12" y2="12"/><line x1="12" y1="2" x2="2" y2="12"/></svg></button></div>
+    <div class="slide-panel-body">
+      <p style="font-size:13px; color:var(--text-subtle); margin-bottom:16px;">File discovery continuously scans your storage to detect files that need processing. This is always enabled to ensure all files are identified for remediation.</p>
+      <div style="font-size:14px; font-weight:500; color:var(--text-strong); margin-bottom:8px;">Discovery</div>
+      <p style="font-size:13px; color:var(--text-subtle); margin-bottom:12px;">Identity scanning uses file metadata to identify files that have already been processed. When enabled, MDSS reuses previous scan results for unchanged files instead of re-scanning them, significantly improving performance for backup datasets and subsequent scans.</p>
+      <div style="display:flex; align-items:center; gap:8px; margin-bottom:4px;">
+        <label class="toggle-switch"><input type="checkbox"><span class="toggle-slider"></span></label>
+        <span style="font-size:14px; color:var(--text-strong);">Disabled</span>
+      </div>
+      <p style="font-size:12px; color:var(--primary);">Identity scanning is disabled because Deep CDR is enabled.</p>
+    </div>
+    <div class="slide-panel-footer"><button class="btn-outline" onclick="closeSlidePanel('wfDiscoveryPanel')">Cancel</button><button class="btn-primary">Save Changes</button></div>
+  </div>
+
+  <!-- Scan Configuration -->
+  <div class="slide-panel-overlay" id="wfScanConfigOverlay" onclick="closeSlidePanel('wfScanConfigPanel')"></div>
+  <div class="slide-panel" id="wfScanConfigPanel" role="dialog" aria-modal="true">
+    <div class="slide-panel-header"><h2>Scan Configuration</h2><button class="modal-close" onclick="closeSlidePanel('wfScanConfigPanel')"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><line x1="2" y1="2" x2="12" y2="12"/><line x1="12" y1="2" x2="2" y2="12"/></svg></button></div>
+    <div class="slide-panel-body">
+      <div class="wf-panel-banner warning"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8.982 1.566a1.13 1.13 0 00-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 01-1.1 0L7.1 5.995A.905.905 0 018 5zm.002 6a1 1 0 110 2 1 1 0 010-2z"/></svg><div>Changes made to the workflow in MetaDefender Core, Cloud or Cluster will affect the functionality of MetaDefender Storage Security<br><a onclick="event.preventDefault();">Dismiss</a></div></div>
+      <p style="font-size:13px; color:var(--text-subtle); margin-bottom:16px;">MetaDefender for Secure Storage uses scan pools to group MetaDefender Core or Cloud instances.</p>
+      <div class="panel-field"><label class="panel-field-label">Scan Pool</label><select class="select-field" style="width:100%;"><option>MetaDefender Core Demo</option><option>MetaDefender Cloud Demo</option></select></div>
+      <div style="margin:8px 0 16px;"><label class="radio-option" style="font-size:13px;"><input type="checkbox"><span>Failover to secondary scan pool</span></label></div>
+      <div class="panel-field"><label class="panel-field-label" style="color:var(--primary);">Failover Scan Pool</label><select class="select-field" style="width:100%;"><option>Not Available</option></select></div>
+      <div class="panel-field"><label class="panel-field-label">User Agent</label><div style="display:flex;align-items:center;gap:8px;"><input class="input-field" value="mdss" style="flex:1;"><button style="background:none;border:none;cursor:pointer;color:var(--text-muted);font-size:16px;">✕</button></div></div>
+      <div class="panel-field"><label class="panel-field-label">Workflow Rule</label><div style="display:flex;align-items:center;gap:8px;"><input class="input-field" value="MDSS Full" style="flex:1;"><button style="background:none;border:none;cursor:pointer;color:var(--text-muted);font-size:16px;">✕</button></div></div>
+    </div>
+    <div class="slide-panel-footer"><button class="btn-outline" onclick="closeSlidePanel('wfScanConfigPanel')">Cancel</button><button class="btn-primary">Save Changes</button></div>
+  </div>
+
+  <!-- Technologies -->
+  <div class="slide-panel-overlay" id="wfTechnologiesOverlay" onclick="closeSlidePanel('wfTechnologiesPanel')"></div>
+  <div class="slide-panel" id="wfTechnologiesPanel" role="dialog" aria-modal="true">
+    <div class="slide-panel-header"><h2>Technologies</h2><button class="modal-close" onclick="closeSlidePanel('wfTechnologiesPanel')"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><line x1="2" y1="2" x2="12" y2="12"/><line x1="12" y1="2" x2="2" y2="12"/></svg></button></div>
+    <div class="slide-panel-body">
+      <div class="wf-panel-banner warning"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8.982 1.566a1.13 1.13 0 00-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 01-1.1 0L7.1 5.995A.905.905 0 018 5zm.002 6a1 1 0 110 2 1 1 0 010-2z"/></svg><div>Changes made in MetaDefender Core, Cloud or Cluster will affect the functionality of MetaDefender Storage Security<br><a onclick="event.preventDefault();">Refresh</a></div></div>
+      <div class="wf-tech-item"><div class="wf-tech-name">MetaScan™</div><div class="wf-tech-desc">30+ anti-malware engine threat detection.</div><div class="wf-tech-status"><span class="tag-success" style="font-size:12px; padding:2px 8px;">Active</span></div></div>
+      <div class="wf-tech-item"><div class="wf-tech-name">Adaptive Sandbox</div><div class="wf-tech-desc">Dynamic file analysis and behavioral threat detection.</div><div class="wf-tech-status"><span style="font-size:13px; color:var(--text-muted);">Disabled</span></div></div>
+      <div class="wf-tech-item"><div class="wf-tech-name">Deep CDR™</div><div class="wf-tech-desc">Dynamic file analysis and behavioral threat detection.</div><div class="wf-tech-status"><span class="tag-caution" style="font-size:12px; padding:2px 8px;">Unknown</span></div><p style="font-size:12px; color:var(--text-subtle); margin-top:4px;">Status cannot be determined due to missing or incomplete configuration.</p><a href="#" style="font-size:13px; color:var(--primary);">Go to MetaDefender Core</a></div>
+      <div class="wf-tech-item"><div class="wf-tech-name">Proactive DLP™</div><div class="wf-tech-desc">Proactive data loss detection and prevention.</div><div class="wf-tech-status"><span class="tag-success" style="font-size:12px; padding:2px 8px;">Active</span></div></div>
+    </div>
+    <div class="slide-panel-footer"><button class="btn-outline" onclick="closeSlidePanel('wfTechnologiesPanel')">Cancel</button><button class="btn-primary">Save Changes</button></div>
+  </div>
+
+  <!-- File Tagging -->
+  <div class="slide-panel-overlay" id="wfFileTaggingOverlay" onclick="closeSlidePanel('wfFileTaggingPanel')"></div>
+  <div class="slide-panel" id="wfFileTaggingPanel" role="dialog" aria-modal="true">
+    <div class="slide-panel-header"><h2>File Tagging</h2><button class="modal-close" onclick="closeSlidePanel('wfFileTaggingPanel')"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><line x1="2" y1="2" x2="12" y2="12"/><line x1="12" y1="2" x2="2" y2="12"/></svg></button></div>
+    <div class="slide-panel-body">
+      <div style="display:flex; align-items:center; gap:8px; margin-bottom:4px;"><label class="toggle-switch"><input type="checkbox"><span class="toggle-slider"></span></label><span style="font-size:14px; color:var(--text-strong);">Disabled</span></div>
+      <p style="font-size:12px; color:var(--text-subtle); margin-bottom:16px;">Labels processed files with security status (clean, sanitized, blocked) to support compliance and audit requirements.</p>
+      <div class="wf-tag-group">
+        <div class="wf-tag-check"><input type="checkbox" id="wfTagResult" checked><label for="wfTagResult">Add MetaDefender Result Tag</label></div>
+        <div class="wf-tag-fields"><div class="wf-tag-field-label">MetaDefender Result</div><div class="wf-tag-field-value">OPSWAT-Core-Result</div><div class="wf-show-verdicts" onclick="toggleWfVerdicts()">Show Verdicts</div><div class="wf-verdicts" id="wfVerdictsBlock" style="display:none;"><div class="wf-verdict-row"><div class="wf-verdict-label">No Threat Detected</div><div class="wf-verdict-input">No Threat Detected <span class="clear-x">✕</span></div></div><div class="wf-verdict-row"><div class="wf-verdict-label">Infected</div><div class="wf-verdict-input">Infected <span class="clear-x">✕</span></div></div><div class="wf-verdict-row"><div class="wf-verdict-label">Suspicious</div><div class="wf-verdict-input">Suspicious <span class="clear-x">✕</span></div></div><div class="wf-verdict-row"><div class="wf-verdict-label">Allowlisted</div><div class="wf-verdict-input">Allowlisted <span class="clear-x">✕</span></div></div><div class="wf-verdict-row"><div class="wf-verdict-label">Blocklisted</div><div class="wf-verdict-input">Blocklisted <span class="clear-x">✕</span></div></div><div class="wf-verdict-row"><div class="wf-verdict-label">Potentially Vulnerable File</div><div class="wf-verdict-input">Potentially Vulnerable File <span class="clear-x">✕</span></div></div><div class="wf-verdict-row"><div class="wf-verdict-label">Sensitive Data Found</div><div class="wf-verdict-input">Sensitive Data Found <span class="clear-x">✕</span></div></div></div></div>
+      </div>
+      <div class="wf-tag-group">
+        <div class="wf-tag-check"><input type="checkbox" id="wfTagFileId" checked><label for="wfTagFileId">Add File ID</label></div>
+        <div class="wf-tag-fields"><div class="wf-tag-field-label">MetaDefender File Id</div><div class="wf-tag-field-value">MetaDefenderFileId</div></div>
+      </div>
+      <div class="wf-tag-group">
+        <div class="wf-tag-check"><input type="checkbox" id="wfTagTimestamp" checked><label for="wfTagTimestamp">Add Timestamp</label></div>
+        <div class="wf-tag-fields"><div class="wf-tag-field-label">MetaDefender Analysis Timestamp</div><div class="wf-tag-field-value">MetaDefenderAnalysisTimestamp</div></div>
+      </div>
+      <div style="display:flex; align-items:center; gap:6px; margin-top:12px; cursor:pointer; color:var(--text-subtle); font-size:13px;"><svg viewBox="0 0 16 16" fill="currentColor" style="width:14px;height:14px;"><path d="M8 3a5 5 0 100 10A5 5 0 008 3zM2 8a6 6 0 1112 0A6 6 0 012 8zm4.5-1.5l3 1.5-3 1.5v-3z"/></svg> Reset to Default</div>
+    </div>
+    <div class="slide-panel-footer"><button class="btn-outline" onclick="closeSlidePanel('wfFileTaggingPanel')">Cancel</button><button class="btn-primary">Save Changes</button></div>
+  </div>
+
+  <!-- Deep CDR -->
+  <div class="slide-panel-overlay" id="wfDeepCdrOverlay" onclick="closeSlidePanel('wfDeepCdrPanel')"></div>
+  <div class="slide-panel" id="wfDeepCdrPanel" role="dialog" aria-modal="true">
+    <div class="slide-panel-header"><h2>Deep CDR</h2><button class="modal-close" onclick="closeSlidePanel('wfDeepCdrPanel')"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><line x1="2" y1="2" x2="12" y2="12"/><line x1="12" y1="2" x2="2" y2="12"/></svg></button></div>
+    <div class="slide-panel-body">
+      <p style="font-size:13px; color:var(--text-subtle); margin-bottom:16px;">File regeneration that protects from evasive malware and zero-day exploits.</p>
+      <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;"><label class="toggle-switch"><input type="checkbox"><span class="toggle-slider"></span></label><span style="font-size:14px; color:var(--text-strong);">Disabled</span></div>
+      <p style="font-size:12px; color:var(--text-subtle);">File regeneration that protects from evasive malware and zero-day exploits.</p>
+    </div>
+    <div class="slide-panel-footer"><button class="btn-outline" onclick="closeSlidePanel('wfDeepCdrPanel')">Cancel</button><button class="btn-primary">Save Changes</button></div>
+  </div>
+
+  <!-- File Definition -->
+  <div class="slide-panel-overlay" id="wfFileDefOverlay" onclick="closeSlidePanel('wfFileDefPanel')"></div>
+  <div class="slide-panel" id="wfFileDefPanel" role="dialog" aria-modal="true">
+    <div class="slide-panel-header"><h2>File Definition</h2><button class="modal-close" onclick="closeSlidePanel('wfFileDefPanel')"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><line x1="2" y1="2" x2="12" y2="12"/><line x1="12" y1="2" x2="2" y2="12"/></svg></button></div>
+    <div class="slide-panel-body">
+      <div style="font-size:14px; font-weight:500; color:var(--text-strong); margin-bottom:16px;">Blocked files definition</div>
+      <div class="radio-group" style="flex-direction:column; gap:16px;">
+        <label class="radio-option" style="align-items:flex-start;"><input type="radio" name="wfFileDef" checked style="margin-top:3px;"><div><span style="font-weight:500;">Strict mode</span><p style="font-size:12px; color:var(--text-subtle); margin-top:4px;">When enabled, files blocked by MetaDefender Core for any reason (malware, encryption, blocklist) remain blocked in Storage Security.</p></div></label>
+        <label class="radio-option" style="align-items:flex-start;"><input type="radio" name="wfFileDef" style="margin-top:3px;"><div><span style="font-weight:500;">Configurable mode</span><p style="font-size:12px; color:var(--text-subtle); margin-top:4px;">Override Core verdicts by category. Enable or disable blocking for malicious files, sensitive data violations, and vulnerability detections independently.</p>
+          <div style="margin-top:12px; display:flex; flex-direction:column; gap:8px; padding-left:4px;">
+            <label class="radio-option" style="opacity:0.5;"><input type="checkbox" disabled><span style="font-size:13px;">Files with malicious content</span></label>
+            <p style="font-size:11px; color:var(--text-muted); margin-left:24px;">Any file marked Infected, Suspicious or Blocklisted by MetaDefender Core / Distributed Cluster will be considered malicious in MetaDefender Storage Security</p>
+            <label class="radio-option" style="opacity:0.5;"><input type="checkbox" disabled><span style="font-size:13px;">Treat files with sensitive data as blocked</span></label>
+            <label class="radio-option" style="opacity:0.5;"><input type="checkbox" disabled><span style="font-size:13px;">Treat files with vulnerabilities as blocked</span></label>
+          </div>
+        </div></label>
+      </div>
+    </div>
+    <div class="slide-panel-footer"><button class="btn-outline" onclick="closeSlidePanel('wfFileDefPanel')">Cancel</button><button class="btn-primary">Save Changes</button></div>
+  </div>
+
+  <!-- Remediations -->
+  <div class="slide-panel-overlay" id="wfRemediationsOverlay" onclick="closeSlidePanel('wfRemediationsPanel')"></div>
+  <div class="slide-panel" id="wfRemediationsPanel" role="dialog" aria-modal="true">
+    <div class="slide-panel-header"><h2>Allowed Original Files - Remediations</h2><button class="modal-close" onclick="closeSlidePanel('wfRemediationsPanel')"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><line x1="2" y1="2" x2="12" y2="12"/><line x1="12" y1="2" x2="2" y2="12"/></svg></button></div>
+    <div class="slide-panel-body">
+      <div class="wf-rem-option"><div class="wf-rem-radio"><input type="radio" name="wfRem" id="wfRemKeep"><label for="wfRemKeep">Keep</label></div></div>
+      <div class="wf-rem-option"><div class="wf-rem-radio"><input type="radio" name="wfRem" id="wfRemCopy" checked><label for="wfRemCopy">Copy</label></div>
+        <div class="wf-rem-content">
+          <div style="font-size:13px; color:var(--text-subtle); margin-bottom:8px;">Selected storage unit</div>
+          <div class="wf-storage-tags">
+            <span class="wf-storage-tag">Storage Unit 1 <span class="remove-x">✕</span></span>
+            <span class="wf-storage-tag">Storage Unit 2 <span class="remove-x">✕</span></span>
+            <span style="display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;background:var(--primary);color:#fff;font-size:10px;font-weight:700;">5</span>
+            <span style="margin-left:auto;display:flex;gap:4px;"><button style="background:none;border:none;cursor:pointer;color:var(--text-muted);font-size:14px;">✕</button><select class="select-field" style="height:28px;font-size:12px;padding:0 24px 0 6px;"><option>▾</option></select></span>
+          </div>
+          <div class="wf-panel-banner warning" style="padding:8px 10px; font-size:12px;"><svg viewBox="0 0 16 16" fill="currentColor" style="width:14px;height:14px;"><path d="M8 1a7 7 0 100 14A7 7 0 008 1zm0 10.5a.75.75 0 110-1.5.75.75 0 010 1.5zM8.75 8a.75.75 0 01-1.5 0V5a.75.75 0 011.5 0v3z"/></svg><span>You can only configure a maximum of 5 storage units as destinations</span></div>
+          <div style="font-size:13px; font-weight:500; color:var(--text-strong); margin:12px 0 8px;">Keep folder structure</div>
+          <div class="wf-folder-check"><label>Storage Unit 1</label><input type="checkbox" checked></div>
+          <div class="wf-folder-check"><label>Storage Unit 2</label><input type="checkbox" checked></div>
+          <div class="wf-folder-check"><label>Storage Unit 3</label><input type="checkbox" checked></div>
+          <div class="wf-folder-check"><label>Storage Unit 4</label><input type="checkbox" checked></div>
+          <div class="wf-folder-check"><label>Storage Unit 5</label><input type="checkbox" checked></div>
+        </div>
+      </div>
+      <div class="wf-rem-option"><div class="wf-rem-radio"><input type="radio" name="wfRem" id="wfRemMove"><label for="wfRemMove">Move</label></div>
+        <div class="wf-rem-content" style="display:none;"><div style="font-size:13px; color:var(--text-subtle); margin-bottom:8px;">Selected storage unit</div><select class="select-field" style="width:100%;"><option>Choose up to 5 storage units</option></select></div>
+      </div>
+      <div class="wf-rem-option"><div class="wf-rem-radio"><input type="radio" name="wfRem" id="wfRemDelete"><label for="wfRemDelete">Delete</label></div></div>
+    </div>
+    <div class="slide-panel-footer"><button class="btn-outline" onclick="closeSlidePanel('wfRemediationsPanel')">Cancel</button><button class="btn-primary">Save Changes</button></div>
+  </div>
+
+  <!-- Other Remediations -->
+  <div class="slide-panel-overlay" id="wfOtherRemOverlay" onclick="closeSlidePanel('wfOtherRemPanel')"></div>
+  <div class="slide-panel" id="wfOtherRemPanel" role="dialog" aria-modal="true">
+    <div class="slide-panel-header"><h2>Other Remediations</h2><button class="modal-close" onclick="closeSlidePanel('wfOtherRemPanel')"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><line x1="2" y1="2" x2="12" y2="12"/><line x1="12" y1="2" x2="2" y2="12"/></svg></button></div>
+    <div class="slide-panel-body">
+      <div class="wf-panel-banner warning"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8.982 1.566a1.13 1.13 0 00-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 01-1.1 0L7.1 5.995A.905.905 0 018 5zm.002 6a1 1 0 110 2 1 1 0 010-2z"/></svg><div>You cannot enable delete empty folders remediation if you don't have any move or delete remediations configured<br><a onclick="event.preventDefault();">Dismiss</a></div></div>
+      <div style="margin-bottom:20px;">
+        <div style="font-size:14px; font-weight:500; color:var(--text-strong); margin-bottom:4px;">Delete Directories</div>
+        <p style="font-size:12px; color:var(--text-subtle); margin-bottom:8px;">If it is empty after remediation (does not delete if the folder was empty to begin with) delete it.</p>
+        <div style="display:flex; align-items:center; gap:8px;"><label class="toggle-switch"><input type="checkbox"><span class="toggle-slider"></span></label><span style="font-size:14px; color:var(--text-strong);">Disabled</span></div>
+        <p style="font-size:11px; color:var(--text-subtle); margin-top:4px;">File versioning is only supported by the following storage types: SharePoint On-Prem</p>
+      </div>
+      <div>
+        <div style="font-size:14px; font-weight:500; color:var(--text-strong); margin-bottom:4px;">Scan File Versions</div>
+        <p style="font-size:12px; color:var(--text-subtle); margin-bottom:8px;">File versioning is only supported by the following storage types: SharePoint On-Prem</p>
+        <div style="display:flex; align-items:center; gap:8px;"><label class="toggle-switch"><input type="checkbox"><span class="toggle-slider"></span></label><span style="font-size:14px; color:var(--text-strong);">Disabled</span></div>
+      </div>
+    </div>
+    <div class="slide-panel-footer"><button class="btn-outline" onclick="closeSlidePanel('wfOtherRemPanel')">Cancel</button><button class="btn-primary">Save Changes</button></div>
   </div>
 
   <!-- Toast (bottom-right snackbar) -->
@@ -4983,6 +5688,12 @@
           // Always show list view when navigating to Jobs
           document.getElementById('jobsListView').style.display = 'block';
           document.getElementById('jobDetailView').style.display = 'none';
+        } else if (text === 'Workflows') {
+          document.getElementById('workflowsPage').classList.add('active');
+          document.getElementById('componentsPage').style.display = 'none';
+          // Always show list view when navigating to Workflows
+          document.getElementById('workflowsListView').style.display = 'block';
+          document.getElementById('workflowDetailView').style.display = 'none';
         } else {
           // For other nav items, show settings by default or show toast
           document.getElementById('componentsPage').style.display = 'none';
@@ -5406,6 +6117,29 @@
 
     initAccessibility();
     initDirtyTracking();
+
+    // ===============================================================
+    // WORKFLOWS
+    // ===============================================================
+    const workflowNames = ['Default Workflow','Email 2025','Finance','Weekly Scan','Doc Library','User Data','Email 2024','Test WF','Full Disk','Quick Scan'];
+
+    window.showWorkflowsList = function() {
+      document.getElementById('workflowsListView').style.display = 'block';
+      document.getElementById('workflowDetailView').style.display = 'none';
+    };
+
+    window.openWorkflowDetail = function(index) {
+      const name = workflowNames[index] || 'Workflow';
+      document.getElementById('workflowsListView').style.display = 'none';
+      document.getElementById('workflowDetailView').style.display = 'block';
+      document.getElementById('wfDetailBreadcrumbName').textContent = name;
+      document.getElementById('wfDetailTitle').textContent = name;
+    };
+
+    window.toggleWfVerdicts = function() {
+      const block = document.getElementById('wfVerdictsBlock');
+      if (block) block.style.display = block.style.display === 'none' ? 'flex' : 'none';
+    };
 
     // ===============================================================
     // HASH ROUTING — #components accessible via URL only (hidden from nav)
