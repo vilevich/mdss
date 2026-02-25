@@ -511,6 +511,25 @@ select:focus { border-color: var(--primary); outline: none; }
   box-shadow: var(--shadow-card);
   overflow: hidden;
 }
+/* Card header — lightweight (Settings, generic cards) */
+.card-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 20px; height: 56px; min-height: 56px;
+  border-bottom: 1px solid var(--border-card);
+}
+.card-header h2 { font-size: 14px; font-weight: 500; color: var(--text-strong); margin: 0; }
+.card-header .btn-outline { align-self: center; }
+.card-header-actions { display: flex; gap: 8px; align-items: center; }
+.card-header-with-desc {
+  height: auto; min-height: 56px; padding: 16px 20px;
+  flex-direction: column; align-items: flex-start;
+}
+.card-header-with-desc .card-header-top {
+  display: flex; align-items: center; justify-content: space-between; width: 100%;
+}
+.card-header-desc { font-size: 14px; font-weight: 400; color: var(--text-subtle); margin-top: 8px; line-height: 16px; }
+
+/* Card header — data-table variant (Audit, Jobs, Workflows, Inventory) */
 .audit-card-header {
   display: flex;
   align-items: center;
@@ -1340,6 +1359,21 @@ select:focus { border-color: var(--primary); outline: none; }
 .panel-field-label { font-size: 14px; font-weight: 500; color: var(--text-subtle); }
 .panel-field .input-field { max-width: none; }
 .panel-field .select-field { max-width: none; }
+
+/* Panel banner — contextual alert inside slide panels or modals */
+.panel-banner {
+  display: flex; gap: 10px; padding: 12px; border-radius: var(--radius);
+  font-size: 13px; line-height: 1.4; margin-bottom: 16px;
+}
+.panel-banner.warning { background: var(--ds-caution-100); color: var(--ds-caution-text); }
+.panel-banner.error { background: var(--ds-alert-100); color: var(--ds-alert-text); }
+.panel-banner.info { background: var(--ds-accent-100); color: var(--ds-accent-text); }
+.panel-banner svg { width: 16px; height: 16px; flex-shrink: 0; margin-top: 1px; }
+.panel-banner a { color: inherit; font-weight: 500; cursor: pointer; }
+
+[data-theme="dark"] .panel-banner.warning { background: rgba(219,182,0,0.12); }
+[data-theme="dark"] .panel-banner.error { background: rgba(212,0,49,0.12); }
+[data-theme="dark"] .panel-banner.info { background: rgba(29,107,252,0.12); }
 
 [data-theme="dark"] .panel-content { background: var(--surface-card); border-color: var(--border-card); }
 [data-theme="dark"] .panel-header { border-color: var(--border-card); }

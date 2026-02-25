@@ -212,7 +212,12 @@ All buttons share: `height: 32px`, `font-size: 14px`, `font-weight: 500`, `borde
 | Class | Description |
 |-------|-------------|
 | `.audit-card` | Base card (bg, border, shadow, radius) |
-| `.audit-card-header` | 56px header with title + actions |
+| `.card-header` | Lightweight 56px card header (flex, space-between, border-bottom) |
+| `.card-header h2` | Header title (14px, weight 500) |
+| `.card-header-actions` | Right-side action group (flex, 8px gap) |
+| `.card-header-with-desc` | Multi-line variant (auto height, column layout) |
+| `.card-header-desc` | Description text below title (14px, subtle color) |
+| `.audit-card-header` | Data-table card header with title + count + search + actions |
 | `.audit-card-header.with-desc` | Header with description text |
 | `.card-body` | 20px padded content area |
 | `.audit-card-title-editable` | Editable inline title |
@@ -221,6 +226,8 @@ All buttons share: `height: 32px`, `font-size: 14px`, `font-weight: 500`, `borde
 | `.card-filter-bar` / `.card-filter-chip` | Filter chip bar |
 | `.card-actions-dropdown` | Actions menu trigger |
 | `.audit-card-header.selected` | Blue background for multi-select state |
+
+**Two-tier card headers:** Use `.card-header` for simple cards (Settings panels, job sections). Use `.audit-card-header` for data-table cards with bulk actions, column visibility, search, and filter features.
 
 ### Tables
 
@@ -327,6 +334,12 @@ Uses `--ds-*` semantic tokens — auto-adapts to dark mode.
 | `.modal-overlay` / `.modal` | Centered dialog |
 | `.slide-panel-overlay` / `.slide-panel` | Right-side drawer (400px) |
 | `.panel-field` | Field layout for slide panels |
+| `.panel-banner` | Contextual alert banner inside slide panels (flex, 12px padding, rounded) |
+| `.panel-banner.warning` | Caution-themed (yellow bg, dark text) — uses `--ds-caution-*` tokens |
+| `.panel-banner.error` | Alert-themed (red bg, dark text) — uses `--ds-alert-*` tokens |
+| `.panel-banner.info` | Accent-themed (blue bg, dark text) — uses `--ds-accent-*` tokens |
+
+Panel banners support inline SVG icons (16×16, flex-shrink: 0) and anchor links (`font-weight: 500`). Dark mode auto-adapts via rgba overlays.
 
 ### Advanced Filters Panel
 
