@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MetaDefender Storage Security - Settings</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="design-system/tokens.css">
-  <link rel="stylesheet" href="design-system/components.css">
-  <link rel="stylesheet" href="design-system/icons.css">
+  <link rel="stylesheet" href="https://vilevich.github.io/blue-line/tokens.css">
+  <link rel="stylesheet" href="https://vilevich.github.io/blue-line/components.css">
+  <link rel="stylesheet" href="https://vilevich.github.io/blue-line/icons.css">
   <style>
     /* Product-specific styles only. DS imported via <link> tags above. */
 
@@ -47,7 +47,7 @@
     .sidebar-toggle:hover { color: var(--text-strong); background: var(--hover-default); }
     .sidebar-toggle svg { width: 18px; height: 18px; }
     .header-right { display: flex; align-items: center; gap: 8px; }
-    /* header-icon, notif-dot, header-avatar → design-system/components.css */
+    /* header-icon, notif-dot, header-avatar → blue-line/components.css */
 
     /* ===== MAIN ===== */
     .main { display: flex; flex: 1; min-height: 0; }
@@ -468,7 +468,7 @@
 
     /* ===== JOBS PAGE ===== */
     /* Jobs tables: truncation — now handled by DS .data-table tbody td */
-    /* col-pinned base styles → design-system/components.css */
+    /* col-pinned base styles → blue-line/components.css */
     /* Checkbox column — sticky on scroll (no right border — pinned col next to it has it) */
     #processedFilesTable .col-cb {
       position: sticky; left: 0; z-index: 2; background: var(--surface-card);
@@ -509,7 +509,7 @@
     .jobs-edit-btn svg { width: 14px; height: 14px; }
 
     /* Job Detail Page */
-    /* job-detail-breadcrumb → design-system/components.css (.detail-breadcrumb) */
+    /* job-detail-breadcrumb → blue-line/components.css (.detail-breadcrumb) */
     /* .job-detail-header — removed, now uses DS .page-header + .page-header-actions */
     .job-info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0; padding: 20px; }
     .job-info-item { display: flex; flex-direction: column; gap: 4px; padding: 0 20px 0 0; }
@@ -545,10 +545,10 @@
     }
     .job-stopped-banner svg { width: 16px; height: 16px; color: var(--feedback-warning); flex-shrink: 0; }
 
-    /* priority-toggle, af-section/chips → design-system/components.css */
+    /* priority-toggle, af-section/chips → blue-line/components.css */
 
     /* ===== AUDIT PAGE ===== */
-    /* page-view, expand-btn → design-system/components.css */
+    /* page-view, expand-btn → blue-line/components.css */
 
     /* .audit-header — removed, now uses DS .page-header */
 
@@ -562,7 +562,7 @@
       border-bottom: 1px solid var(--border-card);
     }
 
-    /* audit-user, audit-avatar, level-badge, category-badge → design-system/components.css */
+    /* audit-user, audit-avatar, level-badge, category-badge → blue-line/components.css */
 
     /* ===== DARK MODE (product-specific overrides only) ===== */
     [data-theme="dark"] body { background: var(--surface-bg); color: var(--text-subtle); }
@@ -596,7 +596,7 @@
     [data-theme="dark"] .btn-export { border-color: var(--border-200); color: var(--text-subtle); }
     [data-theme="dark"] .audit-detail-row td { color: var(--text-muted); }
 
-    /* theme-toggle, advanced-filters, avatar-dropdown → design-system/components.css */
+    /* theme-toggle, advanced-filters, avatar-dropdown → blue-line/components.css */
 
     /* Component demo wrapper for standalone previews */
     .avd-demo-container {
@@ -609,12 +609,12 @@
       position: static; display: flex;
     }
 
-    /* notif-dropdown → design-system/components.css */
+    /* notif-dropdown → blue-line/components.css */
 
     /* ===== WORKFLOWS PAGE ===== */
     /* .wf-header — removed, now uses DS .page-header */
 
-    /* wf-breadcrumb → design-system/components.css (.detail-breadcrumb) */
+    /* wf-breadcrumb → blue-line/components.css (.detail-breadcrumb) */
 
     .wf-detail-title { font-size: 24px; font-weight: 500; color: var(--text-strong); margin-bottom: 20px; }
 
