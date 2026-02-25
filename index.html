@@ -857,6 +857,97 @@
     /* Dark mode — Inventory */
     [data-theme="dark"] .inv-promo-img { background: linear-gradient(135deg, #0d1b2a 0%, #1d6bfc 100%); }
 
+    /* ================================================================
+       ACCOUNT DETAIL PAGE
+       ================================================================ */
+
+    /* Account Overview stats */
+    .acct-overview-row {
+      display: flex; gap: 0;
+      background: var(--surface-card);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-card);
+      margin-bottom: 16px;
+    }
+    .acct-overview-stat {
+      flex: 1; padding: 20px 24px;
+      border-left: 3px solid transparent;
+      display: flex; flex-direction: column; gap: 4px;
+    }
+    .acct-overview-stat:not(:last-child) { border-right: 1px solid var(--border-card); }
+    .acct-overview-stat:first-child { border-radius: var(--radius) 0 0 var(--radius); }
+    .acct-overview-stat:last-child { border-radius: 0 var(--radius) var(--radius) 0; }
+    .acct-overview-stat.blue { border-left-color: var(--blue-700); }
+    .acct-overview-stat.green { border-left-color: var(--green-800); }
+    .acct-overview-stat.red { border-left-color: var(--red-700); }
+    .acct-overview-stat.yellow { border-left-color: var(--yellow-700); }
+    .acct-overview-stat-label { font-size: 12px; font-weight: 500; color: var(--text-muted); }
+    .acct-overview-stat-value { font-size: 24px; font-weight: 500; color: var(--text-strong); }
+
+    /* Account detail tabs */
+    .acct-tab-panel { display: none; }
+    .acct-tab-panel.active { display: block; }
+
+    /* Donut charts */
+    .acct-donut-row { display: flex; gap: 0; padding: 24px 20px; justify-content: space-around; }
+    .acct-donut-item { display: flex; flex-direction: column; align-items: center; gap: 16px; flex: 1; }
+    .acct-donut-svg { width: 120px; height: 120px; transform: rotate(-90deg); }
+    .acct-donut-svg text { transform: rotate(90deg); transform-origin: center; }
+    .acct-donut-labels { display: flex; flex-direction: column; gap: 4px; }
+    .acct-donut-label-row { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--text-subtle); }
+    .acct-donut-label-row span:last-child { font-weight: 500; color: var(--text-strong); margin-left: auto; }
+    .acct-donut-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+
+    /* Job summary header */
+    .acct-job-summary-header { display: flex; align-items: center; gap: 12px; }
+    .acct-job-summary-meta { font-size: 13px; color: var(--text-muted); font-weight: 400; }
+    .acct-job-summary-link { font-size: 13px; color: var(--primary); text-decoration: none; cursor: pointer; font-weight: 500; margin-left: auto; }
+    .acct-job-summary-link:hover { text-decoration: underline; }
+
+    /* Client ID cell */
+    .acct-client-id { display: flex; align-items: center; gap: 6px; max-width: 180px; }
+    .acct-client-id-text { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 13px; font-family: 'Roboto Mono', monospace; color: var(--text-subtle); }
+    .acct-copy-btn { width: 16px; height: 16px; cursor: pointer; color: var(--text-muted); flex-shrink: 0; }
+    .acct-copy-btn:hover { color: var(--primary); }
+
+    /* Group cell with extra badge */
+    .acct-group-more { font-size: 11px; color: var(--primary); background: var(--blue-100); border-radius: 10px; padding: 1px 6px; font-weight: 500; white-space: nowrap; }
+
+    /* Column Visibility panel items */
+    .col-vis-item {
+      display: flex; align-items: center; gap: 12px;
+      padding: 10px 0; border-bottom: 1px solid var(--border-card);
+    }
+    .col-vis-item:last-child { border-bottom: none; }
+    .col-vis-drag {
+      width: 16px; height: 16px; color: var(--text-muted); cursor: grab; flex-shrink: 0;
+      font-size: 11px; letter-spacing: 2px; user-select: none;
+    }
+    .col-vis-label { flex: 1; font-size: 14px; color: var(--text-strong); }
+    .col-vis-section-title {
+      font-size: 12px; font-weight: 500; color: var(--text-muted);
+      margin-bottom: 4px; padding-bottom: 4px;
+    }
+
+    /* Actions dropdown for detail page header */
+    .acct-actions-wrap { position: relative; display: inline-block; }
+    .acct-actions-menu {
+      position: absolute; top: 36px; right: 0; min-width: 180px; z-index: 100;
+      background: var(--surface-card); border: 1px solid var(--border-200);
+      border-radius: var(--radius-graphics); box-shadow: var(--shadow-3);
+      padding: 4px 0; display: none;
+    }
+    .acct-actions-menu.open { display: block; }
+
+    /* Settings link */
+    .acct-settings-link { font-size: 13px; color: var(--primary); cursor: pointer; font-weight: 500; text-decoration: none; }
+    .acct-settings-link:hover { text-decoration: underline; }
+
+    /* Dark mode — Account Detail */
+    [data-theme="dark"] .acct-group-more { background: rgba(29,107,252,0.15); color: var(--blue-400); }
+    [data-theme="dark"] .acct-donut-dot { opacity: 0.8; }
+
   </style>
 </head>
 <body>
@@ -2423,6 +2514,7 @@
 
           <!-- ===== Accounts Tab ===== -->
           <div class="inv-tab-panel active" id="inv-panel-accounts">
+            <div id="accountsListView">
             <!-- Accounts Table Card -->
             <div class="audit-card" style="margin-bottom: 24px;">
               <div class="card-header">
@@ -2447,28 +2539,28 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
+                    <tr onclick="openAccountDetail(0)" style="cursor:pointer;">
                       <td>AWS Account Name</td>
                       <td><span class="tag tag-success">Operational</span></td>
                       <td><div class="inv-provider"><div class="inv-provider-icon aws"><span style="font-size:8px; letter-spacing:-0.5px;">aws</span></div> Amazon S3</div></td>
                       <td>15</td>
                       <td><div class="row-action-btn" onclick="toggleInvMenu(this, event)" style="position:relative"><svg viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="3" r="1.5"/><circle cx="8" cy="8" r="1.5"/><circle cx="8" cy="13" r="1.5"/></svg><div class="row-action-menu row-action-menu--inline"><div class="row-action-menu-item" onclick="event.stopPropagation()"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 10v3h3M14 6V3h-3"/><path d="M14 3L9 8M2 13l5-5"/></svg> Create Job</div><div class="row-action-menu-item" onclick="event.stopPropagation()"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="5"/><path d="M8 5.5v5M5.5 8h5"/></svg> Account Settings</div><div class="inv-context-item danger" onclick="event.stopPropagation()"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 4h10M6 4V3h4v1M5 4v8.5a1 1 0 001 1h4a1 1 0 001-1V4"/></svg> Delete Account</div></div></div></td>
                     </tr>
-                    <tr>
+                    <tr onclick="openAccountDetail(1)" style="cursor:pointer;">
                       <td>SharePoint Cloud Account Name</td>
                       <td><span class="tag tag-alert">Issues Found</span></td>
                       <td><div class="inv-provider"><div class="inv-provider-icon sharepoint"><span style="font-size:8px;">SP</span></div> SharePoint</div></td>
                       <td>9</td>
                       <td><div class="row-action-btn" onclick="toggleInvMenu(this, event)" style="position:relative"><svg viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="3" r="1.5"/><circle cx="8" cy="8" r="1.5"/><circle cx="8" cy="13" r="1.5"/></svg><div class="row-action-menu row-action-menu--inline"><div class="row-action-menu-item" onclick="event.stopPropagation()"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 10v3h3M14 6V3h-3"/><path d="M14 3L9 8M2 13l5-5"/></svg> Create Job</div><div class="row-action-menu-item" onclick="event.stopPropagation()"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="5"/><path d="M8 5.5v5M5.5 8h5"/></svg> Account Settings</div><div class="inv-context-item danger" onclick="event.stopPropagation()"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 4h10M6 4V3h4v1M5 4v8.5a1 1 0 001 1h4a1 1 0 001-1V4"/></svg> Delete Account</div></div></div></td>
                     </tr>
-                    <tr>
+                    <tr onclick="openAccountDetail(2)" style="cursor:pointer;">
                       <td>Alibaba Cloud Account Name</td>
                       <td><span class="tag tag-success">Operational</span></td>
                       <td><div class="inv-provider"><div class="inv-provider-icon alibaba"><span style="font-size:8px;">Ali</span></div> Alibaba Cloud</div></td>
                       <td>3</td>
                       <td><div class="row-action-btn" onclick="toggleInvMenu(this, event)" style="position:relative"><svg viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="3" r="1.5"/><circle cx="8" cy="8" r="1.5"/><circle cx="8" cy="13" r="1.5"/></svg><div class="row-action-menu row-action-menu--inline"><div class="row-action-menu-item" onclick="event.stopPropagation()"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 10v3h3M14 6V3h-3"/><path d="M14 3L9 8M2 13l5-5"/></svg> Create Job</div><div class="row-action-menu-item" onclick="event.stopPropagation()"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="5"/><path d="M8 5.5v5M5.5 8h5"/></svg> Account Settings</div><div class="inv-context-item danger" onclick="event.stopPropagation()"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 4h10M6 4V3h4v1M5 4v8.5a1 1 0 001 1h4a1 1 0 001-1V4"/></svg> Delete Account</div></div></div></td>
                     </tr>
-                    <tr>
+                    <tr onclick="openAccountDetail(3)" style="cursor:pointer;">
                       <td>Alibaba MDSS</td>
                       <td><span class="tag tag-success">Operational</span></td>
                       <td><div class="inv-provider"><div class="inv-provider-icon alibaba"><span style="font-size:8px;">Ali</span></div> Alibaba Cloud</div></td>
@@ -2549,6 +2641,194 @@
                 </div>
               </div>
             </div>
+            </div><!-- /accountsListView -->
+
+            <!-- Account Detail View (hidden by default) -->
+            <div id="accountDetailView" style="display:none;">
+              <div class="detail-breadcrumb">
+                <a onclick="showAccountsList()">Inventory</a>
+                <svg viewBox="0 0 16 16" fill="currentColor"><path d="M6.47 4.22a.75.75 0 011.06 0l3.25 3.25a.75.75 0 010 1.06l-3.25 3.25a.75.75 0 01-1.06-1.06L9.19 8 6.47 5.28a.75.75 0 010-1.06z"/></svg>
+                <a onclick="showAccountsList()">Accounts</a>
+                <svg viewBox="0 0 16 16" fill="currentColor"><path d="M6.47 4.22a.75.75 0 011.06 0l3.25 3.25a.75.75 0 010 1.06l-3.25 3.25a.75.75 0 01-1.06-1.06L9.19 8 6.47 5.28a.75.75 0 010-1.06z"/></svg>
+                <span id="acctDetailBreadcrumbName">Account Name</span>
+              </div>
+              <div class="page-header">
+                <h1 class="page-title" id="acctDetailTitle">Account Name</h1>
+                <div class="page-header-actions">
+                  <button class="btn-icon" title="Refresh" onclick="openAccountDetail(window._acctDetailIdx||0)"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2.5 8a5.5 5.5 0 019.3-4M13.5 8a5.5 5.5 0 01-9.3 4"/><path d="M11.5 1v3h3M4.5 15v-3h-3" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+                  <div class="acct-actions-wrap">
+                    <button class="btn-outline" onclick="toggleAcctActionsMenu(event)">Actions <svg viewBox="0 0 16 16" fill="currentColor" style="width:12px;height:12px;margin-left:4px;"><path d="M4 6l4 4 4-4"/></svg></button>
+                    <div class="acct-actions-menu" id="acctActionsMenu">
+                      <div class="row-action-menu-item" onclick="openSlidePanel('editJobPanel')"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 10v3h3M14 6V3h-3"/><path d="M14 3L9 8M2 13l5-5"/></svg> Create Job</div>
+                      <div class="row-action-menu-item" onclick="openSlidePanel('acctSettingsPanel')"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="5"/><path d="M8 5.5v5M5.5 8h5"/></svg> Account Settings</div>
+                      <div class="inv-context-item danger"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 4h10M6 4V3h4v1M5 4v8.5a1 1 0 001 1h4a1 1 0 001-1V4"/></svg> Delete Account</div>
+                    </div>
+                  </div>
+                  <a class="acct-settings-link" onclick="openSlidePanel('acctSettingsPanel')">Settings</a>
+                  <button class="btn-primary" onclick="openSlidePanel('editJobPanel')">Add Unit</button>
+                </div>
+              </div>
+
+              <!-- Account Detail Inner Tabs -->
+              <div class="tabs" id="acctDetailTabs" role="tablist" style="margin-bottom:16px;">
+                <button class="tab active" role="tab" data-acct-tab="units">Units</button>
+                <button class="tab" role="tab" data-acct-tab="jobs">Jobs</button>
+              </div>
+
+              <!-- ===== Units Tab ===== -->
+              <div class="acct-tab-panel active" id="acct-panel-units">
+                <!-- Account Overview -->
+                <div class="acct-overview-row" id="acctOverviewRow">
+                  <div class="acct-overview-stat blue">
+                    <span class="acct-overview-stat-label">Total Units</span>
+                    <span class="acct-overview-stat-value" id="acctStatTotal">15</span>
+                  </div>
+                  <div class="acct-overview-stat green">
+                    <span class="acct-overview-stat-label">Operational</span>
+                    <span class="acct-overview-stat-value" id="acctStatOp">12</span>
+                  </div>
+                  <div class="acct-overview-stat red">
+                    <span class="acct-overview-stat-label">Issues Found</span>
+                    <span class="acct-overview-stat-value" id="acctStatIssues">2</span>
+                  </div>
+                  <div class="acct-overview-stat yellow">
+                    <span class="acct-overview-stat-label">Pending</span>
+                    <span class="acct-overview-stat-value" id="acctStatPending">1</span>
+                  </div>
+                </div>
+
+                <!-- Group Settings -->
+                <div class="audit-card" style="margin-bottom:16px;">
+                  <div class="card-header">
+                    <div class="card-header-left"><strong>Group Settings</strong></div>
+                  </div>
+                  <div style="padding:16px 20px;">
+                    <div style="display:flex; align-items:center; gap:8px;">
+                      <span style="font-size:13px; color:var(--text-muted); min-width:90px;">Group Name</span>
+                      <span style="font-size:13px; color:var(--text-strong); font-weight:500;" id="acctGroupName">Default Group</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Storage Units Table -->
+                <div class="audit-card">
+                  <div class="audit-card-header">
+                    <div class="audit-card-title">
+                      <h3>Storage Units</h3>
+                      <span class="count" id="acctUnitsCount">15</span>
+                    </div>
+                    <div class="audit-card-actions">
+                      <div class="audit-search">
+                        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="7" cy="7" r="5.5"/><path d="M11 11l3.5 3.5"/></svg>
+                        <input type="text" placeholder="Search units" id="acctUnitsSearch">
+                      </div>
+                      <button class="audit-filter-btn" onclick="openSlidePanel('acctUnitsColVisPanel')" title="Column Visibility">
+                        <svg viewBox="0 0 16 16" fill="currentColor"><path d="M2.5 4.5h11M2.5 8h11M2.5 11.5h11" stroke="currentColor" stroke-width="1.5" fill="none"/><circle cx="5" cy="4.5" r="1.5" fill="currentColor"/><circle cx="11" cy="8" r="1.5" fill="currentColor"/><circle cx="7" cy="11.5" r="1.5" fill="currentColor"/></svg>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="table-scroll">
+                    <table class="data-table" id="acctUnitsTable">
+                      <thead>
+                        <tr>
+                          <th style="width:22%;">Name <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77H12.165"/><path d="M1.715 5.44H14.275"/><path d="M5.515 12.09H10.475"/></svg></span></th>
+                          <th style="width:12%;">Status</th>
+                          <th style="width:18%;">Client ID</th>
+                          <th style="width:14%;">Group</th>
+                          <th style="width:10%;">Files</th>
+                          <th style="width:18%;">Last Scanned</th>
+                          <th style="width:56px;"></th>
+                        </tr>
+                      </thead>
+                      <tbody id="acctUnitsBody">
+                        <!-- Populated by JS -->
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="audit-pagination" id="acctUnitsPagination">
+                    <div class="audit-pagination-left">
+                      <select id="acctUnitsPerPage"><option selected>10</option><option>25</option><option>50</option></select>
+                      <span>per page</span>
+                    </div>
+                    <div class="audit-pagination-center">
+                      <button class="pagination-btn" id="acctUnitsPrev">&lsaquo;</button>
+                      <select id="acctUnitsPageSelect"></select>
+                      <button class="pagination-btn" id="acctUnitsNext">&rsaquo;</button>
+                    </div>
+                    <div class="audit-pagination-right"><span id="acctUnitsRange"></span></div>
+                  </div>
+                </div>
+              </div><!-- /acct-panel-units -->
+
+              <!-- ===== Jobs Tab ===== -->
+              <div class="acct-tab-panel" id="acct-panel-jobs">
+                <!-- Latest Job Summary -->
+                <div class="audit-card" style="margin-bottom:16px;">
+                  <div class="audit-card-header">
+                    <div class="acct-job-summary-header">
+                      <h3>Latest Job Summary</h3>
+                      <span class="acct-job-summary-meta" id="acctJobSummaryMeta">Scheduled File Scan &middot; Jan 15, 2025 10:30 AM</span>
+                    </div>
+                    <a class="acct-job-summary-link" id="acctJobSummaryLink">View Full Report &rarr;</a>
+                  </div>
+                  <div class="acct-donut-row" id="acctDonutRow">
+                    <!-- 3 donut charts populated by JS -->
+                  </div>
+                </div>
+
+                <!-- Jobs Table -->
+                <div class="audit-card">
+                  <div class="audit-card-header">
+                    <div class="audit-card-title">
+                      <h3>Jobs</h3>
+                      <span class="count" id="acctJobsCount">10</span>
+                    </div>
+                    <div class="audit-card-actions">
+                      <div class="audit-search">
+                        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="7" cy="7" r="5.5"/><path d="M11 11l3.5 3.5"/></svg>
+                        <input type="text" placeholder="Search jobs" id="acctJobsSearch">
+                      </div>
+                      <button class="audit-filter-btn" onclick="openSlidePanel('acctJobsFiltersPanel')" title="Advanced Filters">
+                        <svg viewBox="0 0 16 16" fill="currentColor"><path d="M4.75 7.15V2H3.25V7.15C2.52 7.45 2 8.16 2 9C2 9.84 2.52 10.55 3.25 10.85V14H4.75V10.85C5.48 10.55 6 9.84 6 9C6 8.16 5.48 7.45 4.75 7.15Z"/><path d="M10 5C10 4.16 9.48 3.45 8.75 3.15V2H7.25V3.15C6.52 3.45 6 4.16 6 5C6 5.84 6.52 6.55 7.25 6.85V14H8.75V6.85C9.48 6.55 10 5.84 10 5Z"/><path d="M14 11C14 10.16 13.48 9.45 12.75 9.15V2H11.25V9.15C10.52 9.45 10 10.16 10 11C10 11.84 10.52 12.55 11.25 12.85V14H12.75V12.85C13.48 12.55 14 11.84 14 11Z"/></svg>
+                      </button>
+                      <button class="audit-filter-btn" onclick="openSlidePanel('acctJobsColVisPanel')" title="Column Visibility">
+                        <svg viewBox="0 0 16 16" fill="currentColor"><path d="M2.5 4.5h11M2.5 8h11M2.5 11.5h11" stroke="currentColor" stroke-width="1.5" fill="none"/><circle cx="5" cy="4.5" r="1.5" fill="currentColor"/><circle cx="11" cy="8" r="1.5" fill="currentColor"/><circle cx="7" cy="11.5" r="1.5" fill="currentColor"/></svg>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="table-scroll">
+                    <table class="data-table" id="acctJobsTable">
+                      <thead>
+                        <tr>
+                          <th style="width:22%;">Job Name <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77H12.165"/><path d="M1.715 5.44H14.275"/><path d="M5.515 12.09H10.475"/></svg></span></th>
+                          <th style="width:14%;">Status</th>
+                          <th style="width:12%;">Type</th>
+                          <th style="width:10%;">Files</th>
+                          <th style="width:12%;">Detections</th>
+                          <th style="width:18%;">Date</th>
+                          <th style="width:56px;"></th>
+                        </tr>
+                      </thead>
+                      <tbody id="acctJobsBody">
+                        <!-- Populated by JS -->
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="audit-pagination" id="acctJobsPagination">
+                    <div class="audit-pagination-left">
+                      <select id="acctJobsPerPage"><option selected>10</option><option>25</option><option>50</option></select>
+                      <span>per page</span>
+                    </div>
+                    <div class="audit-pagination-center">
+                      <button class="pagination-btn" id="acctJobsPrev">&lsaquo;</button>
+                      <select id="acctJobsPageSelect"></select>
+                      <button class="pagination-btn" id="acctJobsNext">&rsaquo;</button>
+                    </div>
+                    <div class="audit-pagination-right"><span id="acctJobsRange"></span></div>
+                  </div>
+                </div>
+              </div><!-- /acct-panel-jobs -->
+            </div><!-- /accountDetailView -->
           </div><!-- /inv-panel-accounts -->
 
           <!-- ===== Groups Tab (placeholder) ===== -->
@@ -4198,6 +4478,240 @@
     <div class="slide-panel-footer">
       <button class="btn-outline" onclick="resetJobsFilters()">Reset</button>
       <button class="btn-primary" onclick="applyJobsFilters()">Apply Filters</button>
+    </div>
+  </div>
+
+  <!-- ==================== ACCOUNT SETTINGS SLIDE PANEL ==================== -->
+  <div class="slide-panel-overlay" id="acctSettingsOverlay" onclick="closeSlidePanel('acctSettingsPanel')"></div>
+  <div class="slide-panel" id="acctSettingsPanel" role="dialog" aria-labelledby="acctSettingsTitle" aria-modal="true">
+    <div class="slide-panel-header">
+      <h2 id="acctSettingsTitle">Account Settings</h2>
+      <button class="modal-close" aria-label="Close panel" onclick="closeSlidePanel('acctSettingsPanel')">
+        <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><line x1="2" y1="2" x2="12" y2="12"/><line x1="12" y1="2" x2="2" y2="12"/></svg>
+      </button>
+    </div>
+    <div class="slide-panel-body">
+      <div class="panel-banner warning" style="padding:8px 10px; font-size:12px; margin-bottom:16px;">
+        <svg viewBox="0 0 16 16" fill="currentColor" style="width:14px;height:14px;"><path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/></svg>
+        <span>Changing account settings may affect connected storage units and running jobs.</span>
+      </div>
+      <div class="panel-banner error" id="acctSettingsError" style="padding:8px 10px; font-size:12px; margin-bottom:16px; display:none;">
+        <svg viewBox="0 0 16 16" fill="currentColor" style="width:14px;height:14px;"><path d="M8 1a7 7 0 100 14A7 7 0 008 1zm0 10.5a.75.75 0 110-1.5.75.75 0 010 1.5zM8.75 8a.75.75 0 01-1.5 0V5a.75.75 0 011.5 0v3z"/></svg>
+        <span>Failed to save settings. Please check your credentials and try again.</span>
+      </div>
+
+      <!-- Autodiscovery -->
+      <div class="panel-field" style="display:flex; align-items:center; justify-content:space-between;">
+        <label class="panel-field-label" style="margin-bottom:0;">Autodiscovery</label>
+        <div class="toggle-switch active" onclick="this.classList.toggle('active')"><div class="toggle-knob"></div></div>
+      </div>
+
+      <!-- Group -->
+      <div class="panel-field">
+        <label class="panel-field-label">Group</label>
+        <select class="select-field" style="width:100%;">
+          <option selected>Default Group</option>
+          <option>Production</option>
+          <option>Staging</option>
+          <option>Development</option>
+        </select>
+      </div>
+
+      <!-- Account Name -->
+      <div class="panel-field">
+        <label class="panel-field-label" style="display:flex; align-items:center; gap:4px;">
+          Account Name
+          <svg viewBox="0 0 16 16" fill="currentColor" style="width:14px; height:14px; color:var(--text-muted); cursor:pointer;" onclick="document.getElementById('acctNameModal').classList.add('open')"><path d="M8 1a7 7 0 100 14A7 7 0 008 1zm0 10.5a.75.75 0 110-1.5.75.75 0 010 1.5zM8.75 8a.75.75 0 01-1.5 0V5a.75.75 0 011.5 0v3z"/></svg>
+        </label>
+        <input class="input-field" value="AWS Account Name" style="width:100%;" id="acctSettingsName">
+      </div>
+
+      <!-- Service URL -->
+      <div class="panel-field">
+        <label class="panel-field-label">Service URL</label>
+        <input class="input-field" value="https://s3.amazonaws.com" style="width:100%;">
+      </div>
+
+      <!-- IAM Role -->
+      <div class="panel-field" style="display:flex; align-items:center; justify-content:space-between;">
+        <label class="panel-field-label" style="margin-bottom:0;">IAM Role</label>
+        <div class="toggle-switch" onclick="this.classList.toggle('active')"><div class="toggle-knob"></div></div>
+      </div>
+
+      <!-- Assume Role ARN -->
+      <div class="panel-field">
+        <label class="panel-field-label">Assume Role ARN</label>
+        <input class="input-field" placeholder="arn:aws:iam::123456789012:role/role-name" style="width:100%;">
+      </div>
+
+      <!-- Access Key ID -->
+      <div class="panel-field">
+        <label class="panel-field-label">Access Key ID</label>
+        <input class="input-field" value="AKIA2OGYBAH6XRKL2G4H" style="width:100%;">
+      </div>
+
+      <!-- Secret Access Key -->
+      <div class="panel-field">
+        <label class="panel-field-label">Secret Access Key</label>
+        <input class="input-field" type="password" value="secretkey123456" style="width:100%;">
+      </div>
+
+      <!-- Region Endpoint -->
+      <div class="panel-field">
+        <label class="panel-field-label">Region Endpoint</label>
+        <select class="select-field" style="width:100%;">
+          <option selected>US East (N. Virginia) — us-east-1</option>
+          <option>US West (Oregon) — us-west-2</option>
+          <option>EU (Ireland) — eu-west-1</option>
+          <option>EU (Frankfurt) — eu-central-1</option>
+          <option>Asia Pacific (Tokyo) — ap-northeast-1</option>
+        </select>
+      </div>
+
+      <!-- KMS -->
+      <div class="panel-field" style="display:flex; align-items:center; justify-content:space-between;">
+        <label class="panel-field-label" style="margin-bottom:0;">KMS Encryption</label>
+        <div class="toggle-switch" onclick="this.classList.toggle('active')"><div class="toggle-knob"></div></div>
+      </div>
+
+      <!-- KMS Key ID -->
+      <div class="panel-field">
+        <label class="panel-field-label">KMS Key ID</label>
+        <input class="input-field" placeholder="Enter KMS Key ID" style="width:100%;">
+      </div>
+
+      <!-- Proxy URL -->
+      <div class="panel-field">
+        <label class="panel-field-label">Proxy URL</label>
+        <input class="input-field" placeholder="https://proxy.example.com:8080" style="width:100%;">
+      </div>
+
+      <!-- Custom Endpoint -->
+      <div class="panel-field">
+        <label class="panel-field-label">Custom Endpoint URL</label>
+        <input class="input-field" placeholder="https://custom-endpoint.example.com" style="width:100%;">
+      </div>
+
+      <!-- Path-Style Access -->
+      <div class="panel-field" style="display:flex; align-items:center; justify-content:space-between;">
+        <label class="panel-field-label" style="margin-bottom:0;">Path-Style Access</label>
+        <div class="toggle-switch" onclick="this.classList.toggle('active')"><div class="toggle-knob"></div></div>
+      </div>
+    </div>
+    <div class="slide-panel-footer">
+      <button class="btn-outline" onclick="closeSlidePanel('acctSettingsPanel')">Cancel</button>
+      <button class="btn-primary">Save Changes</button>
+    </div>
+  </div>
+
+  <!-- ==================== ACCOUNT NAME INFO MODAL ==================== -->
+  <div class="modal-overlay" id="acctNameModal" aria-hidden="true">
+    <div class="modal" role="dialog" aria-labelledby="acctNameModalTitle" aria-modal="true" style="width:420px;">
+      <div class="modal-header">
+        <h2 id="acctNameModalTitle">Account Name</h2>
+        <button class="modal-close" aria-label="Close dialog" onclick="document.getElementById('acctNameModal').classList.remove('open')">
+          <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><line x1="2" y1="2" x2="12" y2="12"/><line x1="12" y1="2" x2="2" y2="12"/></svg>
+        </button>
+      </div>
+      <p style="font-size:14px; color:var(--text-subtle); line-height:1.5; margin:0 0 16px;">
+        The account name is a friendly identifier for this storage account. It is used throughout the interface to help you identify which account you are working with. Changing the name does not affect connections or data.
+      </p>
+      <div class="modal-footer" style="border-top:none; padding-top:0; margin-top:0;">
+        <button class="btn-primary" onclick="document.getElementById('acctNameModal').classList.remove('open')">Got it</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== ACCOUNT UNITS COLUMN VISIBILITY PANEL ==================== -->
+  <div class="slide-panel-overlay" id="acctUnitsColVisOverlay" onclick="closeSlidePanel('acctUnitsColVisPanel')"></div>
+  <div class="slide-panel" id="acctUnitsColVisPanel" role="dialog" aria-modal="true">
+    <div class="slide-panel-header">
+      <h2>Column Visibility</h2>
+      <button class="modal-close" onclick="closeSlidePanel('acctUnitsColVisPanel')">
+        <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><line x1="2" y1="2" x2="12" y2="12"/><line x1="12" y1="2" x2="2" y2="12"/></svg>
+      </button>
+    </div>
+    <div class="slide-panel-body">
+      <div class="col-vis-section-title">Visible Columns</div>
+      <div class="col-vis-item"><span class="col-vis-drag">&#x2630;</span><span class="col-vis-label">Name</span><div class="toggle-switch active" onclick="this.classList.toggle('active')"><div class="toggle-knob"></div></div></div>
+      <div class="col-vis-item"><span class="col-vis-drag">&#x2630;</span><span class="col-vis-label">Status</span><div class="toggle-switch active" onclick="this.classList.toggle('active')"><div class="toggle-knob"></div></div></div>
+      <div class="col-vis-item"><span class="col-vis-drag">&#x2630;</span><span class="col-vis-label">Client ID</span><div class="toggle-switch active" onclick="this.classList.toggle('active')"><div class="toggle-knob"></div></div></div>
+      <div class="col-vis-item"><span class="col-vis-drag">&#x2630;</span><span class="col-vis-label">Group</span><div class="toggle-switch active" onclick="this.classList.toggle('active')"><div class="toggle-knob"></div></div></div>
+      <div class="col-vis-item"><span class="col-vis-drag">&#x2630;</span><span class="col-vis-label">Files</span><div class="toggle-switch active" onclick="this.classList.toggle('active')"><div class="toggle-knob"></div></div></div>
+      <div class="col-vis-item"><span class="col-vis-drag">&#x2630;</span><span class="col-vis-label">Last Scanned</span><div class="toggle-switch active" onclick="this.classList.toggle('active')"><div class="toggle-knob"></div></div></div>
+    </div>
+    <div class="slide-panel-footer">
+      <button class="btn-outline" onclick="closeSlidePanel('acctUnitsColVisPanel')">Cancel</button>
+      <button class="btn-primary" onclick="closeSlidePanel('acctUnitsColVisPanel')">Apply</button>
+    </div>
+  </div>
+
+  <!-- ==================== ACCOUNT JOBS COLUMN VISIBILITY PANEL ==================== -->
+  <div class="slide-panel-overlay" id="acctJobsColVisOverlay" onclick="closeSlidePanel('acctJobsColVisPanel')"></div>
+  <div class="slide-panel" id="acctJobsColVisPanel" role="dialog" aria-modal="true">
+    <div class="slide-panel-header">
+      <h2>Column Visibility</h2>
+      <button class="modal-close" onclick="closeSlidePanel('acctJobsColVisPanel')">
+        <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><line x1="2" y1="2" x2="12" y2="12"/><line x1="12" y1="2" x2="2" y2="12"/></svg>
+      </button>
+    </div>
+    <div class="slide-panel-body">
+      <div class="col-vis-section-title">Visible Columns</div>
+      <div class="col-vis-item"><span class="col-vis-drag">&#x2630;</span><span class="col-vis-label">Job Name</span><div class="toggle-switch active" onclick="this.classList.toggle('active')"><div class="toggle-knob"></div></div></div>
+      <div class="col-vis-item"><span class="col-vis-drag">&#x2630;</span><span class="col-vis-label">Status</span><div class="toggle-switch active" onclick="this.classList.toggle('active')"><div class="toggle-knob"></div></div></div>
+      <div class="col-vis-item"><span class="col-vis-drag">&#x2630;</span><span class="col-vis-label">Type</span><div class="toggle-switch active" onclick="this.classList.toggle('active')"><div class="toggle-knob"></div></div></div>
+      <div class="col-vis-item"><span class="col-vis-drag">&#x2630;</span><span class="col-vis-label">Files</span><div class="toggle-switch active" onclick="this.classList.toggle('active')"><div class="toggle-knob"></div></div></div>
+      <div class="col-vis-item"><span class="col-vis-drag">&#x2630;</span><span class="col-vis-label">Detections</span><div class="toggle-switch active" onclick="this.classList.toggle('active')"><div class="toggle-knob"></div></div></div>
+      <div class="col-vis-item"><span class="col-vis-drag">&#x2630;</span><span class="col-vis-label">Date</span><div class="toggle-switch active" onclick="this.classList.toggle('active')"><div class="toggle-knob"></div></div></div>
+    </div>
+    <div class="slide-panel-footer">
+      <button class="btn-outline" onclick="closeSlidePanel('acctJobsColVisPanel')">Cancel</button>
+      <button class="btn-primary" onclick="closeSlidePanel('acctJobsColVisPanel')">Apply</button>
+    </div>
+  </div>
+
+  <!-- ==================== ACCOUNT JOBS ADVANCED FILTERS PANEL ==================== -->
+  <div class="slide-panel-overlay" id="acctJobsFiltersOverlay" onclick="closeSlidePanel('acctJobsFiltersPanel')"></div>
+  <div class="slide-panel" id="acctJobsFiltersPanel" role="dialog" aria-modal="true">
+    <div class="slide-panel-header">
+      <h2>Advanced Filters</h2>
+      <button class="modal-close" onclick="closeSlidePanel('acctJobsFiltersPanel')">
+        <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><line x1="2" y1="2" x2="12" y2="12"/><line x1="12" y1="2" x2="2" y2="12"/></svg>
+      </button>
+    </div>
+    <div class="slide-panel-body">
+      <div class="af-section">
+        <div class="af-section-title">Job Type</div>
+        <div class="af-chips">
+          <span class="af-chip" onclick="toggleAfChip(this)">All</span>
+          <span class="af-chip" onclick="toggleAfChip(this)">Scheduled File Scan</span>
+          <span class="af-chip" onclick="toggleAfChip(this)">Real-Time Scan</span>
+        </div>
+      </div>
+      <div class="af-section">
+        <div class="af-section-title">Status</div>
+        <div class="af-chips">
+          <span class="af-chip" onclick="toggleAfChip(this)">All</span>
+          <span class="af-chip" onclick="toggleAfChip(this)">Completed</span>
+          <span class="af-chip" onclick="toggleAfChip(this)">In Progress</span>
+          <span class="af-chip" onclick="toggleAfChip(this)">Failed</span>
+        </div>
+      </div>
+      <div class="af-section">
+        <div class="af-section-title">Date Range</div>
+        <div class="af-field">
+          <label>From</label>
+          <div class="input-field"><input type="date"></div>
+        </div>
+        <div class="af-field">
+          <label>To</label>
+          <div class="input-field"><input type="date"></div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-panel-footer">
+      <button class="btn-outline" onclick="closeSlidePanel('acctJobsFiltersPanel')">Reset</button>
+      <button class="btn-primary" onclick="closeSlidePanel('acctJobsFiltersPanel')">Apply Filters</button>
     </div>
   </div>
 
@@ -6296,6 +6810,371 @@
     // Close inventory context menus on outside click
     document.addEventListener('click', function() {
       document.querySelectorAll('.row-action-menu--inline.open').forEach(m => m.classList.remove('open'));
+    });
+
+    // ===============================================================
+    // INVENTORY — Account Detail View
+    // ===============================================================
+    var accountsData = [
+      {
+        name: 'AWS Account Name', provider: 'Amazon S3', providerClass: 'aws', providerLabel: 'aws', status: 'Operational', statusTag: 'tag-success',
+        totalUnits: 15, operational: 12, issues: 2, pending: 1, group: 'Default Group',
+        units: [
+          { name: 'production-assets', status: 'Operational', statusTag: 'tag-success', clientId: 'a1b2c3d4-e5f6-7890-abcd-ef1234567890', group: 'Default Group', groups: 0, files: 2450, lastScanned: 'Jan 15, 2025 10:30 AM' },
+          { name: 'staging-uploads', status: 'Operational', statusTag: 'tag-success', clientId: 'b2c3d4e5-f6a7-8901-bcde-f12345678901', group: 'Default Group', groups: 0, files: 890, lastScanned: 'Jan 15, 2025 09:15 AM' },
+          { name: 'dev-test-bucket', status: 'Issues Found', statusTag: 'tag-alert', clientId: 'c3d4e5f6-a7b8-9012-cdef-123456789012', group: 'Development', groups: 1, files: 156, lastScanned: 'Jan 14, 2025 04:45 PM' },
+          { name: 'backup-archive-01', status: 'Operational', statusTag: 'tag-success', clientId: 'd4e5f6a7-b8c9-0123-defa-234567890123', group: 'Default Group', groups: 0, files: 12300, lastScanned: 'Jan 15, 2025 08:00 AM' },
+          { name: 'media-content', status: 'Operational', statusTag: 'tag-success', clientId: 'e5f6a7b8-c9d0-1234-efab-345678901234', group: 'Production', groups: 2, files: 5670, lastScanned: 'Jan 15, 2025 11:00 AM' },
+          { name: 'log-storage', status: 'Pending', statusTag: 'tag-warning', clientId: 'f6a7b8c9-d0e1-2345-fabc-456789012345', group: 'Default Group', groups: 0, files: 0, lastScanned: 'Never' },
+          { name: 'customer-data', status: 'Operational', statusTag: 'tag-success', clientId: 'a7b8c9d0-e1f2-3456-abcd-567890123456', group: 'Production', groups: 1, files: 3420, lastScanned: 'Jan 15, 2025 10:00 AM' },
+          { name: 'shared-documents', status: 'Operational', statusTag: 'tag-success', clientId: 'b8c9d0e1-f2a3-4567-bcde-678901234567', group: 'Default Group', groups: 0, files: 780, lastScanned: 'Jan 14, 2025 03:30 PM' },
+          { name: 'temp-processing', status: 'Issues Found', statusTag: 'tag-alert', clientId: 'c9d0e1f2-a3b4-5678-cdef-789012345678', group: 'Development', groups: 0, files: 45, lastScanned: 'Jan 13, 2025 11:20 AM' },
+          { name: 'compliance-vault', status: 'Operational', statusTag: 'tag-success', clientId: 'd0e1f2a3-b4c5-6789-defa-890123456789', group: 'Production', groups: 1, files: 8900, lastScanned: 'Jan 15, 2025 10:30 AM' }
+        ],
+        jobs: [
+          { name: 'Scheduled File Scan', status: 'Completed', statusTag: 'tag-success', type: 'Scheduled', files: 2450, detections: 3, date: 'Jan 15, 2025 10:30 AM' },
+          { name: 'Real-Time Scan', status: 'In Progress', statusTag: 'tag-info', type: 'Real-Time', files: 120, detections: 0, date: 'Jan 15, 2025 11:00 AM' },
+          { name: 'Weekly Deep Scan', status: 'Completed', statusTag: 'tag-success', type: 'Scheduled', files: 15000, detections: 12, date: 'Jan 12, 2025 02:00 AM' },
+          { name: 'On-Demand Scan', status: 'Failed', statusTag: 'tag-danger', type: 'On-Demand', files: 0, detections: 0, date: 'Jan 11, 2025 09:45 AM' },
+          { name: 'Compliance Check', status: 'Completed', statusTag: 'tag-success', type: 'Scheduled', files: 8900, detections: 1, date: 'Jan 10, 2025 06:00 AM' },
+          { name: 'Backup Verification', status: 'Completed', statusTag: 'tag-success', type: 'Scheduled', files: 12300, detections: 0, date: 'Jan 09, 2025 01:00 AM' },
+          { name: 'New Files Scan', status: 'Completed', statusTag: 'tag-success', type: 'Real-Time', files: 340, detections: 2, date: 'Jan 08, 2025 04:30 PM' },
+          { name: 'Monthly Full Scan', status: 'Completed', statusTag: 'tag-success', type: 'Scheduled', files: 45000, detections: 18, date: 'Jan 01, 2025 12:00 AM' },
+          { name: 'Quarantine Review', status: 'Completed', statusTag: 'tag-success', type: 'On-Demand', files: 25, detections: 25, date: 'Dec 28, 2024 10:15 AM' },
+          { name: 'Holiday Pre-Scan', status: 'Completed', statusTag: 'tag-success', type: 'Scheduled', files: 32000, detections: 7, date: 'Dec 23, 2024 11:00 PM' }
+        ],
+        donutData: {
+          verdicts: { clean: 72, suspicious: 18, malicious: 10 },
+          fileTypes: { documents: 45, images: 25, archives: 20, other: 10 },
+          scanStatus: { scanned: 85, pending: 10, failed: 5 }
+        }
+      },
+      {
+        name: 'SharePoint Cloud Account Name', provider: 'SharePoint', providerClass: 'sharepoint', providerLabel: 'SP', status: 'Issues Found', statusTag: 'tag-alert',
+        totalUnits: 9, operational: 6, issues: 3, pending: 0, group: 'Production',
+        units: [
+          { name: 'team-documents', status: 'Operational', statusTag: 'tag-success', clientId: 'sp-001-team-docs-abcdef123456', group: 'Production', groups: 0, files: 1200, lastScanned: 'Jan 15, 2025 09:00 AM' },
+          { name: 'hr-policies', status: 'Issues Found', statusTag: 'tag-alert', clientId: 'sp-002-hr-pol-bcdefg234567', group: 'Production', groups: 1, files: 340, lastScanned: 'Jan 14, 2025 11:30 AM' },
+          { name: 'finance-reports', status: 'Operational', statusTag: 'tag-success', clientId: 'sp-003-fin-rep-cdefgh345678', group: 'Production', groups: 0, files: 890, lastScanned: 'Jan 15, 2025 08:45 AM' },
+          { name: 'marketing-assets', status: 'Issues Found', statusTag: 'tag-alert', clientId: 'sp-004-mkt-ast-defghi456789', group: 'Default Group', groups: 0, files: 2100, lastScanned: 'Jan 13, 2025 02:15 PM' },
+          { name: 'engineering-wiki', status: 'Operational', statusTag: 'tag-success', clientId: 'sp-005-eng-wiki-efghij567890', group: 'Development', groups: 1, files: 560, lastScanned: 'Jan 15, 2025 10:00 AM' },
+          { name: 'legal-contracts', status: 'Operational', statusTag: 'tag-success', clientId: 'sp-006-leg-con-fghijk678901', group: 'Production', groups: 0, files: 450, lastScanned: 'Jan 14, 2025 05:00 PM' },
+          { name: 'shared-workspace', status: 'Issues Found', statusTag: 'tag-alert', clientId: 'sp-007-shrd-ws-ghijkl789012', group: 'Default Group', groups: 0, files: 3200, lastScanned: 'Jan 12, 2025 09:30 AM' },
+          { name: 'executive-briefs', status: 'Operational', statusTag: 'tag-success', clientId: 'sp-008-exec-br-hijklm890123', group: 'Production', groups: 0, files: 120, lastScanned: 'Jan 15, 2025 07:00 AM' },
+          { name: 'training-materials', status: 'Operational', statusTag: 'tag-success', clientId: 'sp-009-trn-mat-ijklmn901234', group: 'Default Group', groups: 0, files: 670, lastScanned: 'Jan 14, 2025 01:45 PM' }
+        ],
+        jobs: [
+          { name: 'Daily Scan', status: 'Completed', statusTag: 'tag-success', type: 'Scheduled', files: 9530, detections: 5, date: 'Jan 15, 2025 06:00 AM' },
+          { name: 'Real-Time Monitor', status: 'In Progress', statusTag: 'tag-info', type: 'Real-Time', files: 45, detections: 0, date: 'Jan 15, 2025 11:30 AM' },
+          { name: 'Deep Content Scan', status: 'Completed', statusTag: 'tag-success', type: 'Scheduled', files: 9530, detections: 8, date: 'Jan 13, 2025 02:00 AM' },
+          { name: 'Permission Audit', status: 'Completed', statusTag: 'tag-success', type: 'On-Demand', files: 9530, detections: 0, date: 'Jan 10, 2025 10:00 AM' },
+          { name: 'Malware Sweep', status: 'Failed', statusTag: 'tag-danger', type: 'Scheduled', files: 0, detections: 0, date: 'Jan 08, 2025 03:00 AM' }
+        ],
+        donutData: {
+          verdicts: { clean: 65, suspicious: 22, malicious: 13 },
+          fileTypes: { documents: 60, images: 15, archives: 15, other: 10 },
+          scanStatus: { scanned: 78, pending: 15, failed: 7 }
+        }
+      },
+      {
+        name: 'Alibaba Cloud Account Name', provider: 'Alibaba Cloud', providerClass: 'alibaba', providerLabel: 'Ali', status: 'Operational', statusTag: 'tag-success',
+        totalUnits: 3, operational: 3, issues: 0, pending: 0, group: 'Default Group',
+        units: [
+          { name: 'oss-bucket-prod', status: 'Operational', statusTag: 'tag-success', clientId: 'ali-001-oss-prod-abcdef123', group: 'Default Group', groups: 0, files: 4500, lastScanned: 'Jan 15, 2025 10:00 AM' },
+          { name: 'oss-bucket-staging', status: 'Operational', statusTag: 'tag-success', clientId: 'ali-002-oss-stag-bcdefg234', group: 'Default Group', groups: 0, files: 1200, lastScanned: 'Jan 14, 2025 06:00 PM' },
+          { name: 'oss-bucket-archive', status: 'Operational', statusTag: 'tag-success', clientId: 'ali-003-oss-arch-cdefgh345', group: 'Default Group', groups: 0, files: 8700, lastScanned: 'Jan 15, 2025 08:30 AM' }
+        ],
+        jobs: [
+          { name: 'Full Scan', status: 'Completed', statusTag: 'tag-success', type: 'Scheduled', files: 14400, detections: 2, date: 'Jan 15, 2025 04:00 AM' },
+          { name: 'Incremental Scan', status: 'Completed', statusTag: 'tag-success', type: 'Scheduled', files: 320, detections: 0, date: 'Jan 14, 2025 04:00 AM' }
+        ],
+        donutData: {
+          verdicts: { clean: 88, suspicious: 8, malicious: 4 },
+          fileTypes: { documents: 30, images: 35, archives: 25, other: 10 },
+          scanStatus: { scanned: 95, pending: 3, failed: 2 }
+        }
+      },
+      {
+        name: 'Alibaba MDSS', provider: 'Alibaba Cloud', providerClass: 'alibaba', providerLabel: 'Ali', status: 'Operational', statusTag: 'tag-success',
+        totalUnits: 0, operational: 0, issues: 0, pending: 0, group: 'Staging',
+        units: [],
+        jobs: [],
+        donutData: {
+          verdicts: { clean: 0, suspicious: 0, malicious: 0 },
+          fileTypes: { documents: 0, images: 0, archives: 0, other: 0 },
+          scanStatus: { scanned: 0, pending: 0, failed: 0 }
+        }
+      }
+    ];
+
+    window._acctDetailIdx = 0;
+
+    /* ---- Pagination state ---- */
+    var acctUnitsPage = 1, acctUnitsPerPageNum = 10;
+    var acctJobsPage = 1, acctJobsPerPageNum = 10;
+
+    /* ---- Open account detail ---- */
+    window.openAccountDetail = function(index) {
+      var acct = accountsData[index];
+      if (!acct) return;
+      window._acctDetailIdx = index;
+
+      // Update header
+      document.getElementById('acctDetailTitle').textContent = acct.name;
+      document.getElementById('acctDetailBreadcrumbName').textContent = acct.name;
+
+      // Update overview stats
+      document.getElementById('acctStatTotal').textContent = acct.totalUnits;
+      document.getElementById('acctStatOp').textContent = acct.operational;
+      document.getElementById('acctStatIssues').textContent = acct.issues;
+      document.getElementById('acctStatPending').textContent = acct.pending;
+      document.getElementById('acctGroupName').textContent = acct.group;
+      document.getElementById('acctUnitsCount').textContent = acct.units.length;
+      document.getElementById('acctJobsCount').textContent = acct.jobs.length;
+
+      // Update settings panel name
+      var nameInput = document.getElementById('acctSettingsName');
+      if (nameInput) nameInput.value = acct.name;
+
+      // Reset tabs to units
+      document.querySelectorAll('#acctDetailTabs .tab').forEach(function(t) { t.classList.remove('active'); });
+      document.querySelector('#acctDetailTabs .tab[data-acct-tab="units"]').classList.add('active');
+      document.querySelectorAll('.acct-tab-panel').forEach(function(p) { p.classList.remove('active'); });
+      document.getElementById('acct-panel-units').classList.add('active');
+
+      // Render tables
+      acctUnitsPage = 1;
+      acctJobsPage = 1;
+      renderAcctUnits(acct);
+      renderAcctJobs(acct);
+      renderAcctDonuts(acct);
+
+      // Update job summary meta
+      if (acct.jobs.length > 0) {
+        document.getElementById('acctJobSummaryMeta').textContent = acct.jobs[0].type + ' \u00B7 ' + acct.jobs[0].date;
+        document.getElementById('acctJobSummaryLink').style.display = '';
+      } else {
+        document.getElementById('acctJobSummaryMeta').textContent = 'No jobs found';
+        document.getElementById('acctJobSummaryLink').style.display = 'none';
+      }
+
+      // Toggle views
+      document.getElementById('accountsListView').style.display = 'none';
+      document.getElementById('accountDetailView').style.display = 'block';
+      document.querySelector('.content').scrollTop = 0;
+    };
+
+    /* ---- Show accounts list ---- */
+    window.showAccountsList = function() {
+      document.getElementById('accountDetailView').style.display = 'none';
+      document.getElementById('accountsListView').style.display = '';
+    };
+
+    /* ---- Account detail tabs ---- */
+    document.getElementById('acctDetailTabs').addEventListener('click', function(e) {
+      var tab = e.target.closest('.tab');
+      if (!tab) return;
+      var target = tab.getAttribute('data-acct-tab');
+      this.querySelectorAll('.tab').forEach(function(t) { t.classList.remove('active'); });
+      tab.classList.add('active');
+      document.querySelectorAll('.acct-tab-panel').forEach(function(p) { p.classList.remove('active'); });
+      var panel = document.getElementById('acct-panel-' + target);
+      if (panel) panel.classList.add('active');
+    });
+
+    /* ---- Actions dropdown ---- */
+    window.toggleAcctActionsMenu = function(e) {
+      e.stopPropagation();
+      var menu = document.getElementById('acctActionsMenu');
+      menu.classList.toggle('open');
+    };
+    document.addEventListener('click', function() {
+      var menu = document.getElementById('acctActionsMenu');
+      if (menu) menu.classList.remove('open');
+    });
+
+    /* ---- Copy Client ID ---- */
+    window.copyClientId = function(text, e) {
+      e.stopPropagation();
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(text);
+      }
+      var btn = e.currentTarget;
+      btn.style.color = 'var(--green-800)';
+      setTimeout(function() { btn.style.color = ''; }, 1200);
+    };
+
+    /* ---- Render Storage Units table ---- */
+    function renderAcctUnits(acct) {
+      var tbody = document.getElementById('acctUnitsBody');
+      var units = acct.units;
+      var search = (document.getElementById('acctUnitsSearch').value || '').toLowerCase();
+      var filtered = units.filter(function(u) { return !search || u.name.toLowerCase().indexOf(search) !== -1 || u.clientId.toLowerCase().indexOf(search) !== -1; });
+      var perPage = acctUnitsPerPageNum;
+      var totalPages = Math.max(1, Math.ceil(filtered.length / perPage));
+      if (acctUnitsPage > totalPages) acctUnitsPage = totalPages;
+      var start = (acctUnitsPage - 1) * perPage;
+      var pageItems = filtered.slice(start, start + perPage);
+      var html = '';
+      pageItems.forEach(function(u) {
+        var groupExtra = u.groups > 0 ? ' <span class="acct-group-more">+' + u.groups + '</span>' : '';
+        html += '<tr>'
+          + '<td>' + u.name + '</td>'
+          + '<td><span class="tag ' + u.statusTag + '">' + u.status + '</span></td>'
+          + '<td><div class="acct-client-id"><span class="acct-client-id-text" title="' + u.clientId + '">' + u.clientId + '</span><svg class="acct-copy-btn" onclick="copyClientId(\'' + u.clientId + '\', event)" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="5" width="8" height="8" rx="1"/><path d="M3 11V3h8"/></svg></div></td>'
+          + '<td>' + u.group + groupExtra + '</td>'
+          + '<td>' + u.files.toLocaleString() + '</td>'
+          + '<td>' + u.lastScanned + '</td>'
+          + '<td><div class="row-action-btn" onclick="toggleInvMenu(this, event)" style="position:relative"><svg viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="3" r="1.5"/><circle cx="8" cy="8" r="1.5"/><circle cx="8" cy="13" r="1.5"/></svg><div class="row-action-menu row-action-menu--inline"><div class="row-action-menu-item" onclick="event.stopPropagation()"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 10v3h3M14 6V3h-3"/><path d="M14 3L9 8M2 13l5-5"/></svg> Create Job</div><div class="row-action-menu-item" onclick="event.stopPropagation()"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="5"/><path d="M8 5.5v5M5.5 8h5"/></svg> Edit Unit</div><div class="inv-context-item danger" onclick="event.stopPropagation()"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 4h10M6 4V3h4v1M5 4v8.5a1 1 0 001 1h4a1 1 0 001-1V4"/></svg> Delete Unit</div></div></div></td>'
+          + '</tr>';
+      });
+      tbody.innerHTML = html;
+
+      // Pagination
+      var pageSelect = document.getElementById('acctUnitsPageSelect');
+      pageSelect.innerHTML = '';
+      for (var i = 1; i <= totalPages; i++) {
+        pageSelect.innerHTML += '<option' + (i === acctUnitsPage ? ' selected' : '') + '>' + i + '</option>';
+      }
+      var rangeEnd = Math.min(start + perPage, filtered.length);
+      document.getElementById('acctUnitsRange').textContent = filtered.length ? (start + 1) + '-' + rangeEnd + ' of ' + filtered.length : '0 of 0';
+    }
+
+    /* ---- Render Jobs table ---- */
+    function renderAcctJobs(acct) {
+      var tbody = document.getElementById('acctJobsBody');
+      var jobs = acct.jobs;
+      var search = (document.getElementById('acctJobsSearch').value || '').toLowerCase();
+      var filtered = jobs.filter(function(j) { return !search || j.name.toLowerCase().indexOf(search) !== -1; });
+      var perPage = acctJobsPerPageNum;
+      var totalPages = Math.max(1, Math.ceil(filtered.length / perPage));
+      if (acctJobsPage > totalPages) acctJobsPage = totalPages;
+      var start = (acctJobsPage - 1) * perPage;
+      var pageItems = filtered.slice(start, start + perPage);
+      var html = '';
+      pageItems.forEach(function(j) {
+        html += '<tr>'
+          + '<td>' + j.name + '</td>'
+          + '<td><span class="tag ' + j.statusTag + '">' + j.status + '</span></td>'
+          + '<td>' + j.type + '</td>'
+          + '<td>' + j.files.toLocaleString() + '</td>'
+          + '<td>' + j.detections + '</td>'
+          + '<td>' + j.date + '</td>'
+          + '<td><div class="row-action-btn" onclick="toggleInvMenu(this, event)" style="position:relative"><svg viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="3" r="1.5"/><circle cx="8" cy="8" r="1.5"/><circle cx="8" cy="13" r="1.5"/></svg><div class="row-action-menu row-action-menu--inline"><div class="row-action-menu-item" onclick="event.stopPropagation()"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 8h14"/><path d="M8 1v14"/></svg> View Details</div><div class="row-action-menu-item" onclick="event.stopPropagation()"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 10v3h3M14 6V3h-3"/><path d="M14 3L9 8M2 13l5-5"/></svg> Re-run</div></div></div></td>'
+          + '</tr>';
+      });
+      tbody.innerHTML = html;
+
+      // Pagination
+      var pageSelect = document.getElementById('acctJobsPageSelect');
+      pageSelect.innerHTML = '';
+      for (var i = 1; i <= totalPages; i++) {
+        pageSelect.innerHTML += '<option' + (i === acctJobsPage ? ' selected' : '') + '>' + i + '</option>';
+      }
+      var rangeEnd = Math.min(start + perPage, filtered.length);
+      document.getElementById('acctJobsRange').textContent = filtered.length ? (start + 1) + '-' + rangeEnd + ' of ' + filtered.length : '0 of 0';
+    }
+
+    /* ---- Donut chart rendering ---- */
+    function renderAcctDonuts(acct) {
+      var d = acct.donutData;
+      var container = document.getElementById('acctDonutRow');
+      var r = 15.9155;
+      var circ = 100; // 2*PI*r ~ 100
+
+      function donutSVG(title, segments) {
+        // segments: [{pct, color, label}]
+        var svg = '<div class="acct-donut-item"><svg class="acct-donut-svg" viewBox="0 0 36 36">';
+        var offset = 0;
+        var total = segments.reduce(function(s, seg) { return s + seg.pct; }, 0);
+        // Background circle
+        svg += '<circle cx="18" cy="18" r="' + r + '" fill="none" stroke="var(--border-200)" stroke-width="3"/>';
+        if (total > 0) {
+          segments.forEach(function(seg) {
+            if (seg.pct > 0) {
+              svg += '<circle cx="18" cy="18" r="' + r + '" fill="none" stroke="' + seg.color + '" stroke-width="3" stroke-dasharray="' + seg.pct + ', ' + (circ - seg.pct) + '" stroke-dashoffset="-' + offset + '"/>';
+            }
+            offset += seg.pct;
+          });
+          // Center text
+          svg += '<text x="18" y="18" text-anchor="middle" dominant-baseline="central" fill="var(--text-strong)" font-size="8" font-weight="500">' + total + '%</text>';
+        } else {
+          svg += '<text x="18" y="18" text-anchor="middle" dominant-baseline="central" fill="var(--text-muted)" font-size="6">N/A</text>';
+        }
+        svg += '</svg>';
+        // Labels
+        svg += '<div class="acct-donut-labels">';
+        svg += '<div style="font-size:12px; font-weight:500; color:var(--text-strong); margin-bottom:4px;">' + title + '</div>';
+        segments.forEach(function(seg) {
+          svg += '<div class="acct-donut-label-row"><span class="acct-donut-dot" style="background:' + seg.color + ';"></span> ' + seg.label + ' <span>' + seg.pct + '%</span></div>';
+        });
+        svg += '</div></div>';
+        return svg;
+      }
+
+      var html = '';
+      html += donutSVG('Verdicts', [
+        { pct: d.verdicts.clean, color: 'var(--green-800)', label: 'Clean' },
+        { pct: d.verdicts.suspicious, color: 'var(--yellow-700)', label: 'Suspicious' },
+        { pct: d.verdicts.malicious, color: 'var(--red-700)', label: 'Malicious' }
+      ]);
+      html += donutSVG('File Types', [
+        { pct: d.fileTypes.documents, color: 'var(--blue-700)', label: 'Documents' },
+        { pct: d.fileTypes.images, color: 'var(--green-800)', label: 'Images' },
+        { pct: d.fileTypes.archives, color: 'var(--yellow-700)', label: 'Archives' },
+        { pct: d.fileTypes.other, color: 'var(--text-muted)', label: 'Other' }
+      ]);
+      html += donutSVG('Scan Status', [
+        { pct: d.scanStatus.scanned, color: 'var(--green-800)', label: 'Scanned' },
+        { pct: d.scanStatus.pending, color: 'var(--yellow-700)', label: 'Pending' },
+        { pct: d.scanStatus.failed, color: 'var(--red-700)', label: 'Failed' }
+      ]);
+      container.innerHTML = html;
+    }
+
+    /* ---- Pagination event listeners ---- */
+    document.getElementById('acctUnitsPrev').addEventListener('click', function() {
+      if (acctUnitsPage > 1) { acctUnitsPage--; renderAcctUnits(accountsData[window._acctDetailIdx]); }
+    });
+    document.getElementById('acctUnitsNext').addEventListener('click', function() {
+      var acct = accountsData[window._acctDetailIdx];
+      var total = Math.max(1, Math.ceil(acct.units.length / acctUnitsPerPageNum));
+      if (acctUnitsPage < total) { acctUnitsPage++; renderAcctUnits(acct); }
+    });
+    document.getElementById('acctUnitsPageSelect').addEventListener('change', function() {
+      acctUnitsPage = this.selectedIndex + 1;
+      renderAcctUnits(accountsData[window._acctDetailIdx]);
+    });
+    document.getElementById('acctUnitsPerPage').addEventListener('change', function() {
+      acctUnitsPerPageNum = parseInt(this.value);
+      acctUnitsPage = 1;
+      renderAcctUnits(accountsData[window._acctDetailIdx]);
+    });
+    document.getElementById('acctUnitsSearch').addEventListener('input', function() {
+      acctUnitsPage = 1;
+      renderAcctUnits(accountsData[window._acctDetailIdx]);
+    });
+
+    document.getElementById('acctJobsPrev').addEventListener('click', function() {
+      if (acctJobsPage > 1) { acctJobsPage--; renderAcctJobs(accountsData[window._acctDetailIdx]); }
+    });
+    document.getElementById('acctJobsNext').addEventListener('click', function() {
+      var acct = accountsData[window._acctDetailIdx];
+      var total = Math.max(1, Math.ceil(acct.jobs.length / acctJobsPerPageNum));
+      if (acctJobsPage < total) { acctJobsPage++; renderAcctJobs(acct); }
+    });
+    document.getElementById('acctJobsPageSelect').addEventListener('change', function() {
+      acctJobsPage = this.selectedIndex + 1;
+      renderAcctJobs(accountsData[window._acctDetailIdx]);
+    });
+    document.getElementById('acctJobsPerPage').addEventListener('change', function() {
+      acctJobsPerPageNum = parseInt(this.value);
+      acctJobsPage = 1;
+      renderAcctJobs(accountsData[window._acctDetailIdx]);
+    });
+    document.getElementById('acctJobsSearch').addEventListener('input', function() {
+      acctJobsPage = 1;
+      renderAcctJobs(accountsData[window._acctDetailIdx]);
     });
 
     // ===============================================================

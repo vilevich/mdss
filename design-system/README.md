@@ -475,4 +475,7 @@ Handled in `components.css`:
 | Jobs | — | Scan job management with detail views |
 | Workflows | — | Workflow list + detail flow diagram with 9 config panels |
 | Inventory | Accounts | Accounts table, integration card grid, context menus, recommended integrations |
+| Inventory | Account Detail — Units | Account overview stats, storage units table, group settings, column visibility panel |
+| Inventory | Account Detail — Jobs | SVG donut charts (3), jobs table, advanced filters, column visibility panel |
+| Inventory | Account Settings | Slide panel with warning/error banners, 14 form fields, Account Name info modal |
 | Components | — | Design system showcase page |
