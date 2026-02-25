@@ -7,6 +7,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="design-system/tokens.css">
   <link rel="stylesheet" href="design-system/components.css">
+  <link rel="stylesheet" href="design-system/icons.css">
   <style>
     /* Product-specific styles only. DS imported via <link> tags above. */
 
@@ -2273,7 +2274,7 @@
               </div>
               <div class="audit-card-actions">
                 <div class="audit-search">
-                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="7" cy="7" r="5.5"/><path d="M11 11l3.5 3.5"/></svg>
+                  <svg viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M7 2C9.76142 2 12 4.23858 12 7C12 8.11285 11.6353 9.13998 11.0205 9.9707L14.0713 13.0068L14.1221 13.0645C14.3629 13.3585 14.3471 13.7932 14.0732 14.0684C13.781 14.3615 13.3061 14.3622 13.0127 14.0703L9.95801 11.0303C9.12955 11.6393 8.1071 12 7 12C4.23858 12 2 9.76142 2 7C2 4.23858 4.23858 2 7 2ZM7 3.5C5.067 3.5 3.5 5.067 3.5 7C3.5 8.933 5.067 10.5 7 10.5C8.933 10.5 10.5 8.933 10.5 7C10.5 5.067 8.933 3.5 7 3.5Z"/></svg>
                   <input type="text" placeholder="Search for Files or Hash" id="auditSearchInput">
                 </div>
                 <button class="audit-filter-btn" onclick="openAdvancedFilters()" title="Advanced Filters">
@@ -2315,7 +2316,7 @@
                 <span id="auditPageInfo" style="margin-left: 8px;">1-50 of 1,256 items</span>
               </div>
               <div class="audit-pagination-right">
-                <button class="audit-page-btn" disabled><svg viewBox="0 0 16 16" fill="currentColor"><path d="M11.354 1.646a.5.5 0 010 .708L5.707 8l5.647 5.646a.5.5 0 01-.708.708l-6-6a.5.5 0 010-.708l6-6a.5.5 0 01.708 0z"/></svg></button>
+                <button class="audit-page-btn" disabled><svg viewBox="0 0 16 16" fill="currentColor"><path d="M9.99994 12.9995C9.80994 12.9995 9.61994 12.9295 9.46994 12.7795L5.21994 8.52945C4.92994 8.23945 4.92994 7.75945 5.21994 7.46945L9.46994 3.21945C9.75994 2.92945 10.2399 2.92945 10.5299 3.21945C10.8199 3.50945 10.8199 3.98945 10.5299 4.27945L6.80994 7.99945L10.5299 11.7195C10.8199 12.0095 10.8199 12.4895 10.5299 12.7795C10.3799 12.9295 10.1899 12.9995 9.99994 12.9995Z"/></svg></button>
                 <select class="audit-page-select">
                   <option selected>Page 1</option>
                   <option>Page 2</option>
@@ -2344,7 +2345,7 @@
                   <option>Page 25</option>
                   <option>Page 26</option>
                 </select>
-                <button class="audit-page-btn"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M4.646 1.646a.5.5 0 01.708 0l6 6a.5.5 0 010 .708l-6 6a.5.5 0 01-.708-.708L10.293 8 4.646 2.354a.5.5 0 010-.708z"/></svg></button>
+                <button class="audit-page-btn"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M5.99994 12.9995C6.18994 12.9995 6.37994 12.9295 6.52994 12.7795L10.7799 8.52945C11.0699 8.23945 11.0699 7.75945 10.7799 7.46945L6.52994 3.21945C6.23994 2.92945 5.75994 2.92945 5.46994 3.21945C5.17994 3.50945 5.17994 3.98945 5.46994 4.27945L9.18994 7.99945L5.46994 11.7195C5.17994 12.0095 5.17994 12.4895 5.46994 12.7795C5.61994 12.9295 5.80994 12.9995 5.99994 12.9995Z"/></svg></button>
               </div>
             </div>
           </div>
@@ -2366,7 +2367,7 @@
               </div>
               <div class="audit-card-actions">
                 <div class="audit-search">
-                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="7" cy="7" r="5.5"/><path d="M11 11l3.5 3.5"/></svg>
+                  <svg viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M7 2C9.76142 2 12 4.23858 12 7C12 8.11285 11.6353 9.13998 11.0205 9.9707L14.0713 13.0068L14.1221 13.0645C14.3629 13.3585 14.3471 13.7932 14.0732 14.0684C13.781 14.3615 13.3061 14.3622 13.0127 14.0703L9.95801 11.0303C9.12955 11.6393 8.1071 12 7 12C4.23858 12 2 9.76142 2 7C2 4.23858 4.23858 2 7 2ZM7 3.5C5.067 3.5 3.5 5.067 3.5 7C3.5 8.933 5.067 10.5 7 10.5C8.933 10.5 10.5 8.933 10.5 7C10.5 5.067 8.933 3.5 7 3.5Z"/></svg>
                   <input type="text" placeholder="Search users" id="pendingUsersSearch">
                 </div>
               </div>
@@ -2407,7 +2408,7 @@
               </div>
               <div class="audit-card-actions">
                 <div class="audit-search">
-                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="7" cy="7" r="5.5"/><path d="M11 11l3.5 3.5"/></svg>
+                  <svg viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M7 2C9.76142 2 12 4.23858 12 7C12 8.11285 11.6353 9.13998 11.0205 9.9707L14.0713 13.0068L14.1221 13.0645C14.3629 13.3585 14.3471 13.7932 14.0732 14.0684C13.781 14.3615 13.3061 14.3622 13.0127 14.0703L9.95801 11.0303C9.12955 11.6393 8.1071 12 7 12C4.23858 12 2 9.76142 2 7C2 4.23858 4.23858 2 7 2ZM7 3.5C5.067 3.5 3.5 5.067 3.5 7C3.5 8.933 5.067 10.5 7 10.5C8.933 10.5 10.5 8.933 10.5 7C10.5 5.067 8.933 3.5 7 3.5Z"/></svg>
                   <input type="text" placeholder="Search users" id="activeUsersSearch">
                 </div>
               </div>
@@ -2440,12 +2441,12 @@
                 <span id="activeUsersPageInfo" style="margin-left: 8px;">1-10 of 12 items</span>
               </div>
               <div class="audit-pagination-right">
-                <button class="audit-page-btn" id="activeUsersPrev" disabled><svg viewBox="0 0 16 16" fill="currentColor"><path d="M11.354 1.646a.5.5 0 010 .708L5.707 8l5.647 5.646a.5.5 0 01-.708.708l-6-6a.5.5 0 010-.708l6-6a.5.5 0 01.708 0z"/></svg></button>
+                <button class="audit-page-btn" id="activeUsersPrev" disabled><svg viewBox="0 0 16 16" fill="currentColor"><path d="M9.99994 12.9995C9.80994 12.9995 9.61994 12.9295 9.46994 12.7795L5.21994 8.52945C4.92994 8.23945 4.92994 7.75945 5.21994 7.46945L9.46994 3.21945C9.75994 2.92945 10.2399 2.92945 10.5299 3.21945C10.8199 3.50945 10.8199 3.98945 10.5299 4.27945L6.80994 7.99945L10.5299 11.7195C10.8199 12.0095 10.8199 12.4895 10.5299 12.7795C10.3799 12.9295 10.1899 12.9995 9.99994 12.9995Z"/></svg></button>
                 <select class="audit-page-select" id="activeUsersPageSelect">
                   <option selected>Page 1</option>
                   <option>Page 2</option>
                 </select>
-                <button class="audit-page-btn" id="activeUsersNext"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M4.646 1.646a.5.5 0 01.708 0l6 6a.5.5 0 010 .708l-6 6a.5.5 0 01-.708-.708L10.293 8 4.646 2.354a.5.5 0 010-.708z"/></svg></button>
+                <button class="audit-page-btn" id="activeUsersNext"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M5.99994 12.9995C6.18994 12.9995 6.37994 12.9295 6.52994 12.7795L10.7799 8.52945C11.0699 8.23945 11.0699 7.75945 10.7799 7.46945L6.52994 3.21945C6.23994 2.92945 5.75994 2.92945 5.46994 3.21945C5.17994 3.50945 5.17994 3.98945 5.46994 4.27945L9.18994 7.99945L5.46994 11.7195C5.17994 12.0095 5.17994 12.4895 5.46994 12.7795C5.61994 12.9295 5.80994 12.9995 5.99994 12.9995Z"/></svg></button>
               </div>
             </div>
           </div>
@@ -2458,7 +2459,7 @@
             <h1 class="page-title">Inventory</h1>
             <div class="page-header-actions">
               <button class="btn-icon" title="Refresh"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2.5 8a5.5 5.5 0 019.95-3.25M13.5 8a5.5 5.5 0 01-9.95 3.25"/><path d="M12.5 2v3h-3M3.5 14v-3h3"/></svg></button>
-              <button class="btn-outline">Add New <svg viewBox="0 0 12 12" fill="currentColor"><path d="M3 5l3 3 3-3"/></svg></button>
+              <button class="btn-outline">Add New <svg viewBox="0 0 16 16" fill="currentColor" style="width:12px;height:12px;"><path d="M7.99994 10.7495C7.80994 10.7495 7.61994 10.6795 7.46994 10.5295L3.21994 6.27945C2.92994 5.98945 2.92994 5.50945 3.21994 5.21945C3.50994 4.92945 3.98994 4.92945 4.27994 5.21945L7.99994 8.93945L11.7199 5.21945C12.0099 4.92945 12.4899 4.92945 12.7799 5.21945C13.0699 5.50945 13.0699 5.98945 12.7799 6.27945L8.52994 10.5295C8.37994 10.6795 8.18994 10.7495 7.99994 10.7495Z"/></svg></button>
             </div>
           </div>
 
@@ -2477,7 +2478,7 @@
               <div class="card-header">
                 <div class="card-header-left"><strong>Accounts</strong> <span class="text-muted">4</span></div>
                 <div class="card-header-right" style="display:flex; gap:8px; align-items:center;">
-                  <div class="audit-search"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M11.742 10.344a6.5 6.5 0 10-1.397 1.398h-.001l3.85 3.85a1 1 0 001.415-1.414l-3.85-3.85-.017.016zm-5.442.156a5 5 0 110-10 5 5 0 010 10z"/></svg><input type="text" placeholder="Search for Files or Hash"></div>
+                  <div class="audit-search"><svg viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M7 2C9.76142 2 12 4.23858 12 7C12 8.11285 11.6353 9.13998 11.0205 9.9707L14.0713 13.0068L14.1221 13.0645C14.3629 13.3585 14.3471 13.7932 14.0732 14.0684C13.781 14.3615 13.3061 14.3622 13.0127 14.0703L9.95801 11.0303C9.12955 11.6393 8.1071 12 7 12C4.23858 12 2 9.76142 2 7C2 4.23858 4.23858 2 7 2ZM7 3.5C5.067 3.5 3.5 5.067 3.5 7C3.5 8.933 5.067 10.5 7 10.5C8.933 10.5 10.5 8.933 10.5 7C10.5 5.067 8.933 3.5 7 3.5Z"/></svg><input type="text" placeholder="Search for Files or Hash"></div>
                   <div style="display:flex; gap:8px;">
                     <button class="btn-outline"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4h10M4 7h6M6 10h2"/></svg> Provider</button>
                     <button class="btn-outline"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4h10M4 7h6M6 10h2"/></svg> Status</button>
@@ -2604,9 +2605,9 @@
             <div id="accountDetailView" style="display:none;">
               <div class="detail-breadcrumb">
                 <a onclick="showAccountsList()">Inventory</a>
-                <svg viewBox="0 0 16 16" fill="currentColor"><path d="M6.47 4.22a.75.75 0 011.06 0l3.25 3.25a.75.75 0 010 1.06l-3.25 3.25a.75.75 0 01-1.06-1.06L9.19 8 6.47 5.28a.75.75 0 010-1.06z"/></svg>
+                <svg viewBox="0 0 16 16" fill="currentColor"><path d="M5.99994 12.9995C6.18994 12.9995 6.37994 12.9295 6.52994 12.7795L10.7799 8.52945C11.0699 8.23945 11.0699 7.75945 10.7799 7.46945L6.52994 3.21945C6.23994 2.92945 5.75994 2.92945 5.46994 3.21945C5.17994 3.50945 5.17994 3.98945 5.46994 4.27945L9.18994 7.99945L5.46994 11.7195C5.17994 12.0095 5.17994 12.4895 5.46994 12.7795C5.61994 12.9295 5.80994 12.9995 5.99994 12.9995Z"/></svg>
                 <a onclick="showAccountsList()">Accounts</a>
-                <svg viewBox="0 0 16 16" fill="currentColor"><path d="M6.47 4.22a.75.75 0 011.06 0l3.25 3.25a.75.75 0 010 1.06l-3.25 3.25a.75.75 0 01-1.06-1.06L9.19 8 6.47 5.28a.75.75 0 010-1.06z"/></svg>
+                <svg viewBox="0 0 16 16" fill="currentColor"><path d="M5.99994 12.9995C6.18994 12.9995 6.37994 12.9295 6.52994 12.7795L10.7799 8.52945C11.0699 8.23945 11.0699 7.75945 10.7799 7.46945L6.52994 3.21945C6.23994 2.92945 5.75994 2.92945 5.46994 3.21945C5.17994 3.50945 5.17994 3.98945 5.46994 4.27945L9.18994 7.99945L5.46994 11.7195C5.17994 12.0095 5.17994 12.4895 5.46994 12.7795C5.61994 12.9295 5.80994 12.9995 5.99994 12.9995Z"/></svg>
                 <span id="acctDetailBreadcrumbName">Account Name</span>
               </div>
               <div class="page-header">
@@ -2614,7 +2615,7 @@
                 <div class="page-header-actions">
                   <button class="btn-icon" title="Refresh" onclick="openAccountDetail(window._acctDetailIdx||0)"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2.5 8a5.5 5.5 0 019.3-4M13.5 8a5.5 5.5 0 01-9.3 4"/><path d="M11.5 1v3h3M4.5 15v-3h-3" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
                   <div class="acct-actions-wrap">
-                    <button class="btn-outline" onclick="toggleAcctActionsMenu(event)">Actions <svg viewBox="0 0 16 16" fill="currentColor" style="width:12px;height:12px;margin-left:4px;"><path d="M4 6l4 4 4-4"/></svg></button>
+                    <button class="btn-outline" onclick="toggleAcctActionsMenu(event)">Actions <svg viewBox="0 0 16 16" fill="currentColor" style="width:12px;height:12px;margin-left:4px;"><path d="M7.99994 10.7495C7.80994 10.7495 7.61994 10.6795 7.46994 10.5295L3.21994 6.27945C2.92994 5.98945 2.92994 5.50945 3.21994 5.21945C3.50994 4.92945 3.98994 4.92945 4.27994 5.21945L7.99994 8.93945L11.7199 5.21945C12.0099 4.92945 12.4899 4.92945 12.7799 5.21945C13.0699 5.50945 13.0699 5.98945 12.7799 6.27945L8.52994 10.5295C8.37994 10.6795 8.18994 10.7495 7.99994 10.7495Z"/></svg></button>
                     <div class="acct-actions-menu" id="acctActionsMenu">
                       <div class="row-action-menu-item" onclick="openSlidePanel('editJobPanel')"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 10v3h3M14 6V3h-3"/><path d="M14 3L9 8M2 13l5-5"/></svg> Create Job</div>
                       <div class="row-action-menu-item" onclick="openSlidePanel('acctSettingsPanel')"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="5"/><path d="M8 5.5v5M5.5 8h5"/></svg> Account Settings</div>
@@ -2676,7 +2677,7 @@
                     </div>
                     <div class="audit-card-actions">
                       <div class="audit-search">
-                        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="7" cy="7" r="5.5"/><path d="M11 11l3.5 3.5"/></svg>
+                        <svg viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M7 2C9.76142 2 12 4.23858 12 7C12 8.11285 11.6353 9.13998 11.0205 9.9707L14.0713 13.0068L14.1221 13.0645C14.3629 13.3585 14.3471 13.7932 14.0732 14.0684C13.781 14.3615 13.3061 14.3622 13.0127 14.0703L9.95801 11.0303C9.12955 11.6393 8.1071 12 7 12C4.23858 12 2 9.76142 2 7C2 4.23858 4.23858 2 7 2ZM7 3.5C5.067 3.5 3.5 5.067 3.5 7C3.5 8.933 5.067 10.5 7 10.5C8.933 10.5 10.5 8.933 10.5 7C10.5 5.067 8.933 3.5 7 3.5Z"/></svg>
                         <input type="text" placeholder="Search units" id="acctUnitsSearch">
                       </div>
                       <button class="audit-filter-btn" onclick="openSlidePanel('acctUnitsColVisPanel')" title="Column Visibility">
@@ -2710,9 +2711,9 @@
                       <span id="acctUnitsPageInfo" style="margin-left: 8px;">1-10 of 15 items</span>
                     </div>
                     <div class="audit-pagination-right">
-                      <button class="audit-page-btn" id="acctUnitsPrev" disabled><svg viewBox="0 0 16 16" fill="currentColor"><path d="M11.354 1.646a.5.5 0 010 .708L5.707 8l5.647 5.646a.5.5 0 01-.708.708l-6-6a.5.5 0 010-.708l6-6a.5.5 0 01.708 0z"/></svg></button>
+                      <button class="audit-page-btn" id="acctUnitsPrev" disabled><svg viewBox="0 0 16 16" fill="currentColor"><path d="M9.99994 12.9995C9.80994 12.9995 9.61994 12.9295 9.46994 12.7795L5.21994 8.52945C4.92994 8.23945 4.92994 7.75945 5.21994 7.46945L9.46994 3.21945C9.75994 2.92945 10.2399 2.92945 10.5299 3.21945C10.8199 3.50945 10.8199 3.98945 10.5299 4.27945L6.80994 7.99945L10.5299 11.7195C10.8199 12.0095 10.8199 12.4895 10.5299 12.7795C10.3799 12.9295 10.1899 12.9995 9.99994 12.9995Z"/></svg></button>
                       <select class="audit-page-select" id="acctUnitsPageSelect"><option selected>Page 1</option></select>
-                      <button class="audit-page-btn" id="acctUnitsNext"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M4.646 1.646a.5.5 0 01.708 0l6 6a.5.5 0 010 .708l-6 6a.5.5 0 01-.708-.708L10.293 8 4.646 2.354a.5.5 0 010-.708z"/></svg></button>
+                      <button class="audit-page-btn" id="acctUnitsNext"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M5.99994 12.9995C6.18994 12.9995 6.37994 12.9295 6.52994 12.7795L10.7799 8.52945C11.0699 8.23945 11.0699 7.75945 10.7799 7.46945L6.52994 3.21945C6.23994 2.92945 5.75994 2.92945 5.46994 3.21945C5.17994 3.50945 5.17994 3.98945 5.46994 4.27945L9.18994 7.99945L5.46994 11.7195C5.17994 12.0095 5.17994 12.4895 5.46994 12.7795C5.61994 12.9295 5.80994 12.9995 5.99994 12.9995Z"/></svg></button>
                     </div>
                   </div>
                 </div>
@@ -2727,7 +2728,7 @@
                       <h3>Latest Job Summary</h3>
                       <span class="count" id="acctJobSummaryMeta">Scheduled &middot; Jan 15, 2025 10:30 AM</span>
                     </div>
-                    <a class="card-header-link" id="acctJobSummaryLink">View Report <svg viewBox="0 0 16 16" fill="currentColor"><path d="M4.646 1.646a.5.5 0 01.708 0l6 6a.5.5 0 010 .708l-6 6a.5.5 0 01-.708-.708L10.293 8 4.646 2.354a.5.5 0 010-.708z"/></svg></a>
+                    <a class="card-header-link" id="acctJobSummaryLink">View Report <svg viewBox="0 0 16 16" fill="currentColor"><path d="M5.99994 12.9995C6.18994 12.9995 6.37994 12.9295 6.52994 12.7795L10.7799 8.52945C11.0699 8.23945 11.0699 7.75945 10.7799 7.46945L6.52994 3.21945C6.23994 2.92945 5.75994 2.92945 5.46994 3.21945C5.17994 3.50945 5.17994 3.98945 5.46994 4.27945L9.18994 7.99945L5.46994 11.7195C5.17994 12.0095 5.17994 12.4895 5.46994 12.7795C5.61994 12.9295 5.80994 12.9995 5.99994 12.9995Z"/></svg></a>
                   </div>
                   <div class="acct-donut-row" id="acctDonutRow">
                     <!-- 3 donut charts populated by JS -->
@@ -2743,7 +2744,7 @@
                     </div>
                     <div class="audit-card-actions">
                       <div class="audit-search">
-                        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="7" cy="7" r="5.5"/><path d="M11 11l3.5 3.5"/></svg>
+                        <svg viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M7 2C9.76142 2 12 4.23858 12 7C12 8.11285 11.6353 9.13998 11.0205 9.9707L14.0713 13.0068L14.1221 13.0645C14.3629 13.3585 14.3471 13.7932 14.0732 14.0684C13.781 14.3615 13.3061 14.3622 13.0127 14.0703L9.95801 11.0303C9.12955 11.6393 8.1071 12 7 12C4.23858 12 2 9.76142 2 7C2 4.23858 4.23858 2 7 2ZM7 3.5C5.067 3.5 3.5 5.067 3.5 7C3.5 8.933 5.067 10.5 7 10.5C8.933 10.5 10.5 8.933 10.5 7C10.5 5.067 8.933 3.5 7 3.5Z"/></svg>
                         <input type="text" placeholder="Search jobs" id="acctJobsSearch">
                       </div>
                       <button class="audit-filter-btn" onclick="openSlidePanel('acctJobsFiltersPanel')" title="Advanced Filters">
@@ -2782,9 +2783,9 @@
                       <span id="acctJobsPageInfo" style="margin-left: 8px;">1-10 of 15 items</span>
                     </div>
                     <div class="audit-pagination-right">
-                      <button class="audit-page-btn" id="acctJobsPrev" disabled><svg viewBox="0 0 16 16" fill="currentColor"><path d="M11.354 1.646a.5.5 0 010 .708L5.707 8l5.647 5.646a.5.5 0 01-.708.708l-6-6a.5.5 0 010-.708l6-6a.5.5 0 01.708 0z"/></svg></button>
+                      <button class="audit-page-btn" id="acctJobsPrev" disabled><svg viewBox="0 0 16 16" fill="currentColor"><path d="M9.99994 12.9995C9.80994 12.9995 9.61994 12.9295 9.46994 12.7795L5.21994 8.52945C4.92994 8.23945 4.92994 7.75945 5.21994 7.46945L9.46994 3.21945C9.75994 2.92945 10.2399 2.92945 10.5299 3.21945C10.8199 3.50945 10.8199 3.98945 10.5299 4.27945L6.80994 7.99945L10.5299 11.7195C10.8199 12.0095 10.8199 12.4895 10.5299 12.7795C10.3799 12.9295 10.1899 12.9995 9.99994 12.9995Z"/></svg></button>
                       <select class="audit-page-select" id="acctJobsPageSelect"><option selected>Page 1</option></select>
-                      <button class="audit-page-btn" id="acctJobsNext"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M4.646 1.646a.5.5 0 01.708 0l6 6a.5.5 0 010 .708l-6 6a.5.5 0 01-.708-.708L10.293 8 4.646 2.354a.5.5 0 010-.708z"/></svg></button>
+                      <button class="audit-page-btn" id="acctJobsNext"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M5.99994 12.9995C6.18994 12.9995 6.37994 12.9295 6.52994 12.7795L10.7799 8.52945C11.0699 8.23945 11.0699 7.75945 10.7799 7.46945L6.52994 3.21945C6.23994 2.92945 5.75994 2.92945 5.46994 3.21945C5.17994 3.50945 5.17994 3.98945 5.46994 4.27945L9.18994 7.99945L5.46994 11.7195C5.17994 12.0095 5.17994 12.4895 5.46994 12.7795C5.61994 12.9295 5.80994 12.9995 5.99994 12.9995Z"/></svg></button>
                     </div>
                   </div>
                 </div>
@@ -2804,7 +2805,7 @@
                   </div>
                   <div class="audit-card-actions">
                     <div class="audit-search">
-                      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="7" cy="7" r="5.5"/><path d="M11 11l3.5 3.5"/></svg>
+                      <svg viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M7 2C9.76142 2 12 4.23858 12 7C12 8.11285 11.6353 9.13998 11.0205 9.9707L14.0713 13.0068L14.1221 13.0645C14.3629 13.3585 14.3471 13.7932 14.0732 14.0684C13.781 14.3615 13.3061 14.3622 13.0127 14.0703L9.95801 11.0303C9.12955 11.6393 8.1071 12 7 12C4.23858 12 2 9.76142 2 7C2 4.23858 4.23858 2 7 2ZM7 3.5C5.067 3.5 3.5 5.067 3.5 7C3.5 8.933 5.067 10.5 7 10.5C8.933 10.5 10.5 8.933 10.5 7C10.5 5.067 8.933 3.5 7 3.5Z"/></svg>
                       <input type="text" placeholder="Search groups" id="groupsSearch">
                     </div>
                     <button class="audit-filter-btn"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4h10M4 7h6M6 10h2"/></svg> Provider</button>
@@ -2836,9 +2837,9 @@
                     <span id="groupsPageInfo" style="margin-left:8px;">1-10 of 15 items</span>
                   </div>
                   <div class="audit-pagination-right">
-                    <button class="audit-page-btn" id="groupsPrev" disabled><svg viewBox="0 0 16 16" fill="currentColor"><path d="M11.354 1.646a.5.5 0 010 .708L5.707 8l5.647 5.646a.5.5 0 01-.708.708l-6-6a.5.5 0 010-.708l6-6a.5.5 0 01.708 0z"/></svg></button>
+                    <button class="audit-page-btn" id="groupsPrev" disabled><svg viewBox="0 0 16 16" fill="currentColor"><path d="M9.99994 12.9995C9.80994 12.9995 9.61994 12.9295 9.46994 12.7795L5.21994 8.52945C4.92994 8.23945 4.92994 7.75945 5.21994 7.46945L9.46994 3.21945C9.75994 2.92945 10.2399 2.92945 10.5299 3.21945C10.8199 3.50945 10.8199 3.98945 10.5299 4.27945L6.80994 7.99945L10.5299 11.7195C10.8199 12.0095 10.8199 12.4895 10.5299 12.7795C10.3799 12.9295 10.1899 12.9995 9.99994 12.9995Z"/></svg></button>
                     <select class="audit-page-select" id="groupsPageSelect"><option selected>Page 1</option></select>
-                    <button class="audit-page-btn" id="groupsNext"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M4.646 1.646a.5.5 0 01.708 0l6 6a.5.5 0 010 .708l-6 6a.5.5 0 01-.708-.708L10.293 8 4.646 2.354a.5.5 0 010-.708z"/></svg></button>
+                    <button class="audit-page-btn" id="groupsNext"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M5.99994 12.9995C6.18994 12.9995 6.37994 12.9295 6.52994 12.7795L10.7799 8.52945C11.0699 8.23945 11.0699 7.75945 10.7799 7.46945L6.52994 3.21945C6.23994 2.92945 5.75994 2.92945 5.46994 3.21945C5.17994 3.50945 5.17994 3.98945 5.46994 4.27945L9.18994 7.99945L5.46994 11.7195C5.17994 12.0095 5.17994 12.4895 5.46994 12.7795C5.61994 12.9295 5.80994 12.9995 5.99994 12.9995Z"/></svg></button>
                   </div>
                 </div>
               </div>
@@ -2848,9 +2849,9 @@
             <div id="groupDetailView" style="display:none;">
               <div class="detail-breadcrumb">
                 <a onclick="showGroupsList()">Inventory</a>
-                <svg viewBox="0 0 16 16" fill="currentColor"><path d="M6.47 4.22a.75.75 0 011.06 0l3.25 3.25a.75.75 0 010 1.06l-3.25 3.25a.75.75 0 01-1.06-1.06L9.19 8 6.47 5.28a.75.75 0 010-1.06z"/></svg>
+                <svg viewBox="0 0 16 16" fill="currentColor"><path d="M5.99994 12.9995C6.18994 12.9995 6.37994 12.9295 6.52994 12.7795L10.7799 8.52945C11.0699 8.23945 11.0699 7.75945 10.7799 7.46945L6.52994 3.21945C6.23994 2.92945 5.75994 2.92945 5.46994 3.21945C5.17994 3.50945 5.17994 3.98945 5.46994 4.27945L9.18994 7.99945L5.46994 11.7195C5.17994 12.0095 5.17994 12.4895 5.46994 12.7795C5.61994 12.9295 5.80994 12.9995 5.99994 12.9995Z"/></svg>
                 <a onclick="showGroupsList()">Groups</a>
-                <svg viewBox="0 0 16 16" fill="currentColor"><path d="M6.47 4.22a.75.75 0 011.06 0l3.25 3.25a.75.75 0 010 1.06l-3.25 3.25a.75.75 0 01-1.06-1.06L9.19 8 6.47 5.28a.75.75 0 010-1.06z"/></svg>
+                <svg viewBox="0 0 16 16" fill="currentColor"><path d="M5.99994 12.9995C6.18994 12.9995 6.37994 12.9295 6.52994 12.7795L10.7799 8.52945C11.0699 8.23945 11.0699 7.75945 10.7799 7.46945L6.52994 3.21945C6.23994 2.92945 5.75994 2.92945 5.46994 3.21945C5.17994 3.50945 5.17994 3.98945 5.46994 4.27945L9.18994 7.99945L5.46994 11.7195C5.17994 12.0095 5.17994 12.4895 5.46994 12.7795C5.61994 12.9295 5.80994 12.9995 5.99994 12.9995Z"/></svg>
                 <span id="grpDetailBreadcrumbName">Group Name</span>
               </div>
               <div class="page-header">
@@ -2858,7 +2859,7 @@
                 <div class="page-header-actions">
                   <button class="btn-icon" title="Refresh"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2.5 8a5.5 5.5 0 019.3-4M13.5 8a5.5 5.5 0 01-9.3 4"/><path d="M11.5 1v3h3M4.5 15v-3h-3" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
                   <div class="acct-actions-wrap">
-                    <button class="btn-outline" onclick="toggleGrpActionsMenu(event)">Actions <svg viewBox="0 0 16 16" fill="currentColor" style="width:12px;height:12px;margin-left:4px;"><path d="M4 6l4 4 4-4"/></svg></button>
+                    <button class="btn-outline" onclick="toggleGrpActionsMenu(event)">Actions <svg viewBox="0 0 16 16" fill="currentColor" style="width:12px;height:12px;margin-left:4px;"><path d="M7.99994 10.7495C7.80994 10.7495 7.61994 10.6795 7.46994 10.5295L3.21994 6.27945C2.92994 5.98945 2.92994 5.50945 3.21994 5.21945C3.50994 4.92945 3.98994 4.92945 4.27994 5.21945L7.99994 8.93945L11.7199 5.21945C12.0099 4.92945 12.4899 4.92945 12.7799 5.21945C13.0699 5.50945 13.0699 5.98945 12.7799 6.27945L8.52994 10.5295C8.37994 10.6795 8.18994 10.7495 7.99994 10.7495Z"/></svg></button>
                     <div class="acct-actions-menu" id="grpActionsMenu">
                       <div class="row-action-menu-item" onclick="openSlidePanel('editJobPanel')"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 10v3h3M14 6V3h-3"/><path d="M14 3L9 8M2 13l5-5"/></svg> Create Job</div>
                       <div class="row-action-menu-item" onclick="openSlidePanel('grpSettingsPanel')"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="5"/><path d="M8 5.5v5M5.5 8h5"/></svg> Group Settings</div>
@@ -2906,7 +2907,7 @@
                     </div>
                     <div class="audit-card-actions">
                       <div class="audit-search">
-                        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="7" cy="7" r="5.5"/><path d="M11 11l3.5 3.5"/></svg>
+                        <svg viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M7 2C9.76142 2 12 4.23858 12 7C12 8.11285 11.6353 9.13998 11.0205 9.9707L14.0713 13.0068L14.1221 13.0645C14.3629 13.3585 14.3471 13.7932 14.0732 14.0684C13.781 14.3615 13.3061 14.3622 13.0127 14.0703L9.95801 11.0303C9.12955 11.6393 8.1071 12 7 12C4.23858 12 2 9.76142 2 7C2 4.23858 4.23858 2 7 2ZM7 3.5C5.067 3.5 3.5 5.067 3.5 7C3.5 8.933 5.067 10.5 7 10.5C8.933 10.5 10.5 8.933 10.5 7C10.5 5.067 8.933 3.5 7 3.5Z"/></svg>
                         <input type="text" placeholder="Search for Files or Hash" id="grpUnitsSearch">
                       </div>
                       <button class="audit-filter-btn"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4h10M4 7h6M6 10h2"/></svg> Status</button>
@@ -2941,9 +2942,9 @@
                       <span id="grpUnitsPageInfo" style="margin-left:8px;">1-10 of 15 items</span>
                     </div>
                     <div class="audit-pagination-right">
-                      <button class="audit-page-btn" id="grpUnitsPrev" disabled><svg viewBox="0 0 16 16" fill="currentColor"><path d="M11.354 1.646a.5.5 0 010 .708L5.707 8l5.647 5.646a.5.5 0 01-.708.708l-6-6a.5.5 0 010-.708l6-6a.5.5 0 01.708 0z"/></svg></button>
+                      <button class="audit-page-btn" id="grpUnitsPrev" disabled><svg viewBox="0 0 16 16" fill="currentColor"><path d="M9.99994 12.9995C9.80994 12.9995 9.61994 12.9295 9.46994 12.7795L5.21994 8.52945C4.92994 8.23945 4.92994 7.75945 5.21994 7.46945L9.46994 3.21945C9.75994 2.92945 10.2399 2.92945 10.5299 3.21945C10.8199 3.50945 10.8199 3.98945 10.5299 4.27945L6.80994 7.99945L10.5299 11.7195C10.8199 12.0095 10.8199 12.4895 10.5299 12.7795C10.3799 12.9295 10.1899 12.9995 9.99994 12.9995Z"/></svg></button>
                       <select class="audit-page-select" id="grpUnitsPageSelect"><option selected>Page 1</option></select>
-                      <button class="audit-page-btn" id="grpUnitsNext"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M4.646 1.646a.5.5 0 01.708 0l6 6a.5.5 0 010 .708l-6 6a.5.5 0 01-.708-.708L10.293 8 4.646 2.354a.5.5 0 010-.708z"/></svg></button>
+                      <button class="audit-page-btn" id="grpUnitsNext"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M5.99994 12.9995C6.18994 12.9995 6.37994 12.9295 6.52994 12.7795L10.7799 8.52945C11.0699 8.23945 11.0699 7.75945 10.7799 7.46945L6.52994 3.21945C6.23994 2.92945 5.75994 2.92945 5.46994 3.21945C5.17994 3.50945 5.17994 3.98945 5.46994 4.27945L9.18994 7.99945L5.46994 11.7195C5.17994 12.0095 5.17994 12.4895 5.46994 12.7795C5.61994 12.9295 5.80994 12.9995 5.99994 12.9995Z"/></svg></button>
                     </div>
                   </div>
                 </div>
@@ -2959,7 +2960,7 @@
                     </div>
                     <div class="audit-card-actions">
                       <div class="audit-search">
-                        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="7" cy="7" r="5.5"/><path d="M11 11l3.5 3.5"/></svg>
+                        <svg viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M7 2C9.76142 2 12 4.23858 12 7C12 8.11285 11.6353 9.13998 11.0205 9.9707L14.0713 13.0068L14.1221 13.0645C14.3629 13.3585 14.3471 13.7932 14.0732 14.0684C13.781 14.3615 13.3061 14.3622 13.0127 14.0703L9.95801 11.0303C9.12955 11.6393 8.1071 12 7 12C4.23858 12 2 9.76142 2 7C2 4.23858 4.23858 2 7 2ZM7 3.5C5.067 3.5 3.5 5.067 3.5 7C3.5 8.933 5.067 10.5 7 10.5C8.933 10.5 10.5 8.933 10.5 7C10.5 5.067 8.933 3.5 7 3.5Z"/></svg>
                         <input type="text" placeholder="Search jobs" id="grpJobsSearch">
                       </div>
                     </div>
@@ -2991,9 +2992,9 @@
                       <span id="grpJobsPageInfo" style="margin-left:8px;">1-10 of 0 items</span>
                     </div>
                     <div class="audit-pagination-right">
-                      <button class="audit-page-btn" id="grpJobsPrev" disabled><svg viewBox="0 0 16 16" fill="currentColor"><path d="M11.354 1.646a.5.5 0 010 .708L5.707 8l5.647 5.646a.5.5 0 01-.708.708l-6-6a.5.5 0 010-.708l6-6a.5.5 0 01.708 0z"/></svg></button>
+                      <button class="audit-page-btn" id="grpJobsPrev" disabled><svg viewBox="0 0 16 16" fill="currentColor"><path d="M9.99994 12.9995C9.80994 12.9995 9.61994 12.9295 9.46994 12.7795L5.21994 8.52945C4.92994 8.23945 4.92994 7.75945 5.21994 7.46945L9.46994 3.21945C9.75994 2.92945 10.2399 2.92945 10.5299 3.21945C10.8199 3.50945 10.8199 3.98945 10.5299 4.27945L6.80994 7.99945L10.5299 11.7195C10.8199 12.0095 10.8199 12.4895 10.5299 12.7795C10.3799 12.9295 10.1899 12.9995 9.99994 12.9995Z"/></svg></button>
                       <select class="audit-page-select" id="grpJobsPageSelect"><option selected>Page 1</option></select>
-                      <button class="audit-page-btn" id="grpJobsNext"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M4.646 1.646a.5.5 0 01.708 0l6 6a.5.5 0 010 .708l-6 6a.5.5 0 01-.708-.708L10.293 8 4.646 2.354a.5.5 0 010-.708z"/></svg></button>
+                      <button class="audit-page-btn" id="grpJobsNext"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M5.99994 12.9995C6.18994 12.9995 6.37994 12.9295 6.52994 12.7795L10.7799 8.52945C11.0699 8.23945 11.0699 7.75945 10.7799 7.46945L6.52994 3.21945C6.23994 2.92945 5.75994 2.92945 5.46994 3.21945C5.17994 3.50945 5.17994 3.98945 5.46994 4.27945L9.18994 7.99945L5.46994 11.7195C5.17994 12.0095 5.17994 12.4895 5.46994 12.7795C5.61994 12.9295 5.80994 12.9995 5.99994 12.9995Z"/></svg></button>
                     </div>
                   </div>
                 </div>
@@ -3027,7 +3028,7 @@
                 </div>
                 <div class="audit-card-actions">
                   <div class="audit-search">
-                    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="7" cy="7" r="5.5"/><path d="M11 11l3.5 3.5"/></svg>
+                    <svg viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M7 2C9.76142 2 12 4.23858 12 7C12 8.11285 11.6353 9.13998 11.0205 9.9707L14.0713 13.0068L14.1221 13.0645C14.3629 13.3585 14.3471 13.7932 14.0732 14.0684C13.781 14.3615 13.3061 14.3622 13.0127 14.0703L9.95801 11.0303C9.12955 11.6393 8.1071 12 7 12C4.23858 12 2 9.76142 2 7C2 4.23858 4.23858 2 7 2ZM7 3.5C5.067 3.5 3.5 5.067 3.5 7C3.5 8.933 5.067 10.5 7 10.5C8.933 10.5 10.5 8.933 10.5 7C10.5 5.067 8.933 3.5 7 3.5Z"/></svg>
                     <input type="text" placeholder="Search jobs" id="activeJobsSearch">
                   </div>
                   <button class="audit-filter-btn" onclick="openSlidePanel('jobsFiltersPanel')" title="Advanced Filters">
@@ -3073,7 +3074,7 @@
                 </div>
                 <div class="audit-card-actions">
                   <div class="audit-search">
-                    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="7" cy="7" r="5.5"/><path d="M11 11l3.5 3.5"/></svg>
+                    <svg viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M7 2C9.76142 2 12 4.23858 12 7C12 8.11285 11.6353 9.13998 11.0205 9.9707L14.0713 13.0068L14.1221 13.0645C14.3629 13.3585 14.3471 13.7932 14.0732 14.0684C13.781 14.3615 13.3061 14.3622 13.0127 14.0703L9.95801 11.0303C9.12955 11.6393 8.1071 12 7 12C4.23858 12 2 9.76142 2 7C2 4.23858 4.23858 2 7 2ZM7 3.5C5.067 3.5 3.5 5.067 3.5 7C3.5 8.933 5.067 10.5 7 10.5C8.933 10.5 10.5 8.933 10.5 7C10.5 5.067 8.933 3.5 7 3.5Z"/></svg>
                     <input type="text" placeholder="Search jobs" id="upcomingJobsSearch">
                   </div>
                   <button class="audit-filter-btn" onclick="openSlidePanel('jobsFiltersPanel')" title="Advanced Filters">
@@ -3115,7 +3116,7 @@
                 </div>
                 <div class="audit-card-actions">
                   <div class="audit-search">
-                    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="7" cy="7" r="5.5"/><path d="M11 11l3.5 3.5"/></svg>
+                    <svg viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M7 2C9.76142 2 12 4.23858 12 7C12 8.11285 11.6353 9.13998 11.0205 9.9707L14.0713 13.0068L14.1221 13.0645C14.3629 13.3585 14.3471 13.7932 14.0732 14.0684C13.781 14.3615 13.3061 14.3622 13.0127 14.0703L9.95801 11.0303C9.12955 11.6393 8.1071 12 7 12C4.23858 12 2 9.76142 2 7C2 4.23858 4.23858 2 7 2ZM7 3.5C5.067 3.5 3.5 5.067 3.5 7C3.5 8.933 5.067 10.5 7 10.5C8.933 10.5 10.5 8.933 10.5 7C10.5 5.067 8.933 3.5 7 3.5Z"/></svg>
                     <input type="text" placeholder="Search jobs" id="pastJobsSearch">
                   </div>
                   <button class="audit-filter-btn" onclick="openSlidePanel('jobsFiltersPanel')" title="Advanced Filters">
@@ -3154,11 +3155,11 @@
                   <span id="pastJobsPageInfo" style="margin-left: 8px;">1-10 of 25 items</span>
                 </div>
                 <div class="audit-pagination-right">
-                  <button class="audit-page-btn" id="pastJobsPrev" disabled><svg viewBox="0 0 16 16" fill="currentColor"><path d="M11.354 1.646a.5.5 0 010 .708L5.707 8l5.647 5.646a.5.5 0 01-.708.708l-6-6a.5.5 0 010-.708l6-6a.5.5 0 01.708 0z"/></svg></button>
+                  <button class="audit-page-btn" id="pastJobsPrev" disabled><svg viewBox="0 0 16 16" fill="currentColor"><path d="M9.99994 12.9995C9.80994 12.9995 9.61994 12.9295 9.46994 12.7795L5.21994 8.52945C4.92994 8.23945 4.92994 7.75945 5.21994 7.46945L9.46994 3.21945C9.75994 2.92945 10.2399 2.92945 10.5299 3.21945C10.8199 3.50945 10.8199 3.98945 10.5299 4.27945L6.80994 7.99945L10.5299 11.7195C10.8199 12.0095 10.8199 12.4895 10.5299 12.7795C10.3799 12.9295 10.1899 12.9995 9.99994 12.9995Z"/></svg></button>
                   <select class="audit-page-select" id="pastJobsPageSelect">
                     <option selected>Page 1</option>
                   </select>
-                  <button class="audit-page-btn" id="pastJobsNext"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M4.646 1.646a.5.5 0 01.708 0l6 6a.5.5 0 010 .708l-6 6a.5.5 0 01-.708-.708L10.293 8 4.646 2.354a.5.5 0 010-.708z"/></svg></button>
+                  <button class="audit-page-btn" id="pastJobsNext"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M5.99994 12.9995C6.18994 12.9995 6.37994 12.9295 6.52994 12.7795L10.7799 8.52945C11.0699 8.23945 11.0699 7.75945 10.7799 7.46945L6.52994 3.21945C6.23994 2.92945 5.75994 2.92945 5.46994 3.21945C5.17994 3.50945 5.17994 3.98945 5.46994 4.27945L9.18994 7.99945L5.46994 11.7195C5.17994 12.0095 5.17994 12.4895 5.46994 12.7795C5.61994 12.9295 5.80994 12.9995 5.99994 12.9995Z"/></svg></button>
                 </div>
               </div>
             </div>
@@ -3168,7 +3169,7 @@
           <div id="jobDetailView" style="display:none;">
             <div class="detail-breadcrumb">
               <a onclick="showJobsList()">Jobs</a>
-              <svg viewBox="0 0 16 16" fill="currentColor"><path d="M6.47 4.22a.75.75 0 011.06 0l3.25 3.25a.75.75 0 010 1.06l-3.25 3.25a.75.75 0 01-1.06-1.06L9.19 8 6.47 5.28a.75.75 0 010-1.06z"/></svg>
+              <svg viewBox="0 0 16 16" fill="currentColor"><path d="M5.99994 12.9995C6.18994 12.9995 6.37994 12.9295 6.52994 12.7795L10.7799 8.52945C11.0699 8.23945 11.0699 7.75945 10.7799 7.46945L6.52994 3.21945C6.23994 2.92945 5.75994 2.92945 5.46994 3.21945C5.17994 3.50945 5.17994 3.98945 5.46994 4.27945L9.18994 7.99945L5.46994 11.7195C5.17994 12.0095 5.17994 12.4895 5.46994 12.7795C5.61994 12.9295 5.80994 12.9995 5.99994 12.9995Z"/></svg>
               <span id="jobDetailBreadcrumbName">Job Name</span>
             </div>
             <div class="page-header">
@@ -3204,7 +3205,7 @@
                 </div>
                 <div class="audit-card-actions">
                   <div class="audit-search">
-                    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="7" cy="7" r="5.5"/><path d="M11 11l3.5 3.5"/></svg>
+                    <svg viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M7 2C9.76142 2 12 4.23858 12 7C12 8.11285 11.6353 9.13998 11.0205 9.9707L14.0713 13.0068L14.1221 13.0645C14.3629 13.3585 14.3471 13.7932 14.0732 14.0684C13.781 14.3615 13.3061 14.3622 13.0127 14.0703L9.95801 11.0303C9.12955 11.6393 8.1071 12 7 12C4.23858 12 2 9.76142 2 7C2 4.23858 4.23858 2 7 2ZM7 3.5C5.067 3.5 3.5 5.067 3.5 7C3.5 8.933 5.067 10.5 7 10.5C8.933 10.5 10.5 8.933 10.5 7C10.5 5.067 8.933 3.5 7 3.5Z"/></svg>
                     <input type="text" placeholder="Search files" id="processedFilesSearch">
                   </div>
                   <button class="audit-filter-btn" onclick="openSlidePanel('jobsFiltersPanel')" title="Advanced Filters">
@@ -3247,9 +3248,9 @@
                   <span id="processedFilesPageInfo" style="margin-left: 8px;"></span>
                 </div>
                 <div class="audit-pagination-right">
-                  <button class="audit-page-btn" id="processedFilesPrev" disabled><svg viewBox="0 0 16 16" fill="currentColor"><path d="M11.354 1.646a.5.5 0 010 .708L5.707 8l5.647 5.646a.5.5 0 01-.708.708l-6-6a.5.5 0 010-.708l6-6a.5.5 0 01.708 0z"/></svg></button>
+                  <button class="audit-page-btn" id="processedFilesPrev" disabled><svg viewBox="0 0 16 16" fill="currentColor"><path d="M9.99994 12.9995C9.80994 12.9995 9.61994 12.9295 9.46994 12.7795L5.21994 8.52945C4.92994 8.23945 4.92994 7.75945 5.21994 7.46945L9.46994 3.21945C9.75994 2.92945 10.2399 2.92945 10.5299 3.21945C10.8199 3.50945 10.8199 3.98945 10.5299 4.27945L6.80994 7.99945L10.5299 11.7195C10.8199 12.0095 10.8199 12.4895 10.5299 12.7795C10.3799 12.9295 10.1899 12.9995 9.99994 12.9995Z"/></svg></button>
                   <select class="audit-page-select" id="processedFilesPageSelect"><option selected>Page 1</option></select>
-                  <button class="audit-page-btn" id="processedFilesNext"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M4.646 1.646a.5.5 0 01.708 0l6 6a.5.5 0 010 .708l-6 6a.5.5 0 01-.708-.708L10.293 8 4.646 2.354a.5.5 0 010-.708z"/></svg></button>
+                  <button class="audit-page-btn" id="processedFilesNext"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M5.99994 12.9995C6.18994 12.9995 6.37994 12.9295 6.52994 12.7795L10.7799 8.52945C11.0699 8.23945 11.0699 7.75945 10.7799 7.46945L6.52994 3.21945C6.23994 2.92945 5.75994 2.92945 5.46994 3.21945C5.17994 3.50945 5.17994 3.98945 5.46994 4.27945L9.18994 7.99945L5.46994 11.7195C5.17994 12.0095 5.17994 12.4895 5.46994 12.7795C5.61994 12.9295 5.80994 12.9995 5.99994 12.9995Z"/></svg></button>
                 </div>
               </div>
             </div>
@@ -3268,7 +3269,7 @@
               <div class="audit-card-header">
                 <div class="audit-card-title"><h3>Workflows</h3> <span>10</span></div>
                 <div style="display:flex; gap:8px; align-items:center;">
-                  <div class="audit-search"><svg viewBox="0 0 16 16" fill="currentColor" style="width:16px;height:16px;color:var(--text-muted);"><path d="M11.742 10.344a6.5 6.5 0 10-1.397 1.398h-.001l3.85 3.85a1 1 0 001.415-1.414l-3.85-3.85-.017.016zm-5.442.156a5 5 0 110-10 5 5 0 010 10z"/></svg><input type="text" placeholder="Search for Files or Hash" class="audit-search-input"></div>
+                  <div class="audit-search"><svg viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M7 2C9.76142 2 12 4.23858 12 7C12 8.11285 11.6353 9.13998 11.0205 9.9707L14.0713 13.0068L14.1221 13.0645C14.3629 13.3585 14.3471 13.7932 14.0732 14.0684C13.781 14.3615 13.3061 14.3622 13.0127 14.0703L9.95801 11.0303C9.12955 11.6393 8.1071 12 7 12C4.23858 12 2 9.76142 2 7C2 4.23858 4.23858 2 7 2ZM7 3.5C5.067 3.5 3.5 5.067 3.5 7C3.5 8.933 5.067 10.5 7 10.5C8.933 10.5 10.5 8.933 10.5 7C10.5 5.067 8.933 3.5 7 3.5Z"/></svg><input type="text" placeholder="Search for Files or Hash" class="audit-search-input"></div>
                 </div>
               </div>
               <div class="table-scroll">
@@ -3397,9 +3398,9 @@
                   <span>1-10 of 15 items</span>
                 </div>
                 <div class="audit-pagination-right">
-                  <button class="audit-page-btn" disabled><svg viewBox="0 0 16 16" fill="currentColor"><path d="M11.354 1.646a.5.5 0 010 .708L5.707 8l5.647 5.646a.5.5 0 01-.708.708l-6-6a.5.5 0 010-.708l6-6a.5.5 0 01.708 0z"/></svg></button>
+                  <button class="audit-page-btn" disabled><svg viewBox="0 0 16 16" fill="currentColor"><path d="M9.99994 12.9995C9.80994 12.9995 9.61994 12.9295 9.46994 12.7795L5.21994 8.52945C4.92994 8.23945 4.92994 7.75945 5.21994 7.46945L9.46994 3.21945C9.75994 2.92945 10.2399 2.92945 10.5299 3.21945C10.8199 3.50945 10.8199 3.98945 10.5299 4.27945L6.80994 7.99945L10.5299 11.7195C10.8199 12.0095 10.8199 12.4895 10.5299 12.7795C10.3799 12.9295 10.1899 12.9995 9.99994 12.9995Z"/></svg></button>
                   <select class="audit-page-select"><option selected>Page 1</option><option>Page 2</option></select>
-                  <button class="audit-page-btn"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M4.646 1.646a.5.5 0 01.708 0l6 6a.5.5 0 010 .708l-6 6a.5.5 0 01-.708-.708L10.293 8 4.646 2.354a.5.5 0 010-.708z"/></svg></button>
+                  <button class="audit-page-btn"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M5.99994 12.9995C6.18994 12.9995 6.37994 12.9295 6.52994 12.7795L10.7799 8.52945C11.0699 8.23945 11.0699 7.75945 10.7799 7.46945L6.52994 3.21945C6.23994 2.92945 5.75994 2.92945 5.46994 3.21945C5.17994 3.50945 5.17994 3.98945 5.46994 4.27945L9.18994 7.99945L5.46994 11.7195C5.17994 12.0095 5.17994 12.4895 5.46994 12.7795C5.61994 12.9295 5.80994 12.9995 5.99994 12.9995Z"/></svg></button>
                 </div>
               </div>
             </div>
@@ -3409,7 +3410,7 @@
           <div id="workflowDetailView" style="display:none;">
             <div class="detail-breadcrumb">
               <a onclick="showWorkflowsList()">Workflows</a>
-              <svg viewBox="0 0 16 16" fill="currentColor"><path d="M6.47 4.22a.75.75 0 011.06 0l3.25 3.25a.75.75 0 010 1.06l-3.25 3.25a.75.75 0 01-1.06-1.06L9.19 8 6.47 5.28a.75.75 0 010-1.06z"/></svg>
+              <svg viewBox="0 0 16 16" fill="currentColor"><path d="M5.99994 12.9995C6.18994 12.9995 6.37994 12.9295 6.52994 12.7795L10.7799 8.52945C11.0699 8.23945 11.0699 7.75945 10.7799 7.46945L6.52994 3.21945C6.23994 2.92945 5.75994 2.92945 5.46994 3.21945C5.17994 3.50945 5.17994 3.98945 5.46994 4.27945L9.18994 7.99945L5.46994 11.7195C5.17994 12.0095 5.17994 12.4895 5.46994 12.7795C5.61994 12.9295 5.80994 12.9995 5.99994 12.9995Z"/></svg>
               <span id="wfDetailBreadcrumbName">Default Workflow</span>
             </div>
             <h1 class="wf-detail-title" id="wfDetailTitle">Default Workflow</h1>
@@ -3784,7 +3785,7 @@
                     <button class="avd-item">
                       <svg viewBox="0 0 16 16" fill="currentColor"><path d="M13 4H3V3h10v1zm0 4H3V7h10v1zm-3 4H3v-1h7v1z"/></svg>
                       <span class="avd-item-text">Organization</span>
-                      <svg class="avd-chevron" viewBox="0 0 16 16" fill="currentColor"><path d="M6.47 4.22a.75.75 0 011.06 0l3.25 3.25a.75.75 0 010 1.06l-3.25 3.25a.75.75 0 01-1.06-1.06L9.19 8 6.47 5.28a.75.75 0 010-1.06z"/></svg>
+                      <svg class="avd-chevron" viewBox="0 0 16 16" fill="currentColor"><path d="M5.99994 12.9995C6.18994 12.9995 6.37994 12.9295 6.52994 12.7795L10.7799 8.52945C11.0699 8.23945 11.0699 7.75945 10.7799 7.46945L6.52994 3.21945C6.23994 2.92945 5.75994 2.92945 5.46994 3.21945C5.17994 3.50945 5.17994 3.98945 5.46994 4.27945L9.18994 7.99945L5.46994 11.7195C5.17994 12.0095 5.17994 12.4895 5.46994 12.7795C5.61994 12.9295 5.80994 12.9995 5.99994 12.9995Z"/></svg>
                     </button>
                     <button class="avd-item">
                       <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 8a3 3 0 100-6 3 3 0 000 6zm0 1c-3.31 0-6 1.79-6 4v1h12v-1c0-2.21-2.69-4-6-4z"/></svg>
@@ -3803,12 +3804,12 @@
                     <button class="avd-item">
                       <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 2a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 2zm0 9.5a3.5 3.5 0 100-7 3.5 3.5 0 000 7zm5.5-3.75a.75.75 0 010 1.5h-1.5a.75.75 0 010-1.5h1.5zm-10 0a.75.75 0 010 1.5H2a.75.75 0 010-1.5h1.5zm8.19-3.94a.75.75 0 010 1.06l-1.06 1.06a.75.75 0 01-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-7.38 7.38a.75.75 0 010 1.06l-1.06 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm7.38 0a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 011.06-1.06l1.06 1.06zM4.31 5.37a.75.75 0 01-1.06 0L2.19 4.31a.75.75 0 111.06-1.06l1.06 1.06a.75.75 0 010 1.06zM8 12.25a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V13a.75.75 0 01.75-.75z"/></svg>
                       <span class="avd-item-text">Light Theme</span>
-                      <svg class="avd-chevron" viewBox="0 0 16 16" fill="currentColor"><path d="M6.47 4.22a.75.75 0 011.06 0l3.25 3.25a.75.75 0 010 1.06l-3.25 3.25a.75.75 0 01-1.06-1.06L9.19 8 6.47 5.28a.75.75 0 010-1.06z"/></svg>
+                      <svg class="avd-chevron" viewBox="0 0 16 16" fill="currentColor"><path d="M5.99994 12.9995C6.18994 12.9995 6.37994 12.9295 6.52994 12.7795L10.7799 8.52945C11.0699 8.23945 11.0699 7.75945 10.7799 7.46945L6.52994 3.21945C6.23994 2.92945 5.75994 2.92945 5.46994 3.21945C5.17994 3.50945 5.17994 3.98945 5.46994 4.27945L9.18994 7.99945L5.46994 11.7195C5.17994 12.0095 5.17994 12.4895 5.46994 12.7795C5.61994 12.9295 5.80994 12.9995 5.99994 12.9995Z"/></svg>
                     </button>
                     <button class="avd-item">
                       <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8.25 1.57a.75.75 0 00-1.5 0V2A6.003 6.003 0 002 8a6.003 6.003 0 004.75 5.87v.56a.75.75 0 001.5 0v-.56A6.003 6.003 0 0014 8a6.003 6.003 0 00-4.75-5.87V1.57zM8 3.5A4.5 4.5 0 003.5 8 4.5 4.5 0 008 12.5 4.5 4.5 0 0012.5 8 4.5 4.5 0 008 3.5z"/></svg>
                       <span class="avd-item-text">English</span>
-                      <svg class="avd-chevron" viewBox="0 0 16 16" fill="currentColor"><path d="M6.47 4.22a.75.75 0 011.06 0l3.25 3.25a.75.75 0 010 1.06l-3.25 3.25a.75.75 0 01-1.06-1.06L9.19 8 6.47 5.28a.75.75 0 010-1.06z"/></svg>
+                      <svg class="avd-chevron" viewBox="0 0 16 16" fill="currentColor"><path d="M5.99994 12.9995C6.18994 12.9995 6.37994 12.9295 6.52994 12.7795L10.7799 8.52945C11.0699 8.23945 11.0699 7.75945 10.7799 7.46945L6.52994 3.21945C6.23994 2.92945 5.75994 2.92945 5.46994 3.21945C5.17994 3.50945 5.17994 3.98945 5.46994 4.27945L9.18994 7.99945L5.46994 11.7195C5.17994 12.0095 5.17994 12.4895 5.46994 12.7795C5.61994 12.9295 5.80994 12.9995 5.99994 12.9995Z"/></svg>
                     </button>
                     <div class="avd-divider"></div>
                     <!-- Switch version -->
