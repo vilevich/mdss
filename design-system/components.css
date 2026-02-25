@@ -1010,6 +1010,9 @@ select:focus { border-color: var(--primary); outline: none; }
 .tag-alert     { background: var(--ds-alert-100);    color: var(--ds-alert-text); }
 .tag-warn      { background: var(--ds-warn-100);     color: var(--ds-warn-text); }
 .tag-caution   { background: var(--ds-caution-100);  color: var(--ds-caution-text); }
+.tag-danger    { background: var(--ds-alert-100);    color: var(--ds-alert-text); }
+.tag-info      { background: var(--ds-accent-100);   color: var(--ds-accent-text); }
+.tag-warning   { background: var(--ds-caution-100);  color: var(--ds-caution-text); }
 
 /* --- Tags (Keyword) — bordered, no fill --- */
 .tag-keyword {

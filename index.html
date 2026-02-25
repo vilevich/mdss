@@ -863,8 +863,8 @@
     .acct-overview-stat-value { font-size: 24px; font-weight: 500; color: var(--text-strong); }
 
     /* Account detail tabs */
-    .acct-tab-panel { display: none; }
-    .acct-tab-panel.active { display: block; }
+    .acct-tab-panel, .grp-tab-panel { display: none; }
+    .acct-tab-panel.active, .grp-tab-panel.active { display: block; }
 
     /* Donut charts */
     .acct-donut-row { display: flex; gap: 0; padding: 24px 20px; justify-content: space-around; }
@@ -2792,11 +2792,213 @@
             </div><!-- /accountDetailView -->
           </div><!-- /inv-panel-accounts -->
 
-          <!-- ===== Groups Tab (placeholder) ===== -->
+          <!-- ===== Groups Tab ===== -->
           <div class="inv-tab-panel" id="inv-panel-groups" style="display:none;">
-            <div class="audit-card"><div class="card-header"><div class="card-header-left"><strong>Groups</strong> <span class="text-muted">0</span></div></div>
-              <div style="padding:48px; text-align:center; color:var(--text-muted); font-size:14px;">Groups tab — coming next.</div>
+            <!-- Groups List View -->
+            <div id="groupsListView">
+              <div class="audit-card">
+                <div class="audit-card-header">
+                  <div class="audit-card-title">
+                    <h3>Groups</h3>
+                    <span class="count" id="groupsCount">15</span>
+                  </div>
+                  <div class="audit-card-actions">
+                    <div class="audit-search">
+                      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="7" cy="7" r="5.5"/><path d="M11 11l3.5 3.5"/></svg>
+                      <input type="text" placeholder="Search groups" id="groupsSearch">
+                    </div>
+                    <button class="audit-filter-btn"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4h10M4 7h6M6 10h2"/></svg> Provider</button>
+                    <button class="audit-filter-btn"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4h10M4 7h6M6 10h2"/></svg> Status</button>
+                  </div>
+                </div>
+                <div class="table-scroll">
+                  <table class="data-table" id="groupsTable">
+                    <thead>
+                      <tr>
+                        <th class="col-cb"><input type="checkbox" style="margin:0;" id="groupsSelectAll"></th>
+                        <th class="col-pinned" style="width:28%;">Name <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77C3.635 8.77 3.455 8.7 3.315 8.56C3.175 8.42 3.105 8.25 3.105 8.05C3.105 7.85 3.175 7.68 3.315 7.54C3.455 7.4 3.625 7.33 3.825 7.33H12.155C12.355 7.33 12.535 7.4 12.675 7.54C12.815 7.68 12.885 7.85 12.885 8.05C12.885 8.25 12.815 8.42 12.675 8.56C12.535 8.7 12.365 8.77 12.165 8.77H3.835Z"/><path d="M1.715 5.44C1.515 5.44 1.345 5.37 1.205 5.23C1.065 5.09 0.995 4.92 0.995 4.72C0.995 4.52 1.065 4.35 1.205 4.21C1.345 4.07 1.515 4 1.715 4H14.275C14.475 4 14.645 4.07 14.785 4.21C14.925 4.35 14.995 4.52 14.995 4.72C14.995 4.92 14.925 5.09 14.785 5.23C14.645 5.37 14.475 5.44 14.275 5.44H1.715Z"/><path d="M5.515 12.09C5.315 12.09 5.145 12.02 5.005 11.88C4.865 11.74 4.795 11.57 4.795 11.37C4.795 11.17 4.865 11 5.005 10.86C5.145 10.72 5.315 10.65 5.515 10.65H10.475C10.675 10.65 10.845 10.72 10.985 10.86C11.125 11 11.195 11.17 11.195 11.37C11.195 11.57 11.125 11.74 10.985 11.88C10.845 12.02 10.675 12.09 10.475 12.09H5.515Z"/></svg></span></th>
+                        <th style="width:14%;">Status <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77C3.635 8.77 3.455 8.7 3.315 8.56C3.175 8.42 3.105 8.25 3.105 8.05C3.105 7.85 3.175 7.68 3.315 7.54C3.455 7.4 3.625 7.33 3.825 7.33H12.155C12.355 7.33 12.535 7.4 12.675 7.54C12.815 7.68 12.885 7.85 12.885 8.05C12.885 8.25 12.815 8.42 12.675 8.56C12.535 8.7 12.365 8.77 12.165 8.77H3.835Z"/><path d="M1.715 5.44C1.515 5.44 1.345 5.37 1.205 5.23C1.065 5.09 0.995 4.92 0.995 4.72C0.995 4.52 1.065 4.35 1.205 4.21C1.345 4.07 1.515 4 1.715 4H14.275C14.475 4 14.645 4.07 14.785 4.21C14.925 4.35 14.995 4.52 14.995 4.72C14.995 4.92 14.925 5.09 14.785 5.23C14.645 5.37 14.475 5.44 14.275 5.44H1.715Z"/><path d="M5.515 12.09C5.315 12.09 5.145 12.02 5.005 11.88C4.865 11.74 4.795 11.57 4.795 11.37C4.795 11.17 4.865 11 5.005 10.86C5.145 10.72 5.315 10.65 5.515 10.65H10.475C10.675 10.65 10.845 10.72 10.985 10.86C11.125 11 11.195 11.17 11.195 11.37C11.195 11.57 11.125 11.74 10.985 11.88C10.845 12.02 10.675 12.09 10.475 12.09H5.515Z"/></svg></span></th>
+                        <th style="width:14%;">Storage Units <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77C3.635 8.77 3.455 8.7 3.315 8.56C3.175 8.42 3.105 8.25 3.105 8.05C3.105 7.85 3.175 7.68 3.315 7.54C3.455 7.4 3.625 7.33 3.825 7.33H12.155C12.355 7.33 12.535 7.4 12.675 7.54C12.815 7.68 12.885 7.85 12.885 8.05C12.885 8.25 12.815 8.42 12.675 8.56C12.535 8.7 12.365 8.77 12.165 8.77H3.835Z"/><path d="M1.715 5.44C1.515 5.44 1.345 5.37 1.205 5.23C1.065 5.09 0.995 4.92 0.995 4.72C0.995 4.52 1.065 4.35 1.205 4.21C1.345 4.07 1.515 4 1.715 4H14.275C14.475 4 14.645 4.07 14.785 4.21C14.925 4.35 14.995 4.52 14.995 4.72C14.995 4.92 14.925 5.09 14.785 5.23C14.645 5.37 14.475 5.44 14.275 5.44H1.715Z"/><path d="M5.515 12.09C5.315 12.09 5.145 12.02 5.005 11.88C4.865 11.74 4.795 11.57 4.795 11.37C4.795 11.17 4.865 11 5.005 10.86C5.145 10.72 5.315 10.65 5.515 10.65H10.475C10.675 10.65 10.845 10.72 10.985 10.86C11.125 11 11.195 11.17 11.195 11.37C11.195 11.57 11.125 11.74 10.985 11.88C10.845 12.02 10.675 12.09 10.475 12.09H5.515Z"/></svg></span></th>
+                        <th style="width:28%;">Providers <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77C3.635 8.77 3.455 8.7 3.315 8.56C3.175 8.42 3.105 8.25 3.105 8.05C3.105 7.85 3.175 7.68 3.315 7.54C3.455 7.4 3.625 7.33 3.825 7.33H12.155C12.355 7.33 12.535 7.4 12.675 7.54C12.815 7.68 12.885 7.85 12.885 8.05C12.885 8.25 12.815 8.42 12.675 8.56C12.535 8.7 12.365 8.77 12.165 8.77H3.835Z"/><path d="M1.715 5.44C1.515 5.44 1.345 5.37 1.205 5.23C1.065 5.09 0.995 4.92 0.995 4.72C0.995 4.52 1.065 4.35 1.205 4.21C1.345 4.07 1.515 4 1.715 4H14.275C14.475 4 14.645 4.07 14.785 4.21C14.925 4.35 14.995 4.52 14.995 4.72C14.995 4.92 14.925 5.09 14.785 5.23C14.645 5.37 14.475 5.44 14.275 5.44H1.715Z"/><path d="M5.515 12.09C5.315 12.09 5.145 12.02 5.005 11.88C4.865 11.74 4.795 11.57 4.795 11.37C4.795 11.17 4.865 11 5.005 10.86C5.145 10.72 5.315 10.65 5.515 10.65H10.475C10.675 10.65 10.845 10.72 10.985 10.86C11.125 11 11.195 11.17 11.195 11.37C11.195 11.57 11.125 11.74 10.985 11.88C10.845 12.02 10.675 12.09 10.475 12.09H5.515Z"/></svg></span></th>
+                        <th class="col-fixed" style="padding-right:20px;"></th>
+                      </tr>
+                    </thead>
+                    <tbody id="groupsBody">
+                      <!-- Populated by JS -->
+                    </tbody>
+                  </table>
+                </div>
+                <div class="audit-pagination" id="groupsPagination">
+                  <div class="audit-pagination-left">
+                    <select id="groupsPerPage"><option selected>10</option><option>25</option><option>50</option></select>
+                    <span>items per page</span>
+                    <span style="margin-left:8px; color:var(--text-muted);">|</span>
+                    <span id="groupsPageInfo" style="margin-left:8px;">1-10 of 15 items</span>
+                  </div>
+                  <div class="audit-pagination-right">
+                    <button class="audit-page-btn" id="groupsPrev" disabled><svg viewBox="0 0 16 16" fill="currentColor"><path d="M11.354 1.646a.5.5 0 010 .708L5.707 8l5.647 5.646a.5.5 0 01-.708.708l-6-6a.5.5 0 010-.708l6-6a.5.5 0 01.708 0z"/></svg></button>
+                    <select class="audit-page-select" id="groupsPageSelect"><option selected>Page 1</option></select>
+                    <button class="audit-page-btn" id="groupsNext"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M4.646 1.646a.5.5 0 01.708 0l6 6a.5.5 0 010 .708l-6 6a.5.5 0 01-.708-.708L10.293 8 4.646 2.354a.5.5 0 010-.708z"/></svg></button>
+                  </div>
+                </div>
+              </div>
             </div>
+
+            <!-- Group Detail View -->
+            <div id="groupDetailView" style="display:none;">
+              <div class="detail-breadcrumb">
+                <a onclick="showGroupsList()">Inventory</a>
+                <svg viewBox="0 0 16 16" fill="currentColor"><path d="M6.47 4.22a.75.75 0 011.06 0l3.25 3.25a.75.75 0 010 1.06l-3.25 3.25a.75.75 0 01-1.06-1.06L9.19 8 6.47 5.28a.75.75 0 010-1.06z"/></svg>
+                <a onclick="showGroupsList()">Groups</a>
+                <svg viewBox="0 0 16 16" fill="currentColor"><path d="M6.47 4.22a.75.75 0 011.06 0l3.25 3.25a.75.75 0 010 1.06l-3.25 3.25a.75.75 0 01-1.06-1.06L9.19 8 6.47 5.28a.75.75 0 010-1.06z"/></svg>
+                <span id="grpDetailBreadcrumbName">Group Name</span>
+              </div>
+              <div class="page-header">
+                <h1 class="page-title" id="grpDetailTitle">Group Name</h1>
+                <div class="page-header-actions">
+                  <button class="btn-icon" title="Refresh"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2.5 8a5.5 5.5 0 019.3-4M13.5 8a5.5 5.5 0 01-9.3 4"/><path d="M11.5 1v3h3M4.5 15v-3h-3" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+                  <div class="acct-actions-wrap">
+                    <button class="btn-outline" onclick="toggleGrpActionsMenu(event)">Actions <svg viewBox="0 0 16 16" fill="currentColor" style="width:12px;height:12px;margin-left:4px;"><path d="M4 6l4 4 4-4"/></svg></button>
+                    <div class="acct-actions-menu" id="grpActionsMenu">
+                      <div class="row-action-menu-item" onclick="openSlidePanel('editJobPanel')"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 10v3h3M14 6V3h-3"/><path d="M14 3L9 8M2 13l5-5"/></svg> Create Job</div>
+                      <div class="row-action-menu-item" onclick="openSlidePanel('grpSettingsPanel')"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="5"/><path d="M8 5.5v5M5.5 8h5"/></svg> Group Settings</div>
+                      <div class="inv-context-item danger"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 4h10M6 4V3h4v1M5 4v8.5a1 1 0 001 1h4a1 1 0 001-1V4"/></svg> Delete Group</div>
+                    </div>
+                  </div>
+                  <button class="btn-primary" onclick="openSlidePanel('editJobPanel')"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="width:14px;height:14px;margin-right:4px;"><path d="M8 3v10M3 8h10"/></svg> Add Units</button>
+                </div>
+              </div>
+
+              <!-- Group Detail Inner Tabs -->
+              <div class="tabs" id="grpDetailTabs" role="tablist" style="margin-bottom:16px;">
+                <button class="tab active" role="tab" data-grp-tab="units">Units</button>
+                <button class="tab" role="tab" data-grp-tab="jobs">Jobs</button>
+              </div>
+
+              <!-- ===== Group Units Tab ===== -->
+              <div class="grp-tab-panel active" id="grp-panel-units">
+                <!-- Account Overview -->
+                <div class="acct-overview-row" id="grpOverviewRow">
+                  <div class="acct-overview-stat blue">
+                    <span class="acct-overview-stat-label">Total Units</span>
+                    <span class="acct-overview-stat-value" id="grpStatTotal">15</span>
+                  </div>
+                  <div class="acct-overview-stat green">
+                    <span class="acct-overview-stat-label">Operational</span>
+                    <span class="acct-overview-stat-value" id="grpStatOp">13</span>
+                  </div>
+                  <div class="acct-overview-stat red">
+                    <span class="acct-overview-stat-label">Errors</span>
+                    <span class="acct-overview-stat-value" id="grpStatErrors">1</span>
+                  </div>
+                  <div class="acct-overview-stat yellow">
+                    <span class="acct-overview-stat-label">Testing</span>
+                    <span class="acct-overview-stat-value" id="grpStatTesting">1</span>
+                  </div>
+                </div>
+
+                <!-- Storage Units Table -->
+                <div class="audit-card">
+                  <div class="audit-card-header">
+                    <div class="audit-card-title">
+                      <h3>Storage Units</h3>
+                      <span class="count" id="grpUnitsCount">15</span>
+                    </div>
+                    <div class="audit-card-actions">
+                      <div class="audit-search">
+                        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="7" cy="7" r="5.5"/><path d="M11 11l3.5 3.5"/></svg>
+                        <input type="text" placeholder="Search for Files or Hash" id="grpUnitsSearch">
+                      </div>
+                      <button class="audit-filter-btn"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4h10M4 7h6M6 10h2"/></svg> Status</button>
+                      <button class="audit-filter-btn"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4h10M4 7h6M6 10h2"/></svg> Group</button>
+                    </div>
+                  </div>
+                  <div class="table-scroll">
+                    <table class="data-table" id="grpUnitsTable">
+                      <thead>
+                        <tr>
+                          <th class="col-cb"><input type="checkbox" style="margin:0;"></th>
+                          <th class="col-pinned" style="width:16%;">Storage Unit <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77C3.635 8.77 3.455 8.7 3.315 8.56C3.175 8.42 3.105 8.25 3.105 8.05C3.105 7.85 3.175 7.68 3.315 7.54C3.455 7.4 3.625 7.33 3.825 7.33H12.155C12.355 7.33 12.535 7.4 12.675 7.54C12.815 7.68 12.885 7.85 12.885 8.05C12.885 8.25 12.815 8.42 12.675 8.56C12.535 8.7 12.365 8.77 12.165 8.77H3.835Z"/><path d="M1.715 5.44C1.515 5.44 1.345 5.37 1.205 5.23C1.065 5.09 0.995 4.92 0.995 4.72C0.995 4.52 1.065 4.35 1.205 4.21C1.345 4.07 1.515 4 1.715 4H14.275C14.475 4 14.645 4.07 14.785 4.21C14.925 4.35 14.995 4.52 14.995 4.72C14.995 4.92 14.925 5.09 14.785 5.23C14.645 5.37 14.475 5.44 14.275 5.44H1.715Z"/><path d="M5.515 12.09C5.315 12.09 5.145 12.02 5.005 11.88C4.865 11.74 4.795 11.57 4.795 11.37C4.795 11.17 4.865 11 5.005 10.86C5.145 10.72 5.315 10.65 5.515 10.65H10.475C10.675 10.65 10.845 10.72 10.985 10.86C11.125 11 11.195 11.17 11.195 11.37C11.195 11.57 11.125 11.74 10.985 11.88C10.845 12.02 10.675 12.09 10.475 12.09H5.515Z"/></svg></span></th>
+                          <th style="width:12%;">Provider <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77C3.635 8.77 3.455 8.7 3.315 8.56C3.175 8.42 3.105 8.25 3.105 8.05C3.105 7.85 3.175 7.68 3.315 7.54C3.455 7.4 3.625 7.33 3.825 7.33H12.155C12.355 7.33 12.535 7.4 12.675 7.54C12.815 7.68 12.885 7.85 12.885 8.05C12.885 8.25 12.815 8.42 12.675 8.56C12.535 8.7 12.365 8.77 12.165 8.77H3.835Z"/><path d="M1.715 5.44C1.515 5.44 1.345 5.37 1.205 5.23C1.065 5.09 0.995 4.92 0.995 4.72C0.995 4.52 1.065 4.35 1.205 4.21C1.345 4.07 1.515 4 1.715 4H14.275C14.475 4 14.645 4.07 14.785 4.21C14.925 4.35 14.995 4.52 14.995 4.72C14.995 4.92 14.925 5.09 14.785 5.23C14.645 5.37 14.475 5.44 14.275 5.44H1.715Z"/><path d="M5.515 12.09C5.315 12.09 5.145 12.02 5.005 11.88C4.865 11.74 4.795 11.57 4.795 11.37C4.795 11.17 4.865 11 5.005 10.86C5.145 10.72 5.315 10.65 5.515 10.65H10.475C10.675 10.65 10.845 10.72 10.985 10.86C11.125 11 11.195 11.17 11.195 11.37C11.195 11.57 11.125 11.74 10.985 11.88C10.845 12.02 10.675 12.09 10.475 12.09H5.515Z"/></svg></span></th>
+                          <th style="width:10%;">Status <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77C3.635 8.77 3.455 8.7 3.315 8.56C3.175 8.42 3.105 8.25 3.105 8.05C3.105 7.85 3.175 7.68 3.315 7.54C3.455 7.4 3.625 7.33 3.825 7.33H12.155C12.355 7.33 12.535 7.4 12.675 7.54C12.815 7.68 12.885 7.85 12.885 8.05C12.885 8.25 12.815 8.42 12.675 8.56C12.535 8.7 12.365 8.77 12.165 8.77H3.835Z"/><path d="M1.715 5.44C1.515 5.44 1.345 5.37 1.205 5.23C1.065 5.09 0.995 4.92 0.995 4.72C0.995 4.52 1.065 4.35 1.205 4.21C1.345 4.07 1.515 4 1.715 4H14.275C14.475 4 14.645 4.07 14.785 4.21C14.925 4.35 14.995 4.52 14.995 4.72C14.995 4.92 14.925 5.09 14.785 5.23C14.645 5.37 14.475 5.44 14.275 5.44H1.715Z"/><path d="M5.515 12.09C5.315 12.09 5.145 12.02 5.005 11.88C4.865 11.74 4.795 11.57 4.795 11.37C4.795 11.17 4.865 11 5.005 10.86C5.145 10.72 5.315 10.65 5.515 10.65H10.475C10.675 10.65 10.845 10.72 10.985 10.86C11.125 11 11.195 11.17 11.195 11.37C11.195 11.57 11.125 11.74 10.985 11.88C10.845 12.02 10.675 12.09 10.475 12.09H5.515Z"/></svg></span></th>
+                          <th style="width:13%;">Account <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77C3.635 8.77 3.455 8.7 3.315 8.56C3.175 8.42 3.105 8.25 3.105 8.05C3.105 7.85 3.175 7.68 3.315 7.54C3.455 7.4 3.625 7.33 3.825 7.33H12.155C12.355 7.33 12.535 7.4 12.675 7.54C12.815 7.68 12.885 7.85 12.885 8.05C12.885 8.25 12.815 8.42 12.675 8.56C12.535 8.7 12.365 8.77 12.165 8.77H3.835Z"/><path d="M1.715 5.44C1.515 5.44 1.345 5.37 1.205 5.23C1.065 5.09 0.995 4.92 0.995 4.72C0.995 4.52 1.065 4.35 1.205 4.21C1.345 4.07 1.515 4 1.715 4H14.275C14.475 4 14.645 4.07 14.785 4.21C14.925 4.35 14.995 4.52 14.995 4.72C14.995 4.92 14.925 5.09 14.785 5.23C14.645 5.37 14.475 5.44 14.275 5.44H1.715Z"/><path d="M5.515 12.09C5.315 12.09 5.145 12.02 5.005 11.88C4.865 11.74 4.795 11.57 4.795 11.37C4.795 11.17 4.865 11 5.005 10.86C5.145 10.72 5.315 10.65 5.515 10.65H10.475C10.675 10.65 10.845 10.72 10.985 10.86C11.125 11 11.195 11.17 11.195 11.37C11.195 11.57 11.125 11.74 10.985 11.88C10.845 12.02 10.675 12.09 10.475 12.09H5.515Z"/></svg></span></th>
+                          <th style="width:10%;">Groups <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77C3.635 8.77 3.455 8.7 3.315 8.56C3.175 8.42 3.105 8.25 3.105 8.05C3.105 7.85 3.175 7.68 3.315 7.54C3.455 7.4 3.625 7.33 3.825 7.33H12.155C12.355 7.33 12.535 7.4 12.675 7.54C12.815 7.68 12.885 7.85 12.885 8.05C12.885 8.25 12.815 8.42 12.675 8.56C12.535 8.7 12.365 8.77 12.165 8.77H3.835Z"/><path d="M1.715 5.44C1.515 5.44 1.345 5.37 1.205 5.23C1.065 5.09 0.995 4.92 0.995 4.72C0.995 4.52 1.065 4.35 1.205 4.21C1.345 4.07 1.515 4 1.715 4H14.275C14.475 4 14.645 4.07 14.785 4.21C14.925 4.35 14.995 4.52 14.995 4.72C14.995 4.92 14.925 5.09 14.785 5.23C14.645 5.37 14.475 5.44 14.275 5.44H1.715Z"/><path d="M5.515 12.09C5.315 12.09 5.145 12.02 5.005 11.88C4.865 11.74 4.795 11.57 4.795 11.37C4.795 11.17 4.865 11 5.005 10.86C5.145 10.72 5.315 10.65 5.515 10.65H10.475C10.675 10.65 10.845 10.72 10.985 10.86C11.125 11 11.195 11.17 11.195 11.37C11.195 11.57 11.125 11.74 10.985 11.88C10.845 12.02 10.675 12.09 10.475 12.09H5.515Z"/></svg></span></th>
+                          <th style="width:14%;">Storage ClientID <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77C3.635 8.77 3.455 8.7 3.315 8.56C3.175 8.42 3.105 8.25 3.105 8.05C3.105 7.85 3.175 7.68 3.315 7.54C3.455 7.4 3.625 7.33 3.825 7.33H12.155C12.355 7.33 12.535 7.4 12.675 7.54C12.815 7.68 12.885 7.85 12.885 8.05C12.885 8.25 12.815 8.42 12.675 8.56C12.535 8.7 12.365 8.77 12.165 8.77H3.835Z"/><path d="M1.715 5.44C1.515 5.44 1.345 5.37 1.205 5.23C1.065 5.09 0.995 4.92 0.995 4.72C0.995 4.52 1.065 4.35 1.205 4.21C1.345 4.07 1.515 4 1.715 4H14.275C14.475 4 14.645 4.07 14.785 4.21C14.925 4.35 14.995 4.52 14.995 4.72C14.995 4.92 14.925 5.09 14.785 5.23C14.645 5.37 14.475 5.44 14.275 5.44H1.715Z"/><path d="M5.515 12.09C5.315 12.09 5.145 12.02 5.005 11.88C4.865 11.74 4.795 11.57 4.795 11.37C4.795 11.17 4.865 11 5.005 10.86C5.145 10.72 5.315 10.65 5.515 10.65H10.475C10.675 10.65 10.845 10.72 10.985 10.86C11.125 11 11.195 11.17 11.195 11.37C11.195 11.57 11.125 11.74 10.985 11.88C10.845 12.02 10.675 12.09 10.475 12.09H5.515Z"/></svg></span></th>
+                          <th style="width:15%;">Last Job <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77C3.635 8.77 3.455 8.7 3.315 8.56C3.175 8.42 3.105 8.25 3.105 8.05C3.105 7.85 3.175 7.68 3.315 7.54C3.455 7.4 3.625 7.33 3.825 7.33H12.155C12.355 7.33 12.535 7.4 12.675 7.54C12.815 7.68 12.885 7.85 12.885 8.05C12.885 8.25 12.815 8.42 12.675 8.56C12.535 8.7 12.365 8.77 12.165 8.77H3.835Z"/><path d="M1.715 5.44C1.515 5.44 1.345 5.37 1.205 5.23C1.065 5.09 0.995 4.92 0.995 4.72C0.995 4.52 1.065 4.35 1.205 4.21C1.345 4.07 1.515 4 1.715 4H14.275C14.475 4 14.645 4.07 14.785 4.21C14.925 4.35 14.995 4.52 14.995 4.72C14.995 4.92 14.925 5.09 14.785 5.23C14.645 5.37 14.475 5.44 14.275 5.44H1.715Z"/><path d="M5.515 12.09C5.315 12.09 5.145 12.02 5.005 11.88C4.865 11.74 4.795 11.57 4.795 11.37C4.795 11.17 4.865 11 5.005 10.86C5.145 10.72 5.315 10.65 5.515 10.65H10.475C10.675 10.65 10.845 10.72 10.985 10.86C11.125 11 11.195 11.17 11.195 11.37C11.195 11.57 11.125 11.74 10.985 11.88C10.845 12.02 10.675 12.09 10.475 12.09H5.515Z"/></svg></span></th>
+                          <th class="col-fixed" style="padding-right:20px;"></th>
+                        </tr>
+                      </thead>
+                      <tbody id="grpUnitsBody">
+                        <!-- Populated by JS -->
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="audit-pagination" id="grpUnitsPagination">
+                    <div class="audit-pagination-left">
+                      <select id="grpUnitsPerPage"><option selected>10</option><option>25</option><option>50</option></select>
+                      <span>items per page</span>
+                      <span style="margin-left:8px; color:var(--text-muted);">|</span>
+                      <span id="grpUnitsPageInfo" style="margin-left:8px;">1-10 of 15 items</span>
+                    </div>
+                    <div class="audit-pagination-right">
+                      <button class="audit-page-btn" id="grpUnitsPrev" disabled><svg viewBox="0 0 16 16" fill="currentColor"><path d="M11.354 1.646a.5.5 0 010 .708L5.707 8l5.647 5.646a.5.5 0 01-.708.708l-6-6a.5.5 0 010-.708l6-6a.5.5 0 01.708 0z"/></svg></button>
+                      <select class="audit-page-select" id="grpUnitsPageSelect"><option selected>Page 1</option></select>
+                      <button class="audit-page-btn" id="grpUnitsNext"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M4.646 1.646a.5.5 0 01.708 0l6 6a.5.5 0 010 .708l-6 6a.5.5 0 01-.708-.708L10.293 8 4.646 2.354a.5.5 0 010-.708z"/></svg></button>
+                    </div>
+                  </div>
+                </div>
+              </div><!-- /grp-panel-units -->
+
+              <!-- ===== Group Jobs Tab ===== -->
+              <div class="grp-tab-panel" id="grp-panel-jobs">
+                <div class="audit-card">
+                  <div class="audit-card-header">
+                    <div class="audit-card-title">
+                      <h3>Jobs</h3>
+                      <span class="count" id="grpJobsCount">0</span>
+                    </div>
+                    <div class="audit-card-actions">
+                      <div class="audit-search">
+                        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="7" cy="7" r="5.5"/><path d="M11 11l3.5 3.5"/></svg>
+                        <input type="text" placeholder="Search jobs" id="grpJobsSearch">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="table-scroll">
+                    <table class="data-table" id="grpJobsTable">
+                      <thead>
+                        <tr>
+                          <th class="col-cb"><input type="checkbox" style="margin:0;"></th>
+                          <th class="col-pinned" style="width:22%;">Job Name <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77C3.635 8.77 3.455 8.7 3.315 8.56C3.175 8.42 3.105 8.25 3.105 8.05C3.105 7.85 3.175 7.68 3.315 7.54C3.455 7.4 3.625 7.33 3.825 7.33H12.155C12.355 7.33 12.535 7.4 12.675 7.54C12.815 7.68 12.885 7.85 12.885 8.05C12.885 8.25 12.815 8.42 12.675 8.56C12.535 8.7 12.365 8.77 12.165 8.77H3.835Z"/><path d="M1.715 5.44C1.515 5.44 1.345 5.37 1.205 5.23C1.065 5.09 0.995 4.92 0.995 4.72C0.995 4.52 1.065 4.35 1.205 4.21C1.345 4.07 1.515 4 1.715 4H14.275C14.475 4 14.645 4.07 14.785 4.21C14.925 4.35 14.995 4.52 14.995 4.72C14.995 4.92 14.925 5.09 14.785 5.23C14.645 5.37 14.475 5.44 14.275 5.44H1.715Z"/><path d="M5.515 12.09C5.315 12.09 5.145 12.02 5.005 11.88C4.865 11.74 4.795 11.57 4.795 11.37C4.795 11.17 4.865 11 5.005 10.86C5.145 10.72 5.315 10.65 5.515 10.65H10.475C10.675 10.65 10.845 10.72 10.985 10.86C11.125 11 11.195 11.17 11.195 11.37C11.195 11.57 11.125 11.74 10.985 11.88C10.845 12.02 10.675 12.09 10.475 12.09H5.515Z"/></svg></span></th>
+                          <th style="width:14%;">Status <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77C3.635 8.77 3.455 8.7 3.315 8.56C3.175 8.42 3.105 8.25 3.105 8.05C3.105 7.85 3.175 7.68 3.315 7.54C3.455 7.4 3.625 7.33 3.825 7.33H12.155C12.355 7.33 12.535 7.4 12.675 7.54C12.815 7.68 12.885 7.85 12.885 8.05C12.885 8.25 12.815 8.42 12.675 8.56C12.535 8.7 12.365 8.77 12.165 8.77H3.835Z"/><path d="M1.715 5.44C1.515 5.44 1.345 5.37 1.205 5.23C1.065 5.09 0.995 4.92 0.995 4.72C0.995 4.52 1.065 4.35 1.205 4.21C1.345 4.07 1.515 4 1.715 4H14.275C14.475 4 14.645 4.07 14.785 4.21C14.925 4.35 14.995 4.52 14.995 4.72C14.995 4.92 14.925 5.09 14.785 5.23C14.645 5.37 14.475 5.44 14.275 5.44H1.715Z"/><path d="M5.515 12.09C5.315 12.09 5.145 12.02 5.005 11.88C4.865 11.74 4.795 11.57 4.795 11.37C4.795 11.17 4.865 11 5.005 10.86C5.145 10.72 5.315 10.65 5.515 10.65H10.475C10.675 10.65 10.845 10.72 10.985 10.86C11.125 11 11.195 11.17 11.195 11.37C11.195 11.57 11.125 11.74 10.985 11.88C10.845 12.02 10.675 12.09 10.475 12.09H5.515Z"/></svg></span></th>
+                          <th style="width:12%;">Type</th>
+                          <th style="width:12%;">Files</th>
+                          <th style="width:12%;">Detections</th>
+                          <th style="width:18%;">Date <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77C3.635 8.77 3.455 8.7 3.315 8.56C3.175 8.42 3.105 8.25 3.105 8.05C3.105 7.85 3.175 7.68 3.315 7.54C3.455 7.4 3.625 7.33 3.825 7.33H12.155C12.355 7.33 12.535 7.4 12.675 7.54C12.815 7.68 12.885 7.85 12.885 8.05C12.885 8.25 12.815 8.42 12.675 8.56C12.535 8.7 12.365 8.77 12.165 8.77H3.835Z"/><path d="M1.715 5.44C1.515 5.44 1.345 5.37 1.205 5.23C1.065 5.09 0.995 4.92 0.995 4.72C0.995 4.52 1.065 4.35 1.205 4.21C1.345 4.07 1.515 4 1.715 4H14.275C14.475 4 14.645 4.07 14.785 4.21C14.925 4.35 14.995 4.52 14.995 4.72C14.995 4.92 14.925 5.09 14.785 5.23C14.645 5.37 14.475 5.44 14.275 5.44H1.715Z"/><path d="M5.515 12.09C5.315 12.09 5.145 12.02 5.005 11.88C4.865 11.74 4.795 11.57 4.795 11.37C4.795 11.17 4.865 11 5.005 10.86C5.145 10.72 5.315 10.65 5.515 10.65H10.475C10.675 10.65 10.845 10.72 10.985 10.86C11.125 11 11.195 11.17 11.195 11.37C11.195 11.57 11.125 11.74 10.985 11.88C10.845 12.02 10.675 12.09 10.475 12.09H5.515Z"/></svg></span></th>
+                          <th class="col-fixed" style="padding-right:20px;"></th>
+                        </tr>
+                      </thead>
+                      <tbody id="grpJobsBody">
+                        <!-- Populated by JS -->
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="audit-pagination" id="grpJobsPagination">
+                    <div class="audit-pagination-left">
+                      <select id="grpJobsPerPage"><option selected>10</option><option>25</option><option>50</option></select>
+                      <span>items per page</span>
+                      <span style="margin-left:8px; color:var(--text-muted);">|</span>
+                      <span id="grpJobsPageInfo" style="margin-left:8px;">1-10 of 0 items</span>
+                    </div>
+                    <div class="audit-pagination-right">
+                      <button class="audit-page-btn" id="grpJobsPrev" disabled><svg viewBox="0 0 16 16" fill="currentColor"><path d="M11.354 1.646a.5.5 0 010 .708L5.707 8l5.647 5.646a.5.5 0 01-.708.708l-6-6a.5.5 0 010-.708l6-6a.5.5 0 01.708 0z"/></svg></button>
+                      <select class="audit-page-select" id="grpJobsPageSelect"><option selected>Page 1</option></select>
+                      <button class="audit-page-btn" id="grpJobsNext"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M4.646 1.646a.5.5 0 01.708 0l6 6a.5.5 0 010 .708l-6 6a.5.5 0 01-.708-.708L10.293 8 4.646 2.354a.5.5 0 010-.708z"/></svg></button>
+                    </div>
+                  </div>
+                </div>
+              </div><!-- /grp-panel-jobs -->
+            </div><!-- /groupDetailView -->
           </div>
 
           <!-- ===== Units Tab (placeholder) ===== -->
@@ -6952,7 +7154,296 @@
     document.addEventListener('click', function() {
       var menu = document.getElementById('acctActionsMenu');
       if (menu) menu.classList.remove('open');
+      var grpMenu = document.getElementById('grpActionsMenu');
+      if (grpMenu) grpMenu.classList.remove('open');
     });
+
+    /* ================================================================
+       GROUPS TAB — Data + Logic
+       ================================================================ */
+    var groupsData = [
+      { name: 'MDSS Group', status: 'Issues Found', statusTag: 'tag-alert', storageUnits: 12, providers: ['aws', 'box'], totalUnits: 12, operational: 9, errors: 2, testing: 1 },
+      { name: 'Demo Testing', status: 'Operational', statusTag: 'tag-success', storageUnits: 15, providers: ['aws', 'box', 'onedrive'], extraProviders: 2, totalUnits: 15, operational: 13, errors: 1, testing: 1 },
+      { name: 'Internal Log', status: 'Operational', statusTag: 'tag-success', storageUnits: 3, providers: ['aws', 'box', 'onedrive'], extraProviders: 5, totalUnits: 3, operational: 3, errors: 0, testing: 0 },
+      { name: 'Server Backup', status: 'Operational', statusTag: 'tag-success', storageUnits: 10, providers: ['aws', 'box'], totalUnits: 10, operational: 10, errors: 0, testing: 0 },
+      { name: 'BM test group', status: 'Operational', statusTag: 'tag-success', storageUnits: 2, providers: ['box', 'onedrive'], totalUnits: 2, operational: 2, errors: 0, testing: 0 },
+      { name: 'GOV', status: 'Operational', statusTag: 'tag-success', storageUnits: 9, providers: ['aws', 'box', 'onedrive'], totalUnits: 9, operational: 8, errors: 1, testing: 0 },
+      { name: 'MDSSC group', status: 'Operational', statusTag: 'tag-success', storageUnits: 7, providers: ['aws', 'onedrive'], totalUnits: 7, operational: 7, errors: 0, testing: 0 },
+      { name: 'system_alerts_dec2022', status: 'Operational', statusTag: 'tag-success', storageUnits: 7, providers: ['aws', 'onedrive'], totalUnits: 7, operational: 6, errors: 0, testing: 1 },
+      { name: 'UX Playground Group', status: 'Operational', statusTag: 'tag-success', storageUnits: 4, providers: ['box', 'onedrive'], totalUnits: 4, operational: 4, errors: 0, testing: 0 },
+      { name: 'Performance check', status: 'Operational', statusTag: 'tag-success', storageUnits: 25, providers: ['aws', 'box', 'onedrive'], totalUnits: 25, operational: 23, errors: 1, testing: 1 },
+      { name: 'Staging Env', status: 'Operational', statusTag: 'tag-success', storageUnits: 5, providers: ['aws'], totalUnits: 5, operational: 5, errors: 0, testing: 0 },
+      { name: 'QA Regression', status: 'Operational', statusTag: 'tag-success', storageUnits: 3, providers: ['box'], totalUnits: 3, operational: 3, errors: 0, testing: 0 },
+      { name: 'Archive 2024', status: 'Operational', statusTag: 'tag-success', storageUnits: 8, providers: ['aws', 'onedrive'], totalUnits: 8, operational: 8, errors: 0, testing: 0 },
+      { name: 'Compliance Audit', status: 'Operational', statusTag: 'tag-success', storageUnits: 6, providers: ['aws', 'box'], totalUnits: 6, operational: 6, errors: 0, testing: 0 },
+      { name: 'Dev Sandbox', status: 'Operational', statusTag: 'tag-success', storageUnits: 4, providers: ['aws', 'onedrive'], totalUnits: 4, operational: 4, errors: 0, testing: 0 }
+    ];
+
+    // Generate units for each group
+    var providerNames = { aws: 'Amazon S3', box: 'Box', onedrive: 'OneDrive' };
+    var providerLabels = { aws: 'aws', box: 'box', onedrive: 'OneDrive' };
+    var grpStatuses = ['Operational', 'Operational', 'Operational', 'Error', 'Testing', 'Operational', 'Operational'];
+    var grpStatusTags = { 'Operational': 'tag-success', 'Error': 'tag-danger', 'Testing': 'tag-warning' };
+    groupsData.forEach(function(g) {
+      g.units = [];
+      g.jobs = [];
+      for (var i = 0; i < g.storageUnits; i++) {
+        var prov = g.providers[i % g.providers.length];
+        var st = grpStatuses[i % grpStatuses.length];
+        g.units.push({
+          name: 'Storage Unit Name',
+          provider: prov,
+          providerName: providerNames[prov],
+          status: st,
+          statusTag: grpStatusTags[st] || 'tag-success',
+          account: prov === 'aws' ? 'Amazon Acc...' : prov === 'box' ? 'Box Account' : 'OneDrive Ac...',
+          groups: 'GroupName',
+          extraGroups: i % 4 === 0 ? 2 : 0,
+          clientId: 'e3b0c44298f...',
+          lastJob: ['August 15, 2025 1...', 'November 30, 202...', 'July 10, 2025 09:1...', 'May 27, 2025 11:4...', 'June 01, 2025 08:0...', 'July 15, 2025 10:3...'][i % 6]
+        });
+      }
+      for (var j = 0; j < Math.min(g.storageUnits, 5); j++) {
+        g.jobs.push({
+          name: ['Scheduled File Scan', 'Real-Time Monitor', 'Weekly Deep Scan', 'On-Demand Scan', 'Compliance Check'][j % 5],
+          status: ['Completed', 'In Progress', 'Completed', 'Failed', 'Completed'][j % 5],
+          statusTag: ['tag-success', 'tag-info', 'tag-success', 'tag-danger', 'tag-success'][j % 5],
+          type: ['Scheduled', 'Real-Time', 'Scheduled', 'On-Demand', 'Scheduled'][j % 5],
+          files: [2450, 120, 15000, 0, 8900][j % 5],
+          detections: [3, 0, 12, 0, 1][j % 5],
+          date: ['Jan 15, 2025 10:30 AM', 'Jan 15, 2025 11:00 AM', 'Jan 12, 2025 02:00 AM', 'Jan 11, 2025 09:45 AM', 'Jan 10, 2025 06:00 AM'][j % 5]
+        });
+      }
+    });
+
+    var grpPage = 1, grpPerPageNum = 10;
+    var grpUnitsPage = 1, grpUnitsPerPageNum = 10;
+    var grpJobsPage = 1, grpJobsPerPageNum = 10;
+    window._grpDetailIdx = 0;
+
+    function providerIcon(key) {
+      if (key === 'aws') return '<span class="inv-provider-icon aws"><span style="font-size:8px;letter-spacing:-0.5px;">aws</span></span>';
+      if (key === 'box') return '<span class="inv-provider-icon box" style="background:#0061D5;color:#fff;"><span style="font-size:8px;font-weight:700;">box</span></span>';
+      if (key === 'onedrive') return '<span class="inv-provider-icon onedrive" style="background:#0078D4;color:#fff;"><svg viewBox="0 0 16 16" fill="currentColor" style="width:12px;height:12px;"><path d="M8 2a6 6 0 00-5.64 3.94A4.002 4.002 0 003 14h10a3 3 0 00.5-5.96A6.001 6.001 0 008 2z"/></svg></span>';
+      return '<span class="inv-provider-icon">' + key + '</span>';
+    }
+
+    /* ---- Render groups list ---- */
+    function renderGroupsList() {
+      var tbody = document.getElementById('groupsBody');
+      var search = (document.getElementById('groupsSearch').value || '').toLowerCase();
+      var filtered = groupsData.filter(function(g) { return !search || g.name.toLowerCase().indexOf(search) !== -1; });
+      var perPage = grpPerPageNum;
+      var totalPages = Math.max(1, Math.ceil(filtered.length / perPage));
+      if (grpPage > totalPages) grpPage = totalPages;
+      var start = (grpPage - 1) * perPage;
+      var pageItems = filtered.slice(start, start + perPage);
+
+      document.getElementById('groupsCount').textContent = filtered.length;
+
+      var html = '';
+      pageItems.forEach(function(g, i) {
+        var provHtml = '';
+        var maxShow = 3;
+        g.providers.slice(0, maxShow).forEach(function(p) { provHtml += providerIcon(p); });
+        if (g.extraProviders) provHtml += ' <span class="count-more">+' + g.extraProviders + ' more</span>';
+        else if (g.providers.length > maxShow) provHtml += ' <span class="count-more">+' + (g.providers.length - maxShow) + ' more</span>';
+
+        html += '<tr onclick="openGroupDetail(' + (start + i) + ')" style="cursor:pointer;">'
+          + '<td class="col-cb" onclick="event.stopPropagation()"><input type="checkbox" style="margin:0;"></td>'
+          + '<td class="col-pinned">' + g.name + '</td>'
+          + '<td><span class="tag ' + g.statusTag + '">' + g.status + '</span></td>'
+          + '<td>' + g.storageUnits + '</td>'
+          + '<td><div style="display:flex;align-items:center;gap:4px;">' + provHtml + '</div></td>'
+          + '<td><div class="row-action-btn" onclick="toggleInvMenu(this, event)" style="position:relative"><svg viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="3" r="1.5"/><circle cx="8" cy="8" r="1.5"/><circle cx="8" cy="13" r="1.5"/></svg>'
+          + '<div class="row-action-menu row-action-menu--inline">'
+          + '<div class="row-action-menu-item" onclick="event.stopPropagation();openSlidePanel(\'editJobPanel\')"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 10v3h3M14 6V3h-3"/><path d="M14 3L9 8M2 13l5-5"/></svg> Create Job</div>'
+          + '<div class="row-action-menu-item" onclick="event.stopPropagation();openSlidePanel(\'grpSettingsPanel\')"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="5"/><path d="M8 5.5v5M5.5 8h5"/></svg> Group Settings</div>'
+          + '<div class="inv-context-item danger" onclick="event.stopPropagation()"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 4h10M6 4V3h4v1M5 4v8.5a1 1 0 001 1h4a1 1 0 001-1V4"/></svg> Delete Group</div>'
+          + '</div></div></td>'
+          + '</tr>';
+      });
+      tbody.innerHTML = html;
+
+      // Pagination
+      var info = document.getElementById('groupsPageInfo');
+      info.textContent = filtered.length ? (start + 1) + '-' + Math.min(start + perPage, filtered.length) + ' of ' + filtered.length + ' items' : '0 items';
+      document.getElementById('groupsPrev').disabled = grpPage <= 1;
+      document.getElementById('groupsNext').disabled = grpPage >= totalPages;
+      var sel = document.getElementById('groupsPageSelect');
+      sel.innerHTML = '';
+      for (var p = 1; p <= totalPages; p++) { var o = document.createElement('option'); o.textContent = 'Page ' + p; o.selected = p === grpPage; sel.appendChild(o); }
+
+      // Hide pagination if 10 or less
+      document.getElementById('groupsPagination').style.display = filtered.length <= 10 ? 'none' : '';
+    }
+
+    // Groups search
+    document.getElementById('groupsSearch').addEventListener('input', function() { grpPage = 1; renderGroupsList(); });
+    // Groups pagination
+    document.getElementById('groupsPrev').addEventListener('click', function() { if (grpPage > 1) { grpPage--; renderGroupsList(); } });
+    document.getElementById('groupsNext').addEventListener('click', function() { grpPage++; renderGroupsList(); });
+    document.getElementById('groupsPageSelect').addEventListener('change', function() { grpPage = this.selectedIndex + 1; renderGroupsList(); });
+    document.getElementById('groupsPerPage').addEventListener('change', function() { grpPerPageNum = parseInt(this.value); grpPage = 1; renderGroupsList(); });
+
+    /* ---- Open group detail ---- */
+    window.openGroupDetail = function(index) {
+      var grp = groupsData[index];
+      if (!grp) return;
+      window._grpDetailIdx = index;
+
+      document.getElementById('grpDetailTitle').textContent = grp.name;
+      document.getElementById('grpDetailBreadcrumbName').textContent = grp.name;
+      document.getElementById('grpStatTotal').textContent = grp.totalUnits;
+      document.getElementById('grpStatOp').textContent = grp.operational;
+      document.getElementById('grpStatErrors').textContent = grp.errors;
+      document.getElementById('grpStatTesting').textContent = grp.testing;
+      document.getElementById('grpUnitsCount').textContent = grp.units.length;
+      document.getElementById('grpJobsCount').textContent = grp.jobs.length;
+
+      // Reset tabs
+      document.querySelectorAll('#grpDetailTabs .tab').forEach(function(t) { t.classList.remove('active'); });
+      document.querySelector('#grpDetailTabs .tab[data-grp-tab="units"]').classList.add('active');
+      document.querySelectorAll('.grp-tab-panel').forEach(function(p) { p.classList.remove('active'); });
+      document.getElementById('grp-panel-units').classList.add('active');
+
+      grpUnitsPage = 1;
+      grpJobsPage = 1;
+      renderGrpUnits(grp);
+      renderGrpJobs(grp);
+
+      document.getElementById('groupsListView').style.display = 'none';
+      document.getElementById('groupDetailView').style.display = 'block';
+      document.querySelector('.content').scrollTop = 0;
+    };
+
+    window.showGroupsList = function() {
+      document.getElementById('groupDetailView').style.display = 'none';
+      document.getElementById('groupsListView').style.display = '';
+    };
+
+    /* ---- Group detail tabs ---- */
+    document.getElementById('grpDetailTabs').addEventListener('click', function(e) {
+      var tab = e.target.closest('.tab');
+      if (!tab) return;
+      var target = tab.getAttribute('data-grp-tab');
+      this.querySelectorAll('.tab').forEach(function(t) { t.classList.remove('active'); });
+      tab.classList.add('active');
+      document.querySelectorAll('.grp-tab-panel').forEach(function(p) { p.classList.remove('active'); });
+      var panel = document.getElementById('grp-panel-' + target);
+      if (panel) panel.classList.add('active');
+    });
+
+    /* ---- Group actions dropdown ---- */
+    window.toggleGrpActionsMenu = function(e) {
+      e.stopPropagation();
+      document.getElementById('grpActionsMenu').classList.toggle('open');
+    };
+
+    /* ---- Render group units table ---- */
+    function renderGrpUnits(grp) {
+      var tbody = document.getElementById('grpUnitsBody');
+      var units = grp.units;
+      var search = (document.getElementById('grpUnitsSearch').value || '').toLowerCase();
+      var filtered = units.filter(function(u) { return !search || u.name.toLowerCase().indexOf(search) !== -1 || u.clientId.toLowerCase().indexOf(search) !== -1; });
+      var perPage = grpUnitsPerPageNum;
+      var totalPages = Math.max(1, Math.ceil(filtered.length / perPage));
+      if (grpUnitsPage > totalPages) grpUnitsPage = totalPages;
+      var start = (grpUnitsPage - 1) * perPage;
+      var pageItems = filtered.slice(start, start + perPage);
+
+      var html = '';
+      pageItems.forEach(function(u) {
+        var groupExtra = u.extraGroups > 0 ? ' <span class="count-more">+' + u.extraGroups + ' more</span>' : '';
+        html += '<tr>'
+          + '<td class="col-cb"><input type="checkbox" style="margin:0;"></td>'
+          + '<td class="col-pinned">' + u.name + '</td>'
+          + '<td><div style="display:flex;align-items:center;gap:6px;">' + providerIcon(u.provider) + ' ' + u.providerName + '</div></td>'
+          + '<td><span class="tag ' + u.statusTag + '">' + u.status + '</span></td>'
+          + '<td style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:120px;">' + u.account + '</td>'
+          + '<td><span class="tag-keyword">' + u.groups + '</span>' + groupExtra + '</td>'
+          + '<td><div style="display:flex;align-items:center;gap:4px;"><span style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100px;">' + u.clientId + '</span> <button class="btn-icon-xs" onclick="copyClientId(\'' + u.clientId + '\', event)" title="Copy"><svg viewBox="0 0 16 16" fill="currentColor" style="width:12px;height:12px;"><path d="M4 2a2 2 0 012-2h6a2 2 0 012 2v8a2 2 0 01-2 2H6a2 2 0 01-2-2V2zm8 0H6v8h6V2zM2 4a2 2 0 00-2 2v8a2 2 0 002 2h6a2 2 0 002-2v-1h-1.5v1a.5.5 0 01-.5.5H2a.5.5 0 01-.5-.5V6a.5.5 0 01.5-.5h1V4H2z"/></svg></button></div></td>'
+          + '<td style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:140px;">' + u.lastJob + '</td>'
+          + '<td class="col-fixed"><div class="row-action-btn" onclick="toggleInvMenu(this, event)" style="position:relative"><svg viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="3" r="1.5"/><circle cx="8" cy="8" r="1.5"/><circle cx="8" cy="13" r="1.5"/></svg>'
+          + '<div class="row-action-menu row-action-menu--inline">'
+          + '<div class="row-action-menu-item" onclick="event.stopPropagation();openSlidePanel(\'editJobPanel\')"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 10v3h3M14 6V3h-3"/><path d="M14 3L9 8M2 13l5-5"/></svg> Create Job</div>'
+          + '<div class="row-action-menu-item"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 3h12M2 8h12M2 13h12"/></svg> View Last Job Report</div>'
+          + '<div class="inv-context-item danger" onclick="event.stopPropagation()"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 4h10M6 4V3h4v1M5 4v8.5a1 1 0 001 1h4a1 1 0 001-1V4"/></svg> Remove Unit</div>'
+          + '</div></div></td>'
+          + '</tr>';
+      });
+      tbody.innerHTML = html;
+
+      // Pagination
+      var info = document.getElementById('grpUnitsPageInfo');
+      info.textContent = filtered.length ? (start + 1) + '-' + Math.min(start + perPage, filtered.length) + ' of ' + filtered.length + ' items' : '0 items';
+      document.getElementById('grpUnitsPrev').disabled = grpUnitsPage <= 1;
+      document.getElementById('grpUnitsNext').disabled = grpUnitsPage >= totalPages;
+      var sel = document.getElementById('grpUnitsPageSelect');
+      sel.innerHTML = '';
+      for (var p = 1; p <= totalPages; p++) { var o = document.createElement('option'); o.textContent = 'Page ' + p; o.selected = p === grpUnitsPage; sel.appendChild(o); }
+      document.getElementById('grpUnitsPagination').style.display = filtered.length <= 10 ? 'none' : '';
+    }
+
+    // Group units search
+    document.getElementById('grpUnitsSearch').addEventListener('input', function() { grpUnitsPage = 1; renderGrpUnits(groupsData[window._grpDetailIdx]); });
+    // Group units pagination
+    document.getElementById('grpUnitsPrev').addEventListener('click', function() { if (grpUnitsPage > 1) { grpUnitsPage--; renderGrpUnits(groupsData[window._grpDetailIdx]); } });
+    document.getElementById('grpUnitsNext').addEventListener('click', function() { var grp = groupsData[window._grpDetailIdx]; var total = Math.ceil(grp.units.length / grpUnitsPerPageNum); if (grpUnitsPage < total) { grpUnitsPage++; renderGrpUnits(grp); } });
+    document.getElementById('grpUnitsPageSelect').addEventListener('change', function() { grpUnitsPage = this.selectedIndex + 1; renderGrpUnits(groupsData[window._grpDetailIdx]); });
+    document.getElementById('grpUnitsPerPage').addEventListener('change', function() { grpUnitsPerPageNum = parseInt(this.value); grpUnitsPage = 1; renderGrpUnits(groupsData[window._grpDetailIdx]); });
+
+    /* ---- Render group jobs table ---- */
+    function renderGrpJobs(grp) {
+      var tbody = document.getElementById('grpJobsBody');
+      var jobs = grp.jobs;
+      var search = (document.getElementById('grpJobsSearch').value || '').toLowerCase();
+      var filtered = jobs.filter(function(j) { return !search || j.name.toLowerCase().indexOf(search) !== -1; });
+      var perPage = grpJobsPerPageNum;
+      var totalPages = Math.max(1, Math.ceil(filtered.length / perPage));
+      if (grpJobsPage > totalPages) grpJobsPage = totalPages;
+      var start = (grpJobsPage - 1) * perPage;
+      var pageItems = filtered.slice(start, start + perPage);
+
+      var html = '';
+      pageItems.forEach(function(j) {
+        html += '<tr>'
+          + '<td class="col-cb"><input type="checkbox" style="margin:0;"></td>'
+          + '<td class="col-pinned">' + j.name + '</td>'
+          + '<td><span class="tag ' + j.statusTag + '">' + j.status + '</span></td>'
+          + '<td>' + j.type + '</td>'
+          + '<td>' + j.files.toLocaleString() + '</td>'
+          + '<td>' + j.detections + '</td>'
+          + '<td>' + j.date + '</td>'
+          + '<td class="col-fixed"><div class="row-action-btn" onclick="toggleInvMenu(this, event)" style="position:relative"><svg viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="3" r="1.5"/><circle cx="8" cy="8" r="1.5"/><circle cx="8" cy="13" r="1.5"/></svg>'
+          + '<div class="row-action-menu row-action-menu--inline">'
+          + '<div class="row-action-menu-item"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 3h12M2 8h12M2 13h12"/></svg> View Report</div>'
+          + '</div></div></td>'
+          + '</tr>';
+      });
+      tbody.innerHTML = html;
+
+      document.getElementById('grpJobsCount').textContent = filtered.length;
+      var info = document.getElementById('grpJobsPageInfo');
+      info.textContent = filtered.length ? (start + 1) + '-' + Math.min(start + perPage, filtered.length) + ' of ' + filtered.length + ' items' : '0 items';
+      document.getElementById('grpJobsPrev').disabled = grpJobsPage <= 1;
+      document.getElementById('grpJobsNext').disabled = grpJobsPage >= totalPages;
+      var sel = document.getElementById('grpJobsPageSelect');
+      sel.innerHTML = '';
+      for (var p = 1; p <= totalPages; p++) { var o = document.createElement('option'); o.textContent = 'Page ' + p; o.selected = p === grpJobsPage; sel.appendChild(o); }
+      document.getElementById('grpJobsPagination').style.display = filtered.length <= 10 ? 'none' : '';
+    }
+
+    // Group jobs search
+    document.getElementById('grpJobsSearch').addEventListener('input', function() { grpJobsPage = 1; renderGrpJobs(groupsData[window._grpDetailIdx]); });
+    // Group jobs pagination
+    document.getElementById('grpJobsPrev').addEventListener('click', function() { if (grpJobsPage > 1) { grpJobsPage--; renderGrpJobs(groupsData[window._grpDetailIdx]); } });
+    document.getElementById('grpJobsNext').addEventListener('click', function() { var grp = groupsData[window._grpDetailIdx]; var total = Math.ceil(grp.jobs.length / grpJobsPerPageNum); if (grpJobsPage < total) { grpJobsPage++; renderGrpJobs(grp); } });
+    document.getElementById('grpJobsPageSelect').addEventListener('change', function() { grpJobsPage = this.selectedIndex + 1; renderGrpJobs(groupsData[window._grpDetailIdx]); });
+    document.getElementById('grpJobsPerPage').addEventListener('change', function() { grpJobsPerPageNum = parseInt(this.value); grpJobsPage = 1; renderGrpJobs(groupsData[window._grpDetailIdx]); });
+
+    // Initial render
+    renderGroupsList();
 
     /* ---- Copy Client ID ---- */
     window.copyClientId = function(text, e) {
