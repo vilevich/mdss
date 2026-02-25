@@ -181,7 +181,7 @@ All buttons share: `height: 32px`, `font-size: 14px`, `font-weight: 500`, `borde
 | Class | Style | Usage |
 |-------|-------|-------|
 | `.btn-primary` | Filled blue | Main CTA (Activate, Add, Confirm) |
-| `.btn-outline` | Bordered | Secondary action (Cancel, Generate) |
+| `.btn-outline` | Bordered, supports icon+text via `gap: 6px` | Secondary action (Cancel, Generate, filters) |
 | `.btn-outline.danger` | Bordered red | Destructive secondary action |
 | `.btn-text` | No border, blue text | Tertiary action |
 | `.btn-text.danger` | No border, red text | Destructive tertiary action |
@@ -229,6 +229,11 @@ All buttons share: `height: 32px`, `font-size: 14px`, `font-weight: 500`, `borde
 | `.data-table` | Generic data table (`border-collapse: separate`) |
 | `.audit-table` | Audit-specific table with column classes |
 | `.filter-icon` | Column sort/filter icon |
+| `.row-action-btn` | 28×28 icon-only action button (⋯ three-dot) |
+| `.row-action-menu` | Fixed-position dropdown menu (200px min-width) + `.open` state |
+| `.row-action-menu--inline` | Absolute-positioned variant (nested inside `.row-action-btn`) |
+| `.row-action-menu-item` | Menu item row with icon + label + `.danger` variant |
+| `.row-action-menu-divider` | Menu separator line |
 | `.col-dropdown` | Sort/pin popover menu |
 | `.cell-action` | Table row action icon |
 | `.col-pinned` | Sticky column (`position: sticky; left: 0`) with right border stroke |
@@ -282,6 +287,26 @@ All buttons share: `height: 32px`, `font-size: 14px`, `font-weight: 500`, `borde
 | `.category-badge` | Bordered pill badge (no fill, neutral border + text) |
 
 Uses `--ds-*` semantic tokens — auto-adapts to dark mode.
+
+### Page Layout
+
+| Class | Description |
+|-------|-------------|
+| `.page-header` | Page-level header (flex, space-between, 20px bottom margin) |
+| `.page-title` | Page heading style (24px, weight 500) — apply to `<h1>` |
+| `.page-header-actions` | Right-side action button group (flex, 8px gap) |
+| `.section-title` | Section heading (20px, weight 500) |
+| `.section-desc` | Section description text (14px, subtle color, 16px bottom margin) |
+
+### Cards Grid
+
+| Class | Description |
+|-------|-------------|
+| `.cards-grid` | 5-column CSS grid (12px gap) for integration/selection cards |
+| `.grid-card` | Bordered card with hover highlight (border-color → primary) |
+| `.grid-card-icon` | 48×48 rounded icon container (centered, white text on color) |
+| `.grid-card-name` | Card title (14px, weight 500, centered) |
+| `.grid-card-type` | Card subtitle (12px, muted, centered) |
 
 ### Utility Components
 
@@ -436,4 +461,5 @@ Handled in `components.css`:
 | Users | — | User management with roles and permissions |
 | Jobs | — | Scan job management with detail views |
 | Workflows | — | Workflow list + detail flow diagram with 9 config panels |
+| Inventory | Accounts | Accounts table, integration card grid, context menus, recommended integrations |
 | Components | — | Design system showcase page |

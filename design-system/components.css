@@ -98,6 +98,7 @@ select:focus { border-color: var(--primary); outline: none; }
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 6px;
   background: transparent;
   color: var(--text-strong);
   border: 1px solid var(--border-200);
@@ -110,6 +111,7 @@ select:focus { border-color: var(--primary); outline: none; }
   align-self: flex-start;
   width: fit-content;
 }
+.btn-outline svg { width: 14px; height: 14px; flex-shrink: 0; }
 .btn-outline:hover { background: var(--hover-subtle); }
 .btn-outline.danger { color: var(--danger); border-color: var(--danger); }
 .btn-outline.danger:hover { background: rgba(212,0,49,0.05); }
@@ -810,6 +812,9 @@ select:focus { border-color: var(--primary); outline: none; }
 [data-theme="dark"] .row-action-menu { background: var(--surface-card); border-color: var(--border-card); }
 [data-theme="dark"] .row-action-menu-item:hover { background: var(--surface-hover); }
 
+/* Inline variant: menu nested inside .row-action-btn, positioned with absolute */
+.row-action-menu--inline { position: absolute; top: 100%; right: 0; }
+
 [data-theme="dark"] .data-table thead th { background: var(--surface-card); color: var(--text-subtle); border-color: var(--border-card); }
 [data-theme="dark"] .data-table tbody td { border-color: var(--border-card); color: var(--text-subtle); }
 [data-theme="dark"] .data-table tbody tr:hover td { background: var(--surface-hover); }
@@ -1205,6 +1210,39 @@ select:focus { border-color: var(--primary); outline: none; }
 .detail-breadcrumb a { color: var(--primary); text-decoration: none; cursor: pointer; }
 .detail-breadcrumb a:hover { text-decoration: underline; }
 .detail-breadcrumb svg { width: 12px; height: 12px; color: var(--text-muted); }
+
+/* --- Page Header --- */
+.page-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 20px;
+}
+.page-header h1, .page-title {
+  font-size: 24px; font-weight: 500; color: var(--text-strong); margin: 0;
+}
+.page-header-actions { display: flex; align-items: center; gap: 8px; }
+
+/* --- Section Heading --- */
+.section-title { font-size: 20px; font-weight: 500; color: var(--text-strong); margin-bottom: 4px; }
+.section-desc { font-size: 14px; color: var(--text-subtle); margin-bottom: 16px; }
+
+/* --- Cards Grid --- */
+.cards-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+.grid-card {
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  padding: 16px; border: 1px solid var(--border-200); border-radius: var(--radius);
+  cursor: pointer; transition: border-color 0.15s, box-shadow 0.15s;
+  background: var(--surface-card);
+}
+.grid-card:hover { border-color: var(--primary); box-shadow: 0 0 0 2px rgba(29,107,252,0.1); }
+.grid-card-icon {
+  width: 48px; height: 48px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center; color: #fff;
+}
+.grid-card-name { font-size: 14px; font-weight: 500; color: var(--text-strong); text-align: center; }
+.grid-card-type { font-size: 12px; color: var(--text-muted); text-align: center; margin-top: -4px; }
+
+[data-theme="dark"] .grid-card { background: var(--surface-card); border-color: var(--border-200); }
+[data-theme="dark"] .grid-card:hover { border-color: var(--primary); }
 
 /* ========================================================================
    OVERLAYS
