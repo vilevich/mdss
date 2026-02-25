@@ -899,6 +899,861 @@
     /* .count-more dark override → now in DS as .count-more */
     [data-theme="dark"] .acct-donut-dot { opacity: 0.8; }
 
+
+/* ===== DASHBOARD ===== */
+
+/* Period selector in page header */
+.dash-period-select {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+.dash-period-select select {
+  appearance: none;
+  height: 32px;
+  padding: 0 32px 0 12px;
+  background: var(--surface-card);
+  border: 1px solid var(--border-200);
+  border-radius: var(--radius);
+  font-family: var(--font);
+  font-size: 14px;
+  color: var(--text-strong);
+  cursor: pointer;
+}
+.dash-period-select select:focus { outline: 2px solid var(--primary); outline-offset: 1px; }
+.dash-period-select svg {
+  position: absolute;
+  right: 8px;
+  width: 14px; height: 14px;
+  pointer-events: none;
+  color: var(--text-muted);
+}
+
+/* Generic dash card spacing */
+.dash-card {
+  margin-bottom: 12px;
+}
+
+/* ===== 1. ACCOUNT INFO BAR ===== */
+.dash-account-bar {
+  display: flex;
+  align-items: stretch;
+  background: var(--surface-card);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  margin-bottom: 12px;
+  overflow: hidden;
+}
+.dash-account-section {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  flex: 1;
+}
+.dash-account-identity { flex: 2; min-width: 0; }
+.dash-account-status { flex: 1; }
+.dash-account-client { flex: 2; min-width: 0; }
+
+.dash-account-divider {
+  width: 1px;
+  background: var(--border-card);
+  align-self: stretch;
+  flex-shrink: 0;
+}
+.dash-aws-icon {
+  width: 40px; height: 40px;
+  border-radius: 6px;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+}
+.dash-aws-icon svg { width: 40px; height: 40px; }
+.dash-account-icon-wrap {
+  width: 64px; height: 64px;
+  background: var(--neutral-100);
+  border-radius: var(--radius);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.dash-account-meta { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.dash-account-meta-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+.dash-account-meta-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-strong);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.dash-folder-icon { width: 14px; height: 14px; color: var(--text-muted); flex-shrink: 0; }
+.dash-account-field-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  margin-bottom: 4px;
+}
+.dash-account-field-value { display: flex; align-items: center; gap: 8px; }
+.dash-client-id-row { gap: 6px; min-width: 0; }
+.dash-client-id-text {
+  font-size: 12px;
+  font-family: 'Roboto Mono', monospace;
+  color: var(--text-subtle);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+}
+.dash-copy-btn {
+  width: 20px; height: 20px;
+  border: none; background: none;
+  cursor: pointer;
+  color: var(--text-muted);
+  padding: 0;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.dash-copy-btn:hover { color: var(--primary); }
+.dash-copy-btn svg { width: 14px; height: 14px; }
+
+/* ===== 2. JOB MONITOR BANNER ===== */
+.dash-job-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--blue-100);
+  border: 1px solid var(--blue-200);
+  border-radius: var(--radius);
+  padding: 12px 20px;
+  margin-bottom: 12px;
+  gap: 16px;
+}
+.dash-job-banner-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.dash-job-banner-icon {
+  width: 32px; height: 32px;
+  background: var(--blue-200);
+  border-radius: var(--radius);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--blue-800);
+  flex-shrink: 0;
+}
+.dash-job-banner-icon svg { width: 16px; height: 16px; }
+.dash-job-banner-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+.dash-job-banner-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-strong);
+}
+.dash-job-banner-desc {
+  font-size: 13px;
+  color: var(--text-subtle);
+}
+.dash-job-banner-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+.dash-job-banner-link {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--primary);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.dash-job-banner-link:hover { text-decoration: underline; }
+.dash-job-banner-sep {
+  width: 1px;
+  height: 16px;
+  background: var(--blue-300);
+}
+
+/* ===== 3. JOB SUMMARY ===== */
+.dash-job-summary-body {
+  display: flex;
+  align-items: stretch;
+  padding: 0;
+}
+.dash-donut-lockup {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 24px;
+}
+.dash-donut-sep {
+  width: 1px;
+  background: var(--border-card);
+  align-self: stretch;
+}
+.dash-donut-svg {
+  width: 44px;
+  height: 44px;
+  transform: rotate(-90deg);
+  flex-shrink: 0;
+}
+.dash-donut-track {
+  stroke: var(--neutral-100);
+}
+.dash-donut-seg {
+  transition: stroke-dasharray 0.3s ease;
+}
+.dash-donut-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+.dash-donut-title {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+.dash-donut-value-row {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin-bottom: 2px;
+}
+.dash-donut-num {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--text-strong);
+}
+.dash-donut-delta {
+  font-size: 12px;
+  font-weight: 500;
+}
+.dash-legend-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+}
+.dash-legend-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.dash-legend-label {
+  color: var(--text-subtle);
+  flex: 1;
+}
+.dash-legend-val {
+  color: var(--text-strong);
+  font-weight: 500;
+  white-space: nowrap;
+}
+.dash-delta-pos { color: var(--ds-success-text); }
+.dash-delta-neg { color: var(--ds-alert-text); }
+
+.dash-subtitle-count {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--text-muted);
+}
+.dash-running-count {
+  color: var(--primary);
+  font-weight: 500;
+}
+
+/* ===== 4. STAT CARDS ===== */
+.dash-stat-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.dash-stat-card {
+  margin-bottom: 0 !important;
+  display: flex;
+  flex-direction: column;
+}
+.dash-stat-body {
+  padding: 16px 20px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+}
+.dash-stat-total-row {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.dash-stat-total-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+.dash-stat-total-val {
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--text-strong);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.dash-trend-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.dash-trend-arrow svg { width: 12px; height: 12px; }
+.dash-trend-up svg { color: var(--ds-success-text); }
+.dash-trend-down svg { color: var(--ds-alert-text); transform: rotate(180deg); }
+.dash-trend-text {
+  font-size: 12px;
+  color: var(--ds-success-text);
+  font-weight: 500;
+}
+
+.dash-stat-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.dash-stat-legend-row {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13px;
+}
+.dash-stat-legend-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.dash-stat-legend-label {
+  flex: 1;
+  color: var(--text-subtle);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.dash-stat-legend-val {
+  color: var(--text-strong);
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Bar chart inside stat cards */
+.dash-bar-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  height: 72px;
+  border-top: 1px solid var(--border-100);
+  padding-top: 8px;
+  margin-top: 4px;
+}
+.dash-bar-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 4px;
+  height: 100%;
+}
+.dash-bar-label {
+  font-size: 9px;
+  color: var(--text-muted);
+  text-align: center;
+  line-height: 1.1;
+  white-space: nowrap;
+}
+.dash-bar-fill {
+  width: 100%;
+  min-height: 2px;
+  border-radius: 2px 2px 0 0;
+  transition: height 0.3s ease;
+}
+.dash-bar-x-label {
+  font-size: 9px;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+/* ===== 5. SECURITY TREND ===== */
+.dash-trend-legend {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.dash-trend-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--text-subtle);
+  white-space: nowrap;
+}
+.dash-trend-legend-swatch {
+  width: 10px; height: 10px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+.dash-trend-period-tabs {
+  display: flex;
+  border: 1px solid var(--border-200);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.dash-trend-tab {
+  padding: 0 10px;
+  height: 28px;
+  border: none;
+  background: transparent;
+  font-family: var(--font);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-subtle);
+  cursor: pointer;
+  border-right: 1px solid var(--border-200);
+}
+.dash-trend-tab:last-child { border-right: none; }
+.dash-trend-tab:hover { background: var(--hover-subtle); color: var(--text-strong); }
+.dash-trend-tab.active { background: var(--blue-100); color: var(--primary); }
+
+.dash-trend-chart-wrap {
+  display: flex;
+  align-items: stretch;
+  padding: 8px 20px 0;
+  height: 180px;
+}
+.dash-trend-y-axis {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-bottom: 24px;
+  padding-right: 8px;
+  font-size: 10px;
+  color: var(--text-muted);
+  text-align: right;
+  flex-shrink: 0;
+  min-width: 32px;
+}
+.dash-trend-chart {
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  border-left: 1px solid var(--border-100);
+  border-bottom: 1px solid var(--border-100);
+  padding: 0 12px;
+}
+.dash-trend-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 4px;
+  height: 100%;
+}
+.dash-trend-stacked {
+  width: 100%;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: stretch;
+  gap: 1px;
+  max-height: 130px;
+  min-height: 0;
+  flex: 1;
+  justify-content: flex-start;
+}
+.dash-trend-seg {
+  width: 100%;
+  min-height: 2px;
+  border-radius: 1px;
+  transition: height 0.3s ease;
+}
+.dash-trend-threats { background: var(--red-600); }
+.dash-trend-dataloss { background: var(--teal-600); }
+.dash-trend-sanitized { background: var(--blue-600); }
+.dash-trend-x-label {
+  font-size: 10px;
+  color: var(--text-muted);
+  white-space: nowrap;
+  padding-bottom: 4px;
+}
+
+/* ===== 6. REMEDIATION ACTIONS ===== */
+.dash-rem-body {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border-card);
+}
+.dash-rem-item {
+  background: var(--surface-card);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 24px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.dash-rem-item:hover { background: var(--hover-subtle); }
+.dash-rem-ring-wrap {
+  position: relative;
+  width: 52px; height: 52px;
+  flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+}
+.dash-rem-ring-svg {
+  width: 52px; height: 52px;
+  transform: rotate(-90deg);
+  position: absolute;
+  top: 0; left: 0;
+}
+.dash-rem-ring-track {
+  fill: none;
+  stroke: var(--neutral-100);
+  stroke-width: 4;
+}
+.dash-rem-ring-fill {
+  fill: none;
+  stroke-width: 4;
+  stroke-linecap: round;
+  transition: stroke-dasharray 0.3s ease;
+}
+.dash-rem-ring-pct {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-strong);
+  position: relative;
+  z-index: 1;
+  line-height: 1;
+}
+.dash-rem-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-strong);
+}
+.dash-rem-desc {
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.4;
+  margin-top: 2px;
+}
+.dash-rem-item > div:last-child {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+/* ===== 7. FILE TYPE DISTRIBUTION ===== */
+.dash-filetype-body {
+  display: flex;
+  gap: 0;
+  min-height: 240px;
+}
+.dash-treemap {
+  flex: 1.4;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 16px;
+  min-width: 0;
+}
+.dash-treemap-row {
+  display: flex;
+  gap: 2px;
+  min-height: 0;
+}
+.dash-treemap-cell {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 6px 8px;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: opacity 0.15s;
+  overflow: hidden;
+  min-width: 0;
+}
+.dash-treemap-cell:hover { opacity: 0.85; }
+.dash-tm-name {
+  font-size: 11px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.9);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.2;
+}
+.dash-tm-count {
+  font-size: 10px;
+  color: rgba(255,255,255,0.65);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Treemap cell colors */
+.dash-tm-archive   { background: var(--neutral-600); }
+.dash-tm-application { background: var(--red-600); }
+.dash-tm-executable { background: var(--neutral-400); }
+.dash-tm-graphical  { background: var(--red-400); }
+.dash-tm-diskimage  { background: var(--neutral-300); }
+.dash-tm-openssl   { background: var(--neutral-500); }
+.dash-tm-pdf      { background: var(--red-500); }
+.dash-tm-text     { background: var(--neutral-350, #aaaaaa); }
+.dash-tm-other    { background: var(--neutral-200); }
+/* text contrast on light cells */
+.dash-tm-diskimage .dash-tm-name,
+.dash-tm-other .dash-tm-name {
+  color: var(--text-subtle);
+}
+.dash-tm-diskimage .dash-tm-count,
+.dash-tm-other .dash-tm-count {
+  color: var(--text-muted);
+}
+
+/* Right legend panel */
+.dash-filetype-legend {
+  flex: 1;
+  border-left: 1px solid var(--border-card);
+  display: flex;
+  flex-direction: column;
+  padding: 16px 20px;
+  min-width: 0;
+}
+.dash-filetype-legend-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border-100);
+}
+.dash-filetype-legend-title {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-strong);
+}
+.dash-filetype-legend-total {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--primary);
+}
+.dash-filetype-legend-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.dash-filetype-legend-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.dash-ftl-icon {
+  width: 24px; height: 24px;
+  border-radius: var(--radius);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.dash-ftl-icon svg { width: 14px; height: 14px; }
+.dash-ftl-archive   { background: var(--neutral-100); color: var(--neutral-700); }
+.dash-ftl-app      { background: var(--red-100); color: var(--red-700); }
+.dash-ftl-exe      { background: var(--neutral-100); color: var(--neutral-600); }
+.dash-ftl-img      { background: var(--red-100); color: var(--red-500); }
+.dash-ftl-pdf      { background: var(--red-100); color: var(--red-600); }
+.dash-ftl-other    { background: var(--neutral-100); color: var(--neutral-500); }
+.dash-ftl-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+.dash-ftl-name {
+  font-size: 12px;
+  color: var(--text-subtle);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.dash-ftl-bar-wrap {
+  height: 4px;
+  background: var(--neutral-100);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.dash-ftl-bar {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+.dash-ftl-val {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-strong);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* ===== 8-9. TABLE EXTRAS ===== */
+/* Job status tag extras */
+.tag-running {
+  background: var(--blue-100);
+  color: var(--blue-800);
+}
+.tag-cancelled {
+  background: var(--red-100);
+  color: var(--red-800);
+}
+[data-theme="dark"] .tag-running {
+  background: rgba(29, 107, 252, 0.15);
+  color: var(--blue-400);
+}
+[data-theme="dark"] .tag-cancelled {
+  background: rgba(212, 0, 49, 0.15);
+  color: var(--red-400);
+}
+
+/* Job type tags */
+.dash-job-type-tag {
+  display: inline-flex;
+  align-items: center;
+  height: 22px;
+  padding: 0 8px;
+  font-size: 11px;
+  font-weight: 500;
+  border-radius: var(--radius);
+  white-space: nowrap;
+}
+.dash-jt-scan-now {
+  background: var(--blue-100);
+  color: var(--blue-800);
+  border: 1px solid var(--blue-200);
+}
+.dash-jt-scheduled {
+  background: var(--neutral-100);
+  color: var(--neutral-700);
+  border: 1px solid var(--neutral-200);
+}
+.dash-jt-realtime {
+  background: var(--teal-100);
+  color: var(--teal-800);
+  border: 1px solid var(--teal-200);
+}
+
+[data-theme="dark"] .dash-jt-scan-now {
+  background: rgba(29, 107, 252, 0.12);
+  color: var(--blue-400);
+  border-color: rgba(29, 107, 252, 0.2);
+}
+[data-theme="dark"] .dash-jt-scheduled {
+  background: rgba(255,255,255,0.05);
+  color: var(--neutral-400);
+  border-color: var(--border-200);
+}
+[data-theme="dark"] .dash-jt-realtime {
+  background: rgba(0, 180, 160, 0.1);
+  color: var(--teal-400);
+  border-color: rgba(0, 180, 160, 0.2);
+}
+
+/* Schedule cell with icon */
+.dash-schedule-cell {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  color: var(--text-strong);
+}
+
+/* ===== DARK MODE OVERRIDES ===== */
+[data-theme="dark"] .dash-account-bar {
+  background: var(--surface-card);
+  border-color: var(--border-card);
+}
+[data-theme="dark"] .dash-account-divider { background: var(--border-card); }
+[data-theme="dark"] .dash-account-icon-wrap { background: var(--neutral-900); }
+[data-theme="dark"] .dash-job-banner {
+  background: rgba(29, 107, 252, 0.08);
+  border-color: rgba(29, 107, 252, 0.18);
+}
+[data-theme="dark"] .dash-job-banner-icon {
+  background: rgba(29, 107, 252, 0.15);
+  color: var(--blue-400);
+}
+[data-theme="dark"] .dash-job-banner-sep { background: rgba(29, 107, 252, 0.2); }
+[data-theme="dark"] .dash-donut-track { stroke: var(--neutral-800); }
+[data-theme="dark"] .dash-donut-sep { background: var(--border-card); }
+[data-theme="dark"] .dash-trend-chart {
+  border-color: var(--border-200);
+}
+[data-theme="dark"] .dash-bar-chart { border-color: var(--border-200); }
+[data-theme="dark"] .dash-rem-body { background: var(--border-card); }
+[data-theme="dark"] .dash-rem-item { background: var(--surface-card); }
+[data-theme="dark"] .dash-rem-item:hover { background: var(--hover-default); }
+[data-theme="dark"] .dash-rem-ring-track { stroke: var(--neutral-800); }
+[data-theme="dark"] .dash-filetype-legend { border-color: var(--border-card); }
+[data-theme="dark"] .dash-filetype-legend-header { border-color: var(--border-200); }
+[data-theme="dark"] .dash-ftl-bar-wrap { background: var(--neutral-800); }
+[data-theme="dark"] .dash-ftl-archive { background: var(--neutral-800); color: var(--neutral-400); }
+[data-theme="dark"] .dash-ftl-app { background: rgba(212,0,49,0.12); color: var(--red-400); }
+[data-theme="dark"] .dash-ftl-exe { background: var(--neutral-800); color: var(--neutral-400); }
+[data-theme="dark"] .dash-ftl-img { background: rgba(212,0,49,0.1); color: var(--red-400); }
+[data-theme="dark"] .dash-ftl-pdf { background: rgba(212,0,49,0.1); color: var(--red-400); }
+[data-theme="dark"] .dash-ftl-other { background: var(--neutral-900); color: var(--neutral-500); }
+[data-theme="dark"] .dash-period-select select {
+  background: var(--surface-card);
+  border-color: var(--border-200);
+  color: var(--text-strong);
+}
+[data-theme="dark"] .dash-trend-period-tabs { border-color: var(--border-200); }
+[data-theme="dark"] .dash-trend-tab { border-color: var(--border-200); color: var(--text-muted); }
+[data-theme="dark"] .dash-trend-tab.active { background: rgba(29,107,252,0.12); color: var(--primary); }
+[data-theme="dark"] .dash-filetype-legend-header { border-color: var(--border-200); }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1200px) {
+  .dash-stat-row { grid-template-columns: 1fr 1fr; }
+  .dash-stat-row .dash-stat-card:last-child { grid-column: span 2; }
+  .dash-rem-body { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 900px) {
+  .dash-job-summary-body { flex-direction: column; }
+  .dash-donut-sep { width: auto; height: 1px; }
+  .dash-account-bar { flex-direction: column; }
+  .dash-account-divider { width: auto; height: 1px; }
+  .dash-stat-row { grid-template-columns: 1fr; }
+  .dash-stat-row .dash-stat-card:last-child { grid-column: span 1; }
+  .dash-filetype-body { flex-direction: column; }
+  .dash-filetype-legend { border-left: none; border-top: 1px solid var(--border-card); }
+  .dash-rem-body { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  .dash-trend-chart-wrap { height: 140px; }
+  .dash-trend-period-tabs { display: none; }
+  .dash-trend-legend { flex-wrap: wrap; gap: 8px; }
+}
+
   </style>
 </head>
 <body>
@@ -1093,14 +1948,14 @@
       <!-- Sidebar -->
       <aside class="sidebar" id="sidebar" role="complementary" aria-label="Settings navigation">
         <nav class="sidebar-nav" aria-label="Main navigation">
-          <a class="nav-item" href="#"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M7.5 7.5V3.5H14.5C15.05 3.5 15.5 3.9 15.5 4.39V7.5H7.5Z"/><path d="M1.5 12.61V9.5H8.5V13.5H2.36C1.88 13.5 1.5 13.1 1.5 12.61Z"/><path d="M6 5.5C6 4.11929 4.88071 3 3.5 3C2.11929 3 1 4.11929 1 5.5C1 6.88071 2.11929 8 3.5 8C4.88071 8 6 6.88071 6 5.5Z"/><path d="M10.5 9.5H15.5V12.5C15.5 13.05 15.05 13.5 14.5 13.5H10.5V9.5Z"/></svg><span class="nav-text">Dashboard</span></a>
+          <a class="nav-item active" href="#"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M7.5 7.5V3.5H14.5C15.05 3.5 15.5 3.9 15.5 4.39V7.5H7.5Z"/><path d="M1.5 12.61V9.5H8.5V13.5H2.36C1.88 13.5 1.5 13.1 1.5 12.61Z"/><path d="M6 5.5C6 4.11929 4.88071 3 3.5 3C2.11929 3 1 4.11929 1 5.5C1 6.88071 2.11929 8 3.5 8C4.88071 8 6 6.88071 6 5.5Z"/><path d="M10.5 9.5H15.5V12.5C15.5 13.05 15.05 13.5 14.5 13.5H10.5V9.5Z"/></svg><span class="nav-text">Dashboard</span></a>
           <a class="nav-item" href="#"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M5 2V5H2V3C2 2.45 2.45 2 3 2H5Z"/><path d="M5 9.5V6.5H2V9.5H5Z"/><path d="M5 11V14H3C2.45 14 2 13.55 2 13V11H5Z"/><path d="M14 3V5H6.5V2H13C13.55 2 14 2.45 14 3Z"/><path d="M6.5 14V11H14V13C14 13.55 13.55 14 13 14H6.5Z"/><path d="M14 9.5V6.5H6.5V9.5H14Z"/></svg><span class="nav-text">Reports</span></a>
           <div class="nav-divider"></div>
           <a class="nav-item" href="#"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M13.5 4.05L13.25 3.9L8.5 1.13C8.35 1.04 8.17 1 8 1C7.83 1 7.65 1.04 7.5 1.13L2.75 3.9L2.5 4.05C2.19 4.23 2 4.56 2 4.91V10.77C2 11.12 2.19 11.45 2.5 11.63L7.25 14.4L7.5 14.55C7.65 14.64 7.83 14.68 8 14.68C8.17 14.68 8.35 14.64 8.5 14.55L8.75 14.4L13.5 11.63C13.81 11.45 14 11.12 14 10.77V4.91C14 4.56 13.81 4.23 13.5 4.05ZM12.5 6.09L8.75 8.27V12.66L8 13.1L7.25 12.66V8.27L3.5 6.09V5.2L4.23 4.77L8 6.97L11.77 4.77L12.5 5.2V6.09Z"/></svg><span class="nav-text">Inventory</span></a>
           <a class="nav-item" href="#"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M10 14H14V10H12.75V8C12.75 7.59 12.41 7.25 12 7.25L8.75 7.25V6H10V2L6 2V6H7.25V7.25L4 7.25C3.59 7.25 3.25 7.59 3.25 8L3.25 10H2L2 14H6V10H4.75L4.75 8.75L11.25 8.75V10H10L10 14Z"/></svg><span class="nav-text">Workflows</span></a>
           <a class="nav-item" href="#"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M10 6V4.75H8.75V11.25H10V10H14V14H10V12.75H8C7.59 12.75 7.25 12.41 7.25 12V8.75H6.25L4 11L1 8L4 5L6.25 7.25H7.25V4C7.25 3.59 7.59 3.25 8 3.25H10V2H14V6H10Z"/></svg><span class="nav-text">Jobs</span></a>
           <div class="nav-divider"></div>
-          <a class="nav-item active" href="#"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M13 6C13 7.57 11.8 8.85 10.27 8.98C10.18 9 10.09 9 10 9C10.03 8.97 10.06 8.93 10.08 8.89C10.66 8.07 11 7.08 11 6C11 4.92 10.63 3.83 10 3C11.66 3 13 4.34 13 6Z"/><path d="M15 12.64V14H13V12.64C13 11.71 12.64 10.92 12.05 10.28C13.58 10.69 15 11.51 15 12.64Z"/><path d="M9 6C9 6.89 8.62 7.69 8 8.22C7.47 8.71 6.77 9 6 9C5.23 9 4.53 8.71 4 8.22C3.38 7.69 3 6.89 3 6C3 4.34 4.34 3 6 3C6.77 3 7.47 3.29 8 3.77C8.62 4.31 9 5.11 9 6Z"/><path d="M11 12.64V14H1V12.64C1 11.6 2.2 10.82 3.59 10.38C4.39 10.13 5.26 10 5.99 10C6.6 10 7.3 10.09 7.99 10.27C8.12 10.3 8.26 10.34 8.39 10.38C9.78 10.82 10.98 11.6 10.98 12.64H11Z"/></svg><span class="nav-text">Users</span></a>
+          <a class="nav-item" href="#"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M13 6C13 7.57 11.8 8.85 10.27 8.98C10.18 9 10.09 9 10 9C10.03 8.97 10.06 8.93 10.08 8.89C10.66 8.07 11 7.08 11 6C11 4.92 10.63 3.83 10 3C11.66 3 13 4.34 13 6Z"/><path d="M15 12.64V14H13V12.64C13 11.71 12.64 10.92 12.05 10.28C13.58 10.69 15 11.51 15 12.64Z"/><path d="M9 6C9 6.89 8.62 7.69 8 8.22C7.47 8.71 6.77 9 6 9C5.23 9 4.53 8.71 4 8.22C3.38 7.69 3 6.89 3 6C3 4.34 4.34 3 6 3C6.77 3 7.47 3.29 8 3.77C8.62 4.31 9 5.11 9 6Z"/><path d="M11 12.64V14H1V12.64C1 11.6 2.2 10.82 3.59 10.38C4.39 10.13 5.26 10 5.99 10C6.6 10 7.3 10.09 7.99 10.27C8.12 10.3 8.26 10.34 8.39 10.38C9.78 10.82 10.98 11.6 10.98 12.64H11Z"/></svg><span class="nav-text">Users</span></a>
           <a class="nav-item" href="#"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M13.2101 8.46C13.2201 8.31 13.2301 8.16 13.2301 8C13.2301 7.84 13.2201 7.69 13.2101 7.54C13.2001 7.4 13.1801 7.25 13.1601 7.11L14.1201 6.26C14.4801 5.95 14.5601 5.42 14.3301 5.01L13.7501 4.01C13.5101 3.6 13.0201 3.41 12.5701 3.56L11.3301 3.97C11.1001 3.78 10.8601 3.61 10.6001 3.46C10.3301 3.32 10.0601 3.19 9.78005 3.08L9.54005 1.81C9.45005 1.34 9.04005 1 8.56005 1H7.41005C6.93005 1 6.52005 1.34 6.43005 1.81L6.19005 3.08C5.91005 3.19 5.64005 3.32 5.37005 3.46C5.11005 3.61 4.87005 3.78 4.64005 3.97L3.40005 3.56C2.95005 3.41 2.46005 3.6 2.22005 4.01L1.64005 5.01C1.40005 5.42 1.49005 5.95 1.85005 6.26L2.81005 7.11C2.79005 7.25 2.77005 7.4 2.76005 7.54C2.75005 7.69 2.74005 7.84 2.74005 8C2.74005 8.16 2.75005 8.31 2.76005 8.46C2.77005 8.6 2.79005 8.75 2.81005 8.89L1.85005 9.74C1.49005 10.05 1.41005 10.58 1.64005 10.99L2.22005 11.99C2.46005 12.4 2.95005 12.59 3.40005 12.44L4.64005 12.03C4.87005 12.22 5.11005 12.39 5.37005 12.54C5.64005 12.68 5.91005 12.81 6.19005 12.92L6.43005 14.19C6.52005 14.66 6.93005 15 7.41005 15H8.56005C9.04005 15 9.45005 14.66 9.54005 14.19L9.78005 12.92C10.0601 12.81 10.3301 12.68 10.6001 12.54C10.8601 12.39 11.1001 12.22 11.3301 12.03L12.5701 12.44C13.0201 12.59 13.5101 12.4 13.7501 11.99L14.3301 10.99C14.5701 10.58 14.4801 10.05 14.1201 9.74L13.1601 8.89C13.1801 8.75 13.2001 8.6 13.2101 8.46ZM8.57005 10.94C6.45005 11.34 4.64005 9.53 5.04005 7.41C5.26005 6.23 6.22005 5.27 7.40005 5.05C9.52005 4.65 11.3301 6.46 10.9301 8.58C10.7101 9.76 9.75005 10.72 8.57005 10.94Z"/></svg><span class="nav-text">Settings</span></a>
           <div class="nav-divider"></div>
           <a class="nav-item" href="#"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M12 2H11.5V5H4.5V2H4C3.45 2 3 2.45 3 3V13C3 13.55 3.45 14 4 14H12C12.55 14 13 13.55 13 13V3C13 2.45 12.55 2 12 2ZM11 11.5H5C4.59 11.5 4.25 11.16 4.25 10.75C4.25 10.34 4.59 10 5 10H11C11.41 10 11.75 10.34 11.75 10.75C11.75 11.16 11.41 11.5 11 11.5ZM11 8.5H5C4.59 8.5 4.25 8.16 4.25 7.75C4.25 7.34 4.59 7 5 7H11C11.41 7 11.75 7.34 11.75 7.75C11.75 8.16 11.41 8.5 11 8.5Z"/><path d="M10 2V3.5H6V2H7C7 1.45 7.45 1 8 1C8.55 1 9 1.45 9 2H10Z"/></svg><span class="nav-text">Audit</span></a>
@@ -1115,6 +1970,1034 @@
       <main class="content" id="main-content" role="main">
 
         <!-- ==================== SETTINGS PAGE ==================== -->
+
+        <!-- ==================== DASHBOARD PAGE ==================== -->
+        <div id="dashboardPage" class="page-view active">
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <h1 class="page-title">Dashboard</h1>
+    <div class="page-header-actions">
+      <!-- Time period selector -->
+      <div class="dash-period-select">
+        <select id="dashPeriod">
+          <option value="7d">Last 7 days</option>
+          <option value="30d" selected>Last 30 days</option>
+          <option value="90d">Last 90 days</option>
+          <option value="custom">Custom range</option>
+        </select>
+        <svg viewBox="0 0 16 16" fill="currentColor"><path d="M7.99994 10.7495C7.80994 10.7495 7.61994 10.6795 7.46994 10.5295L3.21994 6.27945C2.92994 5.98945 2.92994 5.50945 3.21994 5.21945C3.50994 4.92945 3.98994 4.92945 4.27994 5.21945L7.99994 8.93945L11.7199 5.21945C12.0099 4.92945 12.4899 4.92945 12.7799 5.21945C13.0699 5.50945 13.0699 5.98945 12.7799 6.27945L8.52994 10.5295C8.37994 10.6795 8.18994 10.7495 7.99994 10.7495Z"/></svg>
+      </div>
+      <button class="btn-icon" title="Refresh dashboard">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2.5 8a5.5 5.5 0 019.95-3.25M13.5 8a5.5 5.5 0 01-9.95 3.25"/><path d="M12.5 2v3h-3M3.5 14v-3h3"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- ===== 1. ACCOUNT INFO BAR ===== -->
+  <div class="dash-account-bar">
+    <div class="dash-account-section dash-account-identity">
+      <div class="dash-account-icon-wrap">
+        <div class="dash-aws-icon">
+          <!-- AWS logo mark -->
+          <svg viewBox="0 0 40 40" fill="none">
+            <rect width="40" height="40" rx="6" fill="#232F3E"/>
+            <path d="M14.5 22.5c-.6.2-1.3.4-2 .4-1.8 0-3-.9-3-2.6 0-1.5 1-2.6 2.8-2.6.6 0 1.3.1 1.8.3l.2-.7c-.6-.2-1.3-.4-2.1-.4-2.2 0-3.7 1.4-3.7 3.4 0 2.1 1.4 3.3 3.7 3.3.9 0 1.7-.2 2.4-.5l-.1-.6z" fill="#FF9900"/>
+            <path d="M17 17.5h-.9v6.3h.9v-2.5c0-1.3.7-2 1.7-2 .9 0 1.4.6 1.4 1.8v2.7h.9v-2.8c0-1.6-.8-2.5-2.1-2.5-.8 0-1.5.4-1.9 1v-.9v-.1z" fill="#FF9900"/>
+            <path d="M25.2 21.7l-2-4.2h-1l2.5 5.3-.3.7c-.2.5-.5.7-.9.7-.2 0-.4 0-.6-.1l-.1.7c.2.1.5.1.8.1.8 0 1.3-.4 1.7-1.3l2.8-6.1h-1l-1.9 4.2z" fill="#FF9900"/>
+            <path d="M8 26.5c2.7 1.8 6 2.8 9.5 2.8 4.7 0 8.8-1.9 11.8-4.9.3-.3.1-.6-.3-.4C25.4 26.4 21.9 28 18 28c-3.3 0-6.4-.9-9.1-2.5-.4-.2-.6.1-.9 1z" fill="#FF9900"/>
+            <path d="M30.5 23.7c-.3-.3-.8-.2-1.2-.1-.4.1-1 .3-1.4.4-.1.1 0 .2.1.1.4-.1 1.4-.3 1.6.1.2.3-.2 1.1-.4 1.5-.1.1 0 .2.1.1.9-1 1.5-2.1 1.2-2.1z" fill="#FF9900"/>
+          </svg>
+        </div>
+      </div>
+      <div class="dash-account-meta">
+        <div class="dash-account-meta-label">Storage Unit</div>
+        <div class="dash-account-meta-name">
+          <svg viewBox="0 0 16 16" fill="currentColor" class="dash-folder-icon"><path d="M13.5 5H7.36L5.72 3H2.5C1.95 3 1.5 3.45 1.5 4v8c0 .55.45 1 1 1h11c.55 0 1-.45 1-1V6c0-.55-.45-1-1-1z"/></svg>
+          AWS Unit Name
+        </div>
+      </div>
+    </div>
+
+    <div class="dash-account-divider"></div>
+
+    <div class="dash-account-section dash-account-status">
+      <div class="dash-account-field-label">Status</div>
+      <div class="dash-account-field-value">
+        <span class="tag tag-success">Operational</span>
+      </div>
+    </div>
+
+    <div class="dash-account-divider"></div>
+
+    <div class="dash-account-section dash-account-client">
+      <div class="dash-account-field-label">Client ID</div>
+      <div class="dash-account-field-value dash-client-id-row">
+        <span class="dash-client-id-text">a3f9b2c1-4d8e-4f2a-9c1b-7e3d5f8a2b4c</span>
+        <button class="dash-copy-btn" title="Copy Client ID" onclick="navigator.clipboard.writeText('a3f9b2c1-4d8e-4f2a-9c1b-7e3d5f8a2b4c')">
+          <svg viewBox="0 0 16 16" fill="currentColor"><path d="M4 3a1 1 0 011-1h6a1 1 0 011 1v1h1a1 1 0 011 1v8a1 1 0 01-1 1H4a1 1 0 01-1-1V5a1 1 0 011-1h1V3zm1 2V3h6v2H5zm-1 1v7h8V6H4z"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 2. JOB MONITOR CTA BANNER ===== -->
+  <div class="dash-job-banner">
+    <div class="dash-job-banner-left">
+      <div class="dash-job-banner-icon">
+        <svg viewBox="0 0 20 20" fill="currentColor">
+          <path d="M10 2a8 8 0 100 16A8 8 0 0010 2zm0 14a6 6 0 110-12 6 6 0 010 12zm.5-9.5h-1v4l3.5 2.1.5-.8-3-1.8V6.5z"/>
+        </svg>
+      </div>
+      <div class="dash-job-banner-text">
+        <span class="dash-job-banner-title">Job Monitor</span>
+        <span class="dash-job-banner-desc">2 jobs currently running</span>
+      </div>
+    </div>
+    <div class="dash-job-banner-right">
+      <a href="#" class="dash-job-banner-link" onclick="showPage('jobsPage'); return false;">View Running Jobs</a>
+      <div class="dash-job-banner-sep"></div>
+      <a href="#" class="dash-job-banner-link">Create Job</a>
+    </div>
+  </div>
+
+  <!-- ===== 3. JOB SUMMARY CARD ===== -->
+  <div class="audit-card dash-card" style="margin-bottom: 12px;">
+    <div class="audit-card-header">
+      <div class="audit-card-title">
+        <h3>Job Summary</h3>
+        <span class="dash-subtitle-count">3 Past <span class="dash-running-count">(+2 Running)</span></span>
+      </div>
+      <div class="audit-card-actions">
+        <a href="#" class="card-header-link" onclick="showPage('auditPage'); return false;">View Reports</a>
+      </div>
+    </div>
+
+    <div class="dash-job-summary-body">
+
+      <!-- Donut lockup 1: Total -->
+      <div class="dash-donut-lockup">
+        <svg class="dash-donut-svg" viewBox="0 0 44 44">
+          <circle class="dash-donut-track" cx="22" cy="22" r="18" fill="none" stroke-width="5"/>
+          <!-- 134785 total; skipped/failed 135 ≈ 0.1%, scanned 3785 ≈ 2.8%, cached 131000 ≈ 97.2% -->
+          <circle class="dash-donut-seg" cx="22" cy="22" r="18" fill="none" stroke-width="5"
+            stroke="var(--blue-700)"
+            stroke-dasharray="6.28 107.0"
+            stroke-dashoffset="0"/>
+          <circle class="dash-donut-seg" cx="22" cy="22" r="18" fill="none" stroke-width="5"
+            stroke="var(--blue-400)"
+            stroke-dasharray="99.2 14.08"
+            stroke-dashoffset="-6.28"/>
+          <circle class="dash-donut-seg" cx="22" cy="22" r="18" fill="none" stroke-width="5"
+            stroke="var(--red-500)"
+            stroke-dasharray="1.0 112.2"
+            stroke-dashoffset="-105.48"/>
+        </svg>
+        <div class="dash-donut-legend">
+          <div class="dash-donut-title">Total</div>
+          <div class="dash-donut-value-row">
+            <span class="dash-donut-num">134,785</span>
+            <span class="dash-donut-delta dash-delta-pos">+657</span>
+          </div>
+          <div class="dash-legend-row">
+            <span class="dash-legend-dot" style="background: var(--blue-400);"></span>
+            <span class="dash-legend-label">Cached</span>
+            <span class="dash-legend-val">131,000</span>
+          </div>
+          <div class="dash-legend-row">
+            <span class="dash-legend-dot" style="background: var(--blue-700);"></span>
+            <span class="dash-legend-label">Scanned</span>
+            <span class="dash-legend-val">3,785 <span class="dash-delta-pos">+1,045</span></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="dash-donut-sep"></div>
+
+      <!-- Donut lockup 2: Threats/Safe -->
+      <div class="dash-donut-lockup">
+        <svg class="dash-donut-svg" viewBox="0 0 44 44">
+          <circle class="dash-donut-track" cx="22" cy="22" r="18" fill="none" stroke-width="5"/>
+          <!-- Blocked 126 / Allowed 2467 of scanned 3785; rest = no verdict -->
+          <circle class="dash-donut-seg" cx="22" cy="22" r="18" fill="none" stroke-width="5"
+            stroke="var(--green-700)"
+            stroke-dasharray="74.2 39.08"
+            stroke-dashoffset="0"/>
+          <circle class="dash-donut-seg" cx="22" cy="22" r="18" fill="none" stroke-width="5"
+            stroke="var(--red-600)"
+            stroke-dasharray="9.88 103.4"
+            stroke-dashoffset="-74.2"/>
+        </svg>
+        <div class="dash-donut-legend">
+          <div class="dash-donut-title">Scanned Results</div>
+          <div class="dash-donut-value-row">
+            <span class="dash-donut-num">3,785</span>
+          </div>
+          <div class="dash-legend-row">
+            <span class="dash-legend-dot" style="background: var(--green-700);"></span>
+            <span class="dash-legend-label">Allowed</span>
+            <span class="dash-legend-val">2,467 <span class="dash-delta-pos">+988</span></span>
+          </div>
+          <div class="dash-legend-row">
+            <span class="dash-legend-dot" style="background: var(--red-600);"></span>
+            <span class="dash-legend-label">Blocked</span>
+            <span class="dash-legend-val">126 <span class="dash-delta-neg">+4</span></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="dash-donut-sep"></div>
+
+      <!-- Donut lockup 3: Skipped/Failed -->
+      <div class="dash-donut-lockup">
+        <svg class="dash-donut-svg" viewBox="0 0 44 44">
+          <circle class="dash-donut-track" cx="22" cy="22" r="18" fill="none" stroke-width="5"/>
+          <circle class="dash-donut-seg" cx="22" cy="22" r="18" fill="none" stroke-width="5"
+            stroke="var(--yellow-600)"
+            stroke-dasharray="82.0 31.28"
+            stroke-dashoffset="0"/>
+          <circle class="dash-donut-seg" cx="22" cy="22" r="18" fill="none" stroke-width="5"
+            stroke="var(--red-600)"
+            stroke-dasharray="31.28 82.0"
+            stroke-dashoffset="-82.0"/>
+        </svg>
+        <div class="dash-donut-legend">
+          <div class="dash-donut-title">Skipped / Failed</div>
+          <div class="dash-donut-value-row">
+            <span class="dash-donut-num">135</span>
+            <span class="dash-donut-delta dash-delta-neg">+2</span>
+          </div>
+          <div class="dash-legend-row">
+            <span class="dash-legend-dot" style="background: var(--yellow-600);"></span>
+            <span class="dash-legend-label">Skipped</span>
+            <span class="dash-legend-val">109</span>
+          </div>
+          <div class="dash-legend-row">
+            <span class="dash-legend-dot" style="background: var(--red-600);"></span>
+            <span class="dash-legend-label">Failed</span>
+            <span class="dash-legend-val">26 <span class="dash-delta-neg">+2</span></span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== 4. THREE STAT CARDS ROW ===== -->
+  <div class="dash-stat-row">
+
+    <!-- Card 1: Threats Detected -->
+    <div class="audit-card dash-card dash-stat-card">
+      <div class="audit-card-header">
+        <div class="audit-card-title">
+          <h3>Threats Detected</h3>
+        </div>
+        <div class="audit-card-actions">
+          <a href="#" class="card-header-link">View Reports</a>
+        </div>
+      </div>
+      <div class="dash-stat-body">
+        <div class="dash-stat-total-row">
+          <div class="dash-stat-total-label">Total Files</div>
+          <div class="dash-stat-total-val">
+            2,001
+            <span class="dash-trend-arrow dash-trend-up">
+              <svg viewBox="0 0 12 12" fill="currentColor"><path d="M6 2l4 5H2l4-5z"/></svg>
+            </span>
+            <span class="dash-trend-text">+100, +1%</span>
+          </div>
+        </div>
+        <div class="dash-stat-legend">
+          <div class="dash-stat-legend-row">
+            <span class="dash-stat-legend-dot" style="background: var(--blue-900);"></span>
+            <span class="dash-stat-legend-label">Known Malware</span>
+            <span class="dash-stat-legend-val">1,834</span>
+          </div>
+          <div class="dash-stat-legend-row">
+            <span class="dash-stat-legend-dot" style="background: var(--blue-800);"></span>
+            <span class="dash-stat-legend-label">Malicious Behavior</span>
+            <span class="dash-stat-legend-val">47</span>
+          </div>
+          <div class="dash-stat-legend-row">
+            <span class="dash-stat-legend-dot" style="background: var(--blue-700);"></span>
+            <span class="dash-stat-legend-label">Vulnerable Executable</span>
+            <span class="dash-stat-legend-val">263</span>
+          </div>
+          <div class="dash-stat-legend-row">
+            <span class="dash-stat-legend-dot" style="background: var(--blue-600);"></span>
+            <span class="dash-stat-legend-label">Reputation Match</span>
+            <span class="dash-stat-legend-val">436</span>
+          </div>
+          <div class="dash-stat-legend-row">
+            <span class="dash-stat-legend-dot" style="background: var(--blue-400);"></span>
+            <span class="dash-stat-legend-label">Blocked Origin by Policy</span>
+            <span class="dash-stat-legend-val">65</span>
+          </div>
+        </div>
+        <!-- Bar chart: values 1834, 47, 263, 436, 65 | max=1834 -->
+        <div class="dash-bar-chart">
+          <div class="dash-bar-col">
+            <span class="dash-bar-label">1,834</span>
+            <div class="dash-bar-fill" style="height: 100%; background: var(--blue-900);"></div>
+            <span class="dash-bar-x-label">KM</span>
+          </div>
+          <div class="dash-bar-col">
+            <span class="dash-bar-label">47</span>
+            <div class="dash-bar-fill" style="height: 2.6%; background: var(--blue-800);"></div>
+            <span class="dash-bar-x-label">MB</span>
+          </div>
+          <div class="dash-bar-col">
+            <span class="dash-bar-label">263</span>
+            <div class="dash-bar-fill" style="height: 14.3%; background: var(--blue-700);"></div>
+            <span class="dash-bar-x-label">VE</span>
+          </div>
+          <div class="dash-bar-col">
+            <span class="dash-bar-label">436</span>
+            <div class="dash-bar-fill" style="height: 23.8%; background: var(--blue-600);"></div>
+            <span class="dash-bar-x-label">RM</span>
+          </div>
+          <div class="dash-bar-col">
+            <span class="dash-bar-label">65</span>
+            <div class="dash-bar-fill" style="height: 3.5%; background: var(--blue-400);"></div>
+            <span class="dash-bar-x-label">BP</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 2: Data Loss Prevented -->
+    <div class="audit-card dash-card dash-stat-card">
+      <div class="audit-card-header">
+        <div class="audit-card-title">
+          <h3>Data Loss Prevented</h3>
+        </div>
+        <div class="audit-card-actions">
+          <a href="#" class="card-header-link">View Reports</a>
+        </div>
+      </div>
+      <div class="dash-stat-body">
+        <div class="dash-stat-total-row">
+          <div class="dash-stat-total-label">Total Files</div>
+          <div class="dash-stat-total-val">
+            344
+            <span class="dash-trend-arrow dash-trend-up">
+              <svg viewBox="0 0 12 12" fill="currentColor"><path d="M6 2l4 5H2l4-5z"/></svg>
+            </span>
+            <span class="dash-trend-text">+18, +5%</span>
+          </div>
+        </div>
+        <div class="dash-stat-legend">
+          <div class="dash-stat-legend-row">
+            <span class="dash-stat-legend-dot" style="background: var(--teal-800);"></span>
+            <span class="dash-stat-legend-label">Personal Information</span>
+            <span class="dash-stat-legend-val">146</span>
+          </div>
+          <div class="dash-stat-legend-row">
+            <span class="dash-stat-legend-dot" style="background: var(--teal-700);"></span>
+            <span class="dash-stat-legend-label">Secrets in Text Files</span>
+            <span class="dash-stat-legend-val">90</span>
+          </div>
+          <div class="dash-stat-legend-row">
+            <span class="dash-stat-legend-dot" style="background: var(--teal-600);"></span>
+            <span class="dash-stat-legend-label">Credit Card</span>
+            <span class="dash-stat-legend-val">85</span>
+          </div>
+          <div class="dash-stat-legend-row">
+            <span class="dash-stat-legend-dot" style="background: var(--teal-500);"></span>
+            <span class="dash-stat-legend-label">SSN</span>
+            <span class="dash-stat-legend-val">47</span>
+          </div>
+          <div class="dash-stat-legend-row">
+            <span class="dash-stat-legend-dot" style="background: var(--teal-300);"></span>
+            <span class="dash-stat-legend-label">Other</span>
+            <span class="dash-stat-legend-val">65</span>
+          </div>
+        </div>
+        <!-- Bar chart: values 146, 90, 85, 47, 65 | max=146 -->
+        <div class="dash-bar-chart">
+          <div class="dash-bar-col">
+            <span class="dash-bar-label">146</span>
+            <div class="dash-bar-fill" style="height: 100%; background: var(--teal-800);"></div>
+            <span class="dash-bar-x-label">PI</span>
+          </div>
+          <div class="dash-bar-col">
+            <span class="dash-bar-label">90</span>
+            <div class="dash-bar-fill" style="height: 61.6%; background: var(--teal-700);"></div>
+            <span class="dash-bar-x-label">ST</span>
+          </div>
+          <div class="dash-bar-col">
+            <span class="dash-bar-label">85</span>
+            <div class="dash-bar-fill" style="height: 58.2%; background: var(--teal-600);"></div>
+            <span class="dash-bar-x-label">CC</span>
+          </div>
+          <div class="dash-bar-col">
+            <span class="dash-bar-label">47</span>
+            <div class="dash-bar-fill" style="height: 32.2%; background: var(--teal-500);"></div>
+            <span class="dash-bar-x-label">SS</span>
+          </div>
+          <div class="dash-bar-col">
+            <span class="dash-bar-label">65</span>
+            <div class="dash-bar-fill" style="height: 44.5%; background: var(--teal-300);"></div>
+            <span class="dash-bar-x-label">Ot</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 3: Sanitized -->
+    <div class="audit-card dash-card dash-stat-card">
+      <div class="audit-card-header">
+        <div class="audit-card-title">
+          <h3>Sanitized</h3>
+        </div>
+        <div class="audit-card-actions">
+          <a href="#" class="card-header-link">View Reports</a>
+        </div>
+      </div>
+      <div class="dash-stat-body">
+        <div class="dash-stat-total-row">
+          <div class="dash-stat-total-label">Total Files</div>
+          <div class="dash-stat-total-val">
+            1,578
+            <span class="dash-trend-arrow dash-trend-up">
+              <svg viewBox="0 0 12 12" fill="currentColor"><path d="M6 2l4 5H2l4-5z"/></svg>
+            </span>
+            <span class="dash-trend-text">+203, +15%</span>
+          </div>
+        </div>
+        <div class="dash-stat-legend">
+          <div class="dash-stat-legend-row">
+            <span class="dash-stat-legend-dot" style="background: var(--blue-800);"></span>
+            <span class="dash-stat-legend-label">Image</span>
+            <span class="dash-stat-legend-val">1,347</span>
+          </div>
+          <div class="dash-stat-legend-row">
+            <span class="dash-stat-legend-dot" style="background: var(--blue-600);"></span>
+            <span class="dash-stat-legend-label">Hyperlinks</span>
+            <span class="dash-stat-legend-val">1,013</span>
+          </div>
+          <div class="dash-stat-legend-row">
+            <span class="dash-stat-legend-dot" style="background: var(--teal-700);"></span>
+            <span class="dash-stat-legend-label">Javascript</span>
+            <span class="dash-stat-legend-val">436</span>
+          </div>
+          <div class="dash-stat-legend-row">
+            <span class="dash-stat-legend-dot" style="background: var(--teal-500);"></span>
+            <span class="dash-stat-legend-label">Scripts</span>
+            <span class="dash-stat-legend-val">263</span>
+          </div>
+          <div class="dash-stat-legend-row">
+            <span class="dash-stat-legend-dot" style="background: var(--teal-300);"></span>
+            <span class="dash-stat-legend-label">Other</span>
+            <span class="dash-stat-legend-val">165</span>
+          </div>
+        </div>
+        <!-- Bar chart: values 1347, 1013, 436, 263, 165 | max=1347 -->
+        <div class="dash-bar-chart">
+          <div class="dash-bar-col">
+            <span class="dash-bar-label">1,347</span>
+            <div class="dash-bar-fill" style="height: 100%; background: var(--blue-800);"></div>
+            <span class="dash-bar-x-label">Im</span>
+          </div>
+          <div class="dash-bar-col">
+            <span class="dash-bar-label">1,013</span>
+            <div class="dash-bar-fill" style="height: 75.2%; background: var(--blue-600);"></div>
+            <span class="dash-bar-x-label">Hy</span>
+          </div>
+          <div class="dash-bar-col">
+            <span class="dash-bar-label">436</span>
+            <div class="dash-bar-fill" style="height: 32.4%; background: var(--teal-700);"></div>
+            <span class="dash-bar-x-label">JS</span>
+          </div>
+          <div class="dash-bar-col">
+            <span class="dash-bar-label">263</span>
+            <div class="dash-bar-fill" style="height: 19.5%; background: var(--teal-500);"></div>
+            <span class="dash-bar-x-label">Sc</span>
+          </div>
+          <div class="dash-bar-col">
+            <span class="dash-bar-label">165</span>
+            <div class="dash-bar-fill" style="height: 12.3%; background: var(--teal-300);"></div>
+            <span class="dash-bar-x-label">Ot</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /.dash-stat-row -->
+
+  <!-- ===== 5. SECURITY TREND CARD ===== -->
+  <div class="audit-card dash-card" style="margin-bottom: 12px;">
+    <div class="audit-card-header">
+      <div class="audit-card-title">
+        <h3>Security Trend</h3>
+      </div>
+      <div class="audit-card-actions" style="display:flex; align-items:center; gap: 16px;">
+        <!-- Legend -->
+        <div class="dash-trend-legend">
+          <span class="dash-trend-legend-item">
+            <span class="dash-trend-legend-swatch" style="background: var(--red-600);"></span>
+            Threats Detected
+          </span>
+          <span class="dash-trend-legend-item">
+            <span class="dash-trend-legend-swatch" style="background: var(--teal-600);"></span>
+            Data Loss
+          </span>
+          <span class="dash-trend-legend-item">
+            <span class="dash-trend-legend-swatch" style="background: var(--blue-600);"></span>
+            Sanitized
+          </span>
+        </div>
+        <!-- Period selector -->
+        <div class="dash-trend-period-tabs">
+          <button class="dash-trend-tab" data-period="7d">7d</button>
+          <button class="dash-trend-tab active" data-period="30d">30d</button>
+          <button class="dash-trend-tab" data-period="90d">90d</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="dash-trend-chart-wrap">
+      <!-- Y-axis labels -->
+      <div class="dash-trend-y-axis">
+        <span>500</span>
+        <span>400</span>
+        <span>300</span>
+        <span>200</span>
+        <span>100</span>
+        <span>0</span>
+      </div>
+      <!-- Stacked bar columns -->
+      <div class="dash-trend-chart">
+        <!-- Each col: [threats, dataloss, sanitized] as % of max ~500 -->
+        <div class="dash-trend-col">
+          <div class="dash-trend-stacked">
+            <div class="dash-trend-seg dash-trend-threats" style="height: 42%;"></div>
+            <div class="dash-trend-seg dash-trend-dataloss" style="height: 10%;"></div>
+            <div class="dash-trend-seg dash-trend-sanitized" style="height: 18%;"></div>
+          </div>
+          <span class="dash-trend-x-label">Jan 15</span>
+        </div>
+        <div class="dash-trend-col">
+          <div class="dash-trend-stacked">
+            <div class="dash-trend-seg dash-trend-threats" style="height: 56%;"></div>
+            <div class="dash-trend-seg dash-trend-dataloss" style="height: 14%;"></div>
+            <div class="dash-trend-seg dash-trend-sanitized" style="height: 22%;"></div>
+          </div>
+          <span class="dash-trend-x-label">Jan 18</span>
+        </div>
+        <div class="dash-trend-col">
+          <div class="dash-trend-stacked">
+            <div class="dash-trend-seg dash-trend-threats" style="height: 34%;"></div>
+            <div class="dash-trend-seg dash-trend-dataloss" style="height: 8%;"></div>
+            <div class="dash-trend-seg dash-trend-sanitized" style="height: 16%;"></div>
+          </div>
+          <span class="dash-trend-x-label">Jan 21</span>
+        </div>
+        <div class="dash-trend-col">
+          <div class="dash-trend-stacked">
+            <div class="dash-trend-seg dash-trend-threats" style="height: 68%;"></div>
+            <div class="dash-trend-seg dash-trend-dataloss" style="height: 16%;"></div>
+            <div class="dash-trend-seg dash-trend-sanitized" style="height: 28%;"></div>
+          </div>
+          <span class="dash-trend-x-label">Jan 24</span>
+        </div>
+        <div class="dash-trend-col">
+          <div class="dash-trend-stacked">
+            <div class="dash-trend-seg dash-trend-threats" style="height: 80%;"></div>
+            <div class="dash-trend-seg dash-trend-dataloss" style="height: 20%;"></div>
+            <div class="dash-trend-seg dash-trend-sanitized" style="height: 34%;"></div>
+          </div>
+          <span class="dash-trend-x-label">Jan 27</span>
+        </div>
+        <div class="dash-trend-col">
+          <div class="dash-trend-stacked">
+            <div class="dash-trend-seg dash-trend-threats" style="height: 52%;"></div>
+            <div class="dash-trend-seg dash-trend-dataloss" style="height: 12%;"></div>
+            <div class="dash-trend-seg dash-trend-sanitized" style="height: 24%;"></div>
+          </div>
+          <span class="dash-trend-x-label">Jan 30</span>
+        </div>
+        <div class="dash-trend-col">
+          <div class="dash-trend-stacked">
+            <div class="dash-trend-seg dash-trend-threats" style="height: 44%;"></div>
+            <div class="dash-trend-seg dash-trend-dataloss" style="height: 10%;"></div>
+            <div class="dash-trend-seg dash-trend-sanitized" style="height: 20%;"></div>
+          </div>
+          <span class="dash-trend-x-label">Feb 2</span>
+        </div>
+        <div class="dash-trend-col">
+          <div class="dash-trend-stacked">
+            <div class="dash-trend-seg dash-trend-threats" style="height: 60%;"></div>
+            <div class="dash-trend-seg dash-trend-dataloss" style="height: 14%;"></div>
+            <div class="dash-trend-seg dash-trend-sanitized" style="height: 30%;"></div>
+          </div>
+          <span class="dash-trend-x-label">Feb 5</span>
+        </div>
+        <div class="dash-trend-col">
+          <div class="dash-trend-stacked">
+            <div class="dash-trend-seg dash-trend-threats" style="height: 76%;"></div>
+            <div class="dash-trend-seg dash-trend-dataloss" style="height: 18%;"></div>
+            <div class="dash-trend-seg dash-trend-sanitized" style="height: 36%;"></div>
+          </div>
+          <span class="dash-trend-x-label">Feb 8</span>
+        </div>
+        <div class="dash-trend-col">
+          <div class="dash-trend-stacked">
+            <div class="dash-trend-seg dash-trend-threats" style="height: 88%;"></div>
+            <div class="dash-trend-seg dash-trend-dataloss" style="height: 22%;"></div>
+            <div class="dash-trend-seg dash-trend-sanitized" style="height: 42%;"></div>
+          </div>
+          <span class="dash-trend-x-label">Feb 11</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 6. REMEDIATION ACTIONS CARD ===== -->
+  <div class="audit-card dash-card" style="margin-bottom: 12px;">
+    <div class="audit-card-header">
+      <div class="audit-card-title">
+        <h3>Remediation Actions</h3>
+      </div>
+    </div>
+    <div class="dash-rem-body">
+
+      <!-- File Tagging 92% -->
+      <div class="dash-rem-item">
+        <div class="dash-rem-ring-wrap">
+          <svg class="dash-rem-ring-svg" viewBox="0 0 52 52">
+            <circle class="dash-rem-ring-track" cx="26" cy="26" r="22"/>
+            <circle class="dash-rem-ring-fill" cx="26" cy="26" r="22"
+              stroke="var(--blue-600)"
+              stroke-dasharray="127.2 138.16"
+              stroke-dashoffset="34.54"/>
+          </svg>
+          <span class="dash-rem-ring-pct">92%</span>
+        </div>
+        <div class="dash-rem-label">File Tagging</div>
+        <div class="dash-rem-desc">Tag files with metadata on detection</div>
+      </div>
+
+      <!-- Keep 45% -->
+      <div class="dash-rem-item">
+        <div class="dash-rem-ring-wrap">
+          <svg class="dash-rem-ring-svg" viewBox="0 0 52 52">
+            <circle class="dash-rem-ring-track" cx="26" cy="26" r="22"/>
+            <circle class="dash-rem-ring-fill" cx="26" cy="26" r="22"
+              stroke="var(--neutral-600)"
+              stroke-dasharray="62.11 76.05"
+              stroke-dashoffset="34.54"/>
+          </svg>
+          <span class="dash-rem-ring-pct">45%</span>
+        </div>
+        <div class="dash-rem-label">Keep</div>
+        <div class="dash-rem-desc">Retain files in place after scan</div>
+      </div>
+
+      <!-- Copy 20% -->
+      <div class="dash-rem-item">
+        <div class="dash-rem-ring-wrap">
+          <svg class="dash-rem-ring-svg" viewBox="0 0 52 52">
+            <circle class="dash-rem-ring-track" cx="26" cy="26" r="22"/>
+            <circle class="dash-rem-ring-fill" cx="26" cy="26" r="22"
+              stroke="var(--blue-500)"
+              stroke-dasharray="27.63 110.53"
+              stroke-dashoffset="34.54"/>
+          </svg>
+          <span class="dash-rem-ring-pct">20%</span>
+        </div>
+        <div class="dash-rem-label">Copy</div>
+        <div class="dash-rem-desc">Copy files to quarantine location</div>
+      </div>
+
+      <!-- Move 18% -->
+      <div class="dash-rem-item">
+        <div class="dash-rem-ring-wrap">
+          <svg class="dash-rem-ring-svg" viewBox="0 0 52 52">
+            <circle class="dash-rem-ring-track" cx="26" cy="26" r="22"/>
+            <circle class="dash-rem-ring-fill" cx="26" cy="26" r="22"
+              stroke="var(--blue-400)"
+              stroke-dasharray="24.87 113.29"
+              stroke-dashoffset="34.54"/>
+          </svg>
+          <span class="dash-rem-ring-pct">18%</span>
+        </div>
+        <div class="dash-rem-label">Move</div>
+        <div class="dash-rem-desc">Move files to a secure container</div>
+      </div>
+
+      <!-- Delete 12% -->
+      <div class="dash-rem-item">
+        <div class="dash-rem-ring-wrap">
+          <svg class="dash-rem-ring-svg" viewBox="0 0 52 52">
+            <circle class="dash-rem-ring-track" cx="26" cy="26" r="22"/>
+            <circle class="dash-rem-ring-fill" cx="26" cy="26" r="22"
+              stroke="var(--red-600)"
+              stroke-dasharray="16.58 121.58"
+              stroke-dashoffset="34.54"/>
+          </svg>
+          <span class="dash-rem-ring-pct">12%</span>
+        </div>
+        <div class="dash-rem-label">Delete</div>
+        <div class="dash-rem-desc">Permanently remove threat files</div>
+      </div>
+
+      <!-- Other Remediations 5% -->
+      <div class="dash-rem-item">
+        <div class="dash-rem-ring-wrap">
+          <svg class="dash-rem-ring-svg" viewBox="0 0 52 52">
+            <circle class="dash-rem-ring-track" cx="26" cy="26" r="22"/>
+            <circle class="dash-rem-ring-fill" cx="26" cy="26" r="22"
+              stroke="var(--neutral-400)"
+              stroke-dasharray="6.91 131.25"
+              stroke-dashoffset="34.54"/>
+          </svg>
+          <span class="dash-rem-ring-pct">5%</span>
+        </div>
+        <div class="dash-rem-label">Other Remediations</div>
+        <div class="dash-rem-desc">Custom and policy-based actions</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== 7. FILE TYPE DISTRIBUTION CARD ===== -->
+  <div class="audit-card dash-card" style="margin-bottom: 12px;">
+    <div class="audit-card-header">
+      <div class="audit-card-title">
+        <h3>File Type Distribution</h3>
+      </div>
+      <div class="audit-card-actions">
+        <a href="#" class="card-header-link">View Full Report</a>
+      </div>
+    </div>
+    <div class="dash-filetype-body">
+
+      <!-- Left: Treemap -->
+      <div class="dash-treemap">
+        <!-- Row 1 -->
+        <div class="dash-treemap-row" style="flex: 2.2;">
+          <div class="dash-treemap-cell dash-tm-archive" style="flex: 2.7;">
+            <span class="dash-tm-name">Archive</span>
+            <span class="dash-tm-count">436</span>
+          </div>
+          <div class="dash-treemap-cell dash-tm-application" style="flex: 2;">
+            <span class="dash-tm-name">Application</span>
+            <span class="dash-tm-count">322</span>
+          </div>
+        </div>
+        <!-- Row 2 -->
+        <div class="dash-treemap-row" style="flex: 1.8;">
+          <div class="dash-treemap-cell dash-tm-executable" style="flex: 1.8;">
+            <span class="dash-tm-name">Executables</span>
+            <span class="dash-tm-count">289</span>
+          </div>
+          <div class="dash-treemap-cell dash-tm-graphical" style="flex: 1.1;">
+            <span class="dash-tm-name">Graphical</span>
+            <span class="dash-tm-count">177</span>
+          </div>
+          <div class="dash-treemap-cell dash-tm-diskimage" style="flex: 0.75;">
+            <span class="dash-tm-name">Disk Image</span>
+            <span class="dash-tm-count">120</span>
+          </div>
+        </div>
+        <!-- Row 3 -->
+        <div class="dash-treemap-row" style="flex: 1.4;">
+          <div class="dash-treemap-cell dash-tm-openssl" style="flex: 0.56;">
+            <span class="dash-tm-name">OpenSSL</span>
+            <span class="dash-tm-count">89</span>
+          </div>
+          <div class="dash-treemap-cell dash-tm-pdf" style="flex: 0.4;">
+            <span class="dash-tm-name">PDF</span>
+            <span class="dash-tm-count">63</span>
+          </div>
+          <div class="dash-treemap-cell dash-tm-text" style="flex: 0.34;">
+            <span class="dash-tm-name">Text</span>
+            <span class="dash-tm-count">54</span>
+          </div>
+          <div class="dash-treemap-cell dash-tm-other" style="flex: 0.62;">
+            <span class="dash-tm-name">Other</span>
+            <span class="dash-tm-count">99</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Detection legend -->
+      <div class="dash-filetype-legend">
+        <div class="dash-filetype-legend-header">
+          <span class="dash-filetype-legend-title">Detections</span>
+          <span class="dash-filetype-legend-total">562</span>
+        </div>
+        <div class="dash-filetype-legend-rows">
+          <div class="dash-filetype-legend-row">
+            <div class="dash-ftl-icon dash-ftl-archive">
+              <svg viewBox="0 0 16 16" fill="currentColor"><path d="M13 4H3C2.45 4 2 4.45 2 5v7c0 .55.45 1 1 1h10c.55 0 1-.45 1-1V5c0-.55-.45-1-1-1zm-5 7H6v-1h2v1zm0-2H6V8h2v1zm0-2H6V6h2v1z"/><path d="M13 2H3L2 4h12L13 2z"/></svg>
+            </div>
+            <div class="dash-ftl-info">
+              <span class="dash-ftl-name">Archive</span>
+              <div class="dash-ftl-bar-wrap">
+                <div class="dash-ftl-bar" style="width: 77.6%; background: var(--neutral-500);"></div>
+              </div>
+            </div>
+            <span class="dash-ftl-val">436</span>
+          </div>
+          <div class="dash-filetype-legend-row">
+            <div class="dash-ftl-icon dash-ftl-app">
+              <svg viewBox="0 0 16 16" fill="currentColor"><path d="M11 2H5C4.45 2 4 2.45 4 3v10c0 .55.45 1 1 1h6c.55 0 1-.45 1-1V3c0-.55-.45-1-1-1zM8 13c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm3-3H5V4h6v6z"/></svg>
+            </div>
+            <div class="dash-ftl-info">
+              <span class="dash-ftl-name">Application</span>
+              <div class="dash-ftl-bar-wrap">
+                <div class="dash-ftl-bar" style="width: 57.3%; background: var(--red-500);"></div>
+              </div>
+            </div>
+            <span class="dash-ftl-val">322</span>
+          </div>
+          <div class="dash-filetype-legend-row">
+            <div class="dash-ftl-icon dash-ftl-exe">
+              <svg viewBox="0 0 16 16" fill="currentColor"><path d="M12 2H4C3.45 2 3 2.45 3 3v10c0 .55.45 1 1 1h8c.55 0 1-.45 1-1V3c0-.55-.45-1-1-1zM5 12V4l6 4-6 4z"/></svg>
+            </div>
+            <div class="dash-ftl-info">
+              <span class="dash-ftl-name">Executables</span>
+              <div class="dash-ftl-bar-wrap">
+                <div class="dash-ftl-bar" style="width: 51.4%; background: var(--neutral-400);"></div>
+              </div>
+            </div>
+            <span class="dash-ftl-val">289</span>
+          </div>
+          <div class="dash-filetype-legend-row">
+            <div class="dash-ftl-icon dash-ftl-img">
+              <svg viewBox="0 0 16 16" fill="currentColor"><path d="M13 2H3C2.45 2 2 2.45 2 3v10c0 .55.45 1 1 1h10c.55 0 1-.45 1-1V3c0-.55-.45-1-1-1zm-1 10H4l3-4 2 2.5 2-3L12 12zM5.5 7C4.67 7 4 6.33 4 5.5S4.67 4 5.5 4 7 4.67 7 5.5 6.33 7 5.5 7z"/></svg>
+            </div>
+            <div class="dash-ftl-info">
+              <span class="dash-ftl-name">Graphical</span>
+              <div class="dash-ftl-bar-wrap">
+                <div class="dash-ftl-bar" style="width: 31.5%; background: var(--red-300);"></div>
+              </div>
+            </div>
+            <span class="dash-ftl-val">177</span>
+          </div>
+          <div class="dash-filetype-legend-row">
+            <div class="dash-ftl-icon dash-ftl-pdf">
+              <svg viewBox="0 0 16 16" fill="currentColor"><path d="M12 1H4C3.45 1 3 1.45 3 2v12c0 .55.45 1 1 1h8c.55 0 1-.45 1-1V2c0-.55-.45-1-1-1zM5 5h6v1H5V5zm0 2h6v1H5V7zm0 2h4v1H5V9z"/></svg>
+            </div>
+            <div class="dash-ftl-info">
+              <span class="dash-ftl-name">PDF</span>
+              <div class="dash-ftl-bar-wrap">
+                <div class="dash-ftl-bar" style="width: 11.2%; background: var(--red-400);"></div>
+              </div>
+            </div>
+            <span class="dash-ftl-val">63</span>
+          </div>
+          <div class="dash-filetype-legend-row">
+            <div class="dash-ftl-icon dash-ftl-other">
+              <svg viewBox="0 0 16 16" fill="currentColor"><path d="M13 2H3C2.45 2 2 2.45 2 3v10c0 .55.45 1 1 1h10c.55 0 1-.45 1-1V3c0-.55-.45-1-1-1zm-2 8H5v-1h6v1zm0-2H5V7h6v1zm0-2H5V5h6v1z"/></svg>
+            </div>
+            <div class="dash-ftl-info">
+              <span class="dash-ftl-name">Other</span>
+              <div class="dash-ftl-bar-wrap">
+                <div class="dash-ftl-bar" style="width: 17.6%; background: var(--neutral-300);"></div>
+              </div>
+            </div>
+            <span class="dash-ftl-val">99</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== 8. JOBS IN RANGE TABLE ===== -->
+  <div class="audit-card dash-card" style="margin-bottom: 12px;">
+    <div class="audit-card-header">
+      <div class="audit-card-title">
+        <h3>Jobs in Range</h3>
+        <span class="count">5</span>
+      </div>
+      <div class="audit-card-actions">
+        <a href="#" class="card-header-link" onclick="showPage('jobsPage'); return false;">View All Jobs</a>
+      </div>
+    </div>
+    <div class="table-scroll">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Job Name</th>
+            <th>Status</th>
+            <th>Type</th>
+            <th>Files Processed</th>
+            <th>Detections</th>
+            <th>Start Time</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>AWS Production Full Scan</td>
+            <td><span class="tag tag-running">Running</span></td>
+            <td><span class="dash-job-type-tag dash-jt-scan-now">Scan Now</span></td>
+            <td>
+              <div class="jobs-files-progress">
+                <span>45,231</span>
+                <div class="jobs-files-bar"><div class="jobs-files-bar-fill" style="width:67%;"></div></div>
+                <span style="color:var(--text-muted); font-size:12px;">67%</span>
+              </div>
+            </td>
+            <td class="jobs-detections">312</td>
+            <td>Feb 26, 2026 08:14 AM</td>
+          </tr>
+          <tr>
+            <td>SharePoint Weekly Scheduled</td>
+            <td><span class="tag tag-running">Running</span></td>
+            <td><span class="dash-job-type-tag dash-jt-scheduled">Scheduled Scan</span></td>
+            <td>
+              <div class="jobs-files-progress">
+                <span>12,874</span>
+                <div class="jobs-files-bar"><div class="jobs-files-bar-fill" style="width:38%;"></div></div>
+                <span style="color:var(--text-muted); font-size:12px;">38%</span>
+              </div>
+            </td>
+            <td class="jobs-detections">47</td>
+            <td>Feb 26, 2026 09:00 AM</td>
+          </tr>
+          <tr>
+            <td>Alibaba Real-Time Monitor</td>
+            <td><span class="tag tag-success">Complete</span></td>
+            <td><span class="dash-job-type-tag dash-jt-realtime">Real-Time Scan</span></td>
+            <td>
+              <div class="jobs-files-progress">
+                <span>78,602</span>
+                <div class="jobs-files-bar"><div class="jobs-files-bar-fill" style="width:100%;"></div></div>
+                <span style="color:var(--text-muted); font-size:12px;">100%</span>
+              </div>
+            </td>
+            <td class="jobs-detections">1,204</td>
+            <td>Feb 25, 2026 11:30 PM</td>
+          </tr>
+          <tr>
+            <td>Azure Blob Incremental Scan</td>
+            <td><span class="tag tag-alert">Failed</span></td>
+            <td><span class="dash-job-type-tag dash-jt-scheduled">Scheduled Scan</span></td>
+            <td>
+              <div class="jobs-files-progress">
+                <span>5,119</span>
+                <div class="jobs-files-bar"><div class="jobs-files-bar-fill" style="width:22%; background:var(--danger);"></div></div>
+                <span style="color:var(--text-muted); font-size:12px;">22%</span>
+              </div>
+            </td>
+            <td class="jobs-detections none">—</td>
+            <td>Feb 25, 2026 06:00 AM</td>
+          </tr>
+          <tr>
+            <td>Google Cloud Storage Audit</td>
+            <td><span class="tag tag-cancelled">Cancelled</span></td>
+            <td><span class="dash-job-type-tag dash-jt-scan-now">Scan Now</span></td>
+            <td>
+              <div class="jobs-files-progress">
+                <span>0</span>
+                <div class="jobs-files-bar"><div class="jobs-files-bar-fill" style="width:0%;"></div></div>
+                <span style="color:var(--text-muted); font-size:12px;">0%</span>
+              </div>
+            </td>
+            <td class="jobs-detections none">—</td>
+            <td>Feb 24, 2026 03:45 PM</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ===== 9. UPCOMING SCHEDULED JOBS TABLE ===== -->
+  <div class="audit-card dash-card">
+    <div class="audit-card-header">
+      <div class="audit-card-title">
+        <h3>Upcoming Scheduled Jobs</h3>
+        <span class="count">3</span>
+      </div>
+      <div class="audit-card-actions">
+        <div class="audit-search">
+          <svg viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M7 2C9.76142 2 12 4.23858 12 7C12 8.11285 11.6353 9.13998 11.0205 9.9707L14.0713 13.0068L14.1221 13.0645C14.3629 13.3585 14.3471 13.7932 14.0732 14.0684C13.781 14.3615 13.3061 14.3622 13.0127 14.0703L9.95801 11.0303C9.12955 11.6393 8.1071 12 7 12C4.23858 12 2 9.76142 2 7C2 4.23858 4.23858 2 7 2ZM7 3.5C5.067 3.5 3.5 5.067 3.5 7C3.5 8.933 5.067 10.5 7 10.5C8.933 10.5 10.5 8.933 10.5 7C10.5 5.067 8.933 3.5 7 3.5Z"/></svg>
+          <input type="text" placeholder="Search jobs...">
+        </div>
+        <button class="audit-filter-btn" title="Filter">
+          <svg viewBox="0 0 16 16" fill="currentColor"><path d="M4.75 7.15V2H3.25V7.15C2.52 7.45 2 8.16 2 9C2 9.84 2.52 10.55 3.25 10.85V14H4.75V10.85C5.48 10.55 6 9.84 6 9C6 8.16 5.48 7.45 4.75 7.15Z"/><path d="M10 5C10 4.16 9.48 3.45 8.75 3.15V2H7.25V3.15C6.52 3.45 6 4.16 6 5C6 5.84 6.52 6.55 7.25 6.85V14H8.75V6.85C9.48 6.55 10 5.84 10 5Z"/><path d="M14 11C14 10.16 13.48 9.45 12.75 9.15V2H11.25V9.15C10.52 9.45 10 10.16 10 11C10 11.84 10.52 12.55 11.25 12.85V14H12.75V12.85C13.48 12.55 14 11.84 14 11Z"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="table-scroll">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Job Name</th>
+            <th>Scheduled Scan</th>
+            <th>Workflow</th>
+            <th>Partition</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>AWS S3 Daily Incremental</td>
+            <td>
+              <div class="dash-schedule-cell">
+                <svg viewBox="0 0 16 16" fill="currentColor" style="width:14px;height:14px;color:var(--text-muted);flex-shrink:0;"><path d="M13 2h-1V1h-1.5v1h-5V1H4v1H3C2.45 2 2 2.45 2 3v10c0 .55.45 1 1 1h10c.55 0 1-.45 1-1V3c0-.55-.45-1-1-1zm0 11H3V5h10v8zM5 7H4v1h1V7zm2 0H6v1h1V7zm2 0H8v1h1V7zm2 0h-1v1h1V7zM5 9H4v1h1V9zm2 0H6v1h1V9zm2 0H8v1h1V9zm2 0h-1v1h1V9zM5 11H4v1h1v-1zm2 0H6v1h1v-1z"/></svg>
+                <span>Feb 27, 2026 02:00 AM</span>
+              </div>
+            </td>
+            <td>Default Workflow</td>
+            <td>aws-prod-bucket-1</td>
+          </tr>
+          <tr>
+            <td>SharePoint Compliance Scan</td>
+            <td>
+              <div class="dash-schedule-cell">
+                <svg viewBox="0 0 16 16" fill="currentColor" style="width:14px;height:14px;color:var(--text-muted);flex-shrink:0;"><path d="M13 2h-1V1h-1.5v1h-5V1H4v1H3C2.45 2 2 2.45 2 3v10c0 .55.45 1 1 1h10c.55 0 1-.45 1-1V3c0-.55-.45-1-1-1zm0 11H3V5h10v8zM5 7H4v1h1V7zm2 0H6v1h1V7zm2 0H8v1h1V7zm2 0h-1v1h1V7zM5 9H4v1h1V9zm2 0H6v1h1V9zm2 0H8v1h1V9zm2 0h-1v1h1V9zM5 11H4v1h1v-1zm2 0H6v1h1v-1z"/></svg>
+                <span>Feb 28, 2026 06:00 AM</span>
+              </div>
+            </td>
+            <td>Compliance Workflow</td>
+            <td>sharepoint-corp</td>
+          </tr>
+          <tr>
+            <td>Monthly Full Archive Sweep</td>
+            <td>
+              <div class="dash-schedule-cell">
+                <svg viewBox="0 0 16 16" fill="currentColor" style="width:14px;height:14px;color:var(--text-muted);flex-shrink:0;"><path d="M13 2h-1V1h-1.5v1h-5V1H4v1H3C2.45 2 2 2.45 2 3v10c0 .55.45 1 1 1h10c.55 0 1-.45 1-1V3c0-.55-.45-1-1-1zm0 11H3V5h10v8zM5 7H4v1h1V7zm2 0H6v1h1V7zm2 0H8v1h1V7zm2 0h-1v1h1V7zM5 9H4v1h1V9zm2 0H6v1h1V9zm2 0H8v1h1V9zm2 0h-1v1h1V9zM5 11H4v1h1v-1zm2 0H6v1h1v-1z"/></svg>
+                <span>Mar 1, 2026 12:00 AM</span>
+              </div>
+            </td>
+            <td>Deep Scan Workflow</td>
+            <td>alibaba-archive-zone</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="audit-pagination">
+      <div class="audit-pagination-left">
+        <select>
+          <option selected>10</option>
+          <option>25</option>
+          <option>50</option>
+        </select>
+        <span>items per page</span>
+        <span style="margin-left: 8px; color: var(--text-muted);">|</span>
+        <span style="margin-left: 8px;">1-10 of 15 items</span>
+      </div>
+      <div class="audit-pagination-right">
+        <button class="audit-page-btn" disabled>
+          <svg viewBox="0 0 16 16" fill="currentColor"><path d="M9.99994 12.9995C9.80994 12.9995 9.61994 12.9295 9.46994 12.7795L5.21994 8.52945C4.92994 8.23945 4.92994 7.75945 5.21994 7.46945L9.46994 3.21945C9.75994 2.92945 10.2399 2.92945 10.5299 3.21945C10.8199 3.50945 10.8199 3.98945 10.5299 4.27945L6.80994 7.99945L10.5299 11.7195C10.8199 12.0095 10.8199 12.4895 10.5299 12.7795C10.3799 12.9295 10.1899 12.9995 9.99994 12.9995Z"/></svg>
+        </button>
+        <select class="audit-page-select">
+          <option selected>Page 1</option>
+          <option>Page 2</option>
+        </select>
+        <button class="audit-page-btn">
+          <svg viewBox="0 0 16 16" fill="currentColor"><path d="M5.99994 12.9995C6.18994 12.9995 6.37994 12.9295 6.52994 12.7795L10.7799 8.52945C11.0699 8.23945 11.0699 7.75945 10.7799 7.46945L6.52994 3.21945C6.23994 2.92945 5.75994 2.92945 5.46994 3.21945C5.17994 3.50945 5.17994 3.98945 5.46994 4.27945L9.18994 7.99945L5.46994 11.7195C5.17994 12.0095 5.17994 12.4895 5.46994 12.7795C5.61994 12.9295 5.80994 12.9995 5.99994 12.9995Z"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /#dashboardPage -->
+
         <div id="settingsPage" class="page-view">
         <!-- Page Header -->
         <div class="page-header">
@@ -2345,7 +4228,7 @@
         </div><!-- /auditPage -->
 
         <!-- ==================== USERS PAGE ==================== -->
-        <div id="usersPage" class="page-view active">
+        <div id="usersPage" class="page-view">
           <div class="page-header">
             <h1 class="page-title">Users</h1>
             <button class="btn-primary" onclick="openSlidePanel('addUserPanel')">Add User</button>
@@ -6468,7 +8351,10 @@
 
         // Hide all pages, show the selected one
         document.querySelectorAll('.page-view').forEach(p => p.classList.remove('active'));
-        if (text === 'Audit') {
+        if (text === 'Dashboard') {
+          document.getElementById('dashboardPage').classList.add('active');
+          document.getElementById('componentsPage').style.display = 'none';
+        } else if (text === 'Audit') {
           document.getElementById('auditPage').classList.add('active');
           document.getElementById('componentsPage').style.display = 'none';
         } else if (text === 'Settings') {
