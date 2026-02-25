@@ -741,7 +741,7 @@ select:focus { border-color: var(--primary); outline: none; }
 /* --- Table Scroll Wrapper --- */
 .table-scroll { overflow-x: auto; }
 
-/* --- Data Table (generic) --- */
+/* --- Data Table (base — shared by all tables) --- */
 .data-table {
   width: 100%;
   border-collapse: separate;
@@ -749,7 +749,7 @@ select:focus { border-color: var(--primary); outline: none; }
 }
 .data-table thead th {
   text-align: left;
-  padding: 0 16px;
+  padding: 0 12px;
   height: 56px;
   font-size: 14px;
   font-weight: 500;
@@ -761,15 +761,19 @@ select:focus { border-color: var(--primary); outline: none; }
   line-height: 16px;
   white-space: nowrap;
 }
-.data-table thead th .filter-icon { position: absolute; right: 16px; top: 50%; transform: translateY(-50%); margin-left: 0; }
+.data-table thead th .filter-icon { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); margin-left: 0; }
 .data-table tbody td {
-  padding: 0 16px;
+  padding: 0 12px;
   height: 56px;
   font-size: 14px;
   color: var(--text-subtle);
+  background: var(--surface-card);
   border-bottom: 1px solid var(--border-card);
   vertical-align: middle;
   line-height: 16px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .data-table tbody tr:last-child td { border-bottom: none; }
 .data-table tbody tr:hover td { background: var(--surface-hover); }
@@ -784,14 +788,45 @@ select:focus { border-color: var(--primary); outline: none; }
 [data-theme="dark"] .data-table tbody tr.selected td { background: rgba(29,107,252,0.10); }
 [data-theme="dark"] .data-table tbody tr.selected:hover td { background: rgba(29,107,252,0.16); }
 
-/* Checkbox column (first col) */
-.data-table .col-cb { width: 48px; min-width: 48px; max-width: 48px; padding: 0 12px 0 20px; text-align: center; overflow: visible; }
-.data-table thead th.col-cb { padding-right: 12px; }
+/* Action column — always fixed width, not pinned by default */
+.col-action,
+.data-table .col-action {
+  width: 56px; min-width: 56px; max-width: 56px;
+  text-align: center; padding: 0 !important;
+  overflow: visible;
+}
 
-/* Icon-only / fixed columns */
-.data-table .col-fixed { white-space: nowrap; width: 1%; }
+/*
+ * Big Table (.table-fixed)
+ * Many columns, horizontal scroll, pinned checkbox + name + action columns.
+ * Requires explicit percentage widths on <th> elements.
+ */
+.data-table.table-fixed { table-layout: fixed; }
 
-/* Actions column */
+/* Checkbox column — pinned left */
+.table-fixed .col-cb {
+  width: 48px; min-width: 48px; max-width: 48px;
+  padding: 0 12px 0 20px; text-align: center;
+  overflow: visible; background: var(--surface-card);
+  position: sticky; left: 0; z-index: 2;
+}
+.table-fixed thead th.col-cb { padding-right: 12px; z-index: 3; }
+.table-fixed tbody tr:hover .col-cb { background: var(--surface-hover); }
+.table-fixed tbody tr.selected .col-cb { background: var(--blue-100); }
+.table-fixed tbody tr.selected:hover .col-cb { background: var(--blue-200); }
+
+/* Action column — pinned right, border-left only in big tables */
+.table-fixed .col-action {
+  position: sticky; right: 0; z-index: 2;
+  background: var(--surface-card);
+  border-left: 1px solid var(--border-card);
+}
+.table-fixed thead th.col-action { z-index: 3; }
+.table-fixed tbody tr:hover .col-action { background: var(--surface-hover); }
+.table-fixed tbody tr.selected .col-action { background: var(--blue-100); }
+.table-fixed tbody tr.selected:hover .col-action { background: var(--blue-200); }
+
+/* Actions cell layout (multiple action icons) */
 .data-table .col-actions-cell {
   display: flex; gap: 8px; align-items: center; justify-content: flex-end;
 }
@@ -836,14 +871,23 @@ select:focus { border-color: var(--primary); outline: none; }
 .row-action-menu--inline { position: absolute; top: 100%; right: 0; }
 
 [data-theme="dark"] .data-table thead th { background: var(--surface-card); color: var(--text-subtle); border-color: var(--border-card); }
-[data-theme="dark"] .data-table tbody td { border-color: var(--border-card); color: var(--text-subtle); }
+[data-theme="dark"] .data-table tbody td { background: var(--surface-card); border-color: var(--border-card); color: var(--text-subtle); }
 [data-theme="dark"] .data-table tbody tr:hover td { background: var(--surface-hover); }
+/* Dark mode: pinned columns in big tables */
+[data-theme="dark"] .table-fixed .col-cb { background: var(--surface-card); }
+[data-theme="dark"] .table-fixed tbody tr:hover .col-cb { background: var(--surface-hover); }
+[data-theme="dark"] .table-fixed tbody tr.selected .col-cb { background: rgba(29,107,252,0.10); }
+[data-theme="dark"] .table-fixed tbody tr.selected:hover .col-cb { background: rgba(29,107,252,0.16); }
+[data-theme="dark"] .table-fixed .col-action { background: var(--surface-card); border-left-color: var(--border-card); }
+[data-theme="dark"] .table-fixed tbody tr:hover .col-action { background: var(--surface-hover); }
+[data-theme="dark"] .table-fixed tbody tr.selected .col-action { background: rgba(29,107,252,0.10); }
+[data-theme="dark"] .table-fixed tbody tr.selected:hover .col-action { background: rgba(29,107,252,0.16); }
 
 /* --- Audit Table --- */
 .audit-table { width: 100%; border-collapse: separate; border-spacing: 0; }
 .audit-table thead th {
   text-align: left;
-  padding: 0 16px;
+  padding: 0 12px;
   height: 56px;
   font-size: 14px;
   font-weight: 500;
@@ -855,16 +899,19 @@ select:focus { border-color: var(--primary); outline: none; }
   padding-right: 44px;
   line-height: 16px;
 }
-.audit-table thead th .filter-icon { position: absolute; right: 16px; top: 50%; transform: translateY(-50%); margin-left: 0; }
+.audit-table thead th .filter-icon { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); margin-left: 0; }
 .audit-table tbody td {
-  padding: 0 16px;
+  padding: 0 12px;
   height: 56px;
   font-size: 14px;
   color: var(--text-subtle);
+  background: var(--surface-card);
   border-bottom: 1px solid var(--border-card);
   vertical-align: middle;
   line-height: 16px;
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .audit-table tbody tr:last-child td { border-bottom: none; }
 .audit-table tbody tr:hover td { background: var(--surface-hover); }
@@ -879,22 +926,24 @@ select:focus { border-color: var(--primary); outline: none; }
 .audit-table td.col-details { max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
 [data-theme="dark"] .audit-table thead th { background: var(--surface-card); color: var(--text-subtle); border-color: var(--border-card); }
-[data-theme="dark"] .audit-table tbody td { border-color: var(--border-card); color: var(--text-subtle); }
+[data-theme="dark"] .audit-table tbody td { background: var(--surface-card); border-color: var(--border-card); color: var(--text-subtle); }
 [data-theme="dark"] .audit-table tbody tr:hover td { background: var(--surface-hover); }
 
-/* --- Sticky / Pinned Columns --- */
-.col-pinned {
+/* --- Pinned Name Column (big tables only) --- */
+.table-fixed .col-pinned {
   position: sticky; left: 0; z-index: 2; background: var(--surface-card);
   border-right: 1px solid var(--border-card);
 }
-.data-table thead th.col-pinned { position: sticky; z-index: 3; }
-.data-table tbody tr:hover .col-pinned { background: var(--surface-hover); }
-.data-table tbody tr.selected .col-pinned { background: var(--blue-100); }
-.data-table tbody tr.selected:hover .col-pinned { background: var(--blue-200); }
-[data-theme="dark"] .col-pinned { background: var(--surface-card); border-right-color: var(--border-card); }
-[data-theme="dark"] .data-table tbody tr:hover .col-pinned { background: var(--surface-hover); }
-[data-theme="dark"] .data-table tbody tr.selected .col-pinned { background: rgba(29,107,252,0.10); }
-[data-theme="dark"] .data-table tbody tr.selected:hover .col-pinned { background: rgba(29,107,252,0.16); }
+/* When pinned column follows a checkbox column, offset by 48px */
+.table-fixed .col-cb ~ .col-pinned { left: 48px; }
+.table-fixed thead th.col-pinned { z-index: 3; }
+.table-fixed tbody tr:hover .col-pinned { background: var(--surface-hover); }
+.table-fixed tbody tr.selected .col-pinned { background: var(--blue-100); }
+.table-fixed tbody tr.selected:hover .col-pinned { background: var(--blue-200); }
+[data-theme="dark"] .table-fixed .col-pinned { background: var(--surface-card); border-right-color: var(--border-card); }
+[data-theme="dark"] .table-fixed tbody tr:hover .col-pinned { background: var(--surface-hover); }
+[data-theme="dark"] .table-fixed tbody tr.selected .col-pinned { background: rgba(29,107,252,0.10); }
+[data-theme="dark"] .table-fixed tbody tr.selected:hover .col-pinned { background: rgba(29,107,252,0.16); }
 
 /* --- Table User Cell --- */
 .audit-user { display: flex; align-items: center; gap: 8px; }
@@ -1700,10 +1749,7 @@ select:focus { border-color: var(--primary); outline: none; }
 }
 .cell-action:hover { color: var(--text-strong); }
 .cell-action svg { width: 16px; height: 16px; }
-/* Action column cell */
-td.col-action, th.col-action {
-  width: 56px; text-align: center; padding: 0 !important;
-}
+/* Action column cell — see .col-action in Data Table section */
 
 /* --- Copy Button (maps to cell-action) --- */
 .copy-btn {

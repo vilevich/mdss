@@ -1035,43 +1035,91 @@ body { font-family: var(--font); background: var(--surface-bg); color: var(--tex
      ============================================================ -->
 <section id="tables" class="ds-section">
   <h2 class="ds-section-title">Tables</h2>
-  <p class="ds-section-desc">Data tables with checkbox selection, sortable headers, status tags, and row actions.</p>
+  <p class="ds-section-desc">Two table types: <strong>Small</strong> (auto layout, &le;5 columns, even widths) and <strong>Big</strong> (<code>.table-fixed</code>, many columns, pinned checkbox/name/action, horizontal scroll). All cells use 12px inner padding, 20px outer. Content never wraps — truncates with ellipsis.</p>
 
   <div class="ds-subsection">
-    <p class="ds-label">Data Table</p>
+    <p class="ds-label">Small Table (auto layout, &le;5 columns)</p>
     <div class="ds-preview">
       <div class="table-scroll">
         <table class="data-table">
           <thead><tr>
-            <th class="col-cb"><input type="checkbox"></th>
             <th>Name <span class="filter-icon"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M2 4h12L8 12z"/></svg></span></th>
             <th>Status</th>
-            <th>Actions</th>
+            <th>Provider</th>
+            <th class="col-action"></th>
           </tr></thead>
           <tbody>
-            <tr><td class="col-cb"><input type="checkbox"></td><td>Item Alpha</td><td><span class="tag tag-success">Active</span></td><td><button class="row-action-btn"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="3" r="1.5"/><circle cx="8" cy="8" r="1.5"/><circle cx="8" cy="13" r="1.5"/></svg></button></td></tr>
-            <tr><td class="col-cb"><input type="checkbox"></td><td>Item Beta</td><td><span class="tag tag-accent">Pending</span></td><td><button class="row-action-btn"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="3" r="1.5"/><circle cx="8" cy="8" r="1.5"/><circle cx="8" cy="13" r="1.5"/></svg></button></td></tr>
-            <tr><td class="col-cb"><input type="checkbox"></td><td>Item Gamma</td><td><span class="tag tag-alert">Error</span></td><td><button class="row-action-btn"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="3" r="1.5"/><circle cx="8" cy="8" r="1.5"/><circle cx="8" cy="13" r="1.5"/></svg></button></td></tr>
+            <tr><td>AWS Account Name</td><td><span class="tag tag-success">Operational</span></td><td>Amazon S3</td><td class="col-action"><button class="row-action-btn"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="3" r="1.5"/><circle cx="8" cy="8" r="1.5"/><circle cx="8" cy="13" r="1.5"/></svg></button></td></tr>
+            <tr><td>SharePoint Cloud</td><td><span class="tag tag-alert">Issues Found</span></td><td>SharePoint</td><td class="col-action"><button class="row-action-btn"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="3" r="1.5"/><circle cx="8" cy="8" r="1.5"/><circle cx="8" cy="13" r="1.5"/></svg></button></td></tr>
+            <tr><td>Alibaba Cloud</td><td><span class="tag tag-success">Operational</span></td><td>Alibaba Cloud</td><td class="col-action"><button class="row-action-btn"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="3" r="1.5"/><circle cx="8" cy="8" r="1.5"/><circle cx="8" cy="13" r="1.5"/></svg></button></td></tr>
           </tbody>
         </table>
       </div>
     </div>
     <div class="ds-code">
       <button class="ds-copy" onclick="copyCode(this)">Copy</button>
-      <pre><code>&lt;div class="table-scroll"&gt;
-  &lt;table class="data-table"&gt;
+      <pre><code>&lt;!-- Small table: auto layout, no pinning, even widths --&gt;
+&lt;table class="data-table"&gt;
+  &lt;thead&gt;&lt;tr&gt;
+    &lt;th&gt;Name&lt;/th&gt;
+    &lt;th&gt;Status&lt;/th&gt;
+    &lt;th&gt;Provider&lt;/th&gt;
+    &lt;th class="col-action"&gt;&lt;/th&gt;
+  &lt;/tr&gt;&lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;AWS Account&lt;/td&gt;
+      &lt;td&gt;&lt;span class="tag tag-success"&gt;Operational&lt;/span&gt;&lt;/td&gt;
+      &lt;td&gt;Amazon S3&lt;/td&gt;
+      &lt;td class="col-action"&gt;&lt;button class="row-action-btn"&gt;...&lt;/button&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+    </div>
+  </div>
+
+  <div class="ds-subsection">
+    <p class="ds-label">Big Table (fixed layout, pinned columns, horizontal scroll)</p>
+    <div class="ds-preview">
+      <div class="table-scroll">
+        <table class="data-table table-fixed" style="min-width:800px;">
+          <thead><tr>
+            <th class="col-cb"><div class="cb"><svg class="cb-check" viewBox="0 0 16 16" fill="none"><path d="M6.75 11.75c-.26 0-.51-.1-.71-.29l-2.75-2.75a1.003 1.003 0 011.41-1.41l2.04 2.04 5.05-5.05a1.003 1.003 0 011.41 1.41l-5.75 5.75c-.2.2-.45.29-.71.29z" fill="white"/></svg></div></th>
+            <th class="col-pinned" style="width:25%;">Name <span class="filter-icon"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M2 4h12L8 12z"/></svg></span></th>
+            <th style="width:15%;">Status</th>
+            <th style="width:20%;">Group</th>
+            <th style="width:30%;">Storage ClientID</th>
+            <th class="col-action"></th>
+          </tr></thead>
+          <tbody>
+            <tr><td class="col-cb"><div class="cb"><svg class="cb-check" viewBox="0 0 16 16" fill="none"><path d="M6.75 11.75c-.26 0-.51-.1-.71-.29l-2.75-2.75a1.003 1.003 0 011.41-1.41l2.04 2.04 5.05-5.05a1.003 1.003 0 011.41 1.41l-5.75 5.75c-.2.2-.45.29-.71.29z" fill="white"/></svg></div></td><td class="col-pinned">production-assets</td><td><span class="tag tag-success">Operational</span></td><td>Default Group</td><td>a1b2c3d4-e5f6-7890-abcd</td><td class="col-action"><button class="row-action-btn"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="3" r="1.5"/><circle cx="8" cy="8" r="1.5"/><circle cx="8" cy="13" r="1.5"/></svg></button></td></tr>
+            <tr><td class="col-cb"><div class="cb"><svg class="cb-check" viewBox="0 0 16 16" fill="none"><path d="M6.75 11.75c-.26 0-.51-.1-.71-.29l-2.75-2.75a1.003 1.003 0 011.41-1.41l2.04 2.04 5.05-5.05a1.003 1.003 0 011.41 1.41l-5.75 5.75c-.2.2-.45.29-.71.29z" fill="white"/></svg></div></td><td class="col-pinned">staging-uploads</td><td><span class="tag tag-accent">Pending</span></td><td>Development</td><td>b2c3d4e5-f6a7-8901-bcde</td><td class="col-action"><button class="row-action-btn"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="3" r="1.5"/><circle cx="8" cy="8" r="1.5"/><circle cx="8" cy="13" r="1.5"/></svg></button></td></tr>
+            <tr><td class="col-cb"><div class="cb"><svg class="cb-check" viewBox="0 0 16 16" fill="none"><path d="M6.75 11.75c-.26 0-.51-.1-.71-.29l-2.75-2.75a1.003 1.003 0 011.41-1.41l2.04 2.04 5.05-5.05a1.003 1.003 0 011.41 1.41l-5.75 5.75c-.2.2-.45.29-.71.29z" fill="white"/></svg></div></td><td class="col-pinned">dev-test-bucket</td><td><span class="tag tag-alert">Issues Found</span></td><td>Production</td><td>c3d4e5f6-a7b8-9012-cdef</td><td class="col-action"><button class="row-action-btn"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="3" r="1.5"/><circle cx="8" cy="8" r="1.5"/><circle cx="8" cy="13" r="1.5"/></svg></button></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="ds-code">
+      <button class="ds-copy" onclick="copyCode(this)">Copy</button>
+      <pre><code>&lt;!-- Big table: fixed layout, pinned columns, horizontal scroll --&gt;
+&lt;div class="table-scroll"&gt;
+  &lt;table class="data-table table-fixed" style="min-width:1100px;"&gt;
     &lt;thead&gt;&lt;tr&gt;
-      &lt;th class="col-cb"&gt;&lt;input type="checkbox"&gt;&lt;/th&gt;
-      &lt;th&gt;Name&lt;/th&gt;
-      &lt;th&gt;Status&lt;/th&gt;
-      &lt;th&gt;Actions&lt;/th&gt;
+      &lt;th class="col-cb"&gt;&lt;div class="cb"&gt;...&lt;/div&gt;&lt;/th&gt;
+      &lt;th class="col-pinned" style="width:25%;"&gt;Name&lt;/th&gt;
+      &lt;th style="width:15%;"&gt;Status&lt;/th&gt;
+      &lt;th style="width:20%;"&gt;Group&lt;/th&gt;
+      &lt;th style="width:30%;"&gt;Storage ClientID&lt;/th&gt;
+      &lt;th class="col-action"&gt;&lt;/th&gt;
     &lt;/tr&gt;&lt;/thead&gt;
     &lt;tbody&gt;
       &lt;tr&gt;
-        &lt;td class="col-cb"&gt;&lt;input type="checkbox"&gt;&lt;/td&gt;
-        &lt;td&gt;Item Alpha&lt;/td&gt;
-        &lt;td&gt;&lt;span class="tag tag-success"&gt;Active&lt;/span&gt;&lt;/td&gt;
-        &lt;td&gt;&lt;button class="row-action-btn"&gt;...&lt;/button&gt;&lt;/td&gt;
+        &lt;td class="col-cb"&gt;&lt;div class="cb"&gt;...&lt;/div&gt;&lt;/td&gt;
+        &lt;td class="col-pinned"&gt;production-assets&lt;/td&gt;
+        &lt;td&gt;&lt;span class="tag tag-success"&gt;Operational&lt;/span&gt;&lt;/td&gt;
+        &lt;td&gt;Default Group&lt;/td&gt;
+        &lt;td&gt;a1b2c3d4-e5f6-7890&lt;/td&gt;
+        &lt;td class="col-action"&gt;&lt;button class="row-action-btn"&gt;...&lt;/button&gt;&lt;/td&gt;
       &lt;/tr&gt;
     &lt;/tbody&gt;
   &lt;/table&gt;
@@ -1098,9 +1146,12 @@ body { font-family: var(--font); background: var(--surface-bg); color: var(--tex
   <table class="ds-table">
     <thead><tr><th>Class</th><th>Description</th></tr></thead>
     <tbody>
-      <tr><td><code>.data-table</code></td><td>Full-width data table with styled headers</td></tr>
-      <tr><td><code>.table-scroll</code></td><td>Horizontal scroll wrapper for wide tables</td></tr>
-      <tr><td><code>.col-cb</code></td><td>Checkbox column cell</td></tr>
+      <tr><td><code>.data-table</code></td><td>Base table — auto layout, even column widths (small tables)</td></tr>
+      <tr><td><code>.table-fixed</code></td><td>Modifier — enables <code>table-layout: fixed</code>, pinned columns, horizontal scroll (big tables)</td></tr>
+      <tr><td><code>.table-scroll</code></td><td>Horizontal scroll wrapper — required around all tables</td></tr>
+      <tr><td><code>.col-cb</code></td><td>48px checkbox column — sticky left in <code>.table-fixed</code></td></tr>
+      <tr><td><code>.col-pinned</code></td><td>Sticky left name column with right border — only in <code>.table-fixed</code></td></tr>
+      <tr><td><code>.col-action</code></td><td>56px action column — sticky right with left border in <code>.table-fixed</code></td></tr>
       <tr><td><code>.filter-icon</code></td><td>Sort/filter icon next to column header</td></tr>
       <tr><td><code>.row-action-btn</code></td><td>Three-dot action menu button in table rows</td></tr>
       <tr><td><code>.audit-user</code></td><td>User avatar + name cell layout</td></tr>
