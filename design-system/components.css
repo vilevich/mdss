@@ -712,8 +712,8 @@ select:focus { border-color: var(--primary); outline: none; }
 /* --- Custom Checkbox --- */
 .cb {
   width: 16px; height: 16px;
-  border: 1.5px solid var(--neutral-400);
-  border-radius: 2px;
+  border: 1px solid #c7ccd5;
+  border-radius: 4px;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -731,6 +731,7 @@ select:focus { border-color: var(--primary); outline: none; }
   background: var(--primary-hover);
   border-color: var(--primary-hover);
 }
+.cb.disabled { opacity: 0.5; cursor: default; pointer-events: none; }
 .cb svg { display: none; width: 16px; height: 16px; }
 .cb.checked svg.cb-check, .cb.semi svg.cb-semi { display: block; }
 
