@@ -241,6 +241,7 @@ All buttons share: `height: 32px`, `font-size: 14px`, `font-weight: 500`, `borde
 | `.row-action-menu--inline` | Absolute-positioned variant (nested inside `.row-action-btn`) |
 | `.row-action-menu-item` | Menu item row with icon + label + `.danger` variant |
 | `.row-action-menu-divider` | Menu separator line |
+| `.col-cb` | Checkbox column (48px fixed width, constrained padding — no filter-icon space) |
 | `.col-dropdown` | Sort/pin popover menu |
 | `.cell-action` | Table row action icon |
 | `.col-pinned` | Sticky column (`position: sticky; left: 0`) with right border stroke |
@@ -401,6 +402,35 @@ Panel banners support inline SVG icons (16×16, flex-shrink: 0) and anchor links
 |-------|-------------|
 | `.toast` | Bottom-right snackbar |
 | `.top-toast` | Top-right notification with icon + title + description |
+
+### Provider Icons
+
+| Class | Description |
+|-------|-------------|
+| `.inv-provider` | Flex wrapper for icon + text (`display: flex; align-items: center; gap: 8px`) |
+| `.inv-provider-icon` | 20×20 rounded badge (centered white text, `font-size: 10px; font-weight: 700`) |
+| `.inv-provider-icon.aws` | AWS (dark navy `#232f3e`) |
+| `.inv-provider-icon.azure` | Azure (blue `#0078d4`) |
+| `.inv-provider-icon.gcp` | GCP (red `#ea4335`) |
+| `.inv-provider-icon.s3` | S3 (green `#3b8526`) |
+| `.inv-provider-icon.minio` | MinIO (red `#c72c48`) |
+| `.inv-provider-icon.wasabi` | Wasabi (green `#56b847`) |
+| +11 more variants | Backblaze, DigitalOcean, Cloudflare, IBM, Oracle, Ceph, NetApp, Dell, Nutanix, Pure, Hitachi |
+
+### Column Visibility Panel
+
+| Class | Description |
+|-------|-------------|
+| `.col-vis-item` | Row item with drag handle + label + toggle (`display: flex; gap: 12px; border-bottom`) |
+| `.col-vis-drag` | 16×16 grab-cursor drag handle icon |
+| `.col-vis-label` | Column name text (`flex: 1; font-size: 14px`) |
+| `.col-vis-section-title` | Fixed-column section heading (12px uppercase, muted) |
+
+### Count-More Badge
+
+| Class | Description |
+|-------|-------------|
+| `.count-more` | "+N more" overflow pill (`font-size: 11px; border-radius: 10px; blue-100 bg`) |
 
 ### Miscellaneous
 

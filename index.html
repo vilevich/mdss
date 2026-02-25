@@ -813,30 +813,7 @@
        .grid-card-type, .data-table
        ================================================================ */
 
-    /* Provider cell with icon */
-    .inv-provider { display: flex; align-items: center; gap: 8px; }
-    .inv-provider-icon {
-      width: 20px; height: 20px; border-radius: 4px; flex-shrink: 0;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 10px; font-weight: 700; color: #fff;
-    }
-    .inv-provider-icon.aws { background: #232f3e; }
-    .inv-provider-icon.box { background: #0061d5; }
-    .inv-provider-icon.alibaba { background: #ff6a00; }
-    .inv-provider-icon.sharepoint { background: #038387; }
-    .inv-provider-icon.azure { background: #0078d4; }
-    .inv-provider-icon.gcp { background: #4285f4; }
-    .inv-provider-icon.onedrive { background: #0078d4; }
-    .inv-provider-icon.oracle { background: #c74634; }
-    .inv-provider-icon.netapp { background: #0067c5; }
-    .inv-provider-icon.ftp { background: #6b7a90; }
-    .inv-provider-icon.nfs { background: #4a5568; }
-    .inv-provider-icon.smb { background: #4a5568; }
-    .inv-provider-icon.sftp { background: #4a5568; }
-    .inv-provider-icon.s3c { background: #e25d33; }
-    .inv-provider-icon.cubbit { background: #00b4d8; }
-    .inv-provider-icon.dell { background: #007db8; }
-    .inv-provider-icon.mft { background: #1d6bfc; }
+    /* .inv-provider / .inv-provider-icon — moved to DS components.css */
 
     /* Recommended integrations (promo cards) */
     .inv-promo {
@@ -900,10 +877,7 @@
     .acct-donut-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
 
     /* Job summary header */
-    .acct-job-summary-header { display: flex; align-items: center; gap: 12px; }
-    .acct-job-summary-meta { font-size: 13px; color: var(--text-muted); font-weight: 400; }
-    .acct-job-summary-link { font-size: 13px; color: var(--primary); text-decoration: none; cursor: pointer; font-weight: 500; margin-left: auto; }
-    .acct-job-summary-link:hover { text-decoration: underline; }
+    /* acct-job-summary-header/meta/link removed — now uses DS .audit-card-title / .count / .card-header-link */
 
     /* Client ID cell */
     .acct-client-id { display: flex; align-items: center; gap: 6px; max-width: 180px; }
@@ -911,24 +885,7 @@
     .acct-copy-btn { width: 16px; height: 16px; cursor: pointer; color: var(--text-muted); flex-shrink: 0; }
     .acct-copy-btn:hover { color: var(--primary); }
 
-    /* Group cell with extra badge */
-    .acct-group-more { font-size: 11px; color: var(--primary); background: var(--blue-100); border-radius: 10px; padding: 1px 6px; font-weight: 500; white-space: nowrap; }
-
-    /* Column Visibility panel items */
-    .col-vis-item {
-      display: flex; align-items: center; gap: 12px;
-      padding: 10px 0; border-bottom: 1px solid var(--border-card);
-    }
-    .col-vis-item:last-child { border-bottom: none; }
-    .col-vis-drag {
-      width: 16px; height: 16px; color: var(--text-muted); cursor: grab; flex-shrink: 0;
-      font-size: 11px; letter-spacing: 2px; user-select: none;
-    }
-    .col-vis-label { flex: 1; font-size: 14px; color: var(--text-strong); }
-    .col-vis-section-title {
-      font-size: 12px; font-weight: 500; color: var(--text-muted);
-      margin-bottom: 4px; padding-bottom: 4px;
-    }
+    /* .tag-keyword → DS .tag-keyword | .count-more → DS | .col-vis-* → DS */
 
     /* Actions dropdown for detail page header */
     .acct-actions-wrap { position: relative; display: inline-block; }
@@ -945,7 +902,7 @@
     .acct-settings-link:hover { text-decoration: underline; }
 
     /* Dark mode — Account Detail */
-    [data-theme="dark"] .acct-group-more { background: rgba(29,107,252,0.15); color: var(--blue-400); }
+    /* .count-more dark override → now in DS as .count-more */
     [data-theme="dark"] .acct-donut-dot { opacity: 0.8; }
 
   </style>
@@ -2731,13 +2688,13 @@
                     <table class="data-table" id="acctUnitsTable">
                       <thead>
                         <tr>
-                          <th style="width:22%;">Name <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77H12.165"/><path d="M1.715 5.44H14.275"/><path d="M5.515 12.09H10.475"/></svg></span></th>
-                          <th style="width:12%;">Status</th>
-                          <th style="width:18%;">Client ID</th>
-                          <th style="width:14%;">Group</th>
-                          <th style="width:10%;">Files</th>
-                          <th style="width:18%;">Last Scanned</th>
-                          <th style="width:56px;"></th>
+                          <th class="col-cb"><input type="checkbox" style="margin:0;"></th>
+                          <th class="col-pinned" style="width:22%;">Storage Unit <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77C3.635 8.77 3.455 8.7 3.315 8.56C3.175 8.42 3.105 8.25 3.105 8.05C3.105 7.85 3.175 7.68 3.315 7.54C3.455 7.4 3.625 7.33 3.825 7.33H12.155C12.355 7.33 12.535 7.4 12.675 7.54C12.815 7.68 12.885 7.85 12.885 8.05C12.885 8.25 12.815 8.42 12.675 8.56C12.535 8.7 12.365 8.77 12.165 8.77H3.835Z"/><path d="M1.715 5.44C1.515 5.44 1.345 5.37 1.205 5.23C1.065 5.09 0.994995 4.92 0.994995 4.72C0.994995 4.52 1.065 4.35 1.205 4.21C1.345 4.07 1.515 4 1.715 4H14.275C14.475 4 14.645 4.07 14.785 4.21C14.925 4.35 14.995 4.52 14.995 4.72C14.995 4.92 14.925 5.09 14.785 5.23C14.645 5.37 14.475 5.44 14.275 5.44H1.715Z"/><path d="M5.515 12.09C5.315 12.09 5.14499 12.02 5.00499 11.88C4.86499 11.74 4.795 11.57 4.795 11.37C4.795 11.17 4.86499 11 5.00499 10.86C5.14499 10.72 5.315 10.65 5.515 10.65H10.475C10.675 10.65 10.845 10.72 10.985 10.86C11.125 11 11.195 11.17 11.195 11.37C11.195 11.57 11.125 11.74 10.985 11.88C10.845 12.02 10.675 12.09 10.475 12.09H5.515Z"/></svg></span></th>
+                          <th style="width:11%;">Status <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77C3.635 8.77 3.455 8.7 3.315 8.56C3.175 8.42 3.105 8.25 3.105 8.05C3.105 7.85 3.175 7.68 3.315 7.54C3.455 7.4 3.625 7.33 3.825 7.33H12.155C12.355 7.33 12.535 7.4 12.675 7.54C12.815 7.68 12.885 7.85 12.885 8.05C12.885 8.25 12.815 8.42 12.675 8.56C12.535 8.7 12.365 8.77 12.165 8.77H3.835Z"/><path d="M1.715 5.44C1.515 5.44 1.345 5.37 1.205 5.23C1.065 5.09 0.994995 4.92 0.994995 4.72C0.994995 4.52 1.065 4.35 1.205 4.21C1.345 4.07 1.515 4 1.715 4H14.275C14.475 4 14.645 4.07 14.785 4.21C14.925 4.35 14.995 4.52 14.995 4.72C14.995 4.92 14.925 5.09 14.785 5.23C14.645 5.37 14.475 5.44 14.275 5.44H1.715Z"/><path d="M5.515 12.09C5.315 12.09 5.14499 12.02 5.00499 11.88C4.86499 11.74 4.795 11.57 4.795 11.37C4.795 11.17 4.86499 11 5.00499 10.86C5.14499 10.72 5.315 10.65 5.515 10.65H10.475C10.675 10.65 10.845 10.72 10.985 10.86C11.125 11 11.195 11.17 11.195 11.37C11.195 11.57 11.125 11.74 10.985 11.88C10.845 12.02 10.675 12.09 10.475 12.09H5.515Z"/></svg></span></th>
+                          <th style="width:14%;">Group <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77C3.635 8.77 3.455 8.7 3.315 8.56C3.175 8.42 3.105 8.25 3.105 8.05C3.105 7.85 3.175 7.68 3.315 7.54C3.455 7.4 3.625 7.33 3.825 7.33H12.155C12.355 7.33 12.535 7.4 12.675 7.54C12.815 7.68 12.885 7.85 12.885 8.05C12.885 8.25 12.815 8.42 12.675 8.56C12.535 8.7 12.365 8.77 12.165 8.77H3.835Z"/><path d="M1.715 5.44C1.515 5.44 1.345 5.37 1.205 5.23C1.065 5.09 0.994995 4.92 0.994995 4.72C0.994995 4.52 1.065 4.35 1.205 4.21C1.345 4.07 1.515 4 1.715 4H14.275C14.475 4 14.645 4.07 14.785 4.21C14.925 4.35 14.995 4.52 14.995 4.72C14.995 4.92 14.925 5.09 14.785 5.23C14.645 5.37 14.475 5.44 14.275 5.44H1.715Z"/><path d="M5.515 12.09C5.315 12.09 5.14499 12.02 5.00499 11.88C4.86499 11.74 4.795 11.57 4.795 11.37C4.795 11.17 4.86499 11 5.00499 10.86C5.14499 10.72 5.315 10.65 5.515 10.65H10.475C10.675 10.65 10.845 10.72 10.985 10.86C11.125 11 11.195 11.17 11.195 11.37C11.195 11.57 11.125 11.74 10.985 11.88C10.845 12.02 10.675 12.09 10.475 12.09H5.515Z"/></svg></span></th>
+                          <th style="width:22%;">Storage ClientID <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77C3.635 8.77 3.455 8.7 3.315 8.56C3.175 8.42 3.105 8.25 3.105 8.05C3.105 7.85 3.175 7.68 3.315 7.54C3.455 7.4 3.625 7.33 3.825 7.33H12.155C12.355 7.33 12.535 7.4 12.675 7.54C12.815 7.68 12.885 7.85 12.885 8.05C12.885 8.25 12.815 8.42 12.675 8.56C12.535 8.7 12.365 8.77 12.165 8.77H3.835Z"/><path d="M1.715 5.44C1.515 5.44 1.345 5.37 1.205 5.23C1.065 5.09 0.994995 4.92 0.994995 4.72C0.994995 4.52 1.065 4.35 1.205 4.21C1.345 4.07 1.515 4 1.715 4H14.275C14.475 4 14.645 4.07 14.785 4.21C14.925 4.35 14.995 4.52 14.995 4.72C14.995 4.92 14.925 5.09 14.785 5.23C14.645 5.37 14.475 5.44 14.275 5.44H1.715Z"/><path d="M5.515 12.09C5.315 12.09 5.14499 12.02 5.00499 11.88C4.86499 11.74 4.795 11.57 4.795 11.37C4.795 11.17 4.86499 11 5.00499 10.86C5.14499 10.72 5.315 10.65 5.515 10.65H10.475C10.675 10.65 10.845 10.72 10.985 10.86C11.125 11 11.195 11.17 11.195 11.37C11.195 11.57 11.125 11.74 10.985 11.88C10.845 12.02 10.675 12.09 10.475 12.09H5.515Z"/></svg></span></th>
+                          <th style="width:18%;">Last Job <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77C3.635 8.77 3.455 8.7 3.315 8.56C3.175 8.42 3.105 8.25 3.105 8.05C3.105 7.85 3.175 7.68 3.315 7.54C3.455 7.4 3.625 7.33 3.825 7.33H12.155C12.355 7.33 12.535 7.4 12.675 7.54C12.815 7.68 12.885 7.85 12.885 8.05C12.885 8.25 12.815 8.42 12.675 8.56C12.535 8.7 12.365 8.77 12.165 8.77H3.835Z"/><path d="M1.715 5.44C1.515 5.44 1.345 5.37 1.205 5.23C1.065 5.09 0.994995 4.92 0.994995 4.72C0.994995 4.52 1.065 4.35 1.205 4.21C1.345 4.07 1.515 4 1.715 4H14.275C14.475 4 14.645 4.07 14.785 4.21C14.925 4.35 14.995 4.52 14.995 4.72C14.995 4.92 14.925 5.09 14.785 5.23C14.645 5.37 14.475 5.44 14.275 5.44H1.715Z"/><path d="M5.515 12.09C5.315 12.09 5.14499 12.02 5.00499 11.88C4.86499 11.74 4.795 11.57 4.795 11.37C4.795 11.17 4.86499 11 5.00499 10.86C5.14499 10.72 5.315 10.65 5.515 10.65H10.475C10.675 10.65 10.845 10.72 10.985 10.86C11.125 11 11.195 11.17 11.195 11.37C11.195 11.57 11.125 11.74 10.985 11.88C10.845 12.02 10.675 12.09 10.475 12.09H5.515Z"/></svg></span></th>
+                          <th class="col-fixed" style="padding-right:20px;"></th>
                         </tr>
                       </thead>
                       <tbody id="acctUnitsBody">
@@ -2748,14 +2705,15 @@
                   <div class="audit-pagination" id="acctUnitsPagination">
                     <div class="audit-pagination-left">
                       <select id="acctUnitsPerPage"><option selected>10</option><option>25</option><option>50</option></select>
-                      <span>per page</span>
+                      <span>items per page</span>
+                      <span style="margin-left: 8px; color: var(--text-muted);">|</span>
+                      <span id="acctUnitsPageInfo" style="margin-left: 8px;">1-10 of 15 items</span>
                     </div>
-                    <div class="audit-pagination-center">
-                      <button class="pagination-btn" id="acctUnitsPrev">&lsaquo;</button>
-                      <select id="acctUnitsPageSelect"></select>
-                      <button class="pagination-btn" id="acctUnitsNext">&rsaquo;</button>
+                    <div class="audit-pagination-right">
+                      <button class="audit-page-btn" id="acctUnitsPrev" disabled><svg viewBox="0 0 16 16" fill="currentColor"><path d="M11.354 1.646a.5.5 0 010 .708L5.707 8l5.647 5.646a.5.5 0 01-.708.708l-6-6a.5.5 0 010-.708l6-6a.5.5 0 01.708 0z"/></svg></button>
+                      <select class="audit-page-select" id="acctUnitsPageSelect"><option selected>Page 1</option></select>
+                      <button class="audit-page-btn" id="acctUnitsNext"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M4.646 1.646a.5.5 0 01.708 0l6 6a.5.5 0 010 .708l-6 6a.5.5 0 01-.708-.708L10.293 8 4.646 2.354a.5.5 0 010-.708z"/></svg></button>
                     </div>
-                    <div class="audit-pagination-right"><span id="acctUnitsRange"></span></div>
                   </div>
                 </div>
               </div><!-- /acct-panel-units -->
@@ -2765,11 +2723,11 @@
                 <!-- Latest Job Summary -->
                 <div class="audit-card" style="margin-bottom:16px;">
                   <div class="audit-card-header">
-                    <div class="acct-job-summary-header">
+                    <div class="audit-card-title">
                       <h3>Latest Job Summary</h3>
-                      <span class="acct-job-summary-meta" id="acctJobSummaryMeta">Scheduled File Scan &middot; Jan 15, 2025 10:30 AM</span>
+                      <span class="count" id="acctJobSummaryMeta">Scheduled &middot; Jan 15, 2025 10:30 AM</span>
                     </div>
-                    <a class="acct-job-summary-link" id="acctJobSummaryLink">View Full Report &rarr;</a>
+                    <a class="card-header-link" id="acctJobSummaryLink">View Report <svg viewBox="0 0 16 16" fill="currentColor"><path d="M4.646 1.646a.5.5 0 01.708 0l6 6a.5.5 0 010 .708l-6 6a.5.5 0 01-.708-.708L10.293 8 4.646 2.354a.5.5 0 010-.708z"/></svg></a>
                   </div>
                   <div class="acct-donut-row" id="acctDonutRow">
                     <!-- 3 donut charts populated by JS -->
@@ -2800,13 +2758,15 @@
                     <table class="data-table" id="acctJobsTable">
                       <thead>
                         <tr>
-                          <th style="width:22%;">Job Name <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77H12.165"/><path d="M1.715 5.44H14.275"/><path d="M5.515 12.09H10.475"/></svg></span></th>
-                          <th style="width:14%;">Status</th>
-                          <th style="width:12%;">Type</th>
-                          <th style="width:10%;">Files</th>
-                          <th style="width:12%;">Detections</th>
-                          <th style="width:18%;">Date</th>
-                          <th style="width:56px;"></th>
+                          <th class="col-cb"><input type="checkbox" style="margin:0;"></th>
+                          <th class="col-pinned" style="width:15%;">Job Name <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77C3.635 8.77 3.455 8.7 3.315 8.56C3.175 8.42 3.105 8.25 3.105 8.05C3.105 7.85 3.175 7.68 3.315 7.54C3.455 7.4 3.625 7.33 3.825 7.33H12.155C12.355 7.33 12.535 7.4 12.675 7.54C12.815 7.68 12.885 7.85 12.885 8.05C12.885 8.25 12.815 8.42 12.675 8.56C12.535 8.7 12.365 8.77 12.165 8.77H3.835Z"/><path d="M1.715 5.44C1.515 5.44 1.345 5.37 1.205 5.23C1.065 5.09 0.994995 4.92 0.994995 4.72C0.994995 4.52 1.065 4.35 1.205 4.21C1.345 4.07 1.515 4 1.715 4H14.275C14.475 4 14.645 4.07 14.785 4.21C14.925 4.35 14.995 4.52 14.995 4.72C14.995 4.92 14.925 5.09 14.785 5.23C14.645 5.37 14.475 5.44 14.275 5.44H1.715Z"/><path d="M5.515 12.09C5.315 12.09 5.14499 12.02 5.00499 11.88C4.86499 11.74 4.795 11.57 4.795 11.37C4.795 11.17 4.86499 11 5.00499 10.86C5.14499 10.72 5.315 10.65 5.515 10.65H10.475C10.675 10.65 10.845 10.72 10.985 10.86C11.125 11 11.195 11.17 11.195 11.37C11.195 11.57 11.125 11.74 10.985 11.88C10.845 12.02 10.675 12.09 10.475 12.09H5.515Z"/></svg></span></th>
+                          <th style="width:9%;">Status <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77C3.635 8.77 3.455 8.7 3.315 8.56C3.175 8.42 3.105 8.25 3.105 8.05C3.105 7.85 3.175 7.68 3.315 7.54C3.455 7.4 3.625 7.33 3.825 7.33H12.155C12.355 7.33 12.535 7.4 12.675 7.54C12.815 7.68 12.885 7.85 12.885 8.05C12.885 8.25 12.815 8.42 12.675 8.56C12.535 8.7 12.365 8.77 12.165 8.77H3.835Z"/><path d="M1.715 5.44C1.515 5.44 1.345 5.37 1.205 5.23C1.065 5.09 0.994995 4.92 0.994995 4.72C0.994995 4.52 1.065 4.35 1.205 4.21C1.345 4.07 1.515 4 1.715 4H14.275C14.475 4 14.645 4.07 14.785 4.21C14.925 4.35 14.995 4.52 14.995 4.72C14.995 4.92 14.925 5.09 14.785 5.23C14.645 5.37 14.475 5.44 14.275 5.44H1.715Z"/><path d="M5.515 12.09C5.315 12.09 5.14499 12.02 5.00499 11.88C4.86499 11.74 4.795 11.57 4.795 11.37C4.795 11.17 4.86499 11 5.00499 10.86C5.14499 10.72 5.315 10.65 5.515 10.65H10.475C10.675 10.65 10.845 10.72 10.985 10.86C11.125 11 11.195 11.17 11.195 11.37C11.195 11.57 11.125 11.74 10.985 11.88C10.845 12.02 10.675 12.09 10.475 12.09H5.515Z"/></svg></span></th>
+                          <th style="width:11%;">Files Processed <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77C3.635 8.77 3.455 8.7 3.315 8.56C3.175 8.42 3.105 8.25 3.105 8.05C3.105 7.85 3.175 7.68 3.315 7.54C3.455 7.4 3.625 7.33 3.825 7.33H12.155C12.355 7.33 12.535 7.4 12.675 7.54C12.815 7.68 12.885 7.85 12.885 8.05C12.885 8.25 12.815 8.42 12.675 8.56C12.535 8.7 12.365 8.77 12.165 8.77H3.835Z"/><path d="M1.715 5.44C1.515 5.44 1.345 5.37 1.205 5.23C1.065 5.09 0.994995 4.92 0.994995 4.72C0.994995 4.52 1.065 4.35 1.205 4.21C1.345 4.07 1.515 4 1.715 4H14.275C14.475 4 14.645 4.07 14.785 4.21C14.925 4.35 14.995 4.52 14.995 4.72C14.995 4.92 14.925 5.09 14.785 5.23C14.645 5.37 14.475 5.44 14.275 5.44H1.715Z"/><path d="M5.515 12.09C5.315 12.09 5.14499 12.02 5.00499 11.88C4.86499 11.74 4.795 11.57 4.795 11.37C4.795 11.17 4.86499 11 5.00499 10.86C5.14499 10.72 5.315 10.65 5.515 10.65H10.475C10.675 10.65 10.845 10.72 10.985 10.86C11.125 11 11.195 11.17 11.195 11.37C11.195 11.57 11.125 11.74 10.985 11.88C10.845 12.02 10.675 12.09 10.475 12.09H5.515Z"/></svg></span></th>
+                          <th style="width:10%;">Detections <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77C3.635 8.77 3.455 8.7 3.315 8.56C3.175 8.42 3.105 8.25 3.105 8.05C3.105 7.85 3.175 7.68 3.315 7.54C3.455 7.4 3.625 7.33 3.825 7.33H12.155C12.355 7.33 12.535 7.4 12.675 7.54C12.815 7.68 12.885 7.85 12.885 8.05C12.885 8.25 12.815 8.42 12.675 8.56C12.535 8.7 12.365 8.77 12.165 8.77H3.835Z"/><path d="M1.715 5.44C1.515 5.44 1.345 5.37 1.205 5.23C1.065 5.09 0.994995 4.92 0.994995 4.72C0.994995 4.52 1.065 4.35 1.205 4.21C1.345 4.07 1.515 4 1.715 4H14.275C14.475 4 14.645 4.07 14.785 4.21C14.925 4.35 14.995 4.52 14.995 4.72C14.995 4.92 14.925 5.09 14.785 5.23C14.645 5.37 14.475 5.44 14.275 5.44H1.715Z"/><path d="M5.515 12.09C5.315 12.09 5.14499 12.02 5.00499 11.88C4.86499 11.74 4.795 11.57 4.795 11.37C4.795 11.17 4.86499 11 5.00499 10.86C5.14499 10.72 5.315 10.65 5.515 10.65H10.475C10.675 10.65 10.845 10.72 10.985 10.86C11.125 11 11.195 11.17 11.195 11.37C11.195 11.57 11.125 11.74 10.985 11.88C10.845 12.02 10.675 12.09 10.475 12.09H5.515Z"/></svg></span></th>
+                          <th style="width:14%;">Storage Unit <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77C3.635 8.77 3.455 8.7 3.315 8.56C3.175 8.42 3.105 8.25 3.105 8.05C3.105 7.85 3.175 7.68 3.315 7.54C3.455 7.4 3.625 7.33 3.825 7.33H12.155C12.355 7.33 12.535 7.4 12.675 7.54C12.815 7.68 12.885 7.85 12.885 8.05C12.885 8.25 12.815 8.42 12.675 8.56C12.535 8.7 12.365 8.77 12.165 8.77H3.835Z"/><path d="M1.715 5.44C1.515 5.44 1.345 5.37 1.205 5.23C1.065 5.09 0.994995 4.92 0.994995 4.72C0.994995 4.52 1.065 4.35 1.205 4.21C1.345 4.07 1.515 4 1.715 4H14.275C14.475 4 14.645 4.07 14.785 4.21C14.925 4.35 14.995 4.52 14.995 4.72C14.995 4.92 14.925 5.09 14.785 5.23C14.645 5.37 14.475 5.44 14.275 5.44H1.715Z"/><path d="M5.515 12.09C5.315 12.09 5.14499 12.02 5.00499 11.88C4.86499 11.74 4.795 11.57 4.795 11.37C4.795 11.17 4.86499 11 5.00499 10.86C5.14499 10.72 5.315 10.65 5.515 10.65H10.475C10.675 10.65 10.845 10.72 10.985 10.86C11.125 11 11.195 11.17 11.195 11.37C11.195 11.57 11.125 11.74 10.985 11.88C10.845 12.02 10.675 12.09 10.475 12.09H5.515Z"/></svg></span></th>
+                          <th style="width:14%;">Date & Time <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77C3.635 8.77 3.455 8.7 3.315 8.56C3.175 8.42 3.105 8.25 3.105 8.05C3.105 7.85 3.175 7.68 3.315 7.54C3.455 7.4 3.625 7.33 3.825 7.33H12.155C12.355 7.33 12.535 7.4 12.675 7.54C12.815 7.68 12.885 7.85 12.885 8.05C12.885 8.25 12.815 8.42 12.675 8.56C12.535 8.7 12.365 8.77 12.165 8.77H3.835Z"/><path d="M1.715 5.44C1.515 5.44 1.345 5.37 1.205 5.23C1.065 5.09 0.994995 4.92 0.994995 4.72C0.994995 4.52 1.065 4.35 1.205 4.21C1.345 4.07 1.515 4 1.715 4H14.275C14.475 4 14.645 4.07 14.785 4.21C14.925 4.35 14.995 4.52 14.995 4.72C14.995 4.92 14.925 5.09 14.785 5.23C14.645 5.37 14.475 5.44 14.275 5.44H1.715Z"/><path d="M5.515 12.09C5.315 12.09 5.14499 12.02 5.00499 11.88C4.86499 11.74 4.795 11.57 4.795 11.37C4.795 11.17 4.86499 11 5.00499 10.86C5.14499 10.72 5.315 10.65 5.515 10.65H10.475C10.675 10.65 10.845 10.72 10.985 10.86C11.125 11 11.195 11.17 11.195 11.37C11.195 11.57 11.125 11.74 10.985 11.88C10.845 12.02 10.675 12.09 10.475 12.09H5.515Z"/></svg></span></th>
+                          <th style="width:10%;">Job Type <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77C3.635 8.77 3.455 8.7 3.315 8.56C3.175 8.42 3.105 8.25 3.105 8.05C3.105 7.85 3.175 7.68 3.315 7.54C3.455 7.4 3.625 7.33 3.825 7.33H12.155C12.355 7.33 12.535 7.4 12.675 7.54C12.815 7.68 12.885 7.85 12.885 8.05C12.885 8.25 12.815 8.42 12.675 8.56C12.535 8.7 12.365 8.77 12.165 8.77H3.835Z"/><path d="M1.715 5.44C1.515 5.44 1.345 5.37 1.205 5.23C1.065 5.09 0.994995 4.92 0.994995 4.72C0.994995 4.52 1.065 4.35 1.205 4.21C1.345 4.07 1.515 4 1.715 4H14.275C14.475 4 14.645 4.07 14.785 4.21C14.925 4.35 14.995 4.52 14.995 4.72C14.995 4.92 14.925 5.09 14.785 5.23C14.645 5.37 14.475 5.44 14.275 5.44H1.715Z"/><path d="M5.515 12.09C5.315 12.09 5.14499 12.02 5.00499 11.88C4.86499 11.74 4.795 11.57 4.795 11.37C4.795 11.17 4.86499 11 5.00499 10.86C5.14499 10.72 5.315 10.65 5.515 10.65H10.475C10.675 10.65 10.845 10.72 10.985 10.86C11.125 11 11.195 11.17 11.195 11.37C11.195 11.57 11.125 11.74 10.985 11.88C10.845 12.02 10.675 12.09 10.475 12.09H5.515Z"/></svg></span></th>
+                          <th class="col-fixed" style="padding-right:20px;"></th>
                         </tr>
                       </thead>
                       <tbody id="acctJobsBody">
@@ -2817,14 +2777,15 @@
                   <div class="audit-pagination" id="acctJobsPagination">
                     <div class="audit-pagination-left">
                       <select id="acctJobsPerPage"><option selected>10</option><option>25</option><option>50</option></select>
-                      <span>per page</span>
+                      <span>items per page</span>
+                      <span style="margin-left: 8px; color: var(--text-muted);">|</span>
+                      <span id="acctJobsPageInfo" style="margin-left: 8px;">1-10 of 15 items</span>
                     </div>
-                    <div class="audit-pagination-center">
-                      <button class="pagination-btn" id="acctJobsPrev">&lsaquo;</button>
-                      <select id="acctJobsPageSelect"></select>
-                      <button class="pagination-btn" id="acctJobsNext">&rsaquo;</button>
+                    <div class="audit-pagination-right">
+                      <button class="audit-page-btn" id="acctJobsPrev" disabled><svg viewBox="0 0 16 16" fill="currentColor"><path d="M11.354 1.646a.5.5 0 010 .708L5.707 8l5.647 5.646a.5.5 0 01-.708.708l-6-6a.5.5 0 010-.708l6-6a.5.5 0 01.708 0z"/></svg></button>
+                      <select class="audit-page-select" id="acctJobsPageSelect"><option selected>Page 1</option></select>
+                      <button class="audit-page-btn" id="acctJobsNext"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M4.646 1.646a.5.5 0 01.708 0l6 6a.5.5 0 010 .708l-6 6a.5.5 0 01-.708-.708L10.293 8 4.646 2.354a.5.5 0 010-.708z"/></svg></button>
                     </div>
-                    <div class="audit-pagination-right"><span id="acctJobsRange"></span></div>
                   </div>
                 </div>
               </div><!-- /acct-panel-jobs -->
@@ -6832,16 +6793,16 @@
           { name: 'compliance-vault', status: 'Operational', statusTag: 'tag-success', clientId: 'd0e1f2a3-b4c5-6789-defa-890123456789', group: 'Production', groups: 1, files: 8900, lastScanned: 'Jan 15, 2025 10:30 AM' }
         ],
         jobs: [
-          { name: 'Scheduled File Scan', status: 'Completed', statusTag: 'tag-success', type: 'Scheduled', files: 2450, detections: 3, date: 'Jan 15, 2025 10:30 AM' },
-          { name: 'Real-Time Scan', status: 'In Progress', statusTag: 'tag-info', type: 'Real-Time', files: 120, detections: 0, date: 'Jan 15, 2025 11:00 AM' },
-          { name: 'Weekly Deep Scan', status: 'Completed', statusTag: 'tag-success', type: 'Scheduled', files: 15000, detections: 12, date: 'Jan 12, 2025 02:00 AM' },
-          { name: 'On-Demand Scan', status: 'Failed', statusTag: 'tag-danger', type: 'On-Demand', files: 0, detections: 0, date: 'Jan 11, 2025 09:45 AM' },
-          { name: 'Compliance Check', status: 'Completed', statusTag: 'tag-success', type: 'Scheduled', files: 8900, detections: 1, date: 'Jan 10, 2025 06:00 AM' },
-          { name: 'Backup Verification', status: 'Completed', statusTag: 'tag-success', type: 'Scheduled', files: 12300, detections: 0, date: 'Jan 09, 2025 01:00 AM' },
-          { name: 'New Files Scan', status: 'Completed', statusTag: 'tag-success', type: 'Real-Time', files: 340, detections: 2, date: 'Jan 08, 2025 04:30 PM' },
-          { name: 'Monthly Full Scan', status: 'Completed', statusTag: 'tag-success', type: 'Scheduled', files: 45000, detections: 18, date: 'Jan 01, 2025 12:00 AM' },
-          { name: 'Quarantine Review', status: 'Completed', statusTag: 'tag-success', type: 'On-Demand', files: 25, detections: 25, date: 'Dec 28, 2024 10:15 AM' },
-          { name: 'Holiday Pre-Scan', status: 'Completed', statusTag: 'tag-success', type: 'Scheduled', files: 32000, detections: 7, date: 'Dec 23, 2024 11:00 PM' }
+          { name: 'Scheduled File Scan', status: 'Completed', statusTag: 'tag-success', type: 'Scheduled', files: 2450, detections: 3, date: 'Jan 15, 2025 10:30 AM', storageUnit: 'production-assets' },
+          { name: 'Real-Time Scan', status: 'In Progress', statusTag: 'tag-info', type: 'Real-Time', files: 120, detections: 0, date: 'Jan 15, 2025 11:00 AM', storageUnit: 'staging-uploads' },
+          { name: 'Weekly Deep Scan', status: 'Completed', statusTag: 'tag-success', type: 'Scheduled', files: 15000, detections: 12, date: 'Jan 12, 2025 02:00 AM', storageUnit: 'production-assets' },
+          { name: 'On-Demand Scan', status: 'Failed', statusTag: 'tag-danger', type: 'On-Demand', files: 0, detections: 0, date: 'Jan 11, 2025 09:45 AM', storageUnit: 'dev-test-bucket' },
+          { name: 'Compliance Check', status: 'Completed', statusTag: 'tag-success', type: 'Scheduled', files: 8900, detections: 1, date: 'Jan 10, 2025 06:00 AM', storageUnit: 'compliance-vault' },
+          { name: 'Backup Verification', status: 'Completed', statusTag: 'tag-success', type: 'Scheduled', files: 12300, detections: 0, date: 'Jan 09, 2025 01:00 AM', storageUnit: 'backup-archive-01' },
+          { name: 'New Files Scan', status: 'Completed', statusTag: 'tag-success', type: 'Real-Time', files: 340, detections: 2, date: 'Jan 08, 2025 04:30 PM', storageUnit: 'customer-data' },
+          { name: 'Monthly Full Scan', status: 'Completed', statusTag: 'tag-success', type: 'Scheduled', files: 45000, detections: 18, date: 'Jan 01, 2025 12:00 AM', storageUnit: 'production-assets' },
+          { name: 'Quarantine Review', status: 'Completed', statusTag: 'tag-success', type: 'On-Demand', files: 25, detections: 25, date: 'Dec 28, 2024 10:15 AM', storageUnit: 'temp-processing' },
+          { name: 'Holiday Pre-Scan', status: 'Completed', statusTag: 'tag-success', type: 'Scheduled', files: 32000, detections: 7, date: 'Dec 23, 2024 11:00 PM', storageUnit: 'production-assets' }
         ],
         donutData: {
           verdicts: { clean: 72, suspicious: 18, malicious: 10 },
@@ -6864,11 +6825,11 @@
           { name: 'training-materials', status: 'Operational', statusTag: 'tag-success', clientId: 'sp-009-trn-mat-ijklmn901234', group: 'Default Group', groups: 0, files: 670, lastScanned: 'Jan 14, 2025 01:45 PM' }
         ],
         jobs: [
-          { name: 'Daily Scan', status: 'Completed', statusTag: 'tag-success', type: 'Scheduled', files: 9530, detections: 5, date: 'Jan 15, 2025 06:00 AM' },
-          { name: 'Real-Time Monitor', status: 'In Progress', statusTag: 'tag-info', type: 'Real-Time', files: 45, detections: 0, date: 'Jan 15, 2025 11:30 AM' },
-          { name: 'Deep Content Scan', status: 'Completed', statusTag: 'tag-success', type: 'Scheduled', files: 9530, detections: 8, date: 'Jan 13, 2025 02:00 AM' },
-          { name: 'Permission Audit', status: 'Completed', statusTag: 'tag-success', type: 'On-Demand', files: 9530, detections: 0, date: 'Jan 10, 2025 10:00 AM' },
-          { name: 'Malware Sweep', status: 'Failed', statusTag: 'tag-danger', type: 'Scheduled', files: 0, detections: 0, date: 'Jan 08, 2025 03:00 AM' }
+          { name: 'Daily Scan', status: 'Completed', statusTag: 'tag-success', type: 'Scheduled', files: 9530, detections: 5, date: 'Jan 15, 2025 06:00 AM', storageUnit: 'team-documents' },
+          { name: 'Real-Time Monitor', status: 'In Progress', statusTag: 'tag-info', type: 'Real-Time', files: 45, detections: 0, date: 'Jan 15, 2025 11:30 AM', storageUnit: 'hr-policies' },
+          { name: 'Deep Content Scan', status: 'Completed', statusTag: 'tag-success', type: 'Scheduled', files: 9530, detections: 8, date: 'Jan 13, 2025 02:00 AM', storageUnit: 'team-documents' },
+          { name: 'Permission Audit', status: 'Completed', statusTag: 'tag-success', type: 'On-Demand', files: 9530, detections: 0, date: 'Jan 10, 2025 10:00 AM', storageUnit: 'legal-contracts' },
+          { name: 'Malware Sweep', status: 'Failed', statusTag: 'tag-danger', type: 'Scheduled', files: 0, detections: 0, date: 'Jan 08, 2025 03:00 AM', storageUnit: 'marketing-assets' }
         ],
         donutData: {
           verdicts: { clean: 65, suspicious: 22, malicious: 13 },
@@ -6885,8 +6846,8 @@
           { name: 'oss-bucket-archive', status: 'Operational', statusTag: 'tag-success', clientId: 'ali-003-oss-arch-cdefgh345', group: 'Default Group', groups: 0, files: 8700, lastScanned: 'Jan 15, 2025 08:30 AM' }
         ],
         jobs: [
-          { name: 'Full Scan', status: 'Completed', statusTag: 'tag-success', type: 'Scheduled', files: 14400, detections: 2, date: 'Jan 15, 2025 04:00 AM' },
-          { name: 'Incremental Scan', status: 'Completed', statusTag: 'tag-success', type: 'Scheduled', files: 320, detections: 0, date: 'Jan 14, 2025 04:00 AM' }
+          { name: 'Full Scan', status: 'Completed', statusTag: 'tag-success', type: 'Scheduled', files: 14400, detections: 2, date: 'Jan 15, 2025 04:00 AM', storageUnit: 'oss-bucket-prod' },
+          { name: 'Incremental Scan', status: 'Completed', statusTag: 'tag-success', type: 'Scheduled', files: 320, detections: 0, date: 'Jan 14, 2025 04:00 AM', storageUnit: 'oss-bucket-staging' }
         ],
         donutData: {
           verdicts: { clean: 88, suspicious: 8, malicious: 4 },
@@ -7017,15 +6978,15 @@
       var pageItems = filtered.slice(start, start + perPage);
       var html = '';
       pageItems.forEach(function(u) {
-        var groupExtra = u.groups > 0 ? ' <span class="acct-group-more">+' + u.groups + '</span>' : '';
+        var groupExtra = u.groups > 0 ? ' <span class="count-more">+' + u.groups + '</span>' : '';
         html += '<tr>'
-          + '<td>' + u.name + '</td>'
+          + '<td class="col-cb"><input type="checkbox" style="margin:0;"></td>'
+          + '<td><div style="display:flex;align-items:center;gap:8px;"><span class="inv-provider-icon ' + acct.providerClass + '">' + acct.providerLabel + '</span> ' + u.name + '</div></td>'
           + '<td><span class="tag ' + u.statusTag + '">' + u.status + '</span></td>'
+          + '<td><span class="tag tag-keyword">' + u.group + '</span>' + groupExtra + '</td>'
           + '<td><div class="acct-client-id"><span class="acct-client-id-text" title="' + u.clientId + '">' + u.clientId + '</span><svg class="acct-copy-btn" onclick="copyClientId(\'' + u.clientId + '\', event)" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="5" width="8" height="8" rx="1"/><path d="M3 11V3h8"/></svg></div></td>'
-          + '<td>' + u.group + groupExtra + '</td>'
-          + '<td>' + u.files.toLocaleString() + '</td>'
           + '<td>' + u.lastScanned + '</td>'
-          + '<td><div class="row-action-btn" onclick="toggleInvMenu(this, event)" style="position:relative"><svg viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="3" r="1.5"/><circle cx="8" cy="8" r="1.5"/><circle cx="8" cy="13" r="1.5"/></svg><div class="row-action-menu row-action-menu--inline"><div class="row-action-menu-item" onclick="event.stopPropagation()"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 10v3h3M14 6V3h-3"/><path d="M14 3L9 8M2 13l5-5"/></svg> Create Job</div><div class="row-action-menu-item" onclick="event.stopPropagation()"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="5"/><path d="M8 5.5v5M5.5 8h5"/></svg> Edit Unit</div><div class="inv-context-item danger" onclick="event.stopPropagation()"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 4h10M6 4V3h4v1M5 4v8.5a1 1 0 001 1h4a1 1 0 001-1V4"/></svg> Delete Unit</div></div></div></td>'
+          + '<td class="col-fixed"><div class="row-action-btn" onclick="toggleInvMenu(this, event)" style="position:relative"><svg viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="3" r="1.5"/><circle cx="8" cy="8" r="1.5"/><circle cx="8" cy="13" r="1.5"/></svg><div class="row-action-menu row-action-menu--inline"><div class="row-action-menu-item" onclick="event.stopPropagation()"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 10v3h3M14 6V3h-3"/><path d="M14 3L9 8M2 13l5-5"/></svg> Create Job</div><div class="row-action-menu-item" onclick="event.stopPropagation()"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="5"/><path d="M8 5.5v5M5.5 8h5"/></svg> Edit Unit</div><div class="inv-context-item danger" onclick="event.stopPropagation()"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 4h10M6 4V3h4v1M5 4v8.5a1 1 0 001 1h4a1 1 0 001-1V4"/></svg> Delete Unit</div></div></div></td>'
           + '</tr>';
       });
       tbody.innerHTML = html;
@@ -7034,10 +6995,13 @@
       var pageSelect = document.getElementById('acctUnitsPageSelect');
       pageSelect.innerHTML = '';
       for (var i = 1; i <= totalPages; i++) {
-        pageSelect.innerHTML += '<option' + (i === acctUnitsPage ? ' selected' : '') + '>' + i + '</option>';
+        pageSelect.innerHTML += '<option' + (i === acctUnitsPage ? ' selected' : '') + '>Page ' + i + '</option>';
       }
       var rangeEnd = Math.min(start + perPage, filtered.length);
-      document.getElementById('acctUnitsRange').textContent = filtered.length ? (start + 1) + '-' + rangeEnd + ' of ' + filtered.length : '0 of 0';
+      document.getElementById('acctUnitsPageInfo').textContent = filtered.length ? (start + 1) + '-' + rangeEnd + ' of ' + filtered.length + ' items' : '0 items';
+      // Update prev/next disabled state
+      document.getElementById('acctUnitsPrev').disabled = (acctUnitsPage <= 1);
+      document.getElementById('acctUnitsNext').disabled = (acctUnitsPage >= totalPages);
     }
 
     /* ---- Render Jobs table ---- */
@@ -7053,14 +7017,17 @@
       var pageItems = filtered.slice(start, start + perPage);
       var html = '';
       pageItems.forEach(function(j) {
+        var detColor = j.detections > 0 ? 'var(--red-600)' : 'var(--green-600)';
         html += '<tr>'
+          + '<td class="col-cb"><input type="checkbox" style="margin:0;"></td>'
           + '<td>' + j.name + '</td>'
           + '<td><span class="tag ' + j.statusTag + '">' + j.status + '</span></td>'
-          + '<td>' + j.type + '</td>'
           + '<td>' + j.files.toLocaleString() + '</td>'
-          + '<td>' + j.detections + '</td>'
+          + '<td><span style="display:inline-flex;align-items:center;gap:6px;"><span style="width:8px;height:8px;border-radius:50%;background:' + detColor + ';display:inline-block;"></span> ' + j.detections + '</span></td>'
+          + '<td>' + (j.storageUnit || '') + '</td>'
           + '<td>' + j.date + '</td>'
-          + '<td><div class="row-action-btn" onclick="toggleInvMenu(this, event)" style="position:relative"><svg viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="3" r="1.5"/><circle cx="8" cy="8" r="1.5"/><circle cx="8" cy="13" r="1.5"/></svg><div class="row-action-menu row-action-menu--inline"><div class="row-action-menu-item" onclick="event.stopPropagation()"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 8h14"/><path d="M8 1v14"/></svg> View Details</div><div class="row-action-menu-item" onclick="event.stopPropagation()"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 10v3h3M14 6V3h-3"/><path d="M14 3L9 8M2 13l5-5"/></svg> Re-run</div></div></div></td>'
+          + '<td>' + j.type + '</td>'
+          + '<td class="col-fixed"><div class="row-action-btn" onclick="toggleInvMenu(this, event)" style="position:relative"><svg viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="3" r="1.5"/><circle cx="8" cy="8" r="1.5"/><circle cx="8" cy="13" r="1.5"/></svg><div class="row-action-menu row-action-menu--inline"><div class="row-action-menu-item" onclick="event.stopPropagation()"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 8h14"/><path d="M8 1v14"/></svg> View Details</div><div class="row-action-menu-item" onclick="event.stopPropagation()"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 10v3h3M14 6V3h-3"/><path d="M14 3L9 8M2 13l5-5"/></svg> Re-run</div></div></div></td>'
           + '</tr>';
       });
       tbody.innerHTML = html;
@@ -7069,10 +7036,13 @@
       var pageSelect = document.getElementById('acctJobsPageSelect');
       pageSelect.innerHTML = '';
       for (var i = 1; i <= totalPages; i++) {
-        pageSelect.innerHTML += '<option' + (i === acctJobsPage ? ' selected' : '') + '>' + i + '</option>';
+        pageSelect.innerHTML += '<option' + (i === acctJobsPage ? ' selected' : '') + '>Page ' + i + '</option>';
       }
       var rangeEnd = Math.min(start + perPage, filtered.length);
-      document.getElementById('acctJobsRange').textContent = filtered.length ? (start + 1) + '-' + rangeEnd + ' of ' + filtered.length : '0 of 0';
+      document.getElementById('acctJobsPageInfo').textContent = filtered.length ? (start + 1) + '-' + rangeEnd + ' of ' + filtered.length + ' items' : '0 items';
+      // Update prev/next disabled state
+      document.getElementById('acctJobsPrev').disabled = (acctJobsPage <= 1);
+      document.getElementById('acctJobsNext').disabled = (acctJobsPage >= totalPages);
     }
 
     /* ---- Donut chart rendering ---- */

@@ -1940,6 +1940,60 @@ td.col-action, th.col-action {
 }
 
 /* ========================================================================
+   PROVIDER ICONS  (Inventory — cloud/storage provider badges)
+   ======================================================================== */
+.inv-provider { display: flex; align-items: center; gap: 8px; }
+.inv-provider-icon {
+  width: 20px; height: 20px; border-radius: 4px; flex-shrink: 0;
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 10px; font-weight: 700; color: #fff;
+}
+.inv-provider-icon.aws { background: #232f3e; }
+.inv-provider-icon.box { background: #0061d5; }
+.inv-provider-icon.alibaba { background: #ff6a00; }
+.inv-provider-icon.sharepoint { background: #038387; }
+.inv-provider-icon.azure { background: #0078d4; }
+.inv-provider-icon.gcp { background: #4285f4; }
+.inv-provider-icon.onedrive { background: #0078d4; }
+.inv-provider-icon.oracle { background: #c74634; }
+.inv-provider-icon.netapp { background: #0067c5; }
+.inv-provider-icon.ftp { background: #6b7a90; }
+.inv-provider-icon.nfs { background: #4a5568; }
+.inv-provider-icon.smb { background: #4a5568; }
+.inv-provider-icon.sftp { background: #4a5568; }
+.inv-provider-icon.s3c { background: #e25d33; }
+.inv-provider-icon.cubbit { background: #00b4d8; }
+.inv-provider-icon.dell { background: #007db8; }
+.inv-provider-icon.mft { background: #1d6bfc; }
+
+/* ========================================================================
+   COLUMN VISIBILITY PANEL (drag-handle + toggle list)
+   ======================================================================== */
+.col-vis-item {
+  display: flex; align-items: center; gap: 12px;
+  padding: 10px 0; border-bottom: 1px solid var(--border-card);
+}
+.col-vis-item:last-child { border-bottom: none; }
+.col-vis-drag {
+  width: 16px; height: 16px; color: var(--text-muted); cursor: grab; flex-shrink: 0;
+}
+.col-vis-label { flex: 1; font-size: 14px; color: var(--text-strong); }
+.col-vis-section-title {
+  font-size: 12px; font-weight: 500; color: var(--text-muted);
+  text-transform: uppercase; letter-spacing: 0.3px;
+  padding: 12px 0 4px; border-bottom: 1px solid var(--border-card);
+}
+
+/* ========================================================================
+   COUNT-MORE BADGE  (+N overflow indicator)
+   ======================================================================== */
+.count-more {
+  font-size: 11px; color: var(--primary); background: var(--blue-100);
+  border-radius: 10px; padding: 1px 6px; font-weight: 500; white-space: nowrap;
+}
+[data-theme="dark"] .count-more { background: rgba(29,107,252,0.15); color: var(--blue-400); }
+
+/* ========================================================================
    RESPONSIVE BREAKPOINTS
    ======================================================================== */
 
