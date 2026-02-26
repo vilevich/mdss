@@ -421,7 +421,7 @@
       }
       .sidebar-mobile-overlay { display: none; }
       .content { padding: 16px; }
-      .page-header { flex-direction: column; align-items: flex-start; gap: 12px; }
+      .page-title-row { flex-direction: column; align-items: flex-start; height: auto; gap: 8px; }
       .pool-table { display: block; overflow-x: auto; }
       .header-logo-text { display: none; }
     }
@@ -616,7 +616,7 @@
 
     /* wf-breadcrumb → blue-line/components.css (.detail-breadcrumb) */
 
-    .wf-detail-title { font-size: 24px; font-weight: 500; color: var(--text-strong); margin-bottom: 20px; }
+    /* .wf-detail-title — removed, now uses .page-title inside .page-header */
 
     /* Remediation mini-tags in table */
     .wf-rem-tag {
@@ -902,130 +902,77 @@
 
 /* ===== DASHBOARD ===== */
 
-/* Period selector in page header */
-.dash-period-select {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-}
-.dash-period-select select {
-  appearance: none;
-  height: 32px;
-  padding: 0 32px 0 12px;
-  background: var(--surface-card);
+/* Filter button (icon + selected text) */
+.filter-btn-wrap { position: relative; }
+.filter-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  height: 32px; padding: 0 12px;
+  background: transparent;
   border: 1px solid var(--border-200);
   border-radius: var(--radius);
-  font-family: var(--font);
-  font-size: 14px;
-  color: var(--text-strong);
-  cursor: pointer;
+  font-family: var(--font); font-size: 14px;
+  color: var(--text-strong); cursor: pointer;
+  white-space: nowrap;
 }
-.dash-period-select select:focus { outline: 2px solid var(--primary); outline-offset: 1px; }
-.dash-period-select svg {
-  position: absolute;
-  right: 8px;
-  width: 14px; height: 14px;
-  pointer-events: none;
-  color: var(--text-muted);
+.filter-btn:hover { border-color: var(--neutral-400); }
+.filter-btn:focus-visible { outline: 2px solid var(--primary); outline-offset: 1px; }
+.filter-btn-icon { width: 16px; height: 16px; flex-shrink: 0; color: var(--text-muted); }
+.filter-btn-text { line-height: 1; }
+.filter-menu {
+  display: none; position: absolute; top: calc(100% + 4px); left: 0; z-index: 50;
+  min-width: 100%; background: var(--surface-card); border: 1px solid var(--border-200);
+  border-radius: var(--radius); box-shadow: var(--shadow-md); padding: 4px 0;
 }
+.filter-btn-wrap.open .filter-menu { display: block; }
+.filter-menu-item {
+  padding: 8px 12px; font-size: 14px; color: var(--text-body); cursor: pointer;
+  white-space: nowrap;
+}
+.filter-menu-item:hover { background: var(--neutral-100); }
+.filter-menu-item.active { color: var(--primary); font-weight: 500; }
 
 /* Generic dash card spacing */
 .dash-card {
   margin-bottom: 12px;
 }
 
-/* ===== 1. ACCOUNT INFO BAR ===== */
-.dash-account-bar {
-  display: flex;
-  align-items: stretch;
-  background: var(--surface-card);
-  border: 1px solid var(--border-card);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-card);
-  margin-bottom: 12px;
-  overflow: hidden;
-}
-.dash-account-section {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  padding: 16px 20px;
-  flex: 1;
-}
-.dash-account-identity { flex: 2; min-width: 0; }
-.dash-account-status { flex: 1; }
-.dash-account-client { flex: 2; min-width: 0; }
+/* ===== 1. ACCOUNT INFO BAR — uses BL .info-bar component ===== */
+/* Local overrides until BL CDN is updated */
+.info-bar { align-items: center; padding: 20px; gap: 20px; border-radius: 4px; overflow: visible; }
+.info-bar-section { gap: 20px; padding: 0; }
+.info-bar-divider { height: 64px; align-self: auto; background: var(--border-200); }
+.info-bar-icon { background: none; border-radius: 0; }
+.info-bar-icon svg, .info-bar-icon img { width: 40px; height: 40px; }
+.info-bar-meta { min-width: 0; }
+.info-bar-label { font-size: 14px; font-weight: 400; line-height: 16px; color: var(--text-subtle); text-transform: none; letter-spacing: normal; }
+.info-bar-value { gap: 8px; min-width: 0; font-size: 14px; font-weight: 500; line-height: 16px; }
+.info-bar-value-text { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
 
-.dash-account-divider {
-  width: 1px;
-  background: var(--border-card);
-  align-self: stretch;
-  flex-shrink: 0;
-}
-.dash-aws-icon {
-  width: 40px; height: 40px;
-  border-radius: 6px;
-  overflow: hidden;
-  flex-shrink: 0;
-  display: flex; align-items: center; justify-content: center;
-}
-.dash-aws-icon svg { width: 40px; height: 40px; }
-.dash-account-icon-wrap {
-  width: 64px; height: 64px;
-  background: var(--neutral-100);
-  border-radius: var(--radius);
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
-}
-.dash-account-meta { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
-.dash-account-meta-label {
-  font-size: 12px;
-  font-weight: 500;
-  color: var(--text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.3px;
-}
-.dash-account-meta-name {
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--text-strong);
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-.dash-folder-icon { width: 14px; height: 14px; color: var(--text-muted); flex-shrink: 0; }
-.dash-account-field-label {
-  font-size: 12px;
-  font-weight: 500;
-  color: var(--text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.3px;
-  margin-bottom: 4px;
-}
-.dash-account-field-value { display: flex; align-items: center; gap: 8px; }
-.dash-client-id-row { gap: 6px; min-width: 0; }
-.dash-client-id-text {
-  font-size: 12px;
-  font-family: 'Roboto Mono', monospace;
-  color: var(--text-subtle);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  min-width: 0;
-}
-.dash-copy-btn {
-  width: 20px; height: 20px;
-  border: none; background: none;
-  cursor: pointer;
-  color: var(--text-muted);
-  padding: 0;
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
-}
-.dash-copy-btn:hover { color: var(--primary); }
-.dash-copy-btn svg { width: 14px; height: 14px; }
+/* ===== 2. PAGE HEADER / BREADCRUMB — local overrides until BL CDN is updated ===== */
+.page-header { display: flex; flex-direction: column; gap: 8px; align-items: flex-start; font-family: var(--font); margin-bottom: 20px; padding: 0; }
+.page-title-row { display: flex; align-items: center; justify-content: space-between; height: 32px; width: 100%; margin-bottom: 20px; }
+.page-header .page-title-row { margin-bottom: 0; }
+.page-title, .page-header h1 { font-size: 24px; font-weight: 400; line-height: 27.36px; color: var(--text-strong); margin: 0; }
+.page-header-actions { display: flex; align-items: center; gap: 8px; }
+.breadcrumb { display: flex; align-items: center; font-family: var(--font); line-height: 16px; height: 16px; }
+.breadcrumb-item { display: flex; align-items: center; gap: 4px; font-size: 12px; font-weight: 400; line-height: 16px; color: var(--text-muted); text-decoration: none; cursor: pointer; background: none; border: none; padding: 0; }
+.breadcrumb-item:hover { color: var(--primary); }
+.breadcrumb-sep { width: 16px; height: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--text-muted); }
+.breadcrumb-sep svg { width: 16px; height: 16px; }
+.skeleton-text { width: 120px; height: 16px; background: var(--neutral-300); border-radius: 4px; }
+.skeleton-block { width: 120px; height: 32px; background: var(--neutral-200); border-radius: 4px; }
+/* Menu / subtle buttons: no bg, only stroke */
+.btn-outline { background: transparent; }
+/* Checkbox: 16×16 with 4px corners — override BL WCAG min-size */
+.cb { width: 16px; height: 16px; min-width: 16px; min-height: 16px; border-radius: 4px; }
+.cb svg { width: 16px; height: 16px; }
+/* Checkbox column: shrink-to-fit for all tables */
+.col-cb { width: 1%; white-space: nowrap; padding: 0 12px 0 20px !important; }
+.col-cb + th, .col-cb + td { padding-left: 12px !important; }
+/* Column before action: 20px right to match card edge inset */
+td:has(+ .col-action) { padding-right: 20px !important; }
 
-/* ===== 2. JOB MONITOR BANNER — uses BL .banner component ===== */
+/* ===== 3. JOB MONITOR BANNER — uses BL .banner component ===== */
 
 /* ===== 3. JOB SUMMARY ===== */
 .dash-job-summary-body {
@@ -1629,12 +1576,6 @@
 }
 
 /* ===== DARK MODE OVERRIDES ===== */
-[data-theme="dark"] .dash-account-bar {
-  background: var(--surface-card);
-  border-color: var(--border-card);
-}
-[data-theme="dark"] .dash-account-divider { background: var(--border-card); }
-[data-theme="dark"] .dash-account-icon-wrap { background: var(--neutral-900); }
 [data-theme="dark"] .dash-donut-track { stroke: var(--neutral-800); }
 [data-theme="dark"] .dash-donut-sep { background: var(--border-card); }
 [data-theme="dark"] .dash-trend-chart {
@@ -1654,11 +1595,9 @@
 [data-theme="dark"] .dash-ftl-img { background: rgba(212,0,49,0.1); color: var(--red-400); }
 [data-theme="dark"] .dash-ftl-pdf { background: rgba(212,0,49,0.1); color: var(--red-400); }
 [data-theme="dark"] .dash-ftl-other { background: var(--neutral-900); color: var(--neutral-500); }
-[data-theme="dark"] .dash-period-select select {
-  background: var(--surface-card);
-  border-color: var(--border-200);
-  color: var(--text-strong);
-}
+[data-theme="dark"] .filter-btn { background: transparent; border-color: var(--border-200); color: var(--text-strong); }
+[data-theme="dark"] .filter-menu { background: var(--surface-card); border-color: var(--border-200); }
+[data-theme="dark"] .filter-menu-item:hover { background: var(--neutral-800); }
 [data-theme="dark"] .dash-trend-period-tabs { border-color: var(--border-200); }
 [data-theme="dark"] .dash-trend-tab { border-color: var(--border-200); color: var(--text-muted); }
 [data-theme="dark"] .dash-trend-tab.active { background: rgba(29,107,252,0.12); color: var(--primary); }
@@ -1673,8 +1612,6 @@
 @media (max-width: 900px) {
   .dash-job-summary-body { flex-direction: column; }
   .dash-donut-sep { width: auto; height: 1px; }
-  .dash-account-bar { flex-direction: column; }
-  .dash-account-divider { width: auto; height: 1px; }
   .dash-stat-row { grid-template-columns: 1fr; }
   .dash-stat-row .dash-stat-card:last-child { grid-column: span 1; }
   .dash-filetype-body { flex-direction: column; }
@@ -1908,68 +1845,78 @@
         <div id="dashboardPage" class="page-view active">
 
   <!-- Page Header -->
-  <div class="page-header">
+  <div class="page-title-row">
     <h1 class="page-title">Dashboard</h1>
     <div class="page-header-actions">
-      <!-- Time period selector -->
-      <div class="dash-period-select">
-        <select id="dashPeriod">
-          <option value="7d">Last 7 days</option>
-          <option value="30d" selected>Last 30 days</option>
-          <option value="90d">Last 90 days</option>
-          <option value="custom">Custom range</option>
-        </select>
-        <svg viewBox="0 0 16 16" fill="currentColor"><path d="M7.99994 10.7495C7.80994 10.7495 7.61994 10.6795 7.46994 10.5295L3.21994 6.27945C2.92994 5.98945 2.92994 5.50945 3.21994 5.21945C3.50994 4.92945 3.98994 4.92945 4.27994 5.21945L7.99994 8.93945L11.7199 5.21945C12.0099 4.92945 12.4899 4.92945 12.7799 5.21945C13.0699 5.50945 13.0699 5.98945 12.7799 6.27945L8.52994 10.5295C8.37994 10.6795 8.18994 10.7495 7.99994 10.7495Z"/></svg>
+      <!-- Storage unit filter -->
+      <div class="filter-btn-wrap" id="dashUnitFilterWrap">
+        <button class="filter-btn" onclick="toggleFilterMenu('dashUnitFilterWrap')">
+          <svg class="filter-btn-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M1.715 4C1.515 4 1.345 4.07 1.205 4.21C1.065 4.35 .995 4.52 .995 4.72C.995 4.92 1.065 5.09 1.205 5.23C1.345 5.37 1.515 5.44 1.715 5.44H14.275C14.475 5.44 14.645 5.37 14.785 5.23C14.925 5.09 14.995 4.92 14.995 4.72C14.995 4.52 14.925 4.35 14.785 4.21C14.645 4.07 14.475 4 14.275 4H1.715Z"/><path d="M3.835 7.33C3.625 7.33 3.455 7.4 3.315 7.54C3.175 7.68 3.105 7.85 3.105 8.05C3.105 8.25 3.175 8.42 3.315 8.56C3.455 8.7 3.635 8.77 3.835 8.77H12.165C12.365 8.77 12.535 8.7 12.675 8.56C12.815 8.42 12.885 8.25 12.885 8.05C12.885 7.85 12.815 7.68 12.675 7.54C12.535 7.4 12.355 7.33 12.155 7.33H3.835Z"/><path d="M5.515 10.65C5.315 10.65 5.145 10.72 5.005 10.86C4.865 11 4.795 11.17 4.795 11.37C4.795 11.57 4.865 11.74 5.005 11.88C5.145 12.02 5.315 12.09 5.515 12.09H10.475C10.675 12.09 10.845 12.02 10.985 11.88C11.125 11.74 11.195 11.57 11.195 11.37C11.195 11.17 11.125 11 10.985 10.86C10.845 10.72 10.675 10.65 10.475 10.65H5.515Z"/></svg>
+          <span class="filter-btn-text" id="dashUnitFilterText">All Storage Units</span>
+        </button>
+        <div class="filter-menu" id="dashUnitFilterMenu">
+          <div class="filter-menu-item active" data-value="all" onclick="selectFilter('dashUnitFilter','All Storage Units',this)">All Storage Units</div>
+          <div class="filter-menu-item" data-value="aws-1" onclick="selectFilter('dashUnitFilter','AWS Unit Name',this)">AWS Unit Name</div>
+          <div class="filter-menu-item" data-value="azure-1" onclick="selectFilter('dashUnitFilter','Azure Blob Store',this)">Azure Blob Store</div>
+          <div class="filter-menu-item" data-value="gcp-1" onclick="selectFilter('dashUnitFilter','GCP Bucket',this)">GCP Bucket</div>
+        </div>
       </div>
-      <button class="btn-icon" title="Refresh dashboard">
-        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2.5 8a5.5 5.5 0 019.95-3.25M13.5 8a5.5 5.5 0 01-9.95 3.25"/><path d="M12.5 2v3h-3M3.5 14v-3h3"/></svg>
-      </button>
+      <!-- Time period filter -->
+      <div class="filter-btn-wrap" id="dashPeriodWrap">
+        <button class="filter-btn" onclick="toggleFilterMenu('dashPeriodWrap')">
+          <svg class="filter-btn-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M1.715 4C1.515 4 1.345 4.07 1.205 4.21C1.065 4.35 .995 4.52 .995 4.72C.995 4.92 1.065 5.09 1.205 5.23C1.345 5.37 1.515 5.44 1.715 5.44H14.275C14.475 5.44 14.645 5.37 14.785 5.23C14.925 5.09 14.995 4.92 14.995 4.72C14.995 4.52 14.925 4.35 14.785 4.21C14.645 4.07 14.475 4 14.275 4H1.715Z"/><path d="M3.835 7.33C3.625 7.33 3.455 7.4 3.315 7.54C3.175 7.68 3.105 7.85 3.105 8.05C3.105 8.25 3.175 8.42 3.315 8.56C3.455 8.7 3.635 8.77 3.835 8.77H12.165C12.365 8.77 12.535 8.7 12.675 8.56C12.815 8.42 12.885 8.25 12.885 8.05C12.885 7.85 12.815 7.68 12.675 7.54C12.535 7.4 12.355 7.33 12.155 7.33H3.835Z"/><path d="M5.515 10.65C5.315 10.65 5.145 10.72 5.005 10.86C4.865 11 4.795 11.17 4.795 11.37C4.795 11.57 4.865 11.74 5.005 11.88C5.145 12.02 5.315 12.09 5.515 12.09H10.475C10.675 12.09 10.845 12.02 10.985 11.88C11.125 11.74 11.195 11.57 11.195 11.37C11.195 11.17 11.125 11 10.985 10.86C10.845 10.72 10.675 10.65 10.475 10.65H5.515Z"/></svg>
+          <span class="filter-btn-text" id="dashPeriodText">Last 30 days</span>
+        </button>
+        <div class="filter-menu" id="dashPeriodMenu">
+          <div class="filter-menu-item" data-value="7d" onclick="selectFilter('dashPeriod','Last 7 days',this)">Last 7 days</div>
+          <div class="filter-menu-item active" data-value="30d" onclick="selectFilter('dashPeriod','Last 30 days',this)">Last 30 days</div>
+          <div class="filter-menu-item" data-value="90d" onclick="selectFilter('dashPeriod','Last 90 days',this)">Last 90 days</div>
+          <div class="filter-menu-item" data-value="custom" onclick="selectFilter('dashPeriod','Custom range',this)">Custom range</div>
+        </div>
+      </div>
+      <!-- Export (subtle) -->
+      <button class="btn-outline" title="Export report">Export</button>
     </div>
   </div>
 
   <!-- ===== 1. ACCOUNT INFO BAR ===== -->
-  <div class="dash-account-bar">
-    <div class="dash-account-section dash-account-identity">
-      <div class="dash-account-icon-wrap">
-        <div class="dash-aws-icon">
-          <!-- AWS logo mark -->
-          <svg viewBox="0 0 40 40" fill="none">
-            <rect width="40" height="40" rx="6" fill="#232F3E"/>
-            <path d="M14.5 22.5c-.6.2-1.3.4-2 .4-1.8 0-3-.9-3-2.6 0-1.5 1-2.6 2.8-2.6.6 0 1.3.1 1.8.3l.2-.7c-.6-.2-1.3-.4-2.1-.4-2.2 0-3.7 1.4-3.7 3.4 0 2.1 1.4 3.3 3.7 3.3.9 0 1.7-.2 2.4-.5l-.1-.6z" fill="#FF9900"/>
-            <path d="M17 17.5h-.9v6.3h.9v-2.5c0-1.3.7-2 1.7-2 .9 0 1.4.6 1.4 1.8v2.7h.9v-2.8c0-1.6-.8-2.5-2.1-2.5-.8 0-1.5.4-1.9 1v-.9v-.1z" fill="#FF9900"/>
-            <path d="M25.2 21.7l-2-4.2h-1l2.5 5.3-.3.7c-.2.5-.5.7-.9.7-.2 0-.4 0-.6-.1l-.1.7c.2.1.5.1.8.1.8 0 1.3-.4 1.7-1.3l2.8-6.1h-1l-1.9 4.2z" fill="#FF9900"/>
-            <path d="M8 26.5c2.7 1.8 6 2.8 9.5 2.8 4.7 0 8.8-1.9 11.8-4.9.3-.3.1-.6-.3-.4C25.4 26.4 21.9 28 18 28c-3.3 0-6.4-.9-9.1-2.5-.4-.2-.6.1-.9 1z" fill="#FF9900"/>
-            <path d="M30.5 23.7c-.3-.3-.8-.2-1.2-.1-.4.1-1 .3-1.4.4-.1.1 0 .2.1.1.4-.1 1.4-.3 1.6.1.2.3-.2 1.1-.4 1.5-.1.1 0 .2.1.1.9-1 1.5-2.1 1.2-2.1z" fill="#FF9900"/>
-          </svg>
-        </div>
+  <div class="info-bar" style="margin-bottom:12px;">
+    <div class="info-bar-section">
+      <div class="info-bar-icon">
+        <svg viewBox="0 0 40 40" fill="none">
+          <path d="M11.2711 16.7164C11.2711 17.2103 11.3243 17.6107 11.4174 17.9043C11.5239 18.1979 11.6569 18.5182 11.8431 18.8653C11.9096 18.972 11.9362 19.0788 11.9362 19.1722C11.9362 19.3057 11.8564 19.4392 11.6835 19.5726L10.8455 20.1332C10.7257 20.2133 10.606 20.2533 10.4996 20.2533C10.3666 20.2533 10.2335 20.1866 10.1005 20.0665C9.91429 19.8663 9.75466 19.6527 9.62164 19.4392C9.48862 19.2123 9.35559 18.9587 9.20927 18.6517C8.17169 19.8796 6.86806 20.4936 5.29839 20.4936C4.181 20.4936 3.28975 20.1732 2.63793 19.5326C1.98612 18.892 1.65356 18.0378 1.65356 16.97C1.65356 15.8355 2.05263 14.9146 2.86407 14.2206C3.67551 13.5265 4.753 13.1795 6.12314 13.1795C6.57541 13.1795 7.04099 13.2196 7.53318 13.2863C8.02536 13.353 8.53085 13.4598 9.06294 13.5799V12.6056C9.06294 11.5913 8.85011 10.8839 8.43773 10.4701C8.01206 10.0564 7.29374 9.85618 6.26946 9.85618C5.80388 9.85618 5.325 9.90957 4.83281 10.0297C4.34063 10.1498 3.86175 10.2966 3.39617 10.4835C3.18333 10.5769 3.0237 10.6303 2.93058 10.657C2.83747 10.6837 2.77096 10.697 2.71775 10.697C2.53152 10.697 2.4384 10.5636 2.4384 10.2833V9.62928C2.4384 9.41574 2.465 9.25557 2.53152 9.16215C2.59803 9.06872 2.71775 8.97529 2.90398 8.88186C3.36956 8.64162 3.92826 8.44142 4.58007 8.28126C5.23188 8.10775 5.9236 8.02767 6.65523 8.02767C8.2382 8.02767 9.3955 8.38803 10.1404 9.10876C10.8721 9.82949 11.2445 10.9239 11.2445 12.3921V16.7164H11.2711ZM5.87039 18.7451C6.30937 18.7451 6.76165 18.6651 7.24053 18.5049C7.71941 18.3447 8.14508 18.0511 8.50425 17.6507C8.71708 17.3971 8.87671 17.1168 8.95652 16.7965C9.03634 16.4762 9.08955 16.0891 9.08955 15.6353V15.0748C8.70378 14.9813 8.29141 14.9013 7.86574 14.8479C7.44006 14.7945 7.02769 14.7678 6.61532 14.7678C5.72407 14.7678 5.07225 14.9413 4.63328 15.3017C4.1943 15.662 3.98147 16.1692 3.98147 16.8365C3.98147 17.4638 4.14109 17.931 4.47365 18.2513C4.79291 18.585 5.25849 18.7451 5.87039 18.7451ZM16.5521 20.1866C16.3127 20.1866 16.1531 20.1466 16.0466 20.0531C15.9402 19.973 15.8471 19.7862 15.7673 19.5326L12.6413 9.21553C12.5614 8.9486 12.5215 8.77509 12.5215 8.68166C12.5215 8.46811 12.628 8.34799 12.8408 8.34799H14.1444C14.3972 8.34799 14.5701 8.38803 14.6632 8.48146C14.7696 8.56154 14.8494 8.7484 14.9293 9.00199L17.164 17.8376L19.2392 9.00199C19.3057 8.73505 19.3855 8.56154 19.4919 8.48146C19.5984 8.40138 19.7846 8.34799 20.024 8.34799H21.0882C21.341 8.34799 21.5139 8.38803 21.6203 8.48146C21.7267 8.56154 21.8198 8.7484 21.8731 9.00199L23.9748 17.9443L26.2761 9.00199C26.3559 8.73505 26.449 8.56154 26.5422 8.48146C26.6486 8.40138 26.8215 8.34799 27.0609 8.34799H28.2981C28.5109 8.34799 28.6306 8.45477 28.6306 8.68166C28.6306 8.7484 28.6173 8.81513 28.604 8.89521C28.5907 8.97529 28.5641 9.08207 28.5109 9.22888L25.305 19.5459C25.2252 19.8129 25.1321 19.9864 25.0257 20.0665C24.9193 20.1466 24.7463 20.1999 24.5202 20.1999H23.3762C23.1235 20.1999 22.9505 20.1599 22.8441 20.0665C22.7377 19.973 22.6446 19.7995 22.5914 19.5326L20.5295 10.9239L18.481 19.5193C18.4145 19.7862 18.3346 19.9597 18.2282 20.0531C18.1218 20.1466 17.9356 20.1866 17.6961 20.1866H16.5521ZM33.6456 20.547C32.9539 20.547 32.2621 20.4669 31.597 20.3067C30.9319 20.1466 30.4131 19.973 30.0673 19.7728C29.8544 19.6527 29.7081 19.5193 29.6549 19.3991C29.6017 19.279 29.5751 19.1455 29.5751 19.0254V18.3447C29.5751 18.0645 29.6815 17.931 29.881 17.931C29.9608 17.931 30.0407 17.9443 30.1205 17.971C30.2003 17.9977 30.32 18.0511 30.453 18.1045C30.9053 18.3047 31.3975 18.4649 31.9163 18.5716C32.4484 18.6784 32.9672 18.7318 33.4993 18.7318C34.3373 18.7318 34.9891 18.585 35.4414 18.2913C35.8937 17.9977 36.1331 17.5706 36.1331 17.0234C36.1331 16.6497 36.0134 16.3427 35.774 16.0891C35.5345 15.8355 35.0822 15.6086 34.4304 15.3951L32.5016 14.7945C31.5305 14.4875 30.8122 14.0337 30.3732 13.4331C29.9342 12.8459 29.7081 12.1919 29.7081 11.4978C29.7081 10.9373 29.8278 10.4434 30.0673 10.0163C30.3067 9.58924 30.626 9.21553 31.025 8.9219C31.4241 8.61493 31.8764 8.38803 32.4085 8.22787C32.9406 8.06771 33.4993 8.00098 34.0846 8.00098C34.3772 8.00098 34.6832 8.01432 34.9758 8.05436C35.2818 8.0944 35.5611 8.14779 35.8405 8.20118C36.1065 8.26791 36.3593 8.33465 36.5987 8.41473C36.8381 8.49481 37.0244 8.57489 37.1574 8.65497C37.3436 8.76174 37.4766 8.86852 37.5565 8.98864C37.6363 9.09541 37.6762 9.24223 37.6762 9.42908V10.0564C37.6762 10.3367 37.5698 10.4835 37.3702 10.4835C37.2638 10.4835 37.0909 10.4301 36.8647 10.3233C36.1065 9.9763 35.2552 9.80279 34.3107 9.80279C33.5525 9.80279 32.9539 9.92291 32.5415 10.1765C32.1291 10.4301 31.9163 10.8171 31.9163 11.3644C31.9163 11.7381 32.0493 12.0584 32.3154 12.312C32.5814 12.5656 33.0736 12.8192 33.7786 13.0461L35.6675 13.6467C36.6253 13.9536 37.317 14.3807 37.7294 14.928C38.1418 15.4752 38.3413 16.1025 38.3413 16.7965C38.3413 17.3704 38.2216 17.8909 37.9954 18.3447C37.756 18.7985 37.4367 19.1989 37.0244 19.5193C36.612 19.8529 36.1198 20.0932 35.5478 20.2667C34.9492 20.4535 34.324 20.547 33.6456 20.547Z" fill="#172234"/>
+          <path d="M36.1599 27.0334C31.7834 30.2767 25.4249 31.9984 19.9577 31.9984C12.2956 31.9984 5.39169 29.1556 0.177189 24.4308C-0.235182 24.0571 0.137282 23.5499 0.629467 23.8436C6.26964 27.1269 13.2267 29.1155 20.4233 29.1155C25.2786 29.1155 30.6128 28.1012 35.5214 26.0191C36.253 25.6854 36.8782 26.4996 36.1599 27.0334Z" fill="#FF9900"/>
+          <path d="M37.9826 24.9526C37.4239 24.2319 34.2845 24.6056 32.8612 24.7791C32.4355 24.8325 32.369 24.4588 32.7548 24.1785C35.2556 22.4167 39.366 22.9239 39.8449 23.5111C40.3238 24.1117 39.7119 28.2359 37.3707 30.2112C37.0115 30.5182 36.6656 30.358 36.8253 29.9576C37.3574 28.6363 38.5413 25.66 37.9826 24.9526Z" fill="#FF9900"/>
+        </svg>
       </div>
-      <div class="dash-account-meta">
-        <div class="dash-account-meta-label">Storage Unit</div>
-        <div class="dash-account-meta-name">
-          <svg viewBox="0 0 16 16" fill="currentColor" class="dash-folder-icon"><path d="M13.5 5H7.36L5.72 3H2.5C1.95 3 1.5 3.45 1.5 4v8c0 .55.45 1 1 1h11c.55 0 1-.45 1-1V6c0-.55-.45-1-1-1z"/></svg>
-          AWS Unit Name
+      <div class="info-bar-meta">
+        <div class="info-bar-label">Storage Unit</div>
+        <div class="info-bar-value">AWS Unit Name</div>
+      </div>
+    </div>
+
+    <div class="info-bar-divider"></div>
+
+    <div class="info-bar-section">
+      <div class="info-bar-meta">
+        <div class="info-bar-label">Status</div>
+        <div class="info-bar-value">
+          <span class="tag tag-info">Operational</span>
         </div>
       </div>
     </div>
 
-    <div class="dash-account-divider"></div>
+    <div class="info-bar-divider"></div>
 
-    <div class="dash-account-section dash-account-status">
-      <div class="dash-account-field-label">Status</div>
-      <div class="dash-account-field-value">
-        <span class="tag tag-success">Operational</span>
-      </div>
-    </div>
-
-    <div class="dash-account-divider"></div>
-
-    <div class="dash-account-section dash-account-client">
-      <div class="dash-account-field-label">Client ID</div>
-      <div class="dash-account-field-value dash-client-id-row">
-        <span class="dash-client-id-text">a3f9b2c1-4d8e-4f2a-9c1b-7e3d5f8a2b4c</span>
-        <button class="dash-copy-btn" title="Copy Client ID" onclick="navigator.clipboard.writeText('a3f9b2c1-4d8e-4f2a-9c1b-7e3d5f8a2b4c')">
-          <svg viewBox="0 0 16 16" fill="currentColor"><path d="M4 3a1 1 0 011-1h6a1 1 0 011 1v1h1a1 1 0 011 1v8a1 1 0 01-1 1H4a1 1 0 01-1-1V5a1 1 0 011-1h1V3zm1 2V3h6v2H5zm-1 1v7h8V6H4z"/></svg>
-        </button>
+    <div class="info-bar-section" style="flex:1 0 0; min-width:0;">
+      <div class="info-bar-meta">
+        <div class="info-bar-label">Client ID</div>
+        <div class="info-bar-value">
+          <span class="info-bar-value-text" style="font-weight:400;">a3f9b2c1-4d8e-4f2a-9c1b-7e3d5f8a2b4c</span>
+          <button class="copy-btn" title="Copy Client ID" onclick="navigator.clipboard.writeText('a3f9b2c1-4d8e-4f2a-9c1b-7e3d5f8a2b4c').then(function(){showNotification('success','Copied to clipboard')})">
+            <svg viewBox="0 0 16 16" fill="currentColor"><path d="M13 2H6C5.44772 2 5 2.44772 5 3V10C5 10.5523 5.44772 11 6 11H13C13.5523 11 14 10.5523 14 10V3C14 2.44772 13.5523 2 13 2Z"/><path d="M11 12.5V14H3C2.45 14 2 13.55 2 13V5H3.5V12.5H11Z"/></svg>
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -2930,7 +2877,7 @@
 
         <div id="settingsPage" class="page-view">
         <!-- Page Header -->
-        <div class="page-header">
+        <div class="page-title-row">
           <h1 class="page-title">Settings</h1>
           <button class="btn-export" title="Includes Accounts, Groups, Storage Units, RTP Scans, Workflow Snapshots, Scan Instances, Scan Pools, Workflows, Scan Schedules, SSO Config">Export</button>
         </div>
@@ -4067,7 +4014,7 @@
 
         <!-- ==================== AUDIT PAGE ==================== -->
         <div id="auditPage" class="page-view table-page">
-          <div class="page-header">
+          <div class="page-title-row">
             <h1 class="page-title">Audit</h1>
             <button class="btn-outline" onclick="refreshAuditLog()">Refresh</button>
           </div>
@@ -4159,7 +4106,7 @@
 
         <!-- ==================== USERS PAGE ==================== -->
         <div id="usersPage" class="page-view">
-          <div class="page-header">
+          <div class="page-title-row">
             <h1 class="page-title">Users</h1>
             <button class="btn-primary" onclick="openSlidePanel('addUserPanel')">Add User</button>
           </div>
@@ -4261,7 +4208,7 @@
         <!-- ==================== INVENTORY PAGE ==================== -->
         <div id="inventoryPage" class="page-view">
           <!-- Header -->
-          <div class="page-header">
+          <div class="page-title-row" id="inventoryPageHeader">
             <h1 class="page-title">Inventory</h1>
             <div class="page-header-actions">
               <button class="btn-icon" title="Refresh"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2.5 8a5.5 5.5 0 019.95-3.25M13.5 8a5.5 5.5 0 01-9.95 3.25"/><path d="M12.5 2v3h-3M3.5 14v-3h3"/></svg></button>
@@ -4286,8 +4233,8 @@
                 <div class="card-header-right" style="display:flex; gap:8px; align-items:center;">
                   <div class="audit-search"><svg viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M7 2C9.76142 2 12 4.23858 12 7C12 8.11285 11.6353 9.13998 11.0205 9.9707L14.0713 13.0068L14.1221 13.0645C14.3629 13.3585 14.3471 13.7932 14.0732 14.0684C13.781 14.3615 13.3061 14.3622 13.0127 14.0703L9.95801 11.0303C9.12955 11.6393 8.1071 12 7 12C4.23858 12 2 9.76142 2 7C2 4.23858 4.23858 2 7 2ZM7 3.5C5.067 3.5 3.5 5.067 3.5 7C3.5 8.933 5.067 10.5 7 10.5C8.933 10.5 10.5 8.933 10.5 7C10.5 5.067 8.933 3.5 7 3.5Z"/></svg><input type="text" placeholder="Search for Files or Hash"></div>
                   <div style="display:flex; gap:8px;">
-                    <button class="btn-outline"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77c-.2 0-.38-.07-.52-.21a.723.723 0 010-1.02.71.71 0 01.51-.21h8.33c.2 0 .38.07.52.21.14.14.21.31.21.51 0 .2-.07.37-.21.51-.14.14-.31.21-.51.21H3.835zM1.715 5.44c-.2 0-.37-.07-.51-.21a.723.723 0 010-1.02.71.71 0 01.51-.21h12.56c.2 0 .37.07.51.21.14.14.21.31.21.51 0 .2-.07.37-.21.51-.14.14-.31.21-.51.21H1.715zM5.515 12.09c-.2 0-.37-.07-.51-.21a.723.723 0 010-1.02.71.71 0 01.51-.21h4.96c.2 0 .37.07.51.21.14.14.21.31.21.51 0 .2-.07.37-.21.51-.14.14-.31.21-.51.21h-4.96z"/></svg> Provider</button>
-                    <button class="btn-outline"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77c-.2 0-.38-.07-.52-.21a.723.723 0 010-1.02.71.71 0 01.51-.21h8.33c.2 0 .38.07.52.21.14.14.21.31.21.51 0 .2-.07.37-.21.51-.14.14-.31.21-.51.21H3.835zM1.715 5.44c-.2 0-.37-.07-.51-.21a.723.723 0 010-1.02.71.71 0 01.51-.21h12.56c.2 0 .37.07.51.21.14.14.21.31.21.51 0 .2-.07.37-.21.51-.14.14-.31.21-.51.21H1.715zM5.515 12.09c-.2 0-.37-.07-.51-.21a.723.723 0 010-1.02.71.71 0 01.51-.21h4.96c.2 0 .37.07.51.21.14.14.21.31.21.51 0 .2-.07.37-.21.51-.14.14-.31.21-.51.21h-4.96z"/></svg> Status</button>
+                    <button class="filter-btn"><svg class="filter-btn-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M1.715 4C1.515 4 1.345 4.07 1.205 4.21C1.065 4.35 .995 4.52 .995 4.72C.995 4.92 1.065 5.09 1.205 5.23C1.345 5.37 1.515 5.44 1.715 5.44H14.275C14.475 5.44 14.645 5.37 14.785 5.23C14.925 5.09 14.995 4.92 14.995 4.72C14.995 4.52 14.925 4.35 14.785 4.21C14.645 4.07 14.475 4 14.275 4H1.715Z"/><path d="M3.835 7.33C3.625 7.33 3.455 7.4 3.315 7.54C3.175 7.68 3.105 7.85 3.105 8.05C3.105 8.25 3.175 8.42 3.315 8.56C3.455 8.7 3.635 8.77 3.835 8.77H12.165C12.365 8.77 12.535 8.7 12.675 8.56C12.815 8.42 12.885 8.25 12.885 8.05C12.885 7.85 12.815 7.68 12.675 7.54C12.535 7.4 12.355 7.33 12.155 7.33H3.835Z"/><path d="M5.515 10.65C5.315 10.65 5.145 10.72 5.005 10.86C4.865 11 4.795 11.17 4.795 11.37C4.795 11.57 4.865 11.74 5.005 11.88C5.145 12.02 5.315 12.09 5.515 12.09H10.475C10.675 12.09 10.845 12.02 10.985 11.88C11.125 11.74 11.195 11.57 11.195 11.37C11.195 11.17 11.125 11 10.985 10.86C10.845 10.72 10.675 10.65 10.475 10.65H5.515Z"/></svg><span class="filter-btn-text">Provider</span></button>
+                    <button class="filter-btn"><svg class="filter-btn-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M1.715 4C1.515 4 1.345 4.07 1.205 4.21C1.065 4.35 .995 4.52 .995 4.72C.995 4.92 1.065 5.09 1.205 5.23C1.345 5.37 1.515 5.44 1.715 5.44H14.275C14.475 5.44 14.645 5.37 14.785 5.23C14.925 5.09 14.995 4.92 14.995 4.72C14.995 4.52 14.925 4.35 14.785 4.21C14.645 4.07 14.475 4 14.275 4H1.715Z"/><path d="M3.835 7.33C3.625 7.33 3.455 7.4 3.315 7.54C3.175 7.68 3.105 7.85 3.105 8.05C3.105 8.25 3.175 8.42 3.315 8.56C3.455 8.7 3.635 8.77 3.835 8.77H12.165C12.365 8.77 12.535 8.7 12.675 8.56C12.815 8.42 12.885 8.25 12.885 8.05C12.885 7.85 12.815 7.68 12.675 7.54C12.535 7.4 12.355 7.33 12.155 7.33H3.835Z"/><path d="M5.515 10.65C5.315 10.65 5.145 10.72 5.005 10.86C4.865 11 4.795 11.17 4.795 11.37C4.795 11.57 4.865 11.74 5.005 11.88C5.145 12.02 5.315 12.09 5.515 12.09H10.475C10.675 12.09 10.845 12.02 10.985 11.88C11.125 11.74 11.195 11.57 11.195 11.37C11.195 11.17 11.125 11 10.985 10.86C10.845 10.72 10.675 10.65 10.475 10.65H5.515Z"/></svg><span class="filter-btn-text">Status</span></button>
                   </div>
                 </div>
               </div>
@@ -4409,32 +4356,30 @@
 
             <!-- Account Detail View (hidden by default) -->
             <div id="accountDetailView" style="display:none;">
-              <div class="detail-breadcrumb">
-                <a onclick="showAccountsList()">Inventory</a>
-                <svg viewBox="0 0 16 16" fill="currentColor"><path d="M5.99994 12.9995C6.18994 12.9995 6.37994 12.9295 6.52994 12.7795L10.7799 8.52945C11.0699 8.23945 11.0699 7.75945 10.7799 7.46945L6.52994 3.21945C6.23994 2.92945 5.75994 2.92945 5.46994 3.21945C5.17994 3.50945 5.17994 3.98945 5.46994 4.27945L9.18994 7.99945L5.46994 11.7195C5.17994 12.0095 5.17994 12.4895 5.46994 12.7795C5.61994 12.9295 5.80994 12.9995 5.99994 12.9995Z"/></svg>
-                <a onclick="showAccountsList()">Accounts</a>
-                <svg viewBox="0 0 16 16" fill="currentColor"><path d="M5.99994 12.9995C6.18994 12.9995 6.37994 12.9295 6.52994 12.7795L10.7799 8.52945C11.0699 8.23945 11.0699 7.75945 10.7799 7.46945L6.52994 3.21945C6.23994 2.92945 5.75994 2.92945 5.46994 3.21945C5.17994 3.50945 5.17994 3.98945 5.46994 4.27945L9.18994 7.99945L5.46994 11.7195C5.17994 12.0095 5.17994 12.4895 5.46994 12.7795C5.61994 12.9295 5.80994 12.9995 5.99994 12.9995Z"/></svg>
-                <span id="acctDetailBreadcrumbName">Account Name</span>
-              </div>
               <div class="page-header">
-                <h1 class="page-title" id="acctDetailTitle">Account Name</h1>
-                <div class="page-header-actions">
-                  <button class="btn-icon" title="Refresh" onclick="openAccountDetail(window._acctDetailIdx||0)"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2.5 8a5.5 5.5 0 019.3-4M13.5 8a5.5 5.5 0 01-9.3 4"/><path d="M11.5 1v3h3M4.5 15v-3h-3" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-                  <div class="acct-actions-wrap">
-                    <button class="btn-outline" onclick="toggleAcctActionsMenu(event)">Actions <svg viewBox="0 0 16 16" fill="currentColor" style="width:12px;height:12px;margin-left:4px;"><path d="M7.99994 10.7495C7.80994 10.7495 7.61994 10.6795 7.46994 10.5295L3.21994 6.27945C2.92994 5.98945 2.92994 5.50945 3.21994 5.21945C3.50994 4.92945 3.98994 4.92945 4.27994 5.21945L7.99994 8.93945L11.7199 5.21945C12.0099 4.92945 12.4899 4.92945 12.7799 5.21945C13.0699 5.50945 13.0699 5.98945 12.7799 6.27945L8.52994 10.5295C8.37994 10.6795 8.18994 10.7495 7.99994 10.7495Z"/></svg></button>
-                    <div class="acct-actions-menu" id="acctActionsMenu">
-                      <div class="row-action-menu-item" onclick="openSlidePanel('editJobPanel')"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 10v3h3M14 6V3h-3"/><path d="M14 3L9 8M2 13l5-5"/></svg> Create Job</div>
-                      <div class="row-action-menu-item" onclick="openSlidePanel('acctSettingsPanel')"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="5"/><path d="M8 5.5v5M5.5 8h5"/></svg> Account Settings</div>
-                      <div class="inv-context-item danger"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 4h10M6 4V3h4v1M5 4v8.5a1 1 0 001 1h4a1 1 0 001-1V4"/></svg> Delete Account</div>
+                <nav class="breadcrumb">
+                  <a class="breadcrumb-item" onclick="showAccountsList()">Inventory</a>
+                  <span class="breadcrumb-sep"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 3l5 5-5 5"/></svg></span>
+                  <a class="breadcrumb-item" onclick="showAccountsList()">Accounts</a>
+                </nav>
+                <div class="page-title-row">
+                  <h1 class="page-title" id="acctDetailTitle">Account Name</h1>
+                  <div class="page-header-actions">
+                    <button class="btn-icon" title="Refresh" onclick="openAccountDetail(window._acctDetailIdx||0)"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2.5 8a5.5 5.5 0 019.3-4M13.5 8a5.5 5.5 0 01-9.3 4"/><path d="M11.5 1v3h3M4.5 15v-3h-3" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+                    <div class="acct-actions-wrap">
+                      <button class="btn-outline" onclick="toggleAcctActionsMenu(event)">Actions <svg viewBox="0 0 16 16" fill="currentColor" style="width:12px;height:12px;margin-left:4px;"><path d="M7.99994 10.7495C7.80994 10.7495 7.61994 10.6795 7.46994 10.5295L3.21994 6.27945C2.92994 5.98945 2.92994 5.50945 3.21994 5.21945C3.50994 4.92945 3.98994 4.92945 4.27994 5.21945L7.99994 8.93945L11.7199 5.21945C12.0099 4.92945 12.4899 4.92945 12.7799 5.21945C13.0699 5.50945 13.0699 5.98945 12.7799 6.27945L8.52994 10.5295C8.37994 10.6795 8.18994 10.7495 7.99994 10.7495Z"/></svg></button>
+                      <div class="acct-actions-menu" id="acctActionsMenu">
+                        <div class="row-action-menu-item" onclick="openSlidePanel('editJobPanel')"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 10v3h3M14 6V3h-3"/><path d="M14 3L9 8M2 13l5-5"/></svg> Create Job</div>
+                        <div class="row-action-menu-item" onclick="openSlidePanel('acctSettingsPanel')"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="5"/><path d="M8 5.5v5M5.5 8h5"/></svg> Account Settings</div>
+                        <div class="inv-context-item danger"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 4h10M6 4V3h4v1M5 4v8.5a1 1 0 001 1h4a1 1 0 001-1V4"/></svg> Delete Account</div>
+                      </div>
                     </div>
                   </div>
-                  <a class="acct-settings-link" onclick="openSlidePanel('acctSettingsPanel')">Settings</a>
-                  <button class="btn-primary" onclick="openSlidePanel('editJobPanel')">Add Unit</button>
                 </div>
               </div>
 
               <!-- Account Detail Inner Tabs -->
-              <div class="tabs" id="acctDetailTabs" role="tablist" style="margin-bottom:16px;">
+              <div class="tabs" id="acctDetailTabs" role="tablist">
                 <button class="tab active" role="tab" data-acct-tab="units">Units</button>
                 <button class="tab" role="tab" data-acct-tab="jobs">Jobs</button>
               </div>
@@ -4614,8 +4559,8 @@
                       <svg viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M7 2C9.76142 2 12 4.23858 12 7C12 8.11285 11.6353 9.13998 11.0205 9.9707L14.0713 13.0068L14.1221 13.0645C14.3629 13.3585 14.3471 13.7932 14.0732 14.0684C13.781 14.3615 13.3061 14.3622 13.0127 14.0703L9.95801 11.0303C9.12955 11.6393 8.1071 12 7 12C4.23858 12 2 9.76142 2 7C2 4.23858 4.23858 2 7 2ZM7 3.5C5.067 3.5 3.5 5.067 3.5 7C3.5 8.933 5.067 10.5 7 10.5C8.933 10.5 10.5 8.933 10.5 7C10.5 5.067 8.933 3.5 7 3.5Z"/></svg>
                       <input type="text" placeholder="Search groups" id="groupsSearch">
                     </div>
-                    <button class="audit-filter-btn"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77c-.2 0-.38-.07-.52-.21a.723.723 0 010-1.02.71.71 0 01.51-.21h8.33c.2 0 .38.07.52.21.14.14.21.31.21.51 0 .2-.07.37-.21.51-.14.14-.31.21-.51.21H3.835zM1.715 5.44c-.2 0-.37-.07-.51-.21a.723.723 0 010-1.02.71.71 0 01.51-.21h12.56c.2 0 .37.07.51.21.14.14.21.31.21.51 0 .2-.07.37-.21.51-.14.14-.31.21-.51.21H1.715zM5.515 12.09c-.2 0-.37-.07-.51-.21a.723.723 0 010-1.02.71.71 0 01.51-.21h4.96c.2 0 .37.07.51.21.14.14.21.31.21.51 0 .2-.07.37-.21.51-.14.14-.31.21-.51.21h-4.96z"/></svg> Provider</button>
-                    <button class="audit-filter-btn"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77c-.2 0-.38-.07-.52-.21a.723.723 0 010-1.02.71.71 0 01.51-.21h8.33c.2 0 .38.07.52.21.14.14.21.31.21.51 0 .2-.07.37-.21.51-.14.14-.31.21-.51.21H3.835zM1.715 5.44c-.2 0-.37-.07-.51-.21a.723.723 0 010-1.02.71.71 0 01.51-.21h12.56c.2 0 .37.07.51.21.14.14.21.31.21.51 0 .2-.07.37-.21.51-.14.14-.31.21-.51.21H1.715zM5.515 12.09c-.2 0-.37-.07-.51-.21a.723.723 0 010-1.02.71.71 0 01.51-.21h4.96c.2 0 .37.07.51.21.14.14.21.31.21.51 0 .2-.07.37-.21.51-.14.14-.31.21-.51.21h-4.96z"/></svg> Status</button>
+                    <button class="filter-btn"><svg class="filter-btn-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M1.715 4C1.515 4 1.345 4.07 1.205 4.21C1.065 4.35 .995 4.52 .995 4.72C.995 4.92 1.065 5.09 1.205 5.23C1.345 5.37 1.515 5.44 1.715 5.44H14.275C14.475 5.44 14.645 5.37 14.785 5.23C14.925 5.09 14.995 4.92 14.995 4.72C14.995 4.52 14.925 4.35 14.785 4.21C14.645 4.07 14.475 4 14.275 4H1.715Z"/><path d="M3.835 7.33C3.625 7.33 3.455 7.4 3.315 7.54C3.175 7.68 3.105 7.85 3.105 8.05C3.105 8.25 3.175 8.42 3.315 8.56C3.455 8.7 3.635 8.77 3.835 8.77H12.165C12.365 8.77 12.535 8.7 12.675 8.56C12.815 8.42 12.885 8.25 12.885 8.05C12.885 7.85 12.815 7.68 12.675 7.54C12.535 7.4 12.355 7.33 12.155 7.33H3.835Z"/><path d="M5.515 10.65C5.315 10.65 5.145 10.72 5.005 10.86C4.865 11 4.795 11.17 4.795 11.37C4.795 11.57 4.865 11.74 5.005 11.88C5.145 12.02 5.315 12.09 5.515 12.09H10.475C10.675 12.09 10.845 12.02 10.985 11.88C11.125 11.74 11.195 11.57 11.195 11.37C11.195 11.17 11.125 11 10.985 10.86C10.845 10.72 10.675 10.65 10.475 10.65H5.515Z"/></svg><span class="filter-btn-text">Provider</span></button>
+                    <button class="filter-btn"><svg class="filter-btn-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M1.715 4C1.515 4 1.345 4.07 1.205 4.21C1.065 4.35 .995 4.52 .995 4.72C.995 4.92 1.065 5.09 1.205 5.23C1.345 5.37 1.515 5.44 1.715 5.44H14.275C14.475 5.44 14.645 5.37 14.785 5.23C14.925 5.09 14.995 4.92 14.995 4.72C14.995 4.52 14.925 4.35 14.785 4.21C14.645 4.07 14.475 4 14.275 4H1.715Z"/><path d="M3.835 7.33C3.625 7.33 3.455 7.4 3.315 7.54C3.175 7.68 3.105 7.85 3.105 8.05C3.105 8.25 3.175 8.42 3.315 8.56C3.455 8.7 3.635 8.77 3.835 8.77H12.165C12.365 8.77 12.535 8.7 12.675 8.56C12.815 8.42 12.885 8.25 12.885 8.05C12.885 7.85 12.815 7.68 12.675 7.54C12.535 7.4 12.355 7.33 12.155 7.33H3.835Z"/><path d="M5.515 10.65C5.315 10.65 5.145 10.72 5.005 10.86C4.865 11 4.795 11.17 4.795 11.37C4.795 11.57 4.865 11.74 5.005 11.88C5.145 12.02 5.315 12.09 5.515 12.09H10.475C10.675 12.09 10.845 12.02 10.985 11.88C11.125 11.74 11.195 11.57 11.195 11.37C11.195 11.17 11.125 11 10.985 10.86C10.845 10.72 10.675 10.65 10.475 10.65H5.515Z"/></svg><span class="filter-btn-text">Status</span></button>
                   </div>
                 </div>
                 <div class="table-scroll">
@@ -4653,31 +4598,31 @@
 
             <!-- Group Detail View -->
             <div id="groupDetailView" style="display:none;">
-              <div class="detail-breadcrumb">
-                <a onclick="showGroupsList()">Inventory</a>
-                <svg viewBox="0 0 16 16" fill="currentColor"><path d="M5.99994 12.9995C6.18994 12.9995 6.37994 12.9295 6.52994 12.7795L10.7799 8.52945C11.0699 8.23945 11.0699 7.75945 10.7799 7.46945L6.52994 3.21945C6.23994 2.92945 5.75994 2.92945 5.46994 3.21945C5.17994 3.50945 5.17994 3.98945 5.46994 4.27945L9.18994 7.99945L5.46994 11.7195C5.17994 12.0095 5.17994 12.4895 5.46994 12.7795C5.61994 12.9295 5.80994 12.9995 5.99994 12.9995Z"/></svg>
-                <a onclick="showGroupsList()">Groups</a>
-                <svg viewBox="0 0 16 16" fill="currentColor"><path d="M5.99994 12.9995C6.18994 12.9995 6.37994 12.9295 6.52994 12.7795L10.7799 8.52945C11.0699 8.23945 11.0699 7.75945 10.7799 7.46945L6.52994 3.21945C6.23994 2.92945 5.75994 2.92945 5.46994 3.21945C5.17994 3.50945 5.17994 3.98945 5.46994 4.27945L9.18994 7.99945L5.46994 11.7195C5.17994 12.0095 5.17994 12.4895 5.46994 12.7795C5.61994 12.9295 5.80994 12.9995 5.99994 12.9995Z"/></svg>
-                <span id="grpDetailBreadcrumbName">Group Name</span>
-              </div>
               <div class="page-header">
-                <h1 class="page-title" id="grpDetailTitle">Group Name</h1>
-                <div class="page-header-actions">
-                  <button class="btn-icon" title="Refresh"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2.5 8a5.5 5.5 0 019.3-4M13.5 8a5.5 5.5 0 01-9.3 4"/><path d="M11.5 1v3h3M4.5 15v-3h-3" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-                  <div class="acct-actions-wrap">
-                    <button class="btn-outline" onclick="toggleGrpActionsMenu(event)">Actions <svg viewBox="0 0 16 16" fill="currentColor" style="width:12px;height:12px;margin-left:4px;"><path d="M7.99994 10.7495C7.80994 10.7495 7.61994 10.6795 7.46994 10.5295L3.21994 6.27945C2.92994 5.98945 2.92994 5.50945 3.21994 5.21945C3.50994 4.92945 3.98994 4.92945 4.27994 5.21945L7.99994 8.93945L11.7199 5.21945C12.0099 4.92945 12.4899 4.92945 12.7799 5.21945C13.0699 5.50945 13.0699 5.98945 12.7799 6.27945L8.52994 10.5295C8.37994 10.6795 8.18994 10.7495 7.99994 10.7495Z"/></svg></button>
-                    <div class="acct-actions-menu" id="grpActionsMenu">
-                      <div class="row-action-menu-item" onclick="openSlidePanel('editJobPanel')"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 10v3h3M14 6V3h-3"/><path d="M14 3L9 8M2 13l5-5"/></svg> Create Job</div>
-                      <div class="row-action-menu-item" onclick="openSlidePanel('grpSettingsPanel')"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="5"/><path d="M8 5.5v5M5.5 8h5"/></svg> Group Settings</div>
-                      <div class="inv-context-item danger"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 4h10M6 4V3h4v1M5 4v8.5a1 1 0 001 1h4a1 1 0 001-1V4"/></svg> Delete Group</div>
+                <nav class="breadcrumb">
+                  <a class="breadcrumb-item" onclick="showGroupsList()">Inventory</a>
+                  <span class="breadcrumb-sep"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 3l5 5-5 5"/></svg></span>
+                  <a class="breadcrumb-item" onclick="showGroupsList()">Groups</a>
+                </nav>
+                <div class="page-title-row">
+                  <h1 class="page-title" id="grpDetailTitle">Group Name</h1>
+                  <div class="page-header-actions">
+                    <button class="btn-icon" title="Refresh"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2.5 8a5.5 5.5 0 019.3-4M13.5 8a5.5 5.5 0 01-9.3 4"/><path d="M11.5 1v3h3M4.5 15v-3h-3" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+                    <div class="acct-actions-wrap">
+                      <button class="btn-outline" onclick="toggleGrpActionsMenu(event)">Actions <svg viewBox="0 0 16 16" fill="currentColor" style="width:12px;height:12px;margin-left:4px;"><path d="M7.99994 10.7495C7.80994 10.7495 7.61994 10.6795 7.46994 10.5295L3.21994 6.27945C2.92994 5.98945 2.92994 5.50945 3.21994 5.21945C3.50994 4.92945 3.98994 4.92945 4.27994 5.21945L7.99994 8.93945L11.7199 5.21945C12.0099 4.92945 12.4899 4.92945 12.7799 5.21945C13.0699 5.50945 13.0699 5.98945 12.7799 6.27945L8.52994 10.5295C8.37994 10.6795 8.18994 10.7495 7.99994 10.7495Z"/></svg></button>
+                      <div class="acct-actions-menu" id="grpActionsMenu">
+                        <div class="row-action-menu-item" onclick="openSlidePanel('editJobPanel')"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 10v3h3M14 6V3h-3"/><path d="M14 3L9 8M2 13l5-5"/></svg> Create Job</div>
+                        <div class="row-action-menu-item" onclick="openSlidePanel('grpSettingsPanel')"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="5"/><path d="M8 5.5v5M5.5 8h5"/></svg> Group Settings</div>
+                        <div class="inv-context-item danger"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 4h10M6 4V3h4v1M5 4v8.5a1 1 0 001 1h4a1 1 0 001-1V4"/></svg> Delete Group</div>
+                      </div>
                     </div>
+                    <button class="btn-primary" onclick="openSlidePanel('editJobPanel')"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="width:14px;height:14px;margin-right:4px;"><path d="M8 3v10M3 8h10"/></svg> Add Units</button>
                   </div>
-                  <button class="btn-primary" onclick="openSlidePanel('editJobPanel')"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="width:14px;height:14px;margin-right:4px;"><path d="M8 3v10M3 8h10"/></svg> Add Units</button>
                 </div>
               </div>
 
               <!-- Group Detail Inner Tabs -->
-              <div class="tabs" id="grpDetailTabs" role="tablist" style="margin-bottom:16px;">
+              <div class="tabs" id="grpDetailTabs" role="tablist">
                 <button class="tab active" role="tab" data-grp-tab="units">Units</button>
                 <button class="tab" role="tab" data-grp-tab="jobs">Jobs</button>
               </div>
@@ -4716,8 +4661,8 @@
                         <svg viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M7 2C9.76142 2 12 4.23858 12 7C12 8.11285 11.6353 9.13998 11.0205 9.9707L14.0713 13.0068L14.1221 13.0645C14.3629 13.3585 14.3471 13.7932 14.0732 14.0684C13.781 14.3615 13.3061 14.3622 13.0127 14.0703L9.95801 11.0303C9.12955 11.6393 8.1071 12 7 12C4.23858 12 2 9.76142 2 7C2 4.23858 4.23858 2 7 2ZM7 3.5C5.067 3.5 3.5 5.067 3.5 7C3.5 8.933 5.067 10.5 7 10.5C8.933 10.5 10.5 8.933 10.5 7C10.5 5.067 8.933 3.5 7 3.5Z"/></svg>
                         <input type="text" placeholder="Search for Files or Hash" id="grpUnitsSearch">
                       </div>
-                      <button class="audit-filter-btn"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77c-.2 0-.38-.07-.52-.21a.723.723 0 010-1.02.71.71 0 01.51-.21h8.33c.2 0 .38.07.52.21.14.14.21.31.21.51 0 .2-.07.37-.21.51-.14.14-.31.21-.51.21H3.835zM1.715 5.44c-.2 0-.37-.07-.51-.21a.723.723 0 010-1.02.71.71 0 01.51-.21h12.56c.2 0 .37.07.51.21.14.14.21.31.21.51 0 .2-.07.37-.21.51-.14.14-.31.21-.51.21H1.715zM5.515 12.09c-.2 0-.37-.07-.51-.21a.723.723 0 010-1.02.71.71 0 01.51-.21h4.96c.2 0 .37.07.51.21.14.14.21.31.21.51 0 .2-.07.37-.21.51-.14.14-.31.21-.51.21h-4.96z"/></svg> Status</button>
-                      <button class="audit-filter-btn"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77c-.2 0-.38-.07-.52-.21a.723.723 0 010-1.02.71.71 0 01.51-.21h8.33c.2 0 .38.07.52.21.14.14.21.31.21.51 0 .2-.07.37-.21.51-.14.14-.31.21-.51.21H3.835zM1.715 5.44c-.2 0-.37-.07-.51-.21a.723.723 0 010-1.02.71.71 0 01.51-.21h12.56c.2 0 .37.07.51.21.14.14.21.31.21.51 0 .2-.07.37-.21.51-.14.14-.31.21-.51.21H1.715zM5.515 12.09c-.2 0-.37-.07-.51-.21a.723.723 0 010-1.02.71.71 0 01.51-.21h4.96c.2 0 .37.07.51.21.14.14.21.31.21.51 0 .2-.07.37-.21.51-.14.14-.31.21-.51.21h-4.96z"/></svg> Group</button>
+                      <button class="filter-btn"><svg class="filter-btn-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M1.715 4C1.515 4 1.345 4.07 1.205 4.21C1.065 4.35 .995 4.52 .995 4.72C.995 4.92 1.065 5.09 1.205 5.23C1.345 5.37 1.515 5.44 1.715 5.44H14.275C14.475 5.44 14.645 5.37 14.785 5.23C14.925 5.09 14.995 4.92 14.995 4.72C14.995 4.52 14.925 4.35 14.785 4.21C14.645 4.07 14.475 4 14.275 4H1.715Z"/><path d="M3.835 7.33C3.625 7.33 3.455 7.4 3.315 7.54C3.175 7.68 3.105 7.85 3.105 8.05C3.105 8.25 3.175 8.42 3.315 8.56C3.455 8.7 3.635 8.77 3.835 8.77H12.165C12.365 8.77 12.535 8.7 12.675 8.56C12.815 8.42 12.885 8.25 12.885 8.05C12.885 7.85 12.815 7.68 12.675 7.54C12.535 7.4 12.355 7.33 12.155 7.33H3.835Z"/><path d="M5.515 10.65C5.315 10.65 5.145 10.72 5.005 10.86C4.865 11 4.795 11.17 4.795 11.37C4.795 11.57 4.865 11.74 5.005 11.88C5.145 12.02 5.315 12.09 5.515 12.09H10.475C10.675 12.09 10.845 12.02 10.985 11.88C11.125 11.74 11.195 11.57 11.195 11.37C11.195 11.17 11.125 11 10.985 10.86C10.845 10.72 10.675 10.65 10.475 10.65H5.515Z"/></svg><span class="filter-btn-text">Status</span></button>
+                      <button class="filter-btn"><svg class="filter-btn-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M1.715 4C1.515 4 1.345 4.07 1.205 4.21C1.065 4.35 .995 4.52 .995 4.72C.995 4.92 1.065 5.09 1.205 5.23C1.345 5.37 1.515 5.44 1.715 5.44H14.275C14.475 5.44 14.645 5.37 14.785 5.23C14.925 5.09 14.995 4.92 14.995 4.72C14.995 4.52 14.925 4.35 14.785 4.21C14.645 4.07 14.475 4 14.275 4H1.715Z"/><path d="M3.835 7.33C3.625 7.33 3.455 7.4 3.315 7.54C3.175 7.68 3.105 7.85 3.105 8.05C3.105 8.25 3.175 8.42 3.315 8.56C3.455 8.7 3.635 8.77 3.835 8.77H12.165C12.365 8.77 12.535 8.7 12.675 8.56C12.815 8.42 12.885 8.25 12.885 8.05C12.885 7.85 12.815 7.68 12.675 7.54C12.535 7.4 12.355 7.33 12.155 7.33H3.835Z"/><path d="M5.515 10.65C5.315 10.65 5.145 10.72 5.005 10.86C4.865 11 4.795 11.17 4.795 11.37C4.795 11.57 4.865 11.74 5.005 11.88C5.145 12.02 5.315 12.09 5.515 12.09H10.475C10.675 12.09 10.845 12.02 10.985 11.88C11.125 11.74 11.195 11.57 11.195 11.37C11.195 11.17 11.125 11 10.985 10.86C10.845 10.72 10.675 10.65 10.475 10.65H5.515Z"/></svg><span class="filter-btn-text">Group</span></button>
                     </div>
                   </div>
                   <div class="table-scroll">
@@ -4820,7 +4765,7 @@
         <div id="jobsPage" class="page-view">
           <!-- Jobs List View -->
           <div id="jobsListView">
-            <div class="page-header">
+            <div class="page-title-row">
               <h1 class="page-title">Jobs</h1>
               <button class="btn-primary" onclick="openSlidePanel('editJobPanel')">New Job</button>
             </div>
@@ -4973,17 +4918,17 @@
 
           <!-- Job Detail View (hidden by default) -->
           <div id="jobDetailView" style="display:none;">
-            <div class="detail-breadcrumb">
-              <a onclick="showJobsList()">Jobs</a>
-              <svg viewBox="0 0 16 16" fill="currentColor"><path d="M5.99994 12.9995C6.18994 12.9995 6.37994 12.9295 6.52994 12.7795L10.7799 8.52945C11.0699 8.23945 11.0699 7.75945 10.7799 7.46945L6.52994 3.21945C6.23994 2.92945 5.75994 2.92945 5.46994 3.21945C5.17994 3.50945 5.17994 3.98945 5.46994 4.27945L9.18994 7.99945L5.46994 11.7195C5.17994 12.0095 5.17994 12.4895 5.46994 12.7795C5.61994 12.9295 5.80994 12.9995 5.99994 12.9995Z"/></svg>
-              <span id="jobDetailBreadcrumbName">Job Name</span>
-            </div>
             <div class="page-header">
-              <h1 class="page-title" id="jobDetailTitle">Scheduled File Scan</h1>
-              <div class="page-header-actions">
-                <button class="btn-outline" onclick="openSlidePanel('jobDetailsPanel')">Job Details</button>
-                <button class="btn-outline" id="jobDetailCancelBtn" onclick="openCancelJobModal()">Cancel Job</button>
-                <button class="btn-primary" id="jobDetailReportBtn" style="display:none;">View Report</button>
+              <nav class="breadcrumb">
+                <a class="breadcrumb-item" onclick="showJobsList()">Jobs</a>
+              </nav>
+              <div class="page-title-row">
+                <h1 class="page-title" id="jobDetailTitle">Scheduled File Scan</h1>
+                <div class="page-header-actions">
+                  <button class="btn-outline" onclick="openSlidePanel('jobDetailsPanel')">Job Details</button>
+                  <button class="btn-outline" id="jobDetailCancelBtn" onclick="openCancelJobModal()">Cancel Job</button>
+                  <button class="btn-primary" id="jobDetailReportBtn" style="display:none;">View Report</button>
+                </div>
               </div>
             </div>
 
@@ -5066,7 +5011,7 @@
         <!-- ==================== WORKFLOWS ==================== -->
         <div id="workflowsPage" class="page-view">
           <div id="workflowsListView">
-            <div class="page-header">
+            <div class="page-title-row">
               <h1 class="page-title">Workflows</h1>
               <button class="btn-primary" onclick="openSlidePanel('createWorkflowPanel')">Add New Workflow</button>
             </div>
@@ -5214,12 +5159,14 @@
 
           <!-- Workflow Detail View -->
           <div id="workflowDetailView" style="display:none;">
-            <div class="detail-breadcrumb">
-              <a onclick="showWorkflowsList()">Workflows</a>
-              <svg viewBox="0 0 16 16" fill="currentColor"><path d="M5.99994 12.9995C6.18994 12.9995 6.37994 12.9295 6.52994 12.7795L10.7799 8.52945C11.0699 8.23945 11.0699 7.75945 10.7799 7.46945L6.52994 3.21945C6.23994 2.92945 5.75994 2.92945 5.46994 3.21945C5.17994 3.50945 5.17994 3.98945 5.46994 4.27945L9.18994 7.99945L5.46994 11.7195C5.17994 12.0095 5.17994 12.4895 5.46994 12.7795C5.61994 12.9295 5.80994 12.9995 5.99994 12.9995Z"/></svg>
-              <span id="wfDetailBreadcrumbName">Default Workflow</span>
+            <div class="page-header">
+              <nav class="breadcrumb">
+                <a class="breadcrumb-item" onclick="showWorkflowsList()">Workflows</a>
+              </nav>
+              <div class="page-title-row">
+                <h1 class="page-title" id="wfDetailTitle">Default Workflow</h1>
+              </div>
             </div>
-            <h1 class="wf-detail-title" id="wfDetailTitle">Default Workflow</h1>
 
             <div class="audit-card">
               <div class="audit-card-header"><div class="audit-card-title"><h3>Workflow Details</h3></div></div>
@@ -6708,6 +6655,33 @@
   </div>
 
   <script>
+    // ===============================================================
+    // FILTER BUTTON MENUS (Dashboard header)
+    // ===============================================================
+    function toggleFilterMenu(wrapId) {
+      var wrap = document.getElementById(wrapId);
+      var wasOpen = wrap.classList.contains('open');
+      // Close all filter menus first
+      document.querySelectorAll('.filter-btn-wrap.open').forEach(function(el) { el.classList.remove('open'); });
+      if (!wasOpen) wrap.classList.add('open');
+    }
+    function selectFilter(filterId, label, el) {
+      // Update text
+      document.getElementById(filterId + 'Text').textContent = label;
+      // Update active state
+      var menu = el.parentElement;
+      menu.querySelectorAll('.filter-menu-item').forEach(function(item) { item.classList.remove('active'); });
+      el.classList.add('active');
+      // Close menu
+      el.closest('.filter-btn-wrap').classList.remove('open');
+    }
+    // Close filter menus on outside click
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.filter-btn-wrap')) {
+        document.querySelectorAll('.filter-btn-wrap.open').forEach(function(el) { el.classList.remove('open'); });
+      }
+    });
+
     // ===============================================================
     // DIRTY STATE TRACKING — detects changes within each settings card
     // and activates Save/Discard buttons accordingly
@@ -8746,7 +8720,6 @@
       const name = workflowNames[index] || 'Workflow';
       document.getElementById('workflowsListView').style.display = 'none';
       document.getElementById('workflowDetailView').style.display = 'block';
-      document.getElementById('wfDetailBreadcrumbName').textContent = name;
       document.getElementById('wfDetailTitle').textContent = name;
     };
 
@@ -8895,7 +8868,6 @@
 
       // Update header
       document.getElementById('acctDetailTitle').textContent = acct.name;
-      document.getElementById('acctDetailBreadcrumbName').textContent = acct.name;
 
       // Update overview stats
       document.getElementById('acctStatTotal').textContent = acct.totalUnits;
@@ -8932,9 +8904,11 @@
         document.getElementById('acctJobSummaryLink').style.display = 'none';
       }
 
-      // Toggle views
+      // Toggle views — hide parent header + tabs when in detail
       document.getElementById('accountsListView').style.display = 'none';
       document.getElementById('accountDetailView').style.display = 'block';
+      document.getElementById('inventoryPageHeader').style.display = 'none';
+      document.getElementById('inventoryTabs').style.display = 'none';
       document.querySelector('.content').scrollTop = 0;
     };
 
@@ -8942,6 +8916,8 @@
     window.showAccountsList = function() {
       document.getElementById('accountDetailView').style.display = 'none';
       document.getElementById('accountsListView').style.display = '';
+      document.getElementById('inventoryPageHeader').style.display = '';
+      document.getElementById('inventoryTabs').style.display = '';
     };
 
     /* ---- Account detail tabs ---- */
@@ -9104,7 +9080,6 @@
       window._grpDetailIdx = index;
 
       document.getElementById('grpDetailTitle').textContent = grp.name;
-      document.getElementById('grpDetailBreadcrumbName').textContent = grp.name;
       document.getElementById('grpStatTotal').textContent = grp.totalUnits;
       document.getElementById('grpStatOp').textContent = grp.operational;
       document.getElementById('grpStatErrors').textContent = grp.errors;
@@ -9125,12 +9100,16 @@
 
       document.getElementById('groupsListView').style.display = 'none';
       document.getElementById('groupDetailView').style.display = 'block';
+      document.getElementById('inventoryPageHeader').style.display = 'none';
+      document.getElementById('inventoryTabs').style.display = 'none';
       document.querySelector('.content').scrollTop = 0;
     };
 
     window.showGroupsList = function() {
       document.getElementById('groupDetailView').style.display = 'none';
       document.getElementById('groupsListView').style.display = '';
+      document.getElementById('inventoryPageHeader').style.display = '';
+      document.getElementById('inventoryTabs').style.display = '';
     };
 
     /* ---- Group detail tabs ---- */
@@ -9283,10 +9262,10 @@
         var groupExtra = u.groups > 0 ? ' <span class="count-more">+' + u.groups + '</span>' : '';
         html += '<tr>'
           + '<td class="col-cb"><div class="cb" onclick="toggleCb(this,event)">' + cbSvg + '</div></td>'
-          + '<td><div style="display:flex;align-items:center;gap:8px;"><span class="inv-provider-icon ' + acct.providerClass + '">' + acct.providerLabel + '</span> ' + u.name + '</div></td>'
+          + '<td class="col-pinned"><div style="display:flex;align-items:center;gap:8px;"><span class="inv-provider-icon ' + acct.providerClass + '">' + acct.providerLabel + '</span> ' + u.name + '</div></td>'
           + '<td><span class="tag ' + u.statusTag + '">' + u.status + '</span></td>'
           + '<td><span class="tag tag-keyword">' + u.group + '</span>' + groupExtra + '</td>'
-          + '<td><div class="acct-client-id"><span class="acct-client-id-text" title="' + u.clientId + '">' + u.clientId + '</span><svg class="acct-copy-btn" onclick="copyClientId(\'' + u.clientId + '\', event)" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="5" width="8" height="8" rx="1"/><path d="M3 11V3h8"/></svg></div></td>'
+          + '<td><div class="acct-client-id"><span class="acct-client-id-text" title="' + u.clientId + '">' + u.clientId + '</span><svg class="acct-copy-btn" onclick="copyClientId(\'' + u.clientId + '\', event)" viewBox="0 0 16 16" fill="currentColor"><path d="M13 2H6C5.44772 2 5 2.44772 5 3V10C5 10.5523 5.44772 11 6 11H13C13.5523 11 14 10.5523 14 10V3C14 2.44772 13.5523 2 13 2Z"/><path d="M11 12.5V14H3C2.45 14 2 13.55 2 13V5H3.5V12.5H11Z"/></svg></div></td>'
           + '<td>' + u.lastScanned + '</td>'
           + '<td class="col-action"><div class="row-action-btn" onclick="toggleInvMenu(this, event)" style="position:relative"><svg viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="3" r="1.5"/><circle cx="8" cy="8" r="1.5"/><circle cx="8" cy="13" r="1.5"/></svg><div class="row-action-menu row-action-menu--inline"><div class="row-action-menu-item" onclick="event.stopPropagation()"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 10v3h3M14 6V3h-3"/><path d="M14 3L9 8M2 13l5-5"/></svg> Create Job</div><div class="row-action-menu-item" onclick="event.stopPropagation()"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="5"/><path d="M8 5.5v5M5.5 8h5"/></svg> Edit Unit</div><div class="inv-context-item danger" onclick="event.stopPropagation()"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 4h10M6 4V3h4v1M5 4v8.5a1 1 0 001 1h4a1 1 0 001-1V4"/></svg> Delete Unit</div></div></div></td>'
           + '</tr>';
@@ -9322,7 +9301,7 @@
         var detColor = j.detections > 0 ? 'var(--red-600)' : 'var(--green-600)';
         html += '<tr>'
           + '<td class="col-cb"><div class="cb" onclick="toggleCb(this,event)">' + cbSvg + '</div></td>'
-          + '<td>' + j.name + '</td>'
+          + '<td class="col-pinned">' + j.name + '</td>'
           + '<td><span class="tag ' + j.statusTag + '">' + j.status + '</span></td>'
           + '<td>' + j.files.toLocaleString() + '</td>'
           + '<td><span style="display:inline-flex;align-items:center;gap:6px;"><span style="width:8px;height:8px;border-radius:50%;background:' + detColor + ';display:inline-block;"></span> ' + j.detections + '</span></td>'
@@ -10123,7 +10102,6 @@
 
         document.getElementById('jobsListView').style.display = 'none';
         document.getElementById('jobDetailView').style.display = 'block';
-        document.getElementById('jobDetailBreadcrumbName').textContent = job.name;
         document.getElementById('jobDetailTitle').textContent = job.name;
 
         // Show/hide cancel and report buttons
