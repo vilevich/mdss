@@ -913,6 +913,14 @@
 .btn-menu:disabled, .btn-menu.disabled { opacity: 0.5; cursor: not-allowed; pointer-events: none; }
 .btn-menu.skeleton { color: transparent; pointer-events: none; background: var(--neutral-100); border-color: transparent; }
 .btn-menu.skeleton svg { visibility: hidden; }
+/* Filter icon button — local override until BL CDN is updated */
+.audit-filter-btn { background: transparent; color: var(--text-strong); }
+.audit-filter-btn:hover { border-color: var(--neutral-500); color: var(--text-strong); }
+.audit-filter-btn.active { border-color: var(--primary); }
+.audit-filter-btn.active:hover { border-color: var(--primary); }
+.audit-filter-btn:disabled, .audit-filter-btn.disabled { opacity: 0.5; cursor: not-allowed; pointer-events: none; }
+.audit-filter-btn.skeleton { color: transparent; pointer-events: none; background: var(--neutral-100); border-color: transparent; }
+.audit-filter-btn.skeleton svg { visibility: hidden; }
 .filter-btn-wrap { position: relative; }
 .filter-menu {
   display: none; position: absolute; top: calc(100% + 4px); left: 0; z-index: 50;
@@ -1570,6 +1578,11 @@ td:has(+ .col-action) { padding-right: 20px !important; }
 [data-theme="dark"] .dash-trend-tab { border-color: var(--border-200); color: var(--text-muted); }
 [data-theme="dark"] .dash-trend-tab.active { background: rgba(29,107,252,0.12); color: var(--primary); }
 [data-theme="dark"] .dash-filetype-legend-header { border-color: var(--border-200); }
+[data-theme="dark"] .audit-filter-btn { background: transparent; color: var(--text-strong); }
+[data-theme="dark"] .audit-filter-btn:hover { border-color: var(--neutral-400); }
+[data-theme="dark"] .audit-filter-btn.active { border-color: var(--blue-400); }
+[data-theme="dark"] .audit-filter-btn.active:hover { border-color: var(--blue-400); }
+[data-theme="dark"] .audit-filter-btn.skeleton { background: var(--neutral-800); }
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 1200px) {
@@ -3926,7 +3939,7 @@ td:has(+ .col-action) { padding-right: 20px !important; }
           <div class="settings-card">
             <div class="card-header">
               <h2>External Loggers Configurations</h2>
-              <button class="btn-outline" onclick="openSlidePanel('addLoggerPanel')" style="display:flex; align-items:center; gap:6px;">
+              <button class="btn-outline" onclick="openSlidePanel('addLoggerPanel')">
                 <svg viewBox="0 0 16 16" fill="currentColor"><path d="M11.25 8.75H8.75V11.25C8.75 11.66 8.41 12 8 12C7.59 12 7.25 11.66 7.25 11.25V8.75H4.75C4.34 8.75 4 8.41 4 8C4 7.59 4.34 7.25 4.75 7.25H7.25V4.75C7.25 4.34 7.59 4 8 4C8.41 4 8.75 4.34 8.75 4.75V7.25H11.25C11.66 7.25 12 7.59 12 8C12 8.41 11.66 8.75 11.25 8.75Z"/></svg>
                 Add Server
               </button>
