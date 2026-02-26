@@ -5031,7 +5031,7 @@ td:has(+ .col-action) { padding-right: 20px !important; }
 
             <div class="audit-card">
               <div class="audit-card-header">
-                <div class="audit-card-title"><h3>Workflows</h3> <span>10</span></div>
+                <div class="audit-card-title"><h3>Workflows</h3> <span class="count">10</span></div>
                 <div style="display:flex; gap:8px; align-items:center;">
                   <div class="audit-search"><svg viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M7 2C9.76142 2 12 4.23858 12 7C12 8.11285 11.6353 9.13998 11.0205 9.9707L14.0713 13.0068L14.1221 13.0645C14.3629 13.3585 14.3471 13.7932 14.0732 14.0684C13.781 14.3615 13.3061 14.3622 13.0127 14.0703L9.95801 11.0303C9.12955 11.6393 8.1071 12 7 12C4.23858 12 2 9.76142 2 7C2 4.23858 4.23858 2 7 2ZM7 3.5C5.067 3.5 3.5 5.067 3.5 7C3.5 8.933 5.067 10.5 7 10.5C8.933 10.5 10.5 8.933 10.5 7C10.5 5.067 8.933 3.5 7 3.5Z"/></svg><input type="text" placeholder="Search for Files or Hash" class="audit-search-input"></div>
                 </div>
@@ -5040,26 +5040,26 @@ td:has(+ .col-action) { padding-right: 20px !important; }
                 <table class="data-table" id="workflowsTable">
                   <thead>
                     <tr>
-                      <th style="padding-right:20px;">Name <svg class="filter-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M2 4h12M4 8h8M6 12h4" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></th>
-                      <th>File Discovery <svg class="filter-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M2 4h12M4 8h8M6 12h4" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></th>
-                      <th>Scan Pool <svg class="filter-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M2 4h12M4 8h8M6 12h4" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></th>
-                      <th>Security <svg class="filter-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M2 4h12M4 8h8M6 12h4" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></th>
-                      <th>File Tagging <svg class="filter-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M2 4h12M4 8h8M6 12h4" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></th>
-                      <th>Deep CDR™ <svg class="filter-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M2 4h12M4 8h8M6 12h4" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></th>
-                      <th>Remediations <svg class="filter-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M2 4h12M4 8h8M6 12h4" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></th>
+                      <th>Name <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77C3.635 8.77 3.455 8.7 3.315 8.56C3.175 8.42 3.105 8.25 3.105 8.05C3.105 7.85 3.175 7.68 3.315 7.54C3.455 7.4 3.625 7.33 3.825 7.33H12.155C12.355 7.33 12.535 7.4 12.675 7.54C12.815 7.68 12.885 7.85 12.885 8.05C12.885 8.25 12.815 8.42 12.675 8.56C12.535 8.7 12.365 8.77 12.165 8.77H3.835Z"/><path d="M1.715 5.44C1.515 5.44 1.345 5.37 1.205 5.23C1.065 5.09 0.994995 4.92 0.994995 4.72C0.994995 4.52 1.065 4.35 1.205 4.21C1.345 4.07 1.515 4 1.715 4H14.275C14.475 4 14.645 4.07 14.785 4.21C14.925 4.35 14.995 4.52 14.995 4.72C14.995 4.92 14.925 5.09 14.785 5.23C14.645 5.37 14.475 5.44 14.275 5.44H1.715Z"/><path d="M5.515 12.09C5.315 12.09 5.14499 12.02 5.00499 11.88C4.86499 11.74 4.795 11.57 4.795 11.37C4.795 11.17 4.86499 11 5.00499 10.86C5.14499 10.72 5.315 10.65 5.515 10.65H10.475C10.675 10.65 10.845 10.72 10.985 10.86C11.125 11 11.195 11.17 11.195 11.37C11.195 11.57 11.125 11.74 10.985 11.88C10.845 12.02 10.675 12.09 10.475 12.09H5.515Z"/></svg></span></th>
+                      <th>File Discovery <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77C3.635 8.77 3.455 8.7 3.315 8.56C3.175 8.42 3.105 8.25 3.105 8.05C3.105 7.85 3.175 7.68 3.315 7.54C3.455 7.4 3.625 7.33 3.825 7.33H12.155C12.355 7.33 12.535 7.4 12.675 7.54C12.815 7.68 12.885 7.85 12.885 8.05C12.885 8.25 12.815 8.42 12.675 8.56C12.535 8.7 12.365 8.77 12.165 8.77H3.835Z"/><path d="M1.715 5.44C1.515 5.44 1.345 5.37 1.205 5.23C1.065 5.09 0.994995 4.92 0.994995 4.72C0.994995 4.52 1.065 4.35 1.205 4.21C1.345 4.07 1.515 4 1.715 4H14.275C14.475 4 14.645 4.07 14.785 4.21C14.925 4.35 14.995 4.52 14.995 4.72C14.995 4.92 14.925 5.09 14.785 5.23C14.645 5.37 14.475 5.44 14.275 5.44H1.715Z"/><path d="M5.515 12.09C5.315 12.09 5.14499 12.02 5.00499 11.88C4.86499 11.74 4.795 11.57 4.795 11.37C4.795 11.17 4.86499 11 5.00499 10.86C5.14499 10.72 5.315 10.65 5.515 10.65H10.475C10.675 10.65 10.845 10.72 10.985 10.86C11.125 11 11.195 11.17 11.195 11.37C11.195 11.57 11.125 11.74 10.985 11.88C10.845 12.02 10.675 12.09 10.475 12.09H5.515Z"/></svg></span></th>
+                      <th>Scan Pool <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77C3.635 8.77 3.455 8.7 3.315 8.56C3.175 8.42 3.105 8.25 3.105 8.05C3.105 7.85 3.175 7.68 3.315 7.54C3.455 7.4 3.625 7.33 3.825 7.33H12.155C12.355 7.33 12.535 7.4 12.675 7.54C12.815 7.68 12.885 7.85 12.885 8.05C12.885 8.25 12.815 8.42 12.675 8.56C12.535 8.7 12.365 8.77 12.165 8.77H3.835Z"/><path d="M1.715 5.44C1.515 5.44 1.345 5.37 1.205 5.23C1.065 5.09 0.994995 4.92 0.994995 4.72C0.994995 4.52 1.065 4.35 1.205 4.21C1.345 4.07 1.515 4 1.715 4H14.275C14.475 4 14.645 4.07 14.785 4.21C14.925 4.35 14.995 4.52 14.995 4.72C14.995 4.92 14.925 5.09 14.785 5.23C14.645 5.37 14.475 5.44 14.275 5.44H1.715Z"/><path d="M5.515 12.09C5.315 12.09 5.14499 12.02 5.00499 11.88C4.86499 11.74 4.795 11.57 4.795 11.37C4.795 11.17 4.86499 11 5.00499 10.86C5.14499 10.72 5.315 10.65 5.515 10.65H10.475C10.675 10.65 10.845 10.72 10.985 10.86C11.125 11 11.195 11.17 11.195 11.37C11.195 11.57 11.125 11.74 10.985 11.88C10.845 12.02 10.675 12.09 10.475 12.09H5.515Z"/></svg></span></th>
+                      <th>Security <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77C3.635 8.77 3.455 8.7 3.315 8.56C3.175 8.42 3.105 8.25 3.105 8.05C3.105 7.85 3.175 7.68 3.315 7.54C3.455 7.4 3.625 7.33 3.825 7.33H12.155C12.355 7.33 12.535 7.4 12.675 7.54C12.815 7.68 12.885 7.85 12.885 8.05C12.885 8.25 12.815 8.42 12.675 8.56C12.535 8.7 12.365 8.77 12.165 8.77H3.835Z"/><path d="M1.715 5.44C1.515 5.44 1.345 5.37 1.205 5.23C1.065 5.09 0.994995 4.92 0.994995 4.72C0.994995 4.52 1.065 4.35 1.205 4.21C1.345 4.07 1.515 4 1.715 4H14.275C14.475 4 14.645 4.07 14.785 4.21C14.925 4.35 14.995 4.52 14.995 4.72C14.995 4.92 14.925 5.09 14.785 5.23C14.645 5.37 14.475 5.44 14.275 5.44H1.715Z"/><path d="M5.515 12.09C5.315 12.09 5.14499 12.02 5.00499 11.88C4.86499 11.74 4.795 11.57 4.795 11.37C4.795 11.17 4.86499 11 5.00499 10.86C5.14499 10.72 5.315 10.65 5.515 10.65H10.475C10.675 10.65 10.845 10.72 10.985 10.86C11.125 11 11.195 11.17 11.195 11.37C11.195 11.57 11.125 11.74 10.985 11.88C10.845 12.02 10.675 12.09 10.475 12.09H5.515Z"/></svg></span></th>
+                      <th>File Tagging <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77C3.635 8.77 3.455 8.7 3.315 8.56C3.175 8.42 3.105 8.25 3.105 8.05C3.105 7.85 3.175 7.68 3.315 7.54C3.455 7.4 3.625 7.33 3.825 7.33H12.155C12.355 7.33 12.535 7.4 12.675 7.54C12.815 7.68 12.885 7.85 12.885 8.05C12.885 8.25 12.815 8.42 12.675 8.56C12.535 8.7 12.365 8.77 12.165 8.77H3.835Z"/><path d="M1.715 5.44C1.515 5.44 1.345 5.37 1.205 5.23C1.065 5.09 0.994995 4.92 0.994995 4.72C0.994995 4.52 1.065 4.35 1.205 4.21C1.345 4.07 1.515 4 1.715 4H14.275C14.475 4 14.645 4.07 14.785 4.21C14.925 4.35 14.995 4.52 14.995 4.72C14.995 4.92 14.925 5.09 14.785 5.23C14.645 5.37 14.475 5.44 14.275 5.44H1.715Z"/><path d="M5.515 12.09C5.315 12.09 5.14499 12.02 5.00499 11.88C4.86499 11.74 4.795 11.57 4.795 11.37C4.795 11.17 4.86499 11 5.00499 10.86C5.14499 10.72 5.315 10.65 5.515 10.65H10.475C10.675 10.65 10.845 10.72 10.985 10.86C11.125 11 11.195 11.17 11.195 11.37C11.195 11.57 11.125 11.74 10.985 11.88C10.845 12.02 10.675 12.09 10.475 12.09H5.515Z"/></svg></span></th>
+                      <th>Deep CDR™ <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77C3.635 8.77 3.455 8.7 3.315 8.56C3.175 8.42 3.105 8.25 3.105 8.05C3.105 7.85 3.175 7.68 3.315 7.54C3.455 7.4 3.625 7.33 3.825 7.33H12.155C12.355 7.33 12.535 7.4 12.675 7.54C12.815 7.68 12.885 7.85 12.885 8.05C12.885 8.25 12.815 8.42 12.675 8.56C12.535 8.7 12.365 8.77 12.165 8.77H3.835Z"/><path d="M1.715 5.44C1.515 5.44 1.345 5.37 1.205 5.23C1.065 5.09 0.994995 4.92 0.994995 4.72C0.994995 4.52 1.065 4.35 1.205 4.21C1.345 4.07 1.515 4 1.715 4H14.275C14.475 4 14.645 4.07 14.785 4.21C14.925 4.35 14.995 4.52 14.995 4.72C14.995 4.92 14.925 5.09 14.785 5.23C14.645 5.37 14.475 5.44 14.275 5.44H1.715Z"/><path d="M5.515 12.09C5.315 12.09 5.14499 12.02 5.00499 11.88C4.86499 11.74 4.795 11.57 4.795 11.37C4.795 11.17 4.86499 11 5.00499 10.86C5.14499 10.72 5.315 10.65 5.515 10.65H10.475C10.675 10.65 10.845 10.72 10.985 10.86C11.125 11 11.195 11.17 11.195 11.37C11.195 11.57 11.125 11.74 10.985 11.88C10.845 12.02 10.675 12.09 10.475 12.09H5.515Z"/></svg></span></th>
+                      <th>Remediations <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77C3.635 8.77 3.455 8.7 3.315 8.56C3.175 8.42 3.105 8.25 3.105 8.05C3.105 7.85 3.175 7.68 3.315 7.54C3.455 7.4 3.625 7.33 3.825 7.33H12.155C12.355 7.33 12.535 7.4 12.675 7.54C12.815 7.68 12.885 7.85 12.885 8.05C12.885 8.25 12.815 8.42 12.675 8.56C12.535 8.7 12.365 8.77 12.165 8.77H3.835Z"/><path d="M1.715 5.44C1.515 5.44 1.345 5.37 1.205 5.23C1.065 5.09 0.994995 4.92 0.994995 4.72C0.994995 4.52 1.065 4.35 1.205 4.21C1.345 4.07 1.515 4 1.715 4H14.275C14.475 4 14.645 4.07 14.785 4.21C14.925 4.35 14.995 4.52 14.995 4.72C14.995 4.92 14.925 5.09 14.785 5.23C14.645 5.37 14.475 5.44 14.275 5.44H1.715Z"/><path d="M5.515 12.09C5.315 12.09 5.14499 12.02 5.00499 11.88C4.86499 11.74 4.795 11.57 4.795 11.37C4.795 11.17 4.86499 11 5.00499 10.86C5.14499 10.72 5.315 10.65 5.515 10.65H10.475C10.675 10.65 10.845 10.72 10.985 10.86C11.125 11 11.195 11.17 11.195 11.37C11.195 11.57 11.125 11.74 10.985 11.88C10.845 12.02 10.675 12.09 10.475 12.09H5.515Z"/></svg></span></th>
                       <th class="col-action"></th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr onclick="openWorkflowDetail(0)" style="cursor:pointer;">
-                      <td><svg class="wf-default-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1a1.5 1.5 0 00-1.5 1.5v.7A6.02 6.02 0 003.2 5.05l-.6-.35a1.5 1.5 0 10-1.5 2.6l.6.35a6.02 6.02 0 000 2.7l-.6.35a1.5 1.5 0 101.5 2.6l.6-.35A6.02 6.02 0 006.5 14.8v.7a1.5 1.5 0 003 0v-.7a6.02 6.02 0 003.3-1.85l.6.35a1.5 1.5 0 101.5-2.6l-.6-.35a6.02 6.02 0 000-2.7l.6-.35a1.5 1.5 0 10-1.5-2.6l-.6.35A6.02 6.02 0 009.5 3.2v-.7A1.5 1.5 0 008 1zM8 10.5a2.5 2.5 0 110-5 2.5 2.5 0 010 5z"/></svg> Default Workflow</td>
+                      <td><svg class="wf-default-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M14.52 6.39006L11.23 9.07006L12.32 13.1701C12.44 13.6101 11.95 13.9701 11.56 13.7201L8.00002 11.4101L4.44002 13.7201C4.05002 13.9701 3.56002 13.6101 3.68002 13.1701L4.77002 9.07006L1.48002 6.39006C1.12002 6.10006 1.31002 5.53006 1.77002 5.50006L6.01002 5.28006L7.53002 1.32006C7.70002 0.890059 8.30002 0.890059 8.47002 1.32006L9.99002 5.28006L14.23 5.50006C14.69 5.53006 14.88 6.10006 14.52 6.39006Z"/></svg> Default Workflow</td>
                       <td><span class="wf-status"><span class="wf-status-dot"></span> Enabled</span></td>
                       <td>Scan Pool Name</td>
                       <td><span class="wf-status"><span class="wf-status-dot"></span> 3/4 Enabled</span></td>
                       <td><span class="wf-status"><span class="wf-status-dot"></span> Enabled</span></td>
                       <td><span class="wf-status"><span class="wf-status-dot"></span> Enabled</span></td>
                       <td><span class="wf-rem-tag none">None</span></td>
-                      <td><button class="cell-action" onclick="event.stopPropagation();">⋯</button></td>
+                      <td><button class="cell-action" onclick="event.stopPropagation();"><svg viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="3" r="1.5"/><circle cx="8" cy="8" r="1.5"/><circle cx="8" cy="13" r="1.5"/></svg></button></td>
                     </tr>
                     <tr onclick="openWorkflowDetail(1)" style="cursor:pointer;">
                       <td>Email 2025</td>
@@ -5069,7 +5069,7 @@ td:has(+ .col-action) { padding-right: 20px !important; }
                       <td><span class="wf-status"><span class="wf-status-dot"></span> Enabled</span></td>
                       <td><span class="wf-status"><span class="wf-status-dot"></span> Enabled</span></td>
                       <td><span class="wf-rem-tag none">Keep</span></td>
-                      <td><button class="cell-action" onclick="event.stopPropagation();">⋯</button></td>
+                      <td><button class="cell-action" onclick="event.stopPropagation();"><svg viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="3" r="1.5"/><circle cx="8" cy="8" r="1.5"/><circle cx="8" cy="13" r="1.5"/></svg></button></td>
                     </tr>
                     <tr onclick="openWorkflowDetail(2)" style="cursor:pointer;">
                       <td>Finance</td>
@@ -5079,7 +5079,7 @@ td:has(+ .col-action) { padding-right: 20px !important; }
                       <td><span class="wf-status"><span class="wf-status-dot"></span> Enabled</span></td>
                       <td><span class="wf-status"><span class="wf-status-dot"></span> Enabled</span></td>
                       <td><span class="wf-rem-tags"><span class="wf-rem-tag copy">Copy</span></span></td>
-                      <td><button class="cell-action" onclick="event.stopPropagation();">⋯</button></td>
+                      <td><button class="cell-action" onclick="event.stopPropagation();"><svg viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="3" r="1.5"/><circle cx="8" cy="8" r="1.5"/><circle cx="8" cy="13" r="1.5"/></svg></button></td>
                     </tr>
                     <tr onclick="openWorkflowDetail(3)" style="cursor:pointer;">
                       <td>Weekly Scan</td>
@@ -5089,7 +5089,7 @@ td:has(+ .col-action) { padding-right: 20px !important; }
                       <td><span class="wf-status"><span class="wf-status-dot"></span> Enabled</span></td>
                       <td><span class="wf-status"><span class="wf-status-dot"></span> Enabled</span></td>
                       <td><span class="wf-rem-tags"><span class="wf-rem-tag copy">Copy</span></span></td>
-                      <td><button class="cell-action" onclick="event.stopPropagation();">⋯</button></td>
+                      <td><button class="cell-action" onclick="event.stopPropagation();"><svg viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="3" r="1.5"/><circle cx="8" cy="8" r="1.5"/><circle cx="8" cy="13" r="1.5"/></svg></button></td>
                     </tr>
                     <tr onclick="openWorkflowDetail(4)" style="cursor:pointer;">
                       <td>Doc Library</td>
@@ -5099,7 +5099,7 @@ td:has(+ .col-action) { padding-right: 20px !important; }
                       <td><span class="wf-status"><span class="wf-status-dot"></span> Enabled</span></td>
                       <td><span class="wf-status"><span class="wf-status-dot"></span> Enabled</span></td>
                       <td><span class="wf-rem-tags"><span class="wf-rem-tag copy">Copy</span></span></td>
-                      <td><button class="cell-action" onclick="event.stopPropagation();">⋯</button></td>
+                      <td><button class="cell-action" onclick="event.stopPropagation();"><svg viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="3" r="1.5"/><circle cx="8" cy="8" r="1.5"/><circle cx="8" cy="13" r="1.5"/></svg></button></td>
                     </tr>
                     <tr onclick="openWorkflowDetail(5)" style="cursor:pointer;">
                       <td>User Data</td>
@@ -5109,7 +5109,7 @@ td:has(+ .col-action) { padding-right: 20px !important; }
                       <td><span class="wf-status"><span class="wf-status-dot"></span> Enabled</span></td>
                       <td><span class="wf-status"><span class="wf-status-dot"></span> Enabled</span></td>
                       <td><span class="wf-rem-tags"><span class="wf-rem-tag delete">Delete</span></span></td>
-                      <td><button class="cell-action" onclick="event.stopPropagation();">⋯</button></td>
+                      <td><button class="cell-action" onclick="event.stopPropagation();"><svg viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="3" r="1.5"/><circle cx="8" cy="8" r="1.5"/><circle cx="8" cy="13" r="1.5"/></svg></button></td>
                     </tr>
                     <tr onclick="openWorkflowDetail(6)" style="cursor:pointer;">
                       <td>Email 2024</td>
@@ -5119,7 +5119,7 @@ td:has(+ .col-action) { padding-right: 20px !important; }
                       <td><span class="wf-status"><span class="wf-status-dot"></span> Enabled</span></td>
                       <td><span class="wf-status"><span class="wf-status-dot"></span> Enabled</span></td>
                       <td><span class="wf-rem-tags"><span class="wf-rem-tag move">Move</span></span></td>
-                      <td><button class="cell-action" onclick="event.stopPropagation();">⋯</button></td>
+                      <td><button class="cell-action" onclick="event.stopPropagation();"><svg viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="3" r="1.5"/><circle cx="8" cy="8" r="1.5"/><circle cx="8" cy="13" r="1.5"/></svg></button></td>
                     </tr>
                     <tr onclick="openWorkflowDetail(7)" style="cursor:pointer;">
                       <td>Test WF</td>
@@ -5129,7 +5129,7 @@ td:has(+ .col-action) { padding-right: 20px !important; }
                       <td><span class="wf-status"><span class="wf-status-dot"></span> Enabled</span></td>
                       <td><span class="wf-status"><span class="wf-status-dot"></span> Enabled</span></td>
                       <td><span class="wf-rem-tags"><span class="wf-rem-tag none">Keep</span> <span class="wf-rem-tag copy">Copy</span> <span class="wf-rem-tag delete">Delete</span></span></td>
-                      <td><button class="cell-action" onclick="event.stopPropagation();">⋯</button></td>
+                      <td><button class="cell-action" onclick="event.stopPropagation();"><svg viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="3" r="1.5"/><circle cx="8" cy="8" r="1.5"/><circle cx="8" cy="13" r="1.5"/></svg></button></td>
                     </tr>
                     <tr onclick="openWorkflowDetail(8)" style="cursor:pointer;">
                       <td>Full Disk</td>
@@ -5139,7 +5139,7 @@ td:has(+ .col-action) { padding-right: 20px !important; }
                       <td><span class="wf-status"><span class="wf-status-dot"></span> Enabled</span></td>
                       <td><span class="wf-status"><span class="wf-status-dot"></span> Enabled</span></td>
                       <td><span class="wf-rem-tags"><span class="wf-rem-tag failed">Failed</span></span></td>
-                      <td><button class="cell-action" onclick="event.stopPropagation();">⋯</button></td>
+                      <td><button class="cell-action" onclick="event.stopPropagation();"><svg viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="3" r="1.5"/><circle cx="8" cy="8" r="1.5"/><circle cx="8" cy="13" r="1.5"/></svg></button></td>
                     </tr>
                     <tr onclick="openWorkflowDetail(9)" style="cursor:pointer;">
                       <td>Quick Scan</td>
@@ -5149,7 +5149,7 @@ td:has(+ .col-action) { padding-right: 20px !important; }
                       <td><span class="wf-status"><span class="wf-status-dot"></span> Enabled</span></td>
                       <td><span class="wf-status"><span class="wf-status-dot"></span> Enabled</span></td>
                       <td><span class="wf-rem-tags"><span class="wf-rem-tag copy">Copy</span></span></td>
-                      <td><button class="cell-action" onclick="event.stopPropagation();">⋯</button></td>
+                      <td><button class="cell-action" onclick="event.stopPropagation();"><svg viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="3" r="1.5"/><circle cx="8" cy="8" r="1.5"/><circle cx="8" cy="13" r="1.5"/></svg></button></td>
                     </tr>
                   </tbody>
                 </table>
