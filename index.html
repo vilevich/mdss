@@ -939,7 +939,7 @@
 /* ===== 1. ACCOUNT INFO BAR — uses BL .info-bar component ===== */
 /* Local overrides until BL CDN is updated */
 .info-bar { align-items: center; padding: 20px; gap: 20px; border-radius: 4px; overflow: visible; }
-.info-bar-section { gap: 20px; padding: 0; }
+.info-bar-section { gap: 20px; padding: 0; flex: 1 1 0; min-width: 0; }
 .info-bar-divider { height: 64px; align-self: auto; background: var(--border-200); }
 .info-bar-icon { background: none; border-radius: 0; }
 .info-bar-icon svg, .info-bar-icon img { width: 40px; height: 40px; }
@@ -1908,7 +1908,7 @@ td:has(+ .col-action) { padding-right: 20px !important; }
 
     <div class="info-bar-divider"></div>
 
-    <div class="info-bar-section" style="flex:1 0 0; min-width:0;">
+    <div class="info-bar-section">
       <div class="info-bar-meta">
         <div class="info-bar-label">Client ID</div>
         <div class="info-bar-value">
