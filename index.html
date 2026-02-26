@@ -647,13 +647,17 @@
     .wf-status-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green-800); flex-shrink: 0; }
 
     /* Default workflow star icon */
-    .wf-default-icon { width: 16px; height: 16px; color: var(--text-subtle); margin-right: 4px; vertical-align: middle; }
+    .wf-default-icon { width: 16px; height: 16px; color: var(--text-strong); margin-right: 4px; vertical-align: middle; }
 
     /* ===== WORKFLOW FLOW DIAGRAM ===== */
     .wf-canvas {
-      background: var(--neutral-100); border-radius: var(--radius);
+      background-color: var(--surface-100, #F8F9F9);
+      background-image: radial-gradient(circle at 1px 1px, rgba(169, 178, 196, 0.2) 1px, transparent 1px);
+      background-size: 12px 12px;
+      border-radius: var(--radius);
       padding: 48px; overflow: auto;
       position: relative; cursor: grab;
+      flex: 1 0 0; align-self: stretch;
     }
     .wf-canvas.dragging { cursor: grabbing; user-select: none; }
     .wf-flow { display: inline-flex; align-items: center; gap: 0; }
@@ -743,7 +747,7 @@
     .wf-folder-check input[type="checkbox"] { width: 16px; height: 16px; accent-color: var(--primary); }
 
     /* Dark mode - Workflows */
-    [data-theme="dark"] .wf-canvas { background: var(--neutral-1100); }
+    [data-theme="dark"] .wf-canvas { background-color: var(--neutral-1100); background-image: radial-gradient(circle at 1px 1px, rgba(169, 178, 196, 0.08) 1px, transparent 1px); }
     [data-theme="dark"] .wf-node-box { background: var(--surface-card); border-color: var(--border-200); }
     [data-theme="dark"] .wf-rem-col { background: var(--surface-card); border-color: var(--border-200); }
     [data-theme="dark"] .wf-action-btn { background: var(--neutral-900); }
