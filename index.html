@@ -10234,48 +10234,85 @@ td:has(+ .col-action) { padding-right: 20px !important; }
     (function initJobsPage() {
 
       // ---- Data ----
-      const activeJobs = [
-        { id: 1, name: 'Scheduled File Scan', type: 'Scheduled File Scan', status: 'Running', detections: 3, filesProcessed: 1247, filesTotal: 3500, storageUnit: 'Azure Blob – prod-container-01', elapsedTime: '02:34:12', startTime: 'Feb 24, 2026 08:15:00', progress: 36, workflow: 'Default Workflow', partition: 'Partition A', priority: 'High' },
-        { id: 2, name: 'Real-Time Scan (Polling)', type: 'Real-Time Scan', status: 'Running', detections: 0, filesProcessed: 892, filesTotal: 892, storageUnit: 'AWS S3 – backup-bucket', elapsedTime: '05:12:45', startTime: 'Feb 24, 2026 03:00:00', progress: 100, workflow: 'Quick Scan', partition: 'All Partitions', priority: 'Medium' },
-        { id: 3, name: 'Deep Scan – Archive', type: 'Scheduled File Scan', status: 'Running', detections: 12, filesProcessed: 456, filesTotal: 2100, storageUnit: 'GCP Storage – archive-2024', elapsedTime: '01:08:33', startTime: 'Feb 24, 2026 07:05:00', progress: 22, workflow: 'Deep Scan', partition: 'Partition B', priority: 'Low' }
-      ];
+      // ---- Derive Jobs-page arrays from accountsData ----
+      var _jobWorkflows = ['Default Workflow', 'Quick Scan', 'Deep Scan', 'Compliance Workflow', 'Custom Workflow'];
+      var _jobPartitions = ['All Partitions', 'Partition A', 'Partition B', 'Partition C'];
+      var _jobPriorities = ['High', 'Medium', 'Low'];
+      var _jobFrequencies = ['Daily', 'Weekly', 'Monthly'];
+      var _elapsedTimes = ['00:12:45', '00:34:22', '01:08:33', '02:34:12', '03:45:10', '05:12:45'];
+      var _durations = ['00:32:18', '00:45:12', '01:05:44', '01:23:45', '02:10:30', '03:15:22'];
+      var _startsInVals = ['2h 15m', '6h 22m', '12h 30m', '18h 45m', '1d 8h', '2d 14h', '4d 2h', '7d 12h', '12d 8h'];
 
-      const upcomingJobs = [
-        { id: 10, name: 'Weekly Security Scan', frequency: 'Weekly', storageUnit: 'Azure Blob – prod-container-01', startsIn: '2d 14h', workflow: 'Default Workflow', partition: 'All Partitions', priority: 'Medium' },
-        { id: 11, name: 'Daily Quick Scan', frequency: 'Daily', storageUnit: 'AWS S3 – backup-bucket', startsIn: '6h 22m', workflow: 'Quick Scan', partition: 'Partition A', priority: 'High' },
-        { id: 12, name: 'Monthly Deep Analysis', frequency: 'Monthly', storageUnit: 'GCP Storage – archive-2024', startsIn: '12d 8h', workflow: 'Deep Scan', partition: 'Partition C', priority: 'Low' },
-        { id: 13, name: 'Compliance Scan', frequency: 'Weekly', storageUnit: 'Azure Blob – staging-container', startsIn: '4d 2h', workflow: 'Custom Workflow', partition: 'All Partitions', priority: 'Medium' },
-        { id: 14, name: 'Staging Environment Scan', frequency: 'Daily', storageUnit: 'Azure Blob – staging-container', startsIn: '18h 45m', workflow: 'Quick Scan', partition: 'Partition A', priority: 'Low' }
-      ];
-
+      const activeJobs = [];
+      const upcomingJobs = [];
       const pastJobs = [];
-      // Generate 25 past jobs
-      const pastStatuses = ['Completed', 'Completed', 'Completed', 'Stopped', 'Completed', 'Cancelled'];
-      const pastTypes = ['Scheduled File Scan', 'Real-Time Scan', 'Scheduled File Scan', 'Scheduled File Scan', 'Real-Time Scan'];
-      const pastNames = ['Weekly Security Scan', 'Real-Time Monitoring', 'Full Deep Scan', 'Archive Scan', 'Staging Quick Scan', 'Compliance Audit Scan', 'Nightly File Check', 'Production Sweep', 'Backup Verification Scan'];
-      const pastUnits = ['Azure Blob – prod-container-01', 'AWS S3 – backup-bucket', 'GCP Storage – archive-2024', 'Azure Blob – staging-container'];
-      for (let i = 0; i < 25; i++) {
-        const day = 23 - Math.floor(i / 3);
-        const month = day < 1 ? 'Jan' : 'Feb';
-        const d = day < 1 ? 28 + day : day;
-        const det = i % 5 === 0 ? Math.floor(Math.random() * 8) + 1 : 0;
-        const total = 1000 + Math.floor(Math.random() * 4000);
-        pastJobs.push({
-          id: 100 + i,
-          name: pastNames[i % pastNames.length],
-          type: pastTypes[i % pastTypes.length],
-          status: pastStatuses[i % pastStatuses.length],
-          detections: det,
-          filesProcessed: total,
-          filesTotal: total,
-          storageUnit: pastUnits[i % pastUnits.length],
-          duration: ['00:45:12', '01:23:45', '02:10:30', '00:32:18', '03:15:22', '01:05:44'][i % 6],
-          date: month + ' ' + String(d).padStart(2, '0') + ', 2026 ' + String((8 + i * 2) % 24).padStart(2, '0') + ':00:00',
-          workflow: ['Default Workflow', 'Quick Scan', 'Deep Scan', 'Custom Workflow'][i % 4],
-          partition: ['All Partitions', 'Partition A', 'Partition B', 'Partition C'][i % 4],
-          priority: ['High', 'Medium', 'Low'][i % 3]
+      var _jobId = 1;
+
+      accountsData.forEach(function(acct) {
+        var provLabel = acct.provider;
+        acct.jobs.forEach(function(j) {
+          var unitLabel = provLabel + ' – ' + j.storageUnit;
+          var wf = _pick(_jobWorkflows);
+          var part = _pick(_jobPartitions);
+          var pri = _pick(_jobPriorities);
+          var typeLabel = j.type === 'Scheduled' ? 'Scheduled File Scan' : j.type === 'Real-Time' ? 'Real-Time Scan' : 'On-Demand Scan';
+
+          if (j.status === 'In Progress') {
+            // Active (running) job
+            var pct = _rand(10, 95);
+            var processed = Math.round(j.files * pct / 100);
+            activeJobs.push({
+              id: _jobId++,
+              name: j.name,
+              type: typeLabel,
+              status: 'Running',
+              detections: j.detections,
+              filesProcessed: processed,
+              filesTotal: j.files || _rand(500, 10000),
+              storageUnit: unitLabel,
+              elapsedTime: _pick(_elapsedTimes),
+              startTime: j.date,
+              progress: pct,
+              workflow: wf,
+              partition: part,
+              priority: pri
+            });
+          } else if (j.status === 'Queued') {
+            // Upcoming job
+            upcomingJobs.push({
+              id: _jobId++,
+              name: j.name,
+              frequency: _pick(_jobFrequencies),
+              storageUnit: unitLabel,
+              startsIn: _pick(_startsInVals),
+              workflow: wf,
+              partition: part,
+              priority: pri
+            });
+          } else {
+            // Past job (Completed, Failed)
+            var statusLabel = j.status === 'Failed' ? 'Stopped' : j.status;
+            pastJobs.push({
+              id: _jobId++,
+              name: j.name,
+              type: typeLabel,
+              status: statusLabel,
+              detections: j.detections,
+              filesProcessed: j.files,
+              filesTotal: j.files,
+              storageUnit: unitLabel,
+              duration: _pick(_durations),
+              date: j.date,
+              workflow: wf,
+              partition: part,
+              priority: pri
+            });
+          }
         });
-      }
+      });
+
+      // Sort past jobs by date descending
+      pastJobs.sort(function(a, b) { return new Date(b.date) - new Date(a.date); });
 
       // Processed files data for job detail
       const processedFiles = [];
