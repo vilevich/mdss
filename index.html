@@ -875,8 +875,8 @@
     /* acct-job-summary-header/meta/link removed — now uses DS .audit-card-title / .count / .card-header-link */
 
     /* Client ID cell */
-    .acct-client-id { display: flex; align-items: center; gap: 6px; max-width: 180px; }
-    .acct-client-id-text { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 13px; font-family: 'Roboto Mono', monospace; color: var(--text-subtle); }
+    .acct-client-id { display: flex; align-items: center; gap: 8px; width: 100%; }
+    .acct-client-id-text { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 13px; font-family: 'Roboto Mono', monospace; color: var(--text-subtle); }
     .acct-copy-btn { width: 16px; height: 16px; cursor: pointer; color: var(--text-muted); flex-shrink: 0; }
     .acct-copy-btn:hover { color: var(--primary); }
 
@@ -945,11 +945,12 @@
 .info-bar { align-items: center; padding: 20px; gap: 20px; border-radius: 4px; overflow: visible; }
 .info-bar-section { gap: 20px; padding: 0; flex: 1 1 0; min-width: 0; }
 .info-bar-divider { height: 64px; align-self: auto; background: var(--border-200); }
-.info-bar-icon { background: none; border-radius: 0; }
-.info-bar-icon svg, .info-bar-icon img { width: 40px; height: 40px; }
+.info-bar-icon { width: 64px; height: 64px; background: var(--neutral-100); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.info-bar-icon .dash-provider-letter { font-size: 24px; font-weight: 600; color: var(--text-subtle); line-height: 1; }
+[data-theme="dark"] .info-bar-icon { background: var(--neutral-800); }
 .info-bar-meta { min-width: 0; }
 .info-bar-label { font-size: 14px; font-weight: 400; line-height: 16px; color: var(--text-subtle); text-transform: none; letter-spacing: normal; }
-.info-bar-value { gap: 8px; min-width: 0; font-size: 14px; font-weight: 500; line-height: 16px; }
+.info-bar-value { gap: 8px; min-width: 0; font-size: 14px; font-weight: 500; line-height: 16px; height: 32px; padding: 8px 0; display: flex; align-items: center; box-sizing: border-box; }
 .info-bar-value-text { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
 
 /* ===== 2. PAGE HEADER / BREADCRUMB — local overrides until BL CDN is updated ===== */
@@ -970,7 +971,7 @@
 /* Text button — local override until BL CDN is updated */
 .btn-text { padding: 0; height: auto; gap: 8px; background: none; line-height: 16px; text-decoration: none; }
 .btn-text:hover { background: none; text-decoration: none; color: var(--blue-900); }
-.audit-card-actions .btn-text, .card-bulk-actions .btn-text { height: auto; }
+.audit-card-actions .btn-text { height: auto; }
 .btn-text.skeleton { color: transparent; pointer-events: none; background: var(--neutral-200); border-radius: var(--radius); }
 [data-theme="dark"] .btn-text:hover { background: none; color: var(--blue-400); }
 [data-theme="dark"] .btn-text.skeleton { background: var(--neutral-800); }
@@ -984,6 +985,7 @@
 td:has(+ .col-action) { padding-right: 20px !important; }
 
 /* ===== 3. JOB MONITOR BANNER — uses BL .banner component ===== */
+.banner-actions-divider { width: 1px; height: 12px; background: var(--neutral-800); }
 
 /* ===== 3. JOB SUMMARY ===== */
 .dash-job-summary-body {
@@ -1605,6 +1607,31 @@ td:has(+ .col-action) { padding-right: 20px !important; }
   .dash-trend-legend { flex-wrap: wrap; gap: 8px; }
 }
 
+/* ===== Filter Dropdown (Units tab) ===== */
+.filter-dropdown {
+  position: absolute; top: calc(100% + 4px); right: 0; z-index: 200;
+  min-width: 200px; background: var(--surface-card); border: 1px solid var(--border-200);
+  border-radius: var(--radius); box-shadow: var(--shadow-3); padding: 0;
+  font-size: 14px;
+}
+.filter-dropdown-header {
+  padding: 10px 12px 6px; font-weight: 600; font-size: 13px; color: var(--text-strong);
+  border-bottom: 1px solid var(--border-100);
+}
+.filter-dropdown-item {
+  display: flex; align-items: center; gap: 8px; padding: 6px 12px;
+  cursor: pointer; color: var(--text-body); font-size: 13px; white-space: nowrap;
+}
+.filter-dropdown-item:hover { background: var(--neutral-100); }
+.filter-dropdown-footer {
+  display: flex; align-items: center; justify-content: flex-end; gap: 8px;
+  padding: 8px 12px; border-top: 1px solid var(--border-100);
+}
+[data-theme="dark"] .filter-dropdown-item:hover { background: var(--neutral-800); }
+
+/* Provider icon — Google Cloud */
+.inv-provider-icon.gcloud { background: #4285f4; }
+
 /* ===== RESPONSIVE: Mobile (<=768px) ===== */
 @media (max-width: 768px) {
   /* Page header — title left, buttons stacked below */
@@ -1876,10 +1903,9 @@ td:has(+ .col-action) { padding-right: 20px !important; }
           <span id="dashPeriodText">Last 30 days</span>
         </button>
         <div class="filter-menu" id="dashPeriodMenu">
-          <div class="filter-menu-item" data-value="7d" onclick="selectFilter('dashPeriod','Last 7 days',this)">Last 7 days</div>
-          <div class="filter-menu-item active" data-value="30d" onclick="selectFilter('dashPeriod','Last 30 days',this)">Last 30 days</div>
-          <div class="filter-menu-item" data-value="90d" onclick="selectFilter('dashPeriod','Last 90 days',this)">Last 90 days</div>
-          <div class="filter-menu-item" data-value="custom" onclick="selectFilter('dashPeriod','Custom range',this)">Custom range</div>
+          <div class="filter-menu-item" data-value="7" onclick="selectDashPeriod(7,'Last 7 days',this)">Last 7 days</div>
+          <div class="filter-menu-item active" data-value="30" onclick="selectDashPeriod(30,'Last 30 days',this)">Last 30 days</div>
+          <div class="filter-menu-item" data-value="90" onclick="selectDashPeriod(90,'Last 90 days',this)">Last 90 days</div>
         </div>
       </div>
       <!-- Export (subtle) -->
@@ -1890,12 +1916,8 @@ td:has(+ .col-action) { padding-right: 20px !important; }
   <!-- ===== 1. ACCOUNT INFO BAR ===== -->
   <div class="info-bar" style="margin-bottom:12px;">
     <div class="info-bar-section">
-      <div class="info-bar-icon">
-        <svg viewBox="0 0 40 40" fill="none">
-          <path d="M11.2711 16.7164C11.2711 17.2103 11.3243 17.6107 11.4174 17.9043C11.5239 18.1979 11.6569 18.5182 11.8431 18.8653C11.9096 18.972 11.9362 19.0788 11.9362 19.1722C11.9362 19.3057 11.8564 19.4392 11.6835 19.5726L10.8455 20.1332C10.7257 20.2133 10.606 20.2533 10.4996 20.2533C10.3666 20.2533 10.2335 20.1866 10.1005 20.0665C9.91429 19.8663 9.75466 19.6527 9.62164 19.4392C9.48862 19.2123 9.35559 18.9587 9.20927 18.6517C8.17169 19.8796 6.86806 20.4936 5.29839 20.4936C4.181 20.4936 3.28975 20.1732 2.63793 19.5326C1.98612 18.892 1.65356 18.0378 1.65356 16.97C1.65356 15.8355 2.05263 14.9146 2.86407 14.2206C3.67551 13.5265 4.753 13.1795 6.12314 13.1795C6.57541 13.1795 7.04099 13.2196 7.53318 13.2863C8.02536 13.353 8.53085 13.4598 9.06294 13.5799V12.6056C9.06294 11.5913 8.85011 10.8839 8.43773 10.4701C8.01206 10.0564 7.29374 9.85618 6.26946 9.85618C5.80388 9.85618 5.325 9.90957 4.83281 10.0297C4.34063 10.1498 3.86175 10.2966 3.39617 10.4835C3.18333 10.5769 3.0237 10.6303 2.93058 10.657C2.83747 10.6837 2.77096 10.697 2.71775 10.697C2.53152 10.697 2.4384 10.5636 2.4384 10.2833V9.62928C2.4384 9.41574 2.465 9.25557 2.53152 9.16215C2.59803 9.06872 2.71775 8.97529 2.90398 8.88186C3.36956 8.64162 3.92826 8.44142 4.58007 8.28126C5.23188 8.10775 5.9236 8.02767 6.65523 8.02767C8.2382 8.02767 9.3955 8.38803 10.1404 9.10876C10.8721 9.82949 11.2445 10.9239 11.2445 12.3921V16.7164H11.2711ZM5.87039 18.7451C6.30937 18.7451 6.76165 18.6651 7.24053 18.5049C7.71941 18.3447 8.14508 18.0511 8.50425 17.6507C8.71708 17.3971 8.87671 17.1168 8.95652 16.7965C9.03634 16.4762 9.08955 16.0891 9.08955 15.6353V15.0748C8.70378 14.9813 8.29141 14.9013 7.86574 14.8479C7.44006 14.7945 7.02769 14.7678 6.61532 14.7678C5.72407 14.7678 5.07225 14.9413 4.63328 15.3017C4.1943 15.662 3.98147 16.1692 3.98147 16.8365C3.98147 17.4638 4.14109 17.931 4.47365 18.2513C4.79291 18.585 5.25849 18.7451 5.87039 18.7451ZM16.5521 20.1866C16.3127 20.1866 16.1531 20.1466 16.0466 20.0531C15.9402 19.973 15.8471 19.7862 15.7673 19.5326L12.6413 9.21553C12.5614 8.9486 12.5215 8.77509 12.5215 8.68166C12.5215 8.46811 12.628 8.34799 12.8408 8.34799H14.1444C14.3972 8.34799 14.5701 8.38803 14.6632 8.48146C14.7696 8.56154 14.8494 8.7484 14.9293 9.00199L17.164 17.8376L19.2392 9.00199C19.3057 8.73505 19.3855 8.56154 19.4919 8.48146C19.5984 8.40138 19.7846 8.34799 20.024 8.34799H21.0882C21.341 8.34799 21.5139 8.38803 21.6203 8.48146C21.7267 8.56154 21.8198 8.7484 21.8731 9.00199L23.9748 17.9443L26.2761 9.00199C26.3559 8.73505 26.449 8.56154 26.5422 8.48146C26.6486 8.40138 26.8215 8.34799 27.0609 8.34799H28.2981C28.5109 8.34799 28.6306 8.45477 28.6306 8.68166C28.6306 8.7484 28.6173 8.81513 28.604 8.89521C28.5907 8.97529 28.5641 9.08207 28.5109 9.22888L25.305 19.5459C25.2252 19.8129 25.1321 19.9864 25.0257 20.0665C24.9193 20.1466 24.7463 20.1999 24.5202 20.1999H23.3762C23.1235 20.1999 22.9505 20.1599 22.8441 20.0665C22.7377 19.973 22.6446 19.7995 22.5914 19.5326L20.5295 10.9239L18.481 19.5193C18.4145 19.7862 18.3346 19.9597 18.2282 20.0531C18.1218 20.1466 17.9356 20.1866 17.6961 20.1866H16.5521ZM33.6456 20.547C32.9539 20.547 32.2621 20.4669 31.597 20.3067C30.9319 20.1466 30.4131 19.973 30.0673 19.7728C29.8544 19.6527 29.7081 19.5193 29.6549 19.3991C29.6017 19.279 29.5751 19.1455 29.5751 19.0254V18.3447C29.5751 18.0645 29.6815 17.931 29.881 17.931C29.9608 17.931 30.0407 17.9443 30.1205 17.971C30.2003 17.9977 30.32 18.0511 30.453 18.1045C30.9053 18.3047 31.3975 18.4649 31.9163 18.5716C32.4484 18.6784 32.9672 18.7318 33.4993 18.7318C34.3373 18.7318 34.9891 18.585 35.4414 18.2913C35.8937 17.9977 36.1331 17.5706 36.1331 17.0234C36.1331 16.6497 36.0134 16.3427 35.774 16.0891C35.5345 15.8355 35.0822 15.6086 34.4304 15.3951L32.5016 14.7945C31.5305 14.4875 30.8122 14.0337 30.3732 13.4331C29.9342 12.8459 29.7081 12.1919 29.7081 11.4978C29.7081 10.9373 29.8278 10.4434 30.0673 10.0163C30.3067 9.58924 30.626 9.21553 31.025 8.9219C31.4241 8.61493 31.8764 8.38803 32.4085 8.22787C32.9406 8.06771 33.4993 8.00098 34.0846 8.00098C34.3772 8.00098 34.6832 8.01432 34.9758 8.05436C35.2818 8.0944 35.5611 8.14779 35.8405 8.20118C36.1065 8.26791 36.3593 8.33465 36.5987 8.41473C36.8381 8.49481 37.0244 8.57489 37.1574 8.65497C37.3436 8.76174 37.4766 8.86852 37.5565 8.98864C37.6363 9.09541 37.6762 9.24223 37.6762 9.42908V10.0564C37.6762 10.3367 37.5698 10.4835 37.3702 10.4835C37.2638 10.4835 37.0909 10.4301 36.8647 10.3233C36.1065 9.9763 35.2552 9.80279 34.3107 9.80279C33.5525 9.80279 32.9539 9.92291 32.5415 10.1765C32.1291 10.4301 31.9163 10.8171 31.9163 11.3644C31.9163 11.7381 32.0493 12.0584 32.3154 12.312C32.5814 12.5656 33.0736 12.8192 33.7786 13.0461L35.6675 13.6467C36.6253 13.9536 37.317 14.3807 37.7294 14.928C38.1418 15.4752 38.3413 16.1025 38.3413 16.7965C38.3413 17.3704 38.2216 17.8909 37.9954 18.3447C37.756 18.7985 37.4367 19.1989 37.0244 19.5193C36.612 19.8529 36.1198 20.0932 35.5478 20.2667C34.9492 20.4535 34.324 20.547 33.6456 20.547Z" fill="#172234"/>
-          <path d="M36.1599 27.0334C31.7834 30.2767 25.4249 31.9984 19.9577 31.9984C12.2956 31.9984 5.39169 29.1556 0.177189 24.4308C-0.235182 24.0571 0.137282 23.5499 0.629467 23.8436C6.26964 27.1269 13.2267 29.1155 20.4233 29.1155C25.2786 29.1155 30.6128 28.1012 35.5214 26.0191C36.253 25.6854 36.8782 26.4996 36.1599 27.0334Z" fill="#FF9900"/>
-          <path d="M37.9826 24.9526C37.4239 24.2319 34.2845 24.6056 32.8612 24.7791C32.4355 24.8325 32.369 24.4588 32.7548 24.1785C35.2556 22.4167 39.366 22.9239 39.8449 23.5111C40.3238 24.1117 39.7119 28.2359 37.3707 30.2112C37.0115 30.5182 36.6656 30.358 36.8253 29.9576C37.3574 28.6363 38.5413 25.66 37.9826 24.9526Z" fill="#FF9900"/>
-        </svg>
+      <div class="info-bar-icon" id="dashProviderIcon">
+        <span class="dash-provider-letter">A</span>
       </div>
       <div class="info-bar-meta">
         <div class="info-bar-label">Storage Unit</div>
@@ -1941,6 +1963,7 @@ td:has(+ .col-action) { padding-right: 20px !important; }
       </div>
       <div class="banner-actions">
         <a href="#" class="btn-text" onclick="showPage('jobsPage'); return false;">View Running Jobs</a>
+        <span class="banner-actions-divider"></span>
         <a href="#" class="btn-text">Create Job</a>
       </div>
     </div>
@@ -4192,7 +4215,7 @@ td:has(+ .col-action) { padding-right: 20px !important; }
             <!-- Accounts Table Card -->
             <div class="audit-card" style="margin-bottom: 24px;">
               <div class="card-header">
-                <div class="card-header-left"><strong>Accounts</strong> <span class="text-muted">4</span></div>
+                <div class="card-header-left"><strong>Accounts</strong> <span class="text-muted" id="accountsCount">0</span></div>
                 <div class="card-header-right" style="display:flex; gap:8px; align-items:center;">
                   <div class="audit-search"><svg viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M7 2C9.76142 2 12 4.23858 12 7C12 8.11285 11.6353 9.13998 11.0205 9.9707L14.0713 13.0068L14.1221 13.0645C14.3629 13.3585 14.3471 13.7932 14.0732 14.0684C13.781 14.3615 13.3061 14.3622 13.0127 14.0703L9.95801 11.0303C9.12955 11.6393 8.1071 12 7 12C4.23858 12 2 9.76142 2 7C2 4.23858 4.23858 2 7 2ZM7 3.5C5.067 3.5 3.5 5.067 3.5 7C3.5 8.933 5.067 10.5 7 10.5C8.933 10.5 10.5 8.933 10.5 7C10.5 5.067 8.933 3.5 7 3.5Z"/></svg><input type="text" placeholder="Search for Files or Hash"></div>
                   <div style="display:flex; gap:8px;">
@@ -4212,36 +4235,7 @@ td:has(+ .col-action) { padding-right: 20px !important; }
                       <th class="col-action"></th>
                     </tr>
                   </thead>
-                  <tbody>
-                    <tr onclick="openAccountDetail(0)" style="cursor:pointer;">
-                      <td>AWS Account Name</td>
-                      <td><span class="tag tag-success">Operational</span></td>
-                      <td><div class="inv-provider"><div class="inv-provider-icon aws"><span style="font-size:8px; letter-spacing:-0.5px;">aws</span></div> Amazon S3</div></td>
-                      <td>15</td>
-                      <td class="col-action"><div class="row-action-btn" onclick="toggleInvMenu(this, event)" style="position:relative"><svg viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="3" r="1.5"/><circle cx="8" cy="8" r="1.5"/><circle cx="8" cy="13" r="1.5"/></svg><div class="row-action-menu row-action-menu--inline"><div class="row-action-menu-item" onclick="event.stopPropagation()"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 10v3h3M14 6V3h-3"/><path d="M14 3L9 8M2 13l5-5"/></svg> Create Job</div><div class="row-action-menu-item" onclick="event.stopPropagation()"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="5"/><path d="M8 5.5v5M5.5 8h5"/></svg> Account Settings</div><div class="inv-context-item danger" onclick="event.stopPropagation()"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 4h10M6 4V3h4v1M5 4v8.5a1 1 0 001 1h4a1 1 0 001-1V4"/></svg> Delete Account</div></div></div></td>
-                    </tr>
-                    <tr onclick="openAccountDetail(1)" style="cursor:pointer;">
-                      <td>SharePoint Cloud Account Name</td>
-                      <td><span class="tag tag-alert">Issues Found</span></td>
-                      <td><div class="inv-provider"><div class="inv-provider-icon sharepoint"><span style="font-size:8px;">SP</span></div> SharePoint</div></td>
-                      <td>9</td>
-                      <td class="col-action"><div class="row-action-btn" onclick="toggleInvMenu(this, event)" style="position:relative"><svg viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="3" r="1.5"/><circle cx="8" cy="8" r="1.5"/><circle cx="8" cy="13" r="1.5"/></svg><div class="row-action-menu row-action-menu--inline"><div class="row-action-menu-item" onclick="event.stopPropagation()"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 10v3h3M14 6V3h-3"/><path d="M14 3L9 8M2 13l5-5"/></svg> Create Job</div><div class="row-action-menu-item" onclick="event.stopPropagation()"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="5"/><path d="M8 5.5v5M5.5 8h5"/></svg> Account Settings</div><div class="inv-context-item danger" onclick="event.stopPropagation()"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 4h10M6 4V3h4v1M5 4v8.5a1 1 0 001 1h4a1 1 0 001-1V4"/></svg> Delete Account</div></div></div></td>
-                    </tr>
-                    <tr onclick="openAccountDetail(2)" style="cursor:pointer;">
-                      <td>Alibaba Cloud Account Name</td>
-                      <td><span class="tag tag-success">Operational</span></td>
-                      <td><div class="inv-provider"><div class="inv-provider-icon alibaba"><span style="font-size:8px;">Ali</span></div> Alibaba Cloud</div></td>
-                      <td>3</td>
-                      <td class="col-action"><div class="row-action-btn" onclick="toggleInvMenu(this, event)" style="position:relative"><svg viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="3" r="1.5"/><circle cx="8" cy="8" r="1.5"/><circle cx="8" cy="13" r="1.5"/></svg><div class="row-action-menu row-action-menu--inline"><div class="row-action-menu-item" onclick="event.stopPropagation()"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 10v3h3M14 6V3h-3"/><path d="M14 3L9 8M2 13l5-5"/></svg> Create Job</div><div class="row-action-menu-item" onclick="event.stopPropagation()"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="5"/><path d="M8 5.5v5M5.5 8h5"/></svg> Account Settings</div><div class="inv-context-item danger" onclick="event.stopPropagation()"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 4h10M6 4V3h4v1M5 4v8.5a1 1 0 001 1h4a1 1 0 001-1V4"/></svg> Delete Account</div></div></div></td>
-                    </tr>
-                    <tr onclick="openAccountDetail(3)" style="cursor:pointer;">
-                      <td>Alibaba MDSS</td>
-                      <td><span class="tag tag-success">Operational</span></td>
-                      <td><div class="inv-provider"><div class="inv-provider-icon alibaba"><span style="font-size:8px;">Ali</span></div> Alibaba Cloud</div></td>
-                      <td>0</td>
-                      <td class="col-action"><div class="row-action-btn" onclick="toggleInvMenu(this, event)" style="position:relative"><svg viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="3" r="1.5"/><circle cx="8" cy="8" r="1.5"/><circle cx="8" cy="13" r="1.5"/></svg><div class="row-action-menu row-action-menu--inline"><div class="row-action-menu-item" onclick="event.stopPropagation()"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 10v3h3M14 6V3h-3"/><path d="M14 3L9 8M2 13l5-5"/></svg> Create Job</div><div class="row-action-menu-item" onclick="event.stopPropagation()"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="5"/><path d="M8 5.5v5M5.5 8h5"/></svg> Account Settings</div><div class="inv-context-item danger" onclick="event.stopPropagation()"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 4h10M6 4V3h4v1M5 4v8.5a1 1 0 001 1h4a1 1 0 001-1V4"/></svg> Delete Account</div></div></div></td>
-                    </tr>
-                  </tbody>
+                  <tbody id="accountsBody"></tbody>
                 </table>
               </div>
             </div>
@@ -4716,10 +4710,66 @@ td:has(+ .col-action) { padding-right: 20px !important; }
             </div><!-- /groupDetailView -->
           </div>
 
-          <!-- ===== Units Tab (placeholder) ===== -->
+          <!-- ===== Units Tab ===== -->
           <div class="inv-tab-panel" id="inv-panel-units" style="display:none;">
-            <div class="audit-card"><div class="card-header"><div class="card-header-left"><strong>Units</strong> <span class="text-muted">0</span></div></div>
-              <div style="padding:48px; text-align:center; color:var(--text-muted); font-size:14px;">Units tab — coming next.</div>
+            <div class="audit-card">
+              <div class="audit-card-header" id="allUnitsHeader">
+                <div class="audit-card-title">
+                  <h3>Storage Units</h3>
+                  <span class="count" id="allUnitsCount">0</span>
+                </div>
+                <div class="audit-card-actions">
+                  <div class="audit-search">
+                    <svg viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M7 2C9.76142 2 12 4.23858 12 7C12 8.11285 11.6353 9.13998 11.0205 9.9707L14.0713 13.0068L14.1221 13.0645C14.3629 13.3585 14.3471 13.7932 14.0732 14.0684C13.781 14.3615 13.3061 14.3622 13.0127 14.0703L9.95801 11.0303C9.12955 11.6393 8.1071 12 7 12C4.23858 12 2 9.76142 2 7C2 4.23858 4.23858 2 7 2ZM7 3.5C5.067 3.5 3.5 5.067 3.5 7C3.5 8.933 5.067 10.5 7 10.5C8.933 10.5 10.5 8.933 10.5 7C10.5 5.067 8.933 3.5 7 3.5Z"/></svg>
+                    <input type="text" placeholder="Search units" id="allUnitsSearch">
+                  </div>
+                  <div style="display:flex; gap:8px;">
+                    <button class="btn-menu"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M1.715 4C1.515 4 1.345 4.07 1.205 4.21C1.065 4.35 .995 4.52 .995 4.72C.995 4.92 1.065 5.09 1.205 5.23C1.345 5.37 1.515 5.44 1.715 5.44H14.275C14.475 5.44 14.645 5.37 14.785 5.23C14.925 5.09 14.995 4.92 14.995 4.72C14.995 4.52 14.925 4.35 14.785 4.21C14.645 4.07 14.475 4 14.275 4H1.715Z"/><path d="M3.835 7.33C3.625 7.33 3.455 7.4 3.315 7.54C3.175 7.68 3.105 7.85 3.105 8.05C3.105 8.25 3.175 8.42 3.315 8.56C3.455 8.7 3.635 8.77 3.835 8.77H12.165C12.365 8.77 12.535 8.7 12.675 8.56C12.815 8.42 12.885 8.25 12.885 8.05C12.885 7.85 12.815 7.68 12.675 7.54C12.535 7.4 12.355 7.33 12.155 7.33H3.835Z"/><path d="M5.515 10.65C5.315 10.65 5.145 10.72 5.005 10.86C4.865 11 4.795 11.17 4.795 11.37C4.795 11.57 4.865 11.74 5.005 11.88C5.145 12.02 5.315 12.09 5.515 12.09H10.475C10.675 12.09 10.845 12.02 10.985 11.88C11.125 11.74 11.195 11.57 11.195 11.37C11.195 11.17 11.125 11 10.985 10.86C10.845 10.72 10.675 10.65 10.475 10.65H5.515Z"/></svg><span class="filter-btn-text">Status</span></button>
+                    <button class="btn-menu"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M1.715 4C1.515 4 1.345 4.07 1.205 4.21C1.065 4.35 .995 4.52 .995 4.72C.995 4.92 1.065 5.09 1.205 5.23C1.345 5.37 1.515 5.44 1.715 5.44H14.275C14.475 5.44 14.645 5.37 14.785 5.23C14.925 5.09 14.995 4.92 14.995 4.72C14.995 4.52 14.925 4.35 14.785 4.21C14.645 4.07 14.475 4 14.275 4H1.715Z"/><path d="M3.835 7.33C3.625 7.33 3.455 7.4 3.315 7.54C3.175 7.68 3.105 7.85 3.105 8.05C3.105 8.25 3.175 8.42 3.315 8.56C3.455 8.7 3.635 8.77 3.835 8.77H12.165C12.365 8.77 12.535 8.7 12.675 8.56C12.815 8.42 12.885 8.25 12.885 8.05C12.885 7.85 12.815 7.68 12.675 7.54C12.535 7.4 12.355 7.33 12.155 7.33H3.835Z"/><path d="M5.515 10.65C5.315 10.65 5.145 10.72 5.005 10.86C4.865 11 4.795 11.17 4.795 11.37C4.795 11.57 4.865 11.74 5.005 11.88C5.145 12.02 5.315 12.09 5.515 12.09H10.475C10.675 12.09 10.845 12.02 10.985 11.88C11.125 11.74 11.195 11.57 11.195 11.37C11.195 11.17 11.125 11 10.985 10.86C10.845 10.72 10.675 10.65 10.475 10.65H5.515Z"/></svg><span class="filter-btn-text">Group</span></button>
+                    <button class="btn-menu"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M1.715 4C1.515 4 1.345 4.07 1.205 4.21C1.065 4.35 .995 4.52 .995 4.72C.995 4.92 1.065 5.09 1.205 5.23C1.345 5.37 1.515 5.44 1.715 5.44H14.275C14.475 5.44 14.645 5.37 14.785 5.23C14.925 5.09 14.995 4.92 14.995 4.72C14.995 4.52 14.925 4.35 14.785 4.21C14.645 4.07 14.475 4 14.275 4H1.715Z"/><path d="M3.835 7.33C3.625 7.33 3.455 7.4 3.315 7.54C3.175 7.68 3.105 7.85 3.105 8.05C3.105 8.25 3.175 8.42 3.315 8.56C3.455 8.7 3.635 8.77 3.835 8.77H12.165C12.365 8.77 12.535 8.7 12.675 8.56C12.815 8.42 12.885 8.25 12.885 8.05C12.885 7.85 12.815 7.68 12.675 7.54C12.535 7.4 12.355 7.33 12.155 7.33H3.835Z"/><path d="M5.515 10.65C5.315 10.65 5.145 10.72 5.005 10.86C4.865 11 4.795 11.17 4.795 11.37C4.795 11.57 4.865 11.74 5.005 11.88C5.145 12.02 5.315 12.09 5.515 12.09H10.475C10.675 12.09 10.845 12.02 10.985 11.88C11.125 11.74 11.195 11.57 11.195 11.37C11.195 11.17 11.125 11 10.985 10.86C10.845 10.72 10.675 10.65 10.475 10.65H5.515Z"/></svg><span class="filter-btn-text">Provider</span></button>
+                  </div>
+                </div>
+                <div class="card-bulk-actions">
+                  <span class="bulk-count" data-bulk-count>0 selected</span>
+                  <div class="card-bulk-divider"></div>
+                  <button class="btn-outline" onclick="bulkAction('delete','allUnitsBody')">Delete</button>
+                  <button class="btn-outline" onclick="bulkAction('add to group','allUnitsBody')">Add to Group</button>
+                  <button class="btn-outline" onclick="bulkAction('create job','allUnitsBody')">Create Job</button>
+                </div>
+              </div>
+              <div class="table-scroll">
+                <table class="data-table table-fixed" id="allUnitsTable" style="min-width:1400px;">
+                  <thead>
+                    <tr>
+                      <th class="col-cb"><div class="cb" onclick="toggleAllCb(this)"><svg class="cb-check" viewBox="0 0 16 16" fill="none"><path d="M6.75 11.75c-.26 0-.51-.1-.71-.29l-2.75-2.75a1.003 1.003 0 011.41-1.41l2.04 2.04 5.05-5.05a1.003 1.003 0 011.41 1.41l-5.75 5.75c-.2.2-.45.29-.71.29z" fill="white"/></svg><svg class="cb-semi" viewBox="0 0 16 16" fill="none"><path d="M11 9H5a1 1 0 010-2h6a1 1 0 010 2z" fill="white"/></svg></div></th>
+                      <th class="col-pinned" style="width:18%;">Storage Unit <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77C3.635 8.77 3.455 8.7 3.315 8.56C3.175 8.42 3.105 8.25 3.105 8.05C3.105 7.85 3.175 7.68 3.315 7.54C3.455 7.4 3.625 7.33 3.825 7.33H12.155C12.355 7.33 12.535 7.4 12.675 7.54C12.815 7.68 12.885 7.85 12.885 8.05C12.885 8.25 12.815 8.42 12.675 8.56C12.535 8.7 12.365 8.77 12.165 8.77H3.835Z"/><path d="M1.715 5.44C1.515 5.44 1.345 5.37 1.205 5.23C1.065 5.09 0.995 4.92 0.995 4.72C0.995 4.52 1.065 4.35 1.205 4.21C1.345 4.07 1.515 4 1.715 4H14.275C14.475 4 14.645 4.07 14.785 4.21C14.925 4.35 14.995 4.52 14.995 4.72C14.995 4.92 14.925 5.09 14.785 5.23C14.645 5.37 14.475 5.44 14.275 5.44H1.715Z"/><path d="M5.515 12.09C5.315 12.09 5.145 12.02 5.005 11.88C4.865 11.74 4.795 11.57 4.795 11.37C4.795 11.17 4.865 11 5.005 10.86C5.145 10.72 5.315 10.65 5.515 10.65H10.475C10.675 10.65 10.845 10.72 10.985 10.86C11.125 11 11.195 11.17 11.195 11.37C11.195 11.57 11.125 11.74 10.985 11.88C10.845 12.02 10.675 12.09 10.475 12.09H5.515Z"/></svg></span></th>
+                      <th style="width:10%;">Provider <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77C3.635 8.77 3.455 8.7 3.315 8.56C3.175 8.42 3.105 8.25 3.105 8.05C3.105 7.85 3.175 7.68 3.315 7.54C3.455 7.4 3.625 7.33 3.825 7.33H12.155C12.355 7.33 12.535 7.4 12.675 7.54C12.815 7.68 12.885 7.85 12.885 8.05C12.885 8.25 12.815 8.42 12.675 8.56C12.535 8.7 12.365 8.77 12.165 8.77H3.835Z"/><path d="M1.715 5.44C1.515 5.44 1.345 5.37 1.205 5.23C1.065 5.09 0.995 4.92 0.995 4.72C0.995 4.52 1.065 4.35 1.205 4.21C1.345 4.07 1.515 4 1.715 4H14.275C14.475 4 14.645 4.07 14.785 4.21C14.925 4.35 14.995 4.52 14.995 4.72C14.995 4.92 14.925 5.09 14.785 5.23C14.645 5.37 14.475 5.44 14.275 5.44H1.715Z"/><path d="M5.515 12.09C5.315 12.09 5.145 12.02 5.005 11.88C4.865 11.74 4.795 11.57 4.795 11.37C4.795 11.17 4.865 11 5.005 10.86C5.145 10.72 5.315 10.65 5.515 10.65H10.475C10.675 10.65 10.845 10.72 10.985 10.86C11.125 11 11.195 11.17 11.195 11.37C11.195 11.57 11.125 11.74 10.985 11.88C10.845 12.02 10.675 12.09 10.475 12.09H5.515Z"/></svg></span></th>
+                      <th style="width:10%;">Status <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77C3.635 8.77 3.455 8.7 3.315 8.56C3.175 8.42 3.105 8.25 3.105 8.05C3.105 7.85 3.175 7.68 3.315 7.54C3.455 7.4 3.625 7.33 3.825 7.33H12.155C12.355 7.33 12.535 7.4 12.675 7.54C12.815 7.68 12.885 7.85 12.885 8.05C12.885 8.25 12.815 8.42 12.675 8.56C12.535 8.7 12.365 8.77 12.165 8.77H3.835Z"/><path d="M1.715 5.44C1.515 5.44 1.345 5.37 1.205 5.23C1.065 5.09 0.995 4.92 0.995 4.72C0.995 4.52 1.065 4.35 1.205 4.21C1.345 4.07 1.515 4 1.715 4H14.275C14.475 4 14.645 4.07 14.785 4.21C14.925 4.35 14.995 4.52 14.995 4.72C14.995 4.92 14.925 5.09 14.785 5.23C14.645 5.37 14.475 5.44 14.275 5.44H1.715Z"/><path d="M5.515 12.09C5.315 12.09 5.145 12.02 5.005 11.88C4.865 11.74 4.795 11.57 4.795 11.37C4.795 11.17 4.865 11 5.005 10.86C5.145 10.72 5.315 10.65 5.515 10.65H10.475C10.675 10.65 10.845 10.72 10.985 10.86C11.125 11 11.195 11.17 11.195 11.37C11.195 11.57 11.125 11.74 10.985 11.88C10.845 12.02 10.675 12.09 10.475 12.09H5.515Z"/></svg></span></th>
+                      <th style="width:14%;">Account <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77C3.635 8.77 3.455 8.7 3.315 8.56C3.175 8.42 3.105 8.25 3.105 8.05C3.105 7.85 3.175 7.68 3.315 7.54C3.455 7.4 3.625 7.33 3.825 7.33H12.155C12.355 7.33 12.535 7.4 12.675 7.54C12.815 7.68 12.885 7.85 12.885 8.05C12.885 8.25 12.815 8.42 12.675 8.56C12.535 8.7 12.365 8.77 12.165 8.77H3.835Z"/><path d="M1.715 5.44C1.515 5.44 1.345 5.37 1.205 5.23C1.065 5.09 0.995 4.92 0.995 4.72C0.995 4.52 1.065 4.35 1.205 4.21C1.345 4.07 1.515 4 1.715 4H14.275C14.475 4 14.645 4.07 14.785 4.21C14.925 4.35 14.995 4.52 14.995 4.72C14.995 4.92 14.925 5.09 14.785 5.23C14.645 5.37 14.475 5.44 14.275 5.44H1.715Z"/><path d="M5.515 12.09C5.315 12.09 5.145 12.02 5.005 11.88C4.865 11.74 4.795 11.57 4.795 11.37C4.795 11.17 4.865 11 5.005 10.86C5.145 10.72 5.315 10.65 5.515 10.65H10.475C10.675 10.65 10.845 10.72 10.985 10.86C11.125 11 11.195 11.17 11.195 11.37C11.195 11.57 11.125 11.74 10.985 11.88C10.845 12.02 10.675 12.09 10.475 12.09H5.515Z"/></svg></span></th>
+                      <th style="width:12%;">Groups</th>
+                      <th style="width:18%;">Storage ClientID <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77C3.635 8.77 3.455 8.7 3.315 8.56C3.175 8.42 3.105 8.25 3.105 8.05C3.105 7.85 3.175 7.68 3.315 7.54C3.455 7.4 3.625 7.33 3.825 7.33H12.155C12.355 7.33 12.535 7.4 12.675 7.54C12.815 7.68 12.885 7.85 12.885 8.05C12.885 8.25 12.815 8.42 12.675 8.56C12.535 8.7 12.365 8.77 12.165 8.77H3.835Z"/><path d="M1.715 5.44C1.515 5.44 1.345 5.37 1.205 5.23C1.065 5.09 0.995 4.92 0.995 4.72C0.995 4.52 1.065 4.35 1.205 4.21C1.345 4.07 1.515 4 1.715 4H14.275C14.475 4 14.645 4.07 14.785 4.21C14.925 4.35 14.995 4.52 14.995 4.72C14.995 4.92 14.925 5.09 14.785 5.23C14.645 5.37 14.475 5.44 14.275 5.44H1.715Z"/><path d="M5.515 12.09C5.315 12.09 5.145 12.02 5.005 11.88C4.865 11.74 4.795 11.57 4.795 11.37C4.795 11.17 4.865 11 5.005 10.86C5.145 10.72 5.315 10.65 5.515 10.65H10.475C10.675 10.65 10.845 10.72 10.985 10.86C11.125 11 11.195 11.17 11.195 11.37C11.195 11.57 11.125 11.74 10.985 11.88C10.845 12.02 10.675 12.09 10.475 12.09H5.515Z"/></svg></span></th>
+                      <th style="width:14%;">Last Job <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77C3.635 8.77 3.455 8.7 3.315 8.56C3.175 8.42 3.105 8.25 3.105 8.05C3.105 7.85 3.175 7.68 3.315 7.54C3.455 7.4 3.625 7.33 3.825 7.33H12.155C12.355 7.33 12.535 7.4 12.675 7.54C12.815 7.68 12.885 7.85 12.885 8.05C12.885 8.25 12.815 8.42 12.675 8.56C12.535 8.7 12.365 8.77 12.165 8.77H3.835Z"/><path d="M1.715 5.44C1.515 5.44 1.345 5.37 1.205 5.23C1.065 5.09 0.995 4.92 0.995 4.72C0.995 4.52 1.065 4.35 1.205 4.21C1.345 4.07 1.515 4 1.715 4H14.275C14.475 4 14.645 4.07 14.785 4.21C14.925 4.35 14.995 4.52 14.995 4.72C14.995 4.92 14.925 5.09 14.785 5.23C14.645 5.37 14.475 5.44 14.275 5.44H1.715Z"/><path d="M5.515 12.09C5.315 12.09 5.145 12.02 5.005 11.88C4.865 11.74 4.795 11.57 4.795 11.37C4.795 11.17 4.865 11 5.005 10.86C5.145 10.72 5.315 10.65 5.515 10.65H10.475C10.675 10.65 10.845 10.72 10.985 10.86C11.125 11 11.195 11.17 11.195 11.37C11.195 11.57 11.125 11.74 10.985 11.88C10.845 12.02 10.675 12.09 10.475 12.09H5.515Z"/></svg></span></th>
+                      <th class="col-action"></th>
+                    </tr>
+                  </thead>
+                  <tbody id="allUnitsBody">
+                    <!-- Populated by JS -->
+                  </tbody>
+                </table>
+              </div>
+              <div class="audit-pagination" id="allUnitsPagination">
+                <div class="audit-pagination-left">
+                  <select id="allUnitsPerPage"><option selected>10</option><option>25</option><option>50</option></select>
+                  <span>items per page</span>
+                  <span style="margin-left:8px; color:var(--text-muted);">|</span>
+                  <span id="allUnitsPageInfo" style="margin-left:8px;">0 items</span>
+                </div>
+                <div class="audit-pagination-right">
+                  <button class="audit-page-btn" id="allUnitsPrev" disabled><svg viewBox="0 0 16 16" fill="currentColor"><path d="M9.99994 12.9995C9.80994 12.9995 9.61994 12.9295 9.46994 12.7795L5.21994 8.52945C4.92994 8.23945 4.92994 7.75945 5.21994 7.46945L9.46994 3.21945C9.75994 2.92945 10.2399 2.92945 10.5299 3.21945C10.8199 3.50945 10.8199 3.98945 10.5299 4.27945L6.80994 7.99945L10.5299 11.7195C10.8199 12.0095 10.8199 12.4895 10.5299 12.7795C10.3799 12.9295 10.1899 12.9995 9.99994 12.9995Z"/></svg></button>
+                  <select class="audit-page-select" id="allUnitsPageSelect"><option selected>Page 1</option></select>
+                  <button class="audit-page-btn" id="allUnitsNext"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M5.99994 12.9995C6.18994 12.9995 6.37994 12.9295 6.52994 12.7795L10.7799 8.52945C11.0699 8.23945 11.0699 7.75945 10.7799 7.46945L6.52994 3.21945C6.23994 2.92945 5.75994 2.92945 5.46994 3.21945C5.17994 3.50945 5.17994 3.98945 5.46994 4.27945L9.18994 7.99945L5.46994 11.7195C5.17994 12.0095 5.17994 12.4895 5.46994 12.7795C5.61994 12.9295 5.80994 12.9995 5.99994 12.9995Z"/></svg></button>
+                </div>
+              </div>
             </div>
           </div>
         </div><!-- /inventoryPage -->
@@ -4929,8 +4979,8 @@ td:has(+ .col-action) { padding-right: 20px !important; }
                 <div class="card-bulk-actions">
                   <span class="bulk-count" data-bulk-count>0 selected</span>
                   <div class="card-bulk-divider"></div>
-                  <button class="btn-text" onclick="bulkAction('rescan','processedFilesBody')">Re-scan</button>
-                  <button class="btn-text danger" onclick="bulkAction('delete','processedFilesBody')">Delete</button>
+                  <button class="btn-outline" onclick="bulkAction('rescan','processedFilesBody')">Re-scan</button>
+                  <button class="btn-outline" onclick="bulkAction('delete','processedFilesBody')">Delete</button>
                 </div>
               </div>
               <div class="table-scroll">
@@ -8726,97 +8776,429 @@ td:has(+ .col-action) { padding-right: 20px !important; }
     // INVENTORY — Account Detail View
     // ===============================================================
     var cbSvg = '<svg class="cb-check" viewBox="0 0 16 16" fill="none"><path d="M6.75 11.75c-.26 0-.51-.1-.71-.29l-2.75-2.75a1.003 1.003 0 011.41-1.41l2.04 2.04 5.05-5.05a1.003 1.003 0 011.41 1.41l-5.75 5.75c-.2.2-.45.29-.71.29z" fill="white"/></svg><svg class="cb-semi" viewBox="0 0 16 16" fill="none"><path d="M11 9H5a1 1 0 010-2h6a1 1 0 010 2z" fill="white"/></svg>';
-    var accountsData = [
-      {
-        name: 'AWS Account Name', provider: 'Amazon S3', providerClass: 'aws', providerLabel: 'aws', status: 'Operational', statusTag: 'tag-success',
-        totalUnits: 15, operational: 12, issues: 2, pending: 1, group: 'Default Group',
-        units: [
-          { name: 'production-assets', status: 'Operational', statusTag: 'tag-success', clientId: 'a1b2c3d4-e5f6-7890-abcd-ef1234567890', group: 'Default Group', groups: 0, files: 2450, lastScanned: 'Jan 15, 2025 10:30 AM' },
-          { name: 'staging-uploads', status: 'Operational', statusTag: 'tag-success', clientId: 'b2c3d4e5-f6a7-8901-bcde-f12345678901', group: 'Default Group', groups: 0, files: 890, lastScanned: 'Jan 15, 2025 09:15 AM' },
-          { name: 'dev-test-bucket', status: 'Issues Found', statusTag: 'tag-alert', clientId: 'c3d4e5f6-a7b8-9012-cdef-123456789012', group: 'Development', groups: 1, files: 156, lastScanned: 'Jan 14, 2025 04:45 PM' },
-          { name: 'backup-archive-01', status: 'Operational', statusTag: 'tag-success', clientId: 'd4e5f6a7-b8c9-0123-defa-234567890123', group: 'Default Group', groups: 0, files: 12300, lastScanned: 'Jan 15, 2025 08:00 AM' },
-          { name: 'media-content', status: 'Operational', statusTag: 'tag-success', clientId: 'e5f6a7b8-c9d0-1234-efab-345678901234', group: 'Production', groups: 2, files: 5670, lastScanned: 'Jan 15, 2025 11:00 AM' },
-          { name: 'log-storage', status: 'Pending', statusTag: 'tag-warning', clientId: 'f6a7b8c9-d0e1-2345-fabc-456789012345', group: 'Default Group', groups: 0, files: 0, lastScanned: 'Never' },
-          { name: 'customer-data', status: 'Operational', statusTag: 'tag-success', clientId: 'a7b8c9d0-e1f2-3456-abcd-567890123456', group: 'Production', groups: 1, files: 3420, lastScanned: 'Jan 15, 2025 10:00 AM' },
-          { name: 'shared-documents', status: 'Operational', statusTag: 'tag-success', clientId: 'b8c9d0e1-f2a3-4567-bcde-678901234567', group: 'Default Group', groups: 0, files: 780, lastScanned: 'Jan 14, 2025 03:30 PM' },
-          { name: 'temp-processing', status: 'Issues Found', statusTag: 'tag-alert', clientId: 'c9d0e1f2-a3b4-5678-cdef-789012345678', group: 'Development', groups: 0, files: 45, lastScanned: 'Jan 13, 2025 11:20 AM' },
-          { name: 'compliance-vault', status: 'Operational', statusTag: 'tag-success', clientId: 'd0e1f2a3-b4c5-6789-defa-890123456789', group: 'Production', groups: 1, files: 8900, lastScanned: 'Jan 15, 2025 10:30 AM' }
-        ],
-        jobs: [
-          { name: 'Scheduled File Scan', status: 'Completed', statusTag: 'tag-success', type: 'Scheduled', files: 2450, detections: 3, date: 'Jan 15, 2025 10:30 AM', storageUnit: 'production-assets' },
-          { name: 'Real-Time Scan', status: 'In Progress', statusTag: 'tag-info', type: 'Real-Time', files: 120, detections: 0, date: 'Jan 15, 2025 11:00 AM', storageUnit: 'staging-uploads' },
-          { name: 'Weekly Deep Scan', status: 'Completed', statusTag: 'tag-success', type: 'Scheduled', files: 15000, detections: 12, date: 'Jan 12, 2025 02:00 AM', storageUnit: 'production-assets' },
-          { name: 'On-Demand Scan', status: 'Failed', statusTag: 'tag-danger', type: 'On-Demand', files: 0, detections: 0, date: 'Jan 11, 2025 09:45 AM', storageUnit: 'dev-test-bucket' },
-          { name: 'Compliance Check', status: 'Completed', statusTag: 'tag-success', type: 'Scheduled', files: 8900, detections: 1, date: 'Jan 10, 2025 06:00 AM', storageUnit: 'compliance-vault' },
-          { name: 'Backup Verification', status: 'Completed', statusTag: 'tag-success', type: 'Scheduled', files: 12300, detections: 0, date: 'Jan 09, 2025 01:00 AM', storageUnit: 'backup-archive-01' },
-          { name: 'New Files Scan', status: 'Completed', statusTag: 'tag-success', type: 'Real-Time', files: 340, detections: 2, date: 'Jan 08, 2025 04:30 PM', storageUnit: 'customer-data' },
-          { name: 'Monthly Full Scan', status: 'Completed', statusTag: 'tag-success', type: 'Scheduled', files: 45000, detections: 18, date: 'Jan 01, 2025 12:00 AM', storageUnit: 'production-assets' },
-          { name: 'Quarantine Review', status: 'Completed', statusTag: 'tag-success', type: 'On-Demand', files: 25, detections: 25, date: 'Dec 28, 2024 10:15 AM', storageUnit: 'temp-processing' },
-          { name: 'Holiday Pre-Scan', status: 'Completed', statusTag: 'tag-success', type: 'Scheduled', files: 32000, detections: 7, date: 'Dec 23, 2024 11:00 PM', storageUnit: 'production-assets' }
-        ],
-        donutData: {
-          verdicts: { clean: 72, suspicious: 18, malicious: 10 },
-          fileTypes: { documents: 45, images: 25, archives: 20, other: 10 },
-          scanStatus: { scanned: 85, pending: 10, failed: 5 }
+    /* ---- Fake data generator ---- */
+    var _providers = [
+      { name: 'Amazon S3', cls: 'aws', label: 'aws' },
+      { name: 'SharePoint', cls: 'sharepoint', label: 'SP' },
+      { name: 'Azure Blob', cls: 'azure', label: 'Az' },
+      { name: 'Google Cloud', cls: 'gcloud', label: 'GC' },
+      { name: 'Alibaba Cloud', cls: 'alibaba', label: 'Ali' },
+      { name: 'Box', cls: 'box', label: 'Bx' }
+    ];
+    var _groups = ['Default Group', 'Production', 'Development', 'Staging', 'QA', 'Compliance'];
+    var _statuses = [
+      { s: 'Operational', tag: 'tag-success', w: 55 },
+      { s: 'Issues Found', tag: 'tag-alert', w: 18 },
+      { s: 'Pending', tag: 'tag-warning', w: 10 },
+      { s: 'Error', tag: 'tag-danger', w: 7 },
+      { s: 'Testing', tag: 'tag-info', w: 10 }
+    ];
+    var _unitNames = [
+      'production-assets','staging-uploads','dev-test-bucket','backup-archive-01','media-content',
+      'log-storage','customer-data','shared-documents','temp-processing','compliance-vault',
+      'team-documents','hr-policies','finance-reports','marketing-assets','engineering-wiki',
+      'legal-contracts','shared-workspace','executive-briefs','training-materials','data-lake-raw',
+      'analytics-output','ml-models','ci-artifacts','container-registry','secrets-backup',
+      'cdn-origin','email-archive','audit-logs','disaster-recovery','user-uploads',
+      'vendor-exchange','api-cache','session-store','config-backups','release-binaries',
+      'scan-quarantine','threat-samples','dlp-exports','soc-evidence','pentest-reports'
+    ];
+    var _jobTypes = ['Scheduled','Real-Time','On-Demand'];
+    var _jobStatuses = [
+      { s: 'Completed', tag: 'tag-success' },
+      { s: 'In Progress', tag: 'tag-info' },
+      { s: 'Failed', tag: 'tag-danger' },
+      { s: 'Queued', tag: 'tag-warning' }
+    ];
+    var _jobNames = [
+      'Scheduled File Scan','Real-Time Scan','Weekly Deep Scan','On-Demand Scan',
+      'Compliance Check','Backup Verification','New Files Scan','Monthly Full Scan',
+      'Quarantine Review','Malware Sweep','Permission Audit','DLP Content Scan',
+      'Incremental Scan','Daily Quick Scan','Threat Hunt','Archive Validation'
+    ];
+    function _rand(min, max) { return Math.floor(Math.random() * (max - min + 1)) + min; }
+    function _pick(arr) { return arr[_rand(0, arr.length - 1)]; }
+    function _pickWeighted(arr) {
+      var total = arr.reduce(function(s, i) { return s + i.w; }, 0);
+      var r = Math.random() * total, acc = 0;
+      for (var i = 0; i < arr.length; i++) { acc += arr[i].w; if (r < acc) return arr[i]; }
+      return arr[arr.length - 1];
+    }
+    function _uuid() {
+      return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        var r = Math.random() * 16 | 0; return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+      });
+    }
+    function _fmtDate(d) {
+      var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      var h = d.getHours(), m = d.getMinutes(), ampm = h >= 12 ? 'PM' : 'AM';
+      h = h % 12 || 12;
+      return months[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear() + ' '
+        + (h < 10 ? '0' : '') + h + ':' + (m < 10 ? '0' : '') + m + ' ' + ampm;
+    }
+    function _randomDate(daysBack) {
+      var d = new Date(); d.setDate(d.getDate() - _rand(0, daysBack));
+      d.setHours(_rand(0, 23), _rand(0, 59));
+      return d;
+    }
+
+    function generateAccountsData() {
+      var accounts = [
+        { name: 'AWS Production', prov: 0, unitCount: _rand(8, 14) },
+        { name: 'SharePoint Corporate', prov: 1, unitCount: _rand(6, 10) },
+        { name: 'Azure Data Platform', prov: 2, unitCount: _rand(5, 9) },
+        { name: 'GCP Analytics', prov: 3, unitCount: _rand(3, 7) },
+        { name: 'Alibaba Cloud OSS', prov: 4, unitCount: _rand(2, 5) },
+        { name: 'Box Enterprise', prov: 5, unitCount: _rand(2, 4) }
+      ];
+      var usedNames = {};
+      return accounts.map(function(acctDef) {
+        var prov = _providers[acctDef.prov];
+        var units = [];
+        var opCount = 0, issCount = 0, pendCount = 0;
+        for (var i = 0; i < acctDef.unitCount; i++) {
+          var uName;
+          do { uName = _pick(_unitNames); } while (usedNames[uName]);
+          usedNames[uName] = true;
+          var st = _pickWeighted(_statuses);
+          if (st.s === 'Operational') opCount++;
+          else if (st.s === 'Issues Found' || st.s === 'Error') issCount++;
+          else pendCount++;
+          var grp = _pick(_groups);
+          var extraGroups = Math.random() < 0.3 ? _rand(1, 3) : 0;
+          var fileCount = st.s === 'Pending' ? 0 : (st.s === 'Error' ? _rand(0, 50) : _rand(0, 120000));
+          var lastDate = st.s === 'Pending' ? 'Never' : _fmtDate(_randomDate(st.s === 'Error' ? 30 : 14));
+          units.push({
+            name: uName,
+            status: st.s,
+            statusTag: st.tag,
+            clientId: _uuid(),
+            group: grp,
+            groups: extraGroups,
+            files: fileCount,
+            lastScanned: lastDate
+          });
         }
-      },
-      {
-        name: 'SharePoint Cloud Account Name', provider: 'SharePoint', providerClass: 'sharepoint', providerLabel: 'SP', status: 'Issues Found', statusTag: 'tag-alert',
-        totalUnits: 9, operational: 6, issues: 3, pending: 0, group: 'Production',
-        units: [
-          { name: 'team-documents', status: 'Operational', statusTag: 'tag-success', clientId: 'sp-001-team-docs-abcdef123456', group: 'Production', groups: 0, files: 1200, lastScanned: 'Jan 15, 2025 09:00 AM' },
-          { name: 'hr-policies', status: 'Issues Found', statusTag: 'tag-alert', clientId: 'sp-002-hr-pol-bcdefg234567', group: 'Production', groups: 1, files: 340, lastScanned: 'Jan 14, 2025 11:30 AM' },
-          { name: 'finance-reports', status: 'Operational', statusTag: 'tag-success', clientId: 'sp-003-fin-rep-cdefgh345678', group: 'Production', groups: 0, files: 890, lastScanned: 'Jan 15, 2025 08:45 AM' },
-          { name: 'marketing-assets', status: 'Issues Found', statusTag: 'tag-alert', clientId: 'sp-004-mkt-ast-defghi456789', group: 'Default Group', groups: 0, files: 2100, lastScanned: 'Jan 13, 2025 02:15 PM' },
-          { name: 'engineering-wiki', status: 'Operational', statusTag: 'tag-success', clientId: 'sp-005-eng-wiki-efghij567890', group: 'Development', groups: 1, files: 560, lastScanned: 'Jan 15, 2025 10:00 AM' },
-          { name: 'legal-contracts', status: 'Operational', statusTag: 'tag-success', clientId: 'sp-006-leg-con-fghijk678901', group: 'Production', groups: 0, files: 450, lastScanned: 'Jan 14, 2025 05:00 PM' },
-          { name: 'shared-workspace', status: 'Issues Found', statusTag: 'tag-alert', clientId: 'sp-007-shrd-ws-ghijkl789012', group: 'Default Group', groups: 0, files: 3200, lastScanned: 'Jan 12, 2025 09:30 AM' },
-          { name: 'executive-briefs', status: 'Operational', statusTag: 'tag-success', clientId: 'sp-008-exec-br-hijklm890123', group: 'Production', groups: 0, files: 120, lastScanned: 'Jan 15, 2025 07:00 AM' },
-          { name: 'training-materials', status: 'Operational', statusTag: 'tag-success', clientId: 'sp-009-trn-mat-ijklmn901234', group: 'Default Group', groups: 0, files: 670, lastScanned: 'Jan 14, 2025 01:45 PM' }
-        ],
-        jobs: [
-          { name: 'Daily Scan', status: 'Completed', statusTag: 'tag-success', type: 'Scheduled', files: 9530, detections: 5, date: 'Jan 15, 2025 06:00 AM', storageUnit: 'team-documents' },
-          { name: 'Real-Time Monitor', status: 'In Progress', statusTag: 'tag-info', type: 'Real-Time', files: 45, detections: 0, date: 'Jan 15, 2025 11:30 AM', storageUnit: 'hr-policies' },
-          { name: 'Deep Content Scan', status: 'Completed', statusTag: 'tag-success', type: 'Scheduled', files: 9530, detections: 8, date: 'Jan 13, 2025 02:00 AM', storageUnit: 'team-documents' },
-          { name: 'Permission Audit', status: 'Completed', statusTag: 'tag-success', type: 'On-Demand', files: 9530, detections: 0, date: 'Jan 10, 2025 10:00 AM', storageUnit: 'legal-contracts' },
-          { name: 'Malware Sweep', status: 'Failed', statusTag: 'tag-danger', type: 'Scheduled', files: 0, detections: 0, date: 'Jan 08, 2025 03:00 AM', storageUnit: 'marketing-assets' }
-        ],
-        donutData: {
-          verdicts: { clean: 65, suspicious: 22, malicious: 13 },
-          fileTypes: { documents: 60, images: 15, archives: 15, other: 10 },
-          scanStatus: { scanned: 78, pending: 15, failed: 7 }
+        // Determine account-level status from worst unit
+        var acctStatus = 'Operational', acctTag = 'tag-success';
+        if (issCount > 0) { acctStatus = 'Issues Found'; acctTag = 'tag-alert'; }
+        if (units.some(function(u) { return u.status === 'Error'; })) { acctStatus = 'Error'; acctTag = 'tag-danger'; }
+        // Generate jobs for this account
+        var jobs = [];
+        var jobCount = _rand(3, 12);
+        for (var j = 0; j < jobCount; j++) {
+          var jst = j === 0 && Math.random() < 0.4 ? _jobStatuses[1] : _pick(_jobStatuses);
+          var jFiles = jst.s === 'Failed' ? 0 : _rand(50, 50000);
+          var jDet = jst.s === 'Completed' ? _rand(0, Math.ceil(jFiles * 0.03)) : 0;
+          var targetUnit = units.length ? _pick(units).name : uName;
+          jobs.push({
+            name: _pick(_jobNames),
+            status: jst.s,
+            statusTag: jst.tag,
+            type: _pick(_jobTypes),
+            files: jFiles,
+            detections: jDet,
+            date: _fmtDate(_randomDate(60)),
+            storageUnit: targetUnit
+          });
         }
-      },
-      {
-        name: 'Alibaba Cloud Account Name', provider: 'Alibaba Cloud', providerClass: 'alibaba', providerLabel: 'Ali', status: 'Operational', statusTag: 'tag-success',
-        totalUnits: 3, operational: 3, issues: 0, pending: 0, group: 'Default Group',
-        units: [
-          { name: 'oss-bucket-prod', status: 'Operational', statusTag: 'tag-success', clientId: 'ali-001-oss-prod-abcdef123', group: 'Default Group', groups: 0, files: 4500, lastScanned: 'Jan 15, 2025 10:00 AM' },
-          { name: 'oss-bucket-staging', status: 'Operational', statusTag: 'tag-success', clientId: 'ali-002-oss-stag-bcdefg234', group: 'Default Group', groups: 0, files: 1200, lastScanned: 'Jan 14, 2025 06:00 PM' },
-          { name: 'oss-bucket-archive', status: 'Operational', statusTag: 'tag-success', clientId: 'ali-003-oss-arch-cdefgh345', group: 'Default Group', groups: 0, files: 8700, lastScanned: 'Jan 15, 2025 08:30 AM' }
-        ],
-        jobs: [
-          { name: 'Full Scan', status: 'Completed', statusTag: 'tag-success', type: 'Scheduled', files: 14400, detections: 2, date: 'Jan 15, 2025 04:00 AM', storageUnit: 'oss-bucket-prod' },
-          { name: 'Incremental Scan', status: 'Completed', statusTag: 'tag-success', type: 'Scheduled', files: 320, detections: 0, date: 'Jan 14, 2025 04:00 AM', storageUnit: 'oss-bucket-staging' }
-        ],
-        donutData: {
-          verdicts: { clean: 88, suspicious: 8, malicious: 4 },
-          fileTypes: { documents: 30, images: 35, archives: 25, other: 10 },
-          scanStatus: { scanned: 95, pending: 3, failed: 2 }
-        }
-      },
-      {
-        name: 'Alibaba MDSS', provider: 'Alibaba Cloud', providerClass: 'alibaba', providerLabel: 'Ali', status: 'Operational', statusTag: 'tag-success',
-        totalUnits: 0, operational: 0, issues: 0, pending: 0, group: 'Staging',
-        units: [],
-        jobs: [],
-        donutData: {
-          verdicts: { clean: 0, suspicious: 0, malicious: 0 },
-          fileTypes: { documents: 0, images: 0, archives: 0, other: 0 },
-          scanStatus: { scanned: 0, pending: 0, failed: 0 }
+        jobs.sort(function(a, b) { return new Date(b.date) - new Date(a.date); });
+        // Donut data derived from units
+        var totalFiles = units.reduce(function(s, u) { return s + u.files; }, 0);
+        var cleanPct = totalFiles > 0 ? _rand(55, 95) : 0;
+        var suspPct = totalFiles > 0 ? _rand(3, Math.max(4, 100 - cleanPct - 5)) : 0;
+        var malPct = Math.max(0, 100 - cleanPct - suspPct);
+        return {
+          name: acctDef.name,
+          provider: prov.name,
+          providerClass: prov.cls,
+          providerLabel: prov.label,
+          status: acctStatus,
+          statusTag: acctTag,
+          totalUnits: units.length,
+          operational: opCount,
+          issues: issCount,
+          pending: pendCount,
+          group: _pick(_groups),
+          units: units,
+          jobs: jobs,
+          donutData: {
+            verdicts: { clean: cleanPct, suspicious: suspPct, malicious: malPct },
+            fileTypes: { documents: _rand(20, 55), images: _rand(10, 30), archives: _rand(10, 25), other: _rand(5, 15) },
+            scanStatus: { scanned: _rand(60, 95), pending: _rand(3, 20), failed: _rand(1, 10) }
+          }
+        };
+      });
+    }
+
+    var accountsData = generateAccountsData();
+
+    /* ---- Render accounts list table ---- */
+    function renderAccountsList() {
+      var tbody = document.getElementById('accountsBody');
+      if (!tbody) return;
+      var html = '';
+      accountsData.forEach(function(acct, idx) {
+        // Determine overall status — worst status from units
+        var statusMap = { 'Error': 4, 'Issues Found': 3, 'Pending': 2, 'Testing': 1, 'Operational': 0 };
+        var worstStatus = 'Operational', worstTag = 'tag-success', worstScore = 0;
+        acct.units.forEach(function(u) {
+          var score = statusMap[u.status] || 0;
+          if (score > worstScore) { worstScore = score; worstStatus = u.status; worstTag = u.statusTag; }
+        });
+        if (acct.units.length === 0) { worstStatus = 'No Units'; worstTag = 'tag-neutral'; }
+        html += '<tr onclick="openAccountDetail(' + idx + ')" style="cursor:pointer;">'
+          + '<td>' + acct.name + '</td>'
+          + '<td><span class="tag ' + worstTag + '">' + worstStatus + '</span></td>'
+          + '<td><div class="inv-provider"><span class="inv-provider-icon ' + acct.providerClass + '"><span style="font-size:8px;' + (acct.providerClass === 'aws' ? 'letter-spacing:-0.5px;' : '') + '">' + acct.providerLabel + '</span></span> ' + acct.provider + '</div></td>'
+          + '<td>' + acct.units.length + '</td>'
+          + '<td class="col-action"><div class="row-action-btn" onclick="toggleInvMenu(this, event)" style="position:relative"><svg viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="3" r="1.5"/><circle cx="8" cy="8" r="1.5"/><circle cx="8" cy="13" r="1.5"/></svg><div class="row-action-menu row-action-menu--inline"><div class="row-action-menu-item" onclick="event.stopPropagation()"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 10v3h3M14 6V3h-3"/><path d="M14 3L9 8M2 13l5-5"/></svg> Create Job</div><div class="row-action-menu-item" onclick="event.stopPropagation()"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="5"/><path d="M8 5.5v5M5.5 8h5"/></svg> Account Settings</div><div class="inv-context-item danger" onclick="event.stopPropagation()"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 4h10M6 4V3h4v1M5 4v8.5a1 1 0 001 1h4a1 1 0 001-1V4"/></svg> Delete Account</div></div></div></td>'
+          + '</tr>';
+      });
+      tbody.innerHTML = html;
+      var countEl = document.getElementById('accountsCount');
+      if (countEl) countEl.textContent = accountsData.length;
+    }
+    renderAccountsList();
+
+    /* ---- Build flat list of all units (for dashboard filter) ---- */
+    var _allUnitsFlat = [];
+    accountsData.forEach(function(acct) {
+      acct.units.forEach(function(u) {
+        _allUnitsFlat.push({ unit: u, acct: acct });
+      });
+    });
+
+    /* ---- Dashboard state ---- */
+    var _dashCurrentClientId = _allUnitsFlat.length > 0 ? _allUnitsFlat[0].unit.clientId : null;
+    var _dashCurrentPeriod = 30; // days — 7, 30, 90
+
+    /* ---- Populate Dashboard scoped to a single unit + time period ---- */
+    function populateDashboard(clientId, periodDays) {
+      if (clientId !== undefined && clientId !== null) _dashCurrentClientId = clientId;
+      if (periodDays !== undefined && periodDays !== null) _dashCurrentPeriod = periodDays;
+      clientId = _dashCurrentClientId;
+      periodDays = _dashCurrentPeriod;
+
+      // Find the target unit + its parent account
+      var target = null;
+      for (var i = 0; i < _allUnitsFlat.length; i++) {
+        if (_allUnitsFlat[i].unit.clientId === clientId) { target = _allUnitsFlat[i]; break; }
+      }
+      if (!target) target = _allUnitsFlat[0]; // fallback to first
+      var unit = target.unit, acct = target.acct;
+
+      // Period scale factor (baseline = 30d)
+      var pScale = periodDays / 30;
+
+      // Jobs scoped to this unit (filter account jobs by storageUnit name)
+      var unitJobs = acct.jobs.filter(function(j) { return j.storageUnit === unit.name; });
+      // If none matched, generate a few for this unit
+      if (unitJobs.length === 0) {
+        for (var jj = 0; jj < _rand(2, 5); jj++) {
+          var jst = _pick(_jobStatuses);
+          var jFiles = jst.s === 'Failed' ? 0 : _rand(50, 50000);
+          var jDet = jst.s === 'Completed' ? _rand(0, Math.ceil(jFiles * 0.03)) : 0;
+          unitJobs.push({ name: _pick(_jobNames), status: jst.s, statusTag: jst.tag, type: _pick(_jobTypes), files: jFiles, detections: jDet, date: _fmtDate(_randomDate(60)), storageUnit: unit.name });
         }
       }
-    ];
+      // Filter jobs by time period
+      var cutoff = new Date(); cutoff.setDate(cutoff.getDate() - periodDays);
+      var periodJobs = unitJobs.filter(function(j) { return new Date(j.date) >= cutoff; });
+      // Always show at least some jobs for the period
+      if (periodJobs.length === 0) periodJobs = unitJobs.slice(0, Math.max(1, Math.round(unitJobs.length * pScale)));
+      var runningJobs = 0, pastJobs = 0;
+      periodJobs.forEach(function(j) { if (j.status === 'In Progress') runningJobs++; else pastJobs++; });
+
+      var totalFiles = Math.round(unit.files * pScale) || 0;
+      var fmt = function(n) { return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','); };
+      var barPct = function(v, m) { return m > 0 ? Math.round(v / m * 100) + '%' : '0%'; };
+
+      // Derived stats
+      var skippedFailed = Math.round(totalFiles * (_rand(5, 15) / 10000)) || _rand(5, 30);
+      var goodFiles = Math.max(0, totalFiles - skippedFailed);
+      var cached = Math.round(goodFiles * (_rand(88, 96) / 100));
+      var scanned = goodFiles - cached;
+      var blocked = Math.round(scanned * (_rand(3, 8) / 100));
+      var allowed = scanned - blocked;
+
+      var threatTotal = Math.round(scanned * (_rand(10, 25) / 100)) || _rand(50, 300);
+      var km = Math.round(threatTotal * 0.65), mb = Math.round(threatTotal * 0.05);
+      var ve = Math.round(threatTotal * 0.12), rm = Math.round(threatTotal * 0.13);
+      var bp = Math.max(0, threatTotal - km - mb - ve - rm);
+
+      var dlpTotal = Math.round(scanned * (_rand(2, 6) / 100)) || _rand(10, 60);
+      var pi = Math.round(dlpTotal * 0.35), st = Math.round(dlpTotal * 0.22);
+      var cc = Math.round(dlpTotal * 0.20), ssn = Math.round(dlpTotal * 0.12);
+      var dlpOt = Math.max(0, dlpTotal - pi - st - cc - ssn);
+
+      var sanTotal = Math.round(scanned * (_rand(20, 45) / 100)) || _rand(50, 200);
+      var im = Math.round(sanTotal * 0.40), hy = Math.round(sanTotal * 0.28);
+      var js = Math.round(sanTotal * 0.14), sc = Math.round(sanTotal * 0.10);
+      var sanOt = Math.max(0, sanTotal - im - hy - js - sc);
+
+      var dp = document.getElementById('dashboardPage');
+      if (!dp) return;
+
+      // 1. Info bar — show selected unit info + provider icon
+      var provIcon = document.getElementById('dashProviderIcon');
+      if (provIcon) {
+        var firstLetter = acct.provider.charAt(0).toUpperCase();
+        provIcon.innerHTML = '<span class="dash-provider-letter">' + firstLetter + '</span>';
+      }
+      var infoSections = dp.querySelectorAll('.info-bar .info-bar-section');
+      if (infoSections[0]) {
+        var v = infoSections[0].querySelector('.info-bar-value');
+        if (v) v.textContent = unit.name;
+      }
+      if (infoSections[1]) {
+        var v = infoSections[1].querySelector('.info-bar-value');
+        if (v) v.innerHTML = '<span class="tag ' + unit.statusTag + '">' + unit.status + '</span>';
+      }
+      if (infoSections[2]) {
+        var cid = unit.clientId;
+        var vt = infoSections[2].querySelector('.info-bar-value-text');
+        if (vt) vt.textContent = cid;
+        var cb = infoSections[2].querySelector('.copy-btn');
+        if (cb) cb.setAttribute('onclick', "navigator.clipboard.writeText('" + cid + "').then(function(){showNotification('success','Copied to clipboard')})");
+      }
+
+      // 2. Banner
+      var bd = dp.querySelector('.banner-desc');
+      if (bd) bd.textContent = runningJobs + ' job' + (runningJobs !== 1 ? 's' : '') + ' currently running';
+
+      // 3. Job summary count
+      var jc = dp.querySelector('.audit-card-title .count');
+      if (jc) jc.innerHTML = pastJobs + ' Past <span class="accent">(+' + runningJobs + ' Running)</span>';
+
+      // 4. Donut lockups
+      var donuts = dp.querySelectorAll('.dash-donut-lockup');
+      if (donuts[0]) { var vv = donuts[0].querySelectorAll('.dash-legend-val'); if(vv[0]) vv[0].innerHTML = fmt(totalFiles) + ' <span class="dash-delta">(+' + fmt(_rand(10,200)) + ')</span>'; if(vv[1]) vv[1].innerHTML = fmt(skippedFailed) + ' <span class="dash-delta">(+' + _rand(1,5) + ')</span>'; }
+      if (donuts[1]) { var vv = donuts[1].querySelectorAll('.dash-legend-val'); if(vv[0]) vv[0].textContent = fmt(cached); if(vv[1]) vv[1].innerHTML = fmt(scanned) + ' <span class="dash-delta">(+' + fmt(_rand(20,200)) + ')</span>'; }
+      if (donuts[2]) { var vv = donuts[2].querySelectorAll('.dash-legend-val'); if(vv[0]) vv[0].innerHTML = fmt(allowed) + ' <span class="dash-delta">(+' + fmt(_rand(5,50)) + ')</span>'; if(vv[1]) vv[1].innerHTML = fmt(blocked) + ' <span class="dash-delta">(+' + _rand(1,10) + ')</span>'; }
+
+      // 5. Stat cards: [Threats, DLP, Sanitized]
+      var cards = dp.querySelectorAll('.dash-stat-card');
+      function fillCard(card, total, vals) {
+        if (!card) return;
+        var tv = card.querySelector('.dash-stat-total-val');
+        var d = _rand(1, Math.max(2, Math.round(total * 0.08))), pct = total > 0 ? Math.round(d/total*100) : 0;
+        if (tv) tv.innerHTML = fmt(total) + ' <span class="dash-trend-arrow dash-trend-up"><svg viewBox="0 0 12 12" fill="currentColor"><path d="M6 2l4 5H2l4-5z"/></svg></span><span class="dash-trend-text">+' + fmt(d) + ', +' + pct + '%</span>';
+        var lr = card.querySelectorAll('.dash-stat-legend-val');
+        var mx = Math.max.apply(null, vals);
+        lr.forEach(function(el,i) { if (i<vals.length) el.textContent = fmt(vals[i]); });
+        var bc = card.querySelectorAll('.dash-bar-col');
+        bc.forEach(function(col,i) { if (i<vals.length) { var lb = col.querySelector('.dash-bar-label'); var fl = col.querySelector('.dash-bar-fill'); if(lb) lb.textContent = fmt(vals[i]); if(fl) fl.style.height = barPct(vals[i], mx); } });
+      }
+      fillCard(cards[0], threatTotal, [km, mb, ve, rm, bp]);
+      fillCard(cards[1], dlpTotal, [pi, st, cc, ssn, dlpOt]);
+      fillCard(cards[2], sanTotal, [im, hy, js, sc, sanOt]);
+
+      // 6. Trend chart — date spacing based on period
+      var tCols = dp.querySelectorAll('.dash-trend-col');
+      var tStep = Math.max(1, Math.round(periodDays / tCols.length));
+      tCols.forEach(function(col, i) {
+        var segs = col.querySelectorAll('.dash-trend-seg');
+        var tp = _rand(20, 90), dP = Math.round(tp * _rand(15,35) / 100), sP = Math.round(tp * _rand(30,60) / 100);
+        if (segs[0]) segs[0].style.height = tp + '%';
+        if (segs[1]) segs[1].style.height = dP + '%';
+        if (segs[2]) segs[2].style.height = sP + '%';
+        var dl = col.querySelector('.dash-trend-x-label');
+        if (dl) { var dd = new Date(); dd.setDate(dd.getDate() - (tCols.length - 1 - i) * tStep); var mn = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']; dl.textContent = mn[dd.getMonth()] + ' ' + dd.getDate(); }
+      });
+
+      // 7. Remediation rings
+      var rItems = dp.querySelectorAll('.dash-rem-item');
+      var rPcts = [_rand(80,98), _rand(30,55), _rand(12,30), _rand(10,25), _rand(5,18), _rand(2,10)];
+      rItems.forEach(function(item, i) {
+        if (i >= rPcts.length) return;
+        var p = rPcts[i];
+        var pe = item.querySelector('.dash-rem-ring-pct'); if (pe) pe.textContent = p + '%';
+        var rf = item.querySelector('.dash-rem-ring-fill');
+        if (rf) { var c = 2 * Math.PI * 22; rf.setAttribute('stroke-dasharray', (c*p/100).toFixed(2) + ' ' + (c - c*p/100).toFixed(2)); }
+      });
+
+      // 8. File type distribution — scaled by period
+      var ftCounts = [_rand(300,600), _rand(200,400), _rand(150,350), _rand(100,250), _rand(80,200), _rand(50,150), _rand(30,100), _rand(10,60)].map(function(v) { return Math.round(v * pScale); });
+      var tmCells = dp.querySelectorAll('.dash-tm-count');
+      tmCells.forEach(function(el,i) { if (i<ftCounts.length) el.textContent = fmt(ftCounts[i]); });
+      var ftTotal = ftCounts.reduce(function(s,v){return s+v;}, 0);
+      var ftTotalEl = dp.querySelector('.dash-filetype-legend-total');
+      if (ftTotalEl) ftTotalEl.textContent = fmt(ftTotal);
+      var ftVals = dp.querySelectorAll('.dash-ftl-val');
+      ftVals.forEach(function(el,i) { if (i<ftCounts.length) el.textContent = fmt(ftCounts[i]); });
+      var ftBars = dp.querySelectorAll('.dash-ftl-bar');
+      var ftMax = Math.max.apply(null, ftCounts);
+      ftBars.forEach(function(el,i) { if (i<ftCounts.length) el.style.width = barPct(ftCounts[i], ftMax); });
+
+      // 9. Jobs in Range table — scoped to this unit + period
+      var jirCard = null;
+      dp.querySelectorAll('.dash-card').forEach(function(c) { var h = c.querySelector('h3'); if (h && h.textContent.trim() === 'Jobs in Range') jirCard = c; });
+      var jirBody = jirCard ? jirCard.querySelector('tbody') : null;
+      var jirCount = jirCard ? jirCard.querySelector('.count') : null;
+      var recentJobs = periodJobs.sort(function(a,b) { return new Date(b.date) - new Date(a.date); }).slice(0, 5);
+      if (jirCount) jirCount.textContent = recentJobs.length;
+      if (jirBody) {
+        var jTypeTags = { 'Scheduled': 'dash-jt-scheduled', 'Real-Time': 'dash-jt-realtime', 'On-Demand': 'dash-jt-scan-now' };
+        var jStatusTags = { 'Completed': 'tag-success', 'In Progress': 'tag-running', 'Failed': 'tag-alert', 'Queued': 'tag-warning' };
+        var jStatusLabels = { 'Completed': 'Complete', 'In Progress': 'Running', 'Failed': 'Failed', 'Queued': 'Queued' };
+        var jh = '';
+        recentJobs.forEach(function(j) {
+          var pct = j.status === 'Completed' ? 100 : j.status === 'Failed' ? _rand(10,40) : j.status === 'In Progress' ? _rand(20,85) : 0;
+          var barStyle = j.status === 'Failed' ? 'background:var(--danger);' : '';
+          jh += '<tr><td>' + j.name + '</td>'
+            + '<td><span class="tag ' + (jStatusTags[j.status]||'tag-info') + '">' + (jStatusLabels[j.status]||j.status) + '</span></td>'
+            + '<td><span class="dash-job-type-tag ' + (jTypeTags[j.type]||'dash-jt-scheduled') + '">' + j.type + ' Scan</span></td>'
+            + '<td><div class="jobs-files-progress"><span>' + fmt(j.files) + '</span><div class="jobs-files-bar"><div class="jobs-files-bar-fill" style="width:' + pct + '%;' + barStyle + '"></div></div><span style="color:var(--text-muted);font-size:12px;">' + pct + '%</span></div></td>'
+            + '<td class="jobs-detections' + (j.detections === 0 ? ' none' : '') + '">' + (j.detections > 0 ? fmt(j.detections) : '\u2014') + '</td>'
+            + '<td>' + j.date + '</td></tr>';
+        });
+        jirBody.innerHTML = jh;
+      }
+
+      // 10. Dashboard filter dropdown — populate with all units, no aggregate
+      var fm = document.getElementById('dashUnitFilterMenu');
+      if (fm) {
+        var fh = '';
+        _allUnitsFlat.forEach(function(entry) {
+          var u = entry.unit;
+          var isActive = u.clientId === unit.clientId ? ' active' : '';
+          fh += '<div class="filter-menu-item' + isActive + '" data-value="' + u.clientId + '" onclick="selectDashUnit(\'' + u.clientId + '\',\'' + u.name.replace(/'/g, "\\'") + '\',this)">' + u.name + '</div>';
+        });
+        fm.innerHTML = fh;
+      }
+
+      // Update filter button text to show selected unit
+      var filterText = document.getElementById('dashUnitFilterText');
+      if (filterText) filterText.textContent = unit.name;
+    }
+
+    /* ---- Dashboard unit selection handler ---- */
+    window.selectDashUnit = function(clientId, label, el) {
+      // Update active state + close menu
+      var menu = el.parentElement;
+      menu.querySelectorAll('.filter-menu-item').forEach(function(item) { item.classList.remove('active'); });
+      el.classList.add('active');
+      el.closest('.filter-btn-wrap').classList.remove('open');
+      // Re-populate entire dashboard for selected unit (keep current period)
+      populateDashboard(clientId, null);
+    };
+
+    /* ---- Dashboard period selection handler ---- */
+    window.selectDashPeriod = function(days, label, el) {
+      // Update active state + close menu
+      var menu = el.parentElement;
+      menu.querySelectorAll('.filter-menu-item').forEach(function(item) { item.classList.remove('active'); });
+      el.classList.add('active');
+      el.closest('.filter-btn-wrap').classList.remove('open');
+      // Update button text
+      document.getElementById('dashPeriodText').textContent = label;
+      // Re-populate dashboard with new period (keep current unit)
+      populateDashboard(null, days);
+    };
+
+    // Initial render — first unit, 30 days
+    populateDashboard(_dashCurrentClientId, 30);
 
     window._acctDetailIdx = 0;
 
@@ -8912,59 +9294,39 @@ td:has(+ .col-action) { padding-right: 20px !important; }
     /* ================================================================
        GROUPS TAB — Data + Logic
        ================================================================ */
-    var groupsData = [
-      { name: 'MDSS Group', status: 'Issues Found', statusTag: 'tag-alert', storageUnits: 12, providers: ['aws', 'box'], totalUnits: 12, operational: 9, errors: 2, testing: 1 },
-      { name: 'Demo Testing', status: 'Operational', statusTag: 'tag-success', storageUnits: 15, providers: ['aws', 'box', 'onedrive'], extraProviders: 2, totalUnits: 15, operational: 13, errors: 1, testing: 1 },
-      { name: 'Internal Log', status: 'Operational', statusTag: 'tag-success', storageUnits: 3, providers: ['aws', 'box', 'onedrive'], extraProviders: 5, totalUnits: 3, operational: 3, errors: 0, testing: 0 },
-      { name: 'Server Backup', status: 'Operational', statusTag: 'tag-success', storageUnits: 10, providers: ['aws', 'box'], totalUnits: 10, operational: 10, errors: 0, testing: 0 },
-      { name: 'BM test group', status: 'Operational', statusTag: 'tag-success', storageUnits: 2, providers: ['box', 'onedrive'], totalUnits: 2, operational: 2, errors: 0, testing: 0 },
-      { name: 'GOV', status: 'Operational', statusTag: 'tag-success', storageUnits: 9, providers: ['aws', 'box', 'onedrive'], totalUnits: 9, operational: 8, errors: 1, testing: 0 },
-      { name: 'MDSSC group', status: 'Operational', statusTag: 'tag-success', storageUnits: 7, providers: ['aws', 'onedrive'], totalUnits: 7, operational: 7, errors: 0, testing: 0 },
-      { name: 'system_alerts_dec2022', status: 'Operational', statusTag: 'tag-success', storageUnits: 7, providers: ['aws', 'onedrive'], totalUnits: 7, operational: 6, errors: 0, testing: 1 },
-      { name: 'UX Playground Group', status: 'Operational', statusTag: 'tag-success', storageUnits: 4, providers: ['box', 'onedrive'], totalUnits: 4, operational: 4, errors: 0, testing: 0 },
-      { name: 'Performance check', status: 'Operational', statusTag: 'tag-success', storageUnits: 25, providers: ['aws', 'box', 'onedrive'], totalUnits: 25, operational: 23, errors: 1, testing: 1 },
-      { name: 'Staging Env', status: 'Operational', statusTag: 'tag-success', storageUnits: 5, providers: ['aws'], totalUnits: 5, operational: 5, errors: 0, testing: 0 },
-      { name: 'QA Regression', status: 'Operational', statusTag: 'tag-success', storageUnits: 3, providers: ['box'], totalUnits: 3, operational: 3, errors: 0, testing: 0 },
-      { name: 'Archive 2024', status: 'Operational', statusTag: 'tag-success', storageUnits: 8, providers: ['aws', 'onedrive'], totalUnits: 8, operational: 8, errors: 0, testing: 0 },
-      { name: 'Compliance Audit', status: 'Operational', statusTag: 'tag-success', storageUnits: 6, providers: ['aws', 'box'], totalUnits: 6, operational: 6, errors: 0, testing: 0 },
-      { name: 'Dev Sandbox', status: 'Operational', statusTag: 'tag-success', storageUnits: 4, providers: ['aws', 'onedrive'], totalUnits: 4, operational: 4, errors: 0, testing: 0 }
-    ];
-
-    // Generate units for each group
-    var providerNames = { aws: 'Amazon S3', box: 'Box', onedrive: 'OneDrive' };
-    var providerLabels = { aws: 'aws', box: 'box', onedrive: 'OneDrive' };
-    var grpStatuses = ['Operational', 'Operational', 'Operational', 'Error', 'Testing', 'Operational', 'Operational'];
-    var grpStatusTags = { 'Operational': 'tag-success', 'Error': 'tag-danger', 'Testing': 'tag-warning' };
-    groupsData.forEach(function(g) {
-      g.units = [];
-      g.jobs = [];
-      for (var i = 0; i < g.storageUnits; i++) {
-        var prov = g.providers[i % g.providers.length];
-        var st = grpStatuses[i % grpStatuses.length];
+    /* Derive groups from accountsData — each unit has a .group property */
+    var groupMap = {};
+    accountsData.forEach(function(acct) {
+      acct.units.forEach(function(u) {
+        var gName = u.group;
+        if (!groupMap[gName]) groupMap[gName] = { name: gName, provs: {}, units: [], opCount: 0, errCount: 0, testCount: 0 };
+        var g = groupMap[gName];
         g.units.push({
-          name: 'Storage Unit Name',
-          provider: prov,
-          providerName: providerNames[prov],
-          status: st,
-          statusTag: grpStatusTags[st] || 'tag-success',
-          account: prov === 'aws' ? 'Amazon Acc...' : prov === 'box' ? 'Box Account' : 'OneDrive Ac...',
-          groups: 'GroupName',
-          extraGroups: i % 4 === 0 ? 2 : 0,
-          clientId: 'e3b0c44298f...',
-          lastJob: ['August 15, 2025 1...', 'November 30, 202...', 'July 10, 2025 09:1...', 'May 27, 2025 11:4...', 'June 01, 2025 08:0...', 'July 15, 2025 10:3...'][i % 6]
+          name: u.name, provider: acct.providerClass, providerName: acct.provider, providerLabel: acct.providerLabel,
+          status: u.status, statusTag: u.statusTag, account: acct.name, groups: gName,
+          extraGroups: u.groups, clientId: u.clientId, lastJob: u.lastScanned
         });
-      }
-      for (var j = 0; j < Math.min(g.storageUnits, 5); j++) {
-        g.jobs.push({
-          name: ['Scheduled File Scan', 'Real-Time Monitor', 'Weekly Deep Scan', 'On-Demand Scan', 'Compliance Check'][j % 5],
-          status: ['Completed', 'In Progress', 'Completed', 'Failed', 'Completed'][j % 5],
-          statusTag: ['tag-success', 'tag-info', 'tag-success', 'tag-danger', 'tag-success'][j % 5],
-          type: ['Scheduled', 'Real-Time', 'Scheduled', 'On-Demand', 'Scheduled'][j % 5],
-          files: [2450, 120, 15000, 0, 8900][j % 5],
-          detections: [3, 0, 12, 0, 1][j % 5],
-          date: ['Jan 15, 2025 10:30 AM', 'Jan 15, 2025 11:00 AM', 'Jan 12, 2025 02:00 AM', 'Jan 11, 2025 09:45 AM', 'Jan 10, 2025 06:00 AM'][j % 5]
-        });
-      }
+        g.provs[acct.providerClass] = true;
+        if (u.status === 'Operational') g.opCount++;
+        else if (u.status === 'Error' || u.status === 'Issues Found') g.errCount++;
+        else if (u.status === 'Testing') g.testCount++;
+      });
+    });
+    var groupsData = Object.keys(groupMap).map(function(key) {
+      var g = groupMap[key];
+      var status = 'Operational', statusTag = 'tag-success';
+      if (g.errCount > 0) { status = 'Issues Found'; statusTag = 'tag-alert'; }
+      var provKeys = Object.keys(g.provs);
+      var jobs = [];
+      g.units.slice(0, Math.min(g.units.length, 5)).forEach(function(u) {
+        var jst = _pick(_jobStatuses);
+        jobs.push({ name: _pick(_jobNames), status: jst.s, statusTag: jst.tag, type: _pick(_jobTypes),
+          files: _rand(100, 15000), detections: _rand(0, 12), date: _fmtDate(_randomDate(30)), storageUnit: u.name });
+      });
+      return { name: key, status: status, statusTag: statusTag, storageUnits: g.units.length,
+        providers: provKeys, extraProviders: Math.max(0, provKeys.length - 3),
+        totalUnits: g.units.length, operational: g.opCount, errors: g.errCount, testing: g.testCount,
+        units: g.units, jobs: jobs };
     });
 
     var grpPage = 1, grpPerPageNum = 10;
@@ -8973,10 +9335,10 @@ td:has(+ .col-action) { padding-right: 20px !important; }
     window._grpDetailIdx = 0;
 
     function providerIcon(key) {
-      if (key === 'aws') return '<span class="inv-provider-icon aws"><span style="font-size:8px;letter-spacing:-0.5px;">aws</span></span>';
-      if (key === 'box') return '<span class="inv-provider-icon box" style="background:#0061D5;color:#fff;"><span style="font-size:8px;font-weight:700;">box</span></span>';
-      if (key === 'onedrive') return '<span class="inv-provider-icon onedrive" style="background:#0078D4;color:#fff;"><svg viewBox="0 0 16 16" fill="currentColor" style="width:12px;height:12px;"><path d="M8 2a6 6 0 00-5.64 3.94A4.002 4.002 0 003 14h10a3 3 0 00.5-5.96A6.001 6.001 0 008 2z"/></svg></span>';
-      return '<span class="inv-provider-icon">' + key + '</span>';
+      var labels = { aws: 'aws', sharepoint: 'SP', azure: 'Az', gcloud: 'GC', alibaba: 'Ali', box: 'Bx' };
+      var label = labels[key] || key;
+      var style = key === 'aws' ? ' style="font-size:8px;letter-spacing:-0.5px;"' : ' style="font-size:8px;"';
+      return '<span class="inv-provider-icon ' + key + '"><span' + style + '>' + label + '</span></span>';
     }
 
     /* ---- Render groups list ---- */
@@ -9393,6 +9755,219 @@ td:has(+ .col-action) { padding-right: 20px !important; }
     });
 
     // ===============================================================
+    // INVENTORY — All Units tab (flattened across accounts)
+    // ===============================================================
+    var allUnitsPage = 1, allUnitsPerPageNum = 10;
+    var allUnitsFilters = { status: [], group: [], provider: [] };
+
+    /* Build flat list of all units from all accounts */
+    function getAllUnitsFlat() {
+      var flat = [];
+      accountsData.forEach(function(acct) {
+        acct.units.forEach(function(u) {
+          flat.push({
+            name: u.name,
+            provider: acct.provider,
+            providerClass: acct.providerClass,
+            providerLabel: acct.providerLabel,
+            status: u.status,
+            statusTag: u.statusTag,
+            account: acct.name,
+            group: u.group,
+            groups: u.groups,
+            clientId: u.clientId,
+            lastScanned: u.lastScanned
+          });
+        });
+      });
+      return flat;
+    }
+
+    function getFilteredUnits() {
+      var allUnits = getAllUnitsFlat();
+      var search = (document.getElementById('allUnitsSearch').value || '').toLowerCase();
+      return allUnits.filter(function(u) {
+        if (search && u.name.toLowerCase().indexOf(search) === -1
+          && u.clientId.toLowerCase().indexOf(search) === -1
+          && u.account.toLowerCase().indexOf(search) === -1
+          && u.provider.toLowerCase().indexOf(search) === -1) return false;
+        if (allUnitsFilters.status.length && allUnitsFilters.status.indexOf(u.status) === -1) return false;
+        if (allUnitsFilters.group.length && allUnitsFilters.group.indexOf(u.group) === -1) return false;
+        if (allUnitsFilters.provider.length && allUnitsFilters.provider.indexOf(u.provider) === -1) return false;
+        return true;
+      });
+    }
+
+    function renderAllUnits() {
+      var tbody = document.getElementById('allUnitsBody');
+      var filtered = getFilteredUnits();
+
+      // Update count badge
+      document.getElementById('allUnitsCount').textContent = filtered.length;
+
+      var perPage = allUnitsPerPageNum;
+      var totalPages = Math.max(1, Math.ceil(filtered.length / perPage));
+      if (allUnitsPage > totalPages) allUnitsPage = totalPages;
+      var start = (allUnitsPage - 1) * perPage;
+      var pageItems = filtered.slice(start, start + perPage);
+      var html = '';
+      pageItems.forEach(function(u) {
+        var groupExtra = u.groups > 0 ? ' <span class="count-more">+' + u.groups + '</span>' : '';
+        html += '<tr>'
+          + '<td class="col-cb"><div class="cb" onclick="toggleCb(this,event)">' + cbSvg + '</div></td>'
+          + '<td class="col-pinned"><div style="display:flex;align-items:center;gap:8px;"><span class="inv-provider-icon ' + u.providerClass + '">' + u.providerLabel + '</span> ' + u.name + '</div></td>'
+          + '<td>' + u.provider + '</td>'
+          + '<td><span class="tag ' + u.statusTag + '">' + u.status + '</span></td>'
+          + '<td>' + u.account + '</td>'
+          + '<td><span class="tag tag-keyword">' + u.group + '</span>' + groupExtra + '</td>'
+          + '<td><div class="acct-client-id"><span class="acct-client-id-text" title="' + u.clientId + '">' + u.clientId + '</span><svg class="acct-copy-btn" onclick="copyClientId(\'' + u.clientId + '\', event)" viewBox="0 0 16 16" fill="currentColor"><path d="M13 2H6C5.44772 2 5 2.44772 5 3V10C5 10.5523 5.44772 11 6 11H13C13.5523 11 14 10.5523 14 10V3C14 2.44772 13.5523 2 13 2Z"/><path d="M11 12.5V14H3C2.45 14 2 13.55 2 13V5H3.5V12.5H11Z"/></svg></div></td>'
+          + '<td style="white-space:nowrap;">' + u.lastScanned + '</td>'
+          + '<td class="col-action"><div class="row-action-btn" onclick="toggleInvMenu(this, event)" style="position:relative"><svg viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="3" r="1.5"/><circle cx="8" cy="8" r="1.5"/><circle cx="8" cy="13" r="1.5"/></svg><div class="row-action-menu row-action-menu--inline"><div class="row-action-menu-item" onclick="event.stopPropagation()"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 10v3h3M14 6V3h-3"/><path d="M14 3L9 8M2 13l5-5"/></svg> Create Job</div><div class="row-action-menu-item" onclick="event.stopPropagation()"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="5"/><path d="M8 5.5v5M5.5 8h5"/></svg> Unit Settings</div><div class="inv-context-item danger" onclick="event.stopPropagation()"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 4h10M6 4V3h4v1M5 4v8.5a1 1 0 001 1h4a1 1 0 001-1V4"/></svg> Delete Unit</div></div></div></td>'
+          + '</tr>';
+      });
+      tbody.innerHTML = html;
+
+      // Pagination
+      var pageSelect = document.getElementById('allUnitsPageSelect');
+      pageSelect.innerHTML = '';
+      for (var i = 1; i <= totalPages; i++) {
+        pageSelect.innerHTML += '<option' + (i === allUnitsPage ? ' selected' : '') + '>Page ' + i + '</option>';
+      }
+      var rangeEnd = Math.min(start + perPage, filtered.length);
+      document.getElementById('allUnitsPageInfo').textContent = filtered.length ? (start + 1) + '-' + rangeEnd + ' of ' + filtered.length + ' items' : '0 items';
+      document.getElementById('allUnitsPrev').disabled = (allUnitsPage <= 1);
+      document.getElementById('allUnitsNext').disabled = (allUnitsPage >= totalPages);
+
+      // Update filter button active states
+      document.querySelectorAll('#allUnitsHeader .btn-menu').forEach(function(btn) {
+        var key = btn.getAttribute('data-filter');
+        if (key && allUnitsFilters[key] && allUnitsFilters[key].length > 0) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+
+      // Reset bulk bar (new rows have no checked cbs)
+      if (typeof updateBulkBar === 'function') updateBulkBar('allUnitsBody');
+    }
+
+    /* ---- Filter dropdown system ---- */
+    function getUniqueValues(key) {
+      var all = getAllUnitsFlat();
+      var seen = {};
+      return all.reduce(function(arr, u) {
+        var val = u[key];
+        if (!seen[val]) { seen[val] = true; arr.push(val); }
+        return arr;
+      }, []).sort();
+    }
+
+    function openFilterDropdown(btn, filterKey, e) {
+      e.stopPropagation();
+      // Close any open dropdown first
+      var existing = document.querySelector('.filter-dropdown.open');
+      if (existing && existing._filterBtn !== btn) {
+        existing.classList.remove('open');
+        existing.remove();
+      }
+      if (existing && existing._filterBtn === btn) {
+        existing.classList.remove('open');
+        existing.remove();
+        return;
+      }
+      var values = getUniqueValues(filterKey);
+      var activeVals = allUnitsFilters[filterKey] || [];
+      var dd = document.createElement('div');
+      dd.className = 'filter-dropdown open';
+      dd._filterBtn = btn;
+      var html = '<div class="filter-dropdown-header">' + filterKey.charAt(0).toUpperCase() + filterKey.slice(1) + '</div>';
+      values.forEach(function(val) {
+        var checked = activeVals.indexOf(val) !== -1;
+        html += '<label class="filter-dropdown-item">'
+          + '<div class="cb' + (checked ? ' checked' : '') + '" onclick="toggleFilterCb(this, event)">' + cbSvg + '</div>'
+          + '<span>' + val + '</span></label>';
+      });
+      html += '<div class="filter-dropdown-footer">'
+        + '<button class="btn-text" onclick="clearFilter(\'' + filterKey + '\', this)">Clear</button>'
+        + '<button class="btn-primary" style="height:28px; padding:0 12px; font-size:13px;" onclick="applyFilter(\'' + filterKey + '\', this)">Apply</button>'
+        + '</div>';
+      dd.innerHTML = html;
+      btn.style.position = 'relative';
+      btn.appendChild(dd);
+    }
+
+    window.toggleFilterCb = function(el, e) {
+      e.preventDefault();
+      e.stopPropagation();
+      el.classList.toggle('checked');
+    };
+
+    window.clearFilter = function(key, btn) {
+      var dd = btn.closest('.filter-dropdown');
+      dd.querySelectorAll('.cb').forEach(function(cb) { cb.classList.remove('checked'); });
+    };
+
+    window.applyFilter = function(key, btn) {
+      var dd = btn.closest('.filter-dropdown');
+      var selected = [];
+      dd.querySelectorAll('.filter-dropdown-item').forEach(function(item) {
+        if (item.querySelector('.cb.checked')) {
+          selected.push(item.querySelector('span').textContent);
+        }
+      });
+      allUnitsFilters[key] = selected;
+      allUnitsPage = 1;
+      dd.classList.remove('open');
+      dd.remove();
+      renderAllUnits();
+    };
+
+    // Close filter dropdowns on outside click
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.filter-dropdown') && !e.target.closest('.btn-menu[data-filter]')) {
+        document.querySelectorAll('.filter-dropdown.open').forEach(function(dd) { dd.classList.remove('open'); dd.remove(); });
+      }
+    });
+
+    // Wire filter buttons
+    document.querySelectorAll('#allUnitsHeader .btn-menu').forEach(function(btn, i) {
+      var keys = ['status', 'group', 'provider'];
+      btn.setAttribute('data-filter', keys[i]);
+      btn.addEventListener('click', function(e) { openFilterDropdown(btn, keys[i], e); });
+    });
+
+    /* Pagination handlers */
+    document.getElementById('allUnitsPrev').addEventListener('click', function() {
+      if (allUnitsPage > 1) { allUnitsPage--; renderAllUnits(); }
+    });
+    document.getElementById('allUnitsNext').addEventListener('click', function() {
+      var total = Math.max(1, Math.ceil(getFilteredUnits().length / allUnitsPerPageNum));
+      if (allUnitsPage < total) { allUnitsPage++; renderAllUnits(); }
+    });
+    document.getElementById('allUnitsPageSelect').addEventListener('change', function() {
+      allUnitsPage = this.selectedIndex + 1;
+      renderAllUnits();
+    });
+    document.getElementById('allUnitsPerPage').addEventListener('change', function() {
+      allUnitsPerPageNum = parseInt(this.value) || 10;
+      allUnitsPage = 1;
+      renderAllUnits();
+    });
+    document.getElementById('allUnitsSearch').addEventListener('input', function() {
+      allUnitsPage = 1;
+      renderAllUnits();
+    });
+
+    /* Initial render on units tab activation */
+    document.getElementById('inventoryTabs').addEventListener('click', function(e) {
+      var tab = e.target.closest('.tab');
+      if (tab && tab.getAttribute('data-inv-tab') === 'units') {
+        renderAllUnits();
+      }
+    });
+
+    // ===============================================================
     // HASH ROUTING — #components accessible via URL only (hidden from nav)
     // ===============================================================
     function showComponentsPage() {
@@ -9731,7 +10306,8 @@ td:has(+ .col-action) { padding-right: 20px !important; }
 
       // Map tbody id → card header id
       const tbodyToHeader = {
-        processedFilesBody: 'processedFilesHeader'
+        processedFilesBody: 'processedFilesHeader',
+        allUnitsBody: 'allUnitsHeader'
       };
 
       window.toggleCb = function(el, e) {
