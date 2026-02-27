@@ -137,21 +137,6 @@
     }
     .settings-card:last-child { margin-bottom: 0; }
     /* .card-header, .card-header-actions, .card-header-with-desc, .card-header-desc — moved to DS components.css */
-    .btn-discard {
-      padding: 0 16px;
-      background: transparent;
-      color: var(--text-strong);
-      border: 1px solid var(--border-200);
-      border-radius: var(--radius);
-      font-family: var(--font);
-      font-size: 14px;
-      font-weight: 500;
-      cursor: pointer;
-      display: none;
-      height: 32px;
-    }
-    .btn-discard:hover { background: var(--hover-subtle); }
-    .btn-discard:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
     .settings-card.dirty .btn-discard { display: inline-flex; align-items: center; }
     .btn-save {
       padding: 0 16px;
@@ -893,14 +878,6 @@
 .btn-menu:disabled, .btn-menu.disabled { opacity: 0.5; cursor: not-allowed; pointer-events: none; }
 .btn-menu.skeleton { color: transparent; pointer-events: none; background: var(--neutral-100); border-color: transparent; }
 .btn-menu.skeleton svg { visibility: hidden; }
-/* Filter icon button — local override until BL CDN is updated */
-.audit-filter-btn { background: transparent; color: var(--text-strong); }
-.audit-filter-btn:hover { border-color: var(--neutral-500); color: var(--text-strong); }
-.audit-filter-btn.active { border-color: var(--primary); }
-.audit-filter-btn.active:hover { border-color: var(--primary); }
-.audit-filter-btn:disabled, .audit-filter-btn.disabled { opacity: 0.5; cursor: not-allowed; pointer-events: none; }
-.audit-filter-btn.skeleton { color: transparent; pointer-events: none; background: var(--neutral-100); border-color: transparent; }
-.audit-filter-btn.skeleton svg { visibility: hidden; }
 .filter-btn-wrap { position: relative; }
 .filter-menu {
   display: none; position: absolute; top: calc(100% + 4px); left: 0; z-index: 50;
@@ -933,21 +910,13 @@
 .info-bar-value { gap: 8px; min-width: 0; font-size: 14px; font-weight: 500; line-height: 16px; height: 32px; padding: 8px 0; display: flex; align-items: center; box-sizing: border-box; }
 .info-bar-value-text { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
 
-/* ===== 2. PAGE HEADER / BREADCRUMB — local overrides until BL CDN is updated ===== */
-.page-header { display: flex; flex-direction: column; gap: 8px; align-items: flex-start; font-family: var(--font); margin-bottom: 20px; padding: 0; }
-.page-title-row { display: flex; align-items: center; justify-content: space-between; height: 32px; width: 100%; margin-bottom: 20px; }
+/* ===== 2. PAGE HEADER / BREADCRUMB — product-specific overrides ===== */
+.page-header { margin-bottom: 20px; padding: 0; }
+.page-title-row { margin-bottom: 20px; }
 .page-header .page-title-row { margin-bottom: 0; }
-.page-title, .page-header h1 { font-size: 24px; font-weight: 400; line-height: 27.36px; color: var(--text-strong); margin: 0; }
-.page-header-actions { display: flex; align-items: center; gap: 8px; }
-.breadcrumb { display: flex; align-items: center; font-family: var(--font); line-height: 16px; height: 16px; }
-.breadcrumb-item { display: flex; align-items: center; gap: 4px; font-size: 12px; font-weight: 400; line-height: 16px; color: var(--text-muted); text-decoration: none; cursor: pointer; background: none; border: none; padding: 0; }
-.breadcrumb-item:hover { color: var(--primary); }
-.breadcrumb-sep { width: 16px; height: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--text-muted); }
-.breadcrumb-sep svg { width: 16px; height: 16px; }
+.breadcrumb-item { background: none; border: none; padding: 0; }
 .skeleton-text { width: 120px; height: 16px; background: var(--neutral-300); border-radius: 4px; }
 .skeleton-block { width: 120px; height: 32px; background: var(--neutral-200); border-radius: 4px; }
-/* Menu / subtle buttons: no bg, only stroke */
-.btn-outline { background: transparent; }
 /* Text button — local override until BL CDN is updated */
 .btn-text { padding: 0; height: auto; gap: 8px; background: none; line-height: 16px; text-decoration: none; }
 .btn-text:hover { background: none; text-decoration: none; color: var(--blue-900); }
@@ -965,7 +934,6 @@
 td:has(+ .col-action) { padding-right: 20px !important; }
 
 /* ===== 3. JOB MONITOR BANNER — uses BL .banner component ===== */
-.banner-actions-divider { width: 1px; height: 12px; background: var(--neutral-800); }
 
 /* ===== 3. JOB SUMMARY ===== */
 .dash-job-summary-body {
@@ -1460,23 +1428,6 @@ td:has(+ .col-action) { padding-right: 20px !important; }
 }
 
 /* ===== 8-9. TABLE EXTRAS ===== */
-/* Job status tag extras */
-.tag-running {
-  background: var(--blue-100);
-  color: var(--blue-800);
-}
-.tag-cancelled {
-  background: var(--red-100);
-  color: var(--red-800);
-}
-[data-theme="dark"] .tag-running {
-  background: rgba(29, 107, 252, 0.15);
-  color: var(--blue-400);
-}
-[data-theme="dark"] .tag-cancelled {
-  background: rgba(212, 0, 49, 0.15);
-  color: var(--red-400);
-}
 
 /* Job type tags */
 .dash-job-type-tag {
@@ -1560,11 +1511,6 @@ td:has(+ .col-action) { padding-right: 20px !important; }
 [data-theme="dark"] .dash-trend-tab { border-color: var(--border-200); color: var(--text-muted); }
 [data-theme="dark"] .dash-trend-tab.active { background: rgba(29,107,252,0.12); color: var(--primary); }
 [data-theme="dark"] .dash-filetype-legend-header { border-color: var(--border-200); }
-[data-theme="dark"] .audit-filter-btn { background: transparent; color: var(--text-strong); }
-[data-theme="dark"] .audit-filter-btn:hover { border-color: var(--neutral-400); }
-[data-theme="dark"] .audit-filter-btn.active { border-color: var(--blue-400); }
-[data-theme="dark"] .audit-filter-btn.active:hover { border-color: var(--blue-400); }
-[data-theme="dark"] .audit-filter-btn.skeleton { background: var(--neutral-800); }
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 1200px) {
@@ -5605,7 +5551,7 @@ td:has(+ .col-action) { padding-right: 20px !important; }
         <div id="reportsPage" class="page-view table-page">
           <div class="page-title-row">
             <h1 class="page-title">Reports</h1>
-            <button class="btn-outline"><svg viewBox="0 0 16 16" fill="currentColor" style="width:16px;height:16px;"><path d="M13.65 2.35C12.2 .9 10.21 0 8 0 3.58 0 .01 3.58.01 8S3.58 16 8 16c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0 1 8 14 6 6 0 0 1 2 8a6 6 0 0 1 6-6c1.66 0 3.14.69 4.22 1.78L9 7h7V0l-2.35 2.35z"/></svg> Refresh</button>
+            <button class="btn-outline"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M12.95 4.05A5.48 5.48 0 0 0 8 2.5 5.5 5.5 0 1 0 13.43 9h1.07A6.5 6.5 0 1 1 8 1.5c1.58 0 3.02.56 4.14 1.5L14 1v4h-4l2.95-0.95Z"/></svg> Refresh</button>
           </div>
 
           <div class="audit-card">
