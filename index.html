@@ -646,6 +646,14 @@
     .wf-status { display: flex; align-items: center; gap: 6px; font-size: 14px; color: var(--text-strong); }
     .wf-status-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green-800); flex-shrink: 0; }
 
+    /* Reports table */
+    #reportsTable { min-width: 1200px; }
+    .rpt-verdict { display: inline-flex; align-items: center; gap: 4px; white-space: nowrap; }
+    .rpt-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+    .rpt-verdict.detected .rpt-dot { background: var(--red-800); }
+    .rpt-verdict.none { color: var(--text-muted); }
+    .rpt-verdict.none .rpt-dot { background: var(--text-disabled); }
+
     /* Default workflow star icon */
     .wf-default-icon { width: 16px; height: 16px; color: var(--text-strong); margin-right: 4px; vertical-align: middle; }
 
@@ -5582,6 +5590,195 @@ td:has(+ .col-action) { padding-right: 20px !important; }
 
         </div><!-- /componentsPage -->
 
+        <!-- ==================== REPORTS ==================== -->
+        <div id="reportsPage" class="page-view table-page">
+          <div class="page-title-row">
+            <h1 class="page-title">Reports</h1>
+            <button class="btn-outline"><svg viewBox="0 0 16 16" fill="currentColor" style="width:16px;height:16px;"><path d="M13.65 2.35C12.2 .9 10.21 0 8 0 3.58 0 .01 3.58.01 8S3.58 16 8 16c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0 1 8 14 6 6 0 0 1 2 8a6 6 0 0 1 6-6c1.66 0 3.14.69 4.22 1.78L9 7h7V0l-2.35 2.35z"/></svg> Refresh</button>
+          </div>
+
+          <div class="audit-card">
+            <div class="audit-card-header">
+              <div class="audit-card-title">
+                <h3>Recent Jobs</h3>
+                <span class="count">1,256</span>
+              </div>
+              <div class="audit-card-actions">
+                <div class="audit-search">
+                  <svg viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M7 2C9.76142 2 12 4.23858 12 7C12 8.11285 11.6353 9.13998 11.0205 9.9707L14.0713 13.0068L14.1221 13.0645C14.3629 13.3585 14.3471 13.7932 14.0732 14.0684C13.781 14.3615 13.3061 14.3622 13.0127 14.0703L9.95801 11.0303C9.12955 11.6393 8.1071 12 7 12C4.23858 12 2 9.76142 2 7C2 4.23858 4.23858 2 7 2ZM7 3.5C5.067 3.5 3.5 5.067 3.5 7C3.5 8.933 5.067 10.5 7 10.5C8.933 10.5 10.5 8.933 10.5 7C10.5 5.067 8.933 3.5 7 3.5Z"/></svg>
+                  <input type="text" placeholder="Search for Files or Hash" id="reportsSearchInput">
+                </div>
+                <button class="audit-filter-btn" title="Advanced Filters">
+                  <svg viewBox="0 0 16 16" fill="currentColor"><path d="M4.75 7.15V2H3.25V7.15C2.52 7.45 2 8.16 2 9C2 9.84 2.52 10.55 3.25 10.85V14H4.75V10.85C5.48 10.55 6 9.84 6 9C6 8.16 5.48 7.45 4.75 7.15Z"/><path d="M10 5C10 4.16 9.48 3.45 8.75 3.15V2H7.25V3.15C6.52 3.45 6 4.16 6 5C6 5.84 6.52 6.55 7.25 6.85V14H8.75V6.85C9.48 6.55 10 5.84 10 5Z"/><path d="M14 11C14 10.16 13.48 9.45 12.75 9.15V2H11.25V9.15C10.52 9.45 10 10.16 10 11C10 11.84 10.52 12.55 11.25 12.85V14H12.75V12.85C13.48 12.55 14 11.84 14 11Z"/></svg>
+                </button>
+              </div>
+            </div>
+
+            <div class="audit-table-scroll table-scroll">
+              <table class="data-table" id="reportsTable">
+                <thead>
+                  <tr>
+                    <th style="width:40px;"><input type="checkbox"></th>
+                    <th>Job Name <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77C3.635 8.77 3.455 8.7 3.315 8.56C3.175 8.42 3.105 8.25 3.105 8.05C3.105 7.85 3.175 7.68 3.315 7.54C3.455 7.4 3.625 7.33 3.825 7.33H12.155C12.355 7.33 12.535 7.4 12.675 7.54C12.815 7.68 12.885 7.85 12.885 8.05C12.885 8.25 12.815 8.42 12.675 8.56C12.535 8.7 12.365 8.77 12.165 8.77H3.835Z"/><path d="M1.715 5.44C1.515 5.44 1.345 5.37 1.205 5.23C1.065 5.09 0.994995 4.92 0.994995 4.72C0.994995 4.52 1.065 4.35 1.205 4.21C1.345 4.07 1.515 4 1.715 4H14.275C14.475 4 14.645 4.07 14.785 4.21C14.925 4.35 14.995 4.52 14.995 4.72C14.995 4.92 14.925 5.09 14.785 5.23C14.645 5.37 14.475 5.44 14.275 5.44H1.715Z"/><path d="M5.515 12.09C5.315 12.09 5.14499 12.02 5.00499 11.88C4.86499 11.74 4.795 11.57 4.795 11.37C4.795 11.17 4.86499 11 5.00499 10.86C5.14499 10.72 5.315 10.65 5.515 10.65H10.475C10.675 10.65 10.845 10.72 10.985 10.86C11.125 11 11.195 11.17 11.195 11.37C11.195 11.57 11.125 11.74 10.985 11.88C10.845 12.02 10.675 12.09 10.475 12.09H5.515Z"/></svg></span></th>
+                    <th>Status <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77C3.635 8.77 3.455 8.7 3.315 8.56C3.175 8.42 3.105 8.25 3.105 8.05C3.105 7.85 3.175 7.68 3.315 7.54C3.455 7.4 3.625 7.33 3.825 7.33H12.155C12.355 7.33 12.535 7.4 12.675 7.54C12.815 7.68 12.885 7.85 12.885 8.05C12.885 8.25 12.815 8.42 12.675 8.56C12.535 8.7 12.365 8.77 12.165 8.77H3.835Z"/><path d="M1.715 5.44C1.515 5.44 1.345 5.37 1.205 5.23C1.065 5.09 0.994995 4.92 0.994995 4.72C0.994995 4.52 1.065 4.35 1.205 4.21C1.345 4.07 1.515 4 1.715 4H14.275C14.475 4 14.645 4.07 14.785 4.21C14.925 4.35 14.995 4.52 14.995 4.72C14.995 4.92 14.925 5.09 14.785 5.23C14.645 5.37 14.475 5.44 14.275 5.44H1.715Z"/><path d="M5.515 12.09C5.315 12.09 5.14499 12.02 5.00499 11.88C4.86499 11.74 4.795 11.57 4.795 11.37C4.795 11.17 4.86499 11 5.00499 10.86C5.14499 10.72 5.315 10.65 5.515 10.65H10.475C10.675 10.65 10.845 10.72 10.985 10.86C11.125 11 11.195 11.17 11.195 11.37C11.195 11.57 11.125 11.74 10.985 11.88C10.845 12.02 10.675 12.09 10.475 12.09H5.515Z"/></svg></span></th>
+                    <th>Storage Unit</th>
+                    <th>Total Files</th>
+                    <th>Threats Detected <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77C3.635 8.77 3.455 8.7 3.315 8.56C3.175 8.42 3.105 8.25 3.105 8.05C3.105 7.85 3.175 7.68 3.315 7.54C3.455 7.4 3.625 7.33 3.825 7.33H12.155C12.355 7.33 12.535 7.4 12.675 7.54C12.815 7.68 12.885 7.85 12.885 8.05C12.885 8.25 12.815 8.42 12.675 8.56C12.535 8.7 12.365 8.77 12.165 8.77H3.835Z"/><path d="M1.715 5.44C1.515 5.44 1.345 5.37 1.205 5.23C1.065 5.09 0.994995 4.92 0.994995 4.72C0.994995 4.52 1.065 4.35 1.205 4.21C1.345 4.07 1.515 4 1.715 4H14.275C14.475 4 14.645 4.07 14.785 4.21C14.925 4.35 14.995 4.52 14.995 4.72C14.995 4.92 14.925 5.09 14.785 5.23C14.645 5.37 14.475 5.44 14.275 5.44H1.715Z"/><path d="M5.515 12.09C5.315 12.09 5.14499 12.02 5.00499 11.88C4.86499 11.74 4.795 11.57 4.795 11.37C4.795 11.17 4.86499 11 5.00499 10.86C5.14499 10.72 5.315 10.65 5.515 10.65H10.475C10.675 10.65 10.845 10.72 10.985 10.86C11.125 11 11.195 11.17 11.195 11.37C11.195 11.57 11.125 11.74 10.985 11.88C10.845 12.02 10.675 12.09 10.475 12.09H5.515Z"/></svg></span></th>
+                    <th>Data Loss Prevented</th>
+                    <th>Sanitized <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77C3.635 8.77 3.455 8.7 3.315 8.56C3.175 8.42 3.105 8.25 3.105 8.05C3.105 7.85 3.175 7.68 3.315 7.54C3.455 7.4 3.625 7.33 3.825 7.33H12.155C12.355 7.33 12.535 7.4 12.675 7.54C12.815 7.68 12.885 7.85 12.885 8.05C12.885 8.25 12.815 8.42 12.675 8.56C12.535 8.7 12.365 8.77 12.165 8.77H3.835Z"/><path d="M1.715 5.44C1.515 5.44 1.345 5.37 1.205 5.23C1.065 5.09 0.994995 4.92 0.994995 4.72C0.994995 4.52 1.065 4.35 1.205 4.21C1.345 4.07 1.515 4 1.715 4H14.275C14.475 4 14.645 4.07 14.785 4.21C14.925 4.35 14.995 4.52 14.995 4.72C14.995 4.92 14.925 5.09 14.785 5.23C14.645 5.37 14.475 5.44 14.275 5.44H1.715Z"/><path d="M5.515 12.09C5.315 12.09 5.14499 12.02 5.00499 11.88C4.86499 11.74 4.795 11.57 4.795 11.37C4.795 11.17 4.86499 11 5.00499 10.86C5.14499 10.72 5.315 10.65 5.515 10.65H10.475C10.675 10.65 10.845 10.72 10.985 10.86C11.125 11 11.195 11.17 11.195 11.37C11.195 11.57 11.125 11.74 10.985 11.88C10.845 12.02 10.675 12.09 10.475 12.09H5.515Z"/></svg></span></th>
+                    <th>Job Type</th>
+                    <th class="col-action"></th>
+                  </tr>
+                </thead>
+                <tbody id="reportsTableBody">
+                  <tr>
+                    <td><input type="checkbox"></td>
+                    <td>Delta Real-Time Scan</td>
+                    <td><span class="tag tag-warn">Stopped</span></td>
+                    <td><div class="inv-provider"><span class="inv-provider-icon aws"><span style="font-size:8px;letter-spacing:-0.5px;">aws</span></span> Storage Unit Name</div></td>
+                    <td>133,659</td>
+                    <td><span class="rpt-verdict detected"><span class="rpt-dot"></span> 178</span></td>
+                    <td><span class="rpt-verdict detected"><span class="rpt-dot"></span> 178</span></td>
+                    <td><span class="rpt-verdict detected"><span class="rpt-dot"></span> 45</span></td>
+                    <td>Real-Time Scan</td>
+                    <td><button class="cell-action"><svg viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="3" r="1.5"/><circle cx="8" cy="8" r="1.5"/><circle cx="8" cy="13" r="1.5"/></svg></button></td>
+                  </tr>
+                  <tr>
+                    <td><input type="checkbox"></td>
+                    <td>Orion Full Scan</td>
+                    <td><span class="tag tag-warn">Stopped</span></td>
+                    <td><div class="inv-provider"><span class="inv-provider-icon aws"><span style="font-size:8px;letter-spacing:-0.5px;">aws</span></span> Storage Unit Name</div></td>
+                    <td>133,659</td>
+                    <td><span class="rpt-verdict detected"><span class="rpt-dot"></span> 123</span></td>
+                    <td><span class="rpt-verdict detected"><span class="rpt-dot"></span> 123</span></td>
+                    <td><span class="rpt-verdict detected"><span class="rpt-dot"></span> 12</span></td>
+                    <td>Scan Now</td>
+                    <td><button class="cell-action"><svg viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="3" r="1.5"/><circle cx="8" cy="8" r="1.5"/><circle cx="8" cy="13" r="1.5"/></svg></button></td>
+                  </tr>
+                  <tr>
+                    <td><input type="checkbox"></td>
+                    <td>Scheduled File Scan</td>
+                    <td><span class="tag tag-success">Complete</span></td>
+                    <td><div class="inv-provider"><span class="inv-provider-icon aws"><span style="font-size:8px;letter-spacing:-0.5px;">aws</span></span> Storage Unit Name</div></td>
+                    <td>131,649</td>
+                    <td><span class="rpt-verdict none"><span class="rpt-dot"></span> None</span></td>
+                    <td><span class="rpt-verdict none"><span class="rpt-dot"></span> None</span></td>
+                    <td><span class="rpt-verdict none"><span class="rpt-dot"></span> None</span></td>
+                    <td>Scheduled Scan</td>
+                    <td><button class="cell-action"><svg viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="3" r="1.5"/><circle cx="8" cy="8" r="1.5"/><circle cx="8" cy="13" r="1.5"/></svg></button></td>
+                  </tr>
+                  <tr>
+                    <td><input type="checkbox"></td>
+                    <td>Realtime Malware Scan</td>
+                    <td><span class="tag tag-success">Complete</span></td>
+                    <td><div class="inv-provider"><span class="inv-provider-icon aws"><span style="font-size:8px;letter-spacing:-0.5px;">aws</span></span> Storage Unit Name</div></td>
+                    <td>130,159</td>
+                    <td><span class="rpt-verdict none"><span class="rpt-dot"></span> None</span></td>
+                    <td><span class="rpt-verdict none"><span class="rpt-dot"></span> None</span></td>
+                    <td><span class="rpt-verdict none"><span class="rpt-dot"></span> None</span></td>
+                    <td>Scheduled Scan</td>
+                    <td><button class="cell-action"><svg viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="3" r="1.5"/><circle cx="8" cy="8" r="1.5"/><circle cx="8" cy="13" r="1.5"/></svg></button></td>
+                  </tr>
+                  <tr>
+                    <td><input type="checkbox"></td>
+                    <td>Scheduled DLP Scan</td>
+                    <td><span class="tag tag-success">Complete</span></td>
+                    <td><div class="inv-provider"><span class="inv-provider-icon aws"><span style="font-size:8px;letter-spacing:-0.5px;">aws</span></span> Storage Unit Name</div></td>
+                    <td>129,159</td>
+                    <td><span class="rpt-verdict none"><span class="rpt-dot"></span> None</span></td>
+                    <td><span class="rpt-verdict none"><span class="rpt-dot"></span> None</span></td>
+                    <td><span class="rpt-verdict none"><span class="rpt-dot"></span> None</span></td>
+                    <td>Scan Now</td>
+                    <td><button class="cell-action"><svg viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="3" r="1.5"/><circle cx="8" cy="8" r="1.5"/><circle cx="8" cy="13" r="1.5"/></svg></button></td>
+                  </tr>
+                  <tr>
+                    <td><input type="checkbox"></td>
+                    <td>On-Demand Malware Scan</td>
+                    <td><span class="tag tag-success">Complete</span></td>
+                    <td><div class="inv-provider"><span class="inv-provider-icon aws"><span style="font-size:8px;letter-spacing:-0.5px;">aws</span></span> Storage Unit Name</div></td>
+                    <td>110,159</td>
+                    <td><span class="rpt-verdict detected"><span class="rpt-dot"></span> 1,957</span></td>
+                    <td><span class="rpt-verdict detected"><span class="rpt-dot"></span> 1,957</span></td>
+                    <td><span class="rpt-verdict detected"><span class="rpt-dot"></span> 1,957</span></td>
+                    <td>Scheduled Scan</td>
+                    <td><button class="cell-action"><svg viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="3" r="1.5"/><circle cx="8" cy="8" r="1.5"/><circle cx="8" cy="13" r="1.5"/></svg></button></td>
+                  </tr>
+                  <tr>
+                    <td><input type="checkbox"></td>
+                    <td>Scheduled GDPR Scan</td>
+                    <td><span class="tag tag-success">Complete</span></td>
+                    <td><div class="inv-provider"><span class="inv-provider-icon aws"><span style="font-size:8px;letter-spacing:-0.5px;">aws</span></span> Storage Unit Name</div></td>
+                    <td>110,003</td>
+                    <td><span class="rpt-verdict none"><span class="rpt-dot"></span> None</span></td>
+                    <td><span class="rpt-verdict none"><span class="rpt-dot"></span> None</span></td>
+                    <td><span class="rpt-verdict none"><span class="rpt-dot"></span> None</span></td>
+                    <td>Scan Now</td>
+                    <td><button class="cell-action"><svg viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="3" r="1.5"/><circle cx="8" cy="8" r="1.5"/><circle cx="8" cy="13" r="1.5"/></svg></button></td>
+                  </tr>
+                  <tr>
+                    <td><input type="checkbox"></td>
+                    <td>Delta Vulnerability Scan</td>
+                    <td><span class="tag tag-success">Complete</span></td>
+                    <td><div class="inv-provider"><span class="inv-provider-icon aws"><span style="font-size:8px;letter-spacing:-0.5px;">aws</span></span> Storage Unit Name</div></td>
+                    <td>110,003</td>
+                    <td><span class="rpt-verdict detected"><span class="rpt-dot"></span> 356</span></td>
+                    <td><span class="rpt-verdict detected"><span class="rpt-dot"></span> 356</span></td>
+                    <td><span class="rpt-verdict detected"><span class="rpt-dot"></span> 356</span></td>
+                    <td>Scheduled Scan</td>
+                    <td><button class="cell-action"><svg viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="3" r="1.5"/><circle cx="8" cy="8" r="1.5"/><circle cx="8" cy="13" r="1.5"/></svg></button></td>
+                  </tr>
+                  <tr>
+                    <td><input type="checkbox"></td>
+                    <td>Full Storage Scan</td>
+                    <td><span class="tag tag-alert">Failed</span></td>
+                    <td><div class="inv-provider"><span class="inv-provider-icon aws"><span style="font-size:8px;letter-spacing:-0.5px;">aws</span></span> Storage Unit Name</div></td>
+                    <td>110,017</td>
+                    <td><span class="rpt-verdict none"><span class="rpt-dot"></span> None</span></td>
+                    <td><span class="rpt-verdict none"><span class="rpt-dot"></span> None</span></td>
+                    <td><span class="rpt-verdict none"><span class="rpt-dot"></span> None</span></td>
+                    <td>Scan Now</td>
+                    <td><button class="cell-action"><svg viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="3" r="1.5"/><circle cx="8" cy="8" r="1.5"/><circle cx="8" cy="13" r="1.5"/></svg></button></td>
+                  </tr>
+                  <tr>
+                    <td><input type="checkbox"></td>
+                    <td>Manual File Upload</td>
+                    <td><span class="tag tag-success">Complete</span></td>
+                    <td><div class="inv-provider"><span class="inv-provider-icon aws"><span style="font-size:8px;letter-spacing:-0.5px;">aws</span></span> Storage Unit Name</div></td>
+                    <td>97,123</td>
+                    <td><span class="rpt-verdict none"><span class="rpt-dot"></span> None</span></td>
+                    <td><span class="rpt-verdict none"><span class="rpt-dot"></span> None</span></td>
+                    <td><span class="rpt-verdict none"><span class="rpt-dot"></span> None</span></td>
+                    <td>Scheduled Scan</td>
+                    <td><button class="cell-action"><svg viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="3" r="1.5"/><circle cx="8" cy="8" r="1.5"/><circle cx="8" cy="13" r="1.5"/></svg></button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="audit-pagination">
+              <div class="audit-pagination-left">
+                <select id="reportsPerPage">
+                  <option selected>10</option>
+                  <option>25</option>
+                  <option>50</option>
+                  <option>100</option>
+                </select>
+                <span>items per page</span>
+                <span style="margin-left: 8px; color: var(--text-muted);">|</span>
+                <span id="reportsPageInfo" style="margin-left: 8px;">1-10 of 15 items</span>
+              </div>
+              <div class="audit-pagination-right">
+                <button class="audit-page-btn" disabled><svg viewBox="0 0 16 16" fill="currentColor"><path d="M9.99994 12.9995C9.80994 12.9995 9.61994 12.9295 9.46994 12.7795L5.21994 8.52945C4.92994 8.23945 4.92994 7.75945 5.21994 7.46945L9.46994 3.21945C9.75994 2.92945 10.2399 2.92945 10.5299 3.21945C10.8199 3.50945 10.8199 3.98945 10.5299 4.27945L6.80994 7.99945L10.5299 11.7195C10.8199 12.0095 10.8199 12.4895 10.5299 12.7795C10.3799 12.9295 10.1899 12.9995 9.99994 12.9995Z"/></svg></button>
+                <select class="audit-page-select">
+                  <option selected>Page 1</option>
+                  <option>Page 2</option>
+                </select>
+                <button class="audit-page-btn"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M5.99994 12.9995C6.18994 12.9995 6.37994 12.9295 6.52994 12.7795L10.7799 8.52945C11.0699 8.23945 11.0699 7.75945 10.7799 7.46945L6.52994 3.21945C6.23994 2.92945 5.75994 2.92945 5.46994 3.21945C5.17994 3.50945 5.17994 3.98945 5.46994 4.27945L9.18994 7.99945L5.46994 11.7195C5.17994 12.0095 5.17994 12.4895 5.46994 12.7795C5.61994 12.9295 5.80994 12.9995 5.99994 12.9995Z"/></svg></button>
+              </div>
+            </div>
+          </div>
+        </div><!-- /reportsPage -->
+
       </main>
     </div>
   </div>
@@ -8214,6 +8411,9 @@ td:has(+ .col-action) { padding-right: 20px !important; }
           // Always show list view when navigating to Workflows
           document.getElementById('workflowsListView').style.display = 'flex';
           document.getElementById('workflowDetailView').style.display = 'none';
+        } else if (text === 'Reports') {
+          document.getElementById('reportsPage').classList.add('active');
+          document.getElementById('componentsPage').style.display = 'none';
         } else if (text === 'Inventory') {
           document.getElementById('inventoryPage').classList.add('active');
           document.getElementById('componentsPage').style.display = 'none';
