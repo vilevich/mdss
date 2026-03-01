@@ -5567,7 +5567,7 @@
             </div>
 
             <div class="audit-table-scroll table-scroll">
-              <table class="data-table table-fixed" id="reportsTable" style="min-width:1200px;">
+              <table class="data-table table-fixed" id="reportsTable" style="min-width:2400px;">
                 <thead>
                   <tr>
                     <th class="col-cb"><div class="cb" onclick="toggleAllCb(this)"><svg class="cb-check" viewBox="0 0 16 16" fill="none"><path d="M6.75 11.75c-.26 0-.51-.1-.71-.29l-2.75-2.75a1.003 1.003 0 011.41-1.41l2.04 2.04 5.05-5.05a1.003 1.003 0 011.41 1.41l-5.75 5.75c-.2.2-.45.29-.71.29z" fill="white"/></svg><svg class="cb-semi" viewBox="0 0 16 16" fill="none"><path d="M11 9H5a1 1 0 010-2h6a1 1 0 010 2z" fill="white"/></svg></div></th>
@@ -5579,11 +5579,19 @@
                     <th style="width:12%;">Data Loss Prevented <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77C3.635 8.77 3.455 8.7 3.315 8.56C3.175 8.42 3.105 8.25 3.105 8.05C3.105 7.85 3.175 7.68 3.315 7.54C3.455 7.4 3.625 7.33 3.825 7.33H12.155C12.355 7.33 12.535 7.4 12.675 7.54C12.815 7.68 12.885 7.85 12.885 8.05C12.885 8.25 12.815 8.42 12.675 8.56C12.535 8.7 12.365 8.77 12.165 8.77H3.835Z"/><path d="M1.715 5.44C1.515 5.44 1.345 5.37 1.205 5.23C1.065 5.09 0.994995 4.92 0.994995 4.72C0.994995 4.52 1.065 4.35 1.205 4.21C1.345 4.07 1.515 4 1.715 4H14.275C14.475 4 14.645 4.07 14.785 4.21C14.925 4.35 14.995 4.52 14.995 4.72C14.995 4.92 14.925 5.09 14.785 5.23C14.645 5.37 14.475 5.44 14.275 5.44H1.715Z"/><path d="M5.515 12.09C5.315 12.09 5.14499 12.02 5.00499 11.88C4.86499 11.74 4.795 11.57 4.795 11.37C4.795 11.17 4.86499 11 5.00499 10.86C5.14499 10.72 5.315 10.65 5.515 10.65H10.475C10.675 10.65 10.845 10.72 10.985 10.86C11.125 11 11.195 11.17 11.195 11.37C11.195 11.57 11.125 11.74 10.985 11.88C10.845 12.02 10.675 12.09 10.475 12.09H5.515Z"/></svg></span></th>
                     <th style="width:10%;">Sanitized <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77C3.635 8.77 3.455 8.7 3.315 8.56C3.175 8.42 3.105 8.25 3.105 8.05C3.105 7.85 3.175 7.68 3.315 7.54C3.455 7.4 3.625 7.33 3.825 7.33H12.155C12.355 7.33 12.535 7.4 12.675 7.54C12.815 7.68 12.885 7.85 12.885 8.05C12.885 8.25 12.815 8.42 12.675 8.56C12.535 8.7 12.365 8.77 12.165 8.77H3.835Z"/><path d="M1.715 5.44C1.515 5.44 1.345 5.37 1.205 5.23C1.065 5.09 0.994995 4.92 0.994995 4.72C0.994995 4.52 1.065 4.35 1.205 4.21C1.345 4.07 1.515 4 1.715 4H14.275C14.475 4 14.645 4.07 14.785 4.21C14.925 4.35 14.995 4.52 14.995 4.72C14.995 4.92 14.925 5.09 14.785 5.23C14.645 5.37 14.475 5.44 14.275 5.44H1.715Z"/><path d="M5.515 12.09C5.315 12.09 5.14499 12.02 5.00499 11.88C4.86499 11.74 4.795 11.57 4.795 11.37C4.795 11.17 4.86499 11 5.00499 10.86C5.14499 10.72 5.315 10.65 5.515 10.65H10.475C10.675 10.65 10.845 10.72 10.985 10.86C11.125 11 11.195 11.17 11.195 11.37C11.195 11.57 11.125 11.74 10.985 11.88C10.845 12.02 10.675 12.09 10.475 12.09H5.515Z"/></svg></span></th>
                     <th style="width:10%;">Job Type <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77C3.635 8.77 3.455 8.7 3.315 8.56C3.175 8.42 3.105 8.25 3.105 8.05C3.105 7.85 3.175 7.68 3.315 7.54C3.455 7.4 3.625 7.33 3.825 7.33H12.155C12.355 7.33 12.535 7.4 12.675 7.54C12.815 7.68 12.885 7.85 12.885 8.05C12.885 8.25 12.815 8.42 12.675 8.56C12.535 8.7 12.365 8.77 12.165 8.77H3.835Z"/><path d="M1.715 5.44C1.515 5.44 1.345 5.37 1.205 5.23C1.065 5.09 0.994995 4.92 0.994995 4.72C0.994995 4.52 1.065 4.35 1.205 4.21C1.345 4.07 1.515 4 1.715 4H14.275C14.475 4 14.645 4.07 14.785 4.21C14.925 4.35 14.995 4.52 14.995 4.72C14.995 4.92 14.925 5.09 14.785 5.23C14.645 5.37 14.475 5.44 14.275 5.44H1.715Z"/><path d="M5.515 12.09C5.315 12.09 5.14499 12.02 5.00499 11.88C4.86499 11.74 4.795 11.57 4.795 11.37C4.795 11.17 4.86499 11 5.00499 10.86C5.14499 10.72 5.315 10.65 5.515 10.65H10.475C10.675 10.65 10.845 10.72 10.985 10.86C11.125 11 11.195 11.17 11.195 11.37C11.195 11.57 11.125 11.74 10.985 11.88C10.845 12.02 10.675 12.09 10.475 12.09H5.515Z"/></svg></span></th>
+                    <th style="width:10%;">Workflow <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77C3.635 8.77 3.455 8.7 3.315 8.56C3.175 8.42 3.105 8.25 3.105 8.05C3.105 7.85 3.175 7.68 3.315 7.54C3.455 7.4 3.625 7.33 3.825 7.33H12.155C12.355 7.33 12.535 7.4 12.675 7.54C12.815 7.68 12.885 7.85 12.885 8.05C12.885 8.25 12.815 8.42 12.675 8.56C12.535 8.7 12.365 8.77 12.165 8.77H3.835Z"/><path d="M1.715 5.44C1.515 5.44 1.345 5.37 1.205 5.23C1.065 5.09 0.994995 4.92 0.994995 4.72C0.994995 4.52 1.065 4.35 1.205 4.21C1.345 4.07 1.515 4 1.715 4H14.275C14.475 4 14.645 4.07 14.785 4.21C14.925 4.35 14.995 4.52 14.995 4.72C14.995 4.92 14.925 5.09 14.785 5.23C14.645 5.37 14.475 5.44 14.275 5.44H1.715Z"/><path d="M5.515 12.09C5.315 12.09 5.14499 12.02 5.00499 11.88C4.86499 11.74 4.795 11.57 4.795 11.37C4.795 11.17 4.86499 11 5.00499 10.86C5.14499 10.72 5.315 10.65 5.515 10.65H10.475C10.675 10.65 10.845 10.72 10.985 10.86C11.125 11 11.195 11.17 11.195 11.37C11.195 11.57 11.125 11.74 10.985 11.88C10.845 12.02 10.675 12.09 10.475 12.09H5.515Z"/></svg></span></th>
+                    <th style="width:8%;">Tagged Files <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77C3.635 8.77 3.455 8.7 3.315 8.56C3.175 8.42 3.105 8.25 3.105 8.05C3.105 7.85 3.175 7.68 3.315 7.54C3.455 7.4 3.625 7.33 3.825 7.33H12.155C12.355 7.33 12.535 7.4 12.675 7.54C12.815 7.68 12.885 7.85 12.885 8.05C12.885 8.25 12.815 8.42 12.675 8.56C12.535 8.7 12.365 8.77 12.165 8.77H3.835Z"/><path d="M1.715 5.44C1.515 5.44 1.345 5.37 1.205 5.23C1.065 5.09 0.994995 4.92 0.994995 4.72C0.994995 4.52 1.065 4.35 1.205 4.21C1.345 4.07 1.515 4 1.715 4H14.275C14.475 4 14.645 4.07 14.785 4.21C14.925 4.35 14.995 4.52 14.995 4.72C14.995 4.92 14.925 5.09 14.785 5.23C14.645 5.37 14.475 5.44 14.275 5.44H1.715Z"/><path d="M5.515 12.09C5.315 12.09 5.14499 12.02 5.00499 11.88C4.86499 11.74 4.795 11.57 4.795 11.37C4.795 11.17 4.86499 11 5.00499 10.86C5.14499 10.72 5.315 10.65 5.515 10.65H10.475C10.675 10.65 10.845 10.72 10.985 10.86C11.125 11 11.195 11.17 11.195 11.37C11.195 11.57 11.125 11.74 10.985 11.88C10.845 12.02 10.675 12.09 10.475 12.09H5.515Z"/></svg></span></th>
+                    <th style="width:8%;">Kept Files <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77C3.635 8.77 3.455 8.7 3.315 8.56C3.175 8.42 3.105 8.25 3.105 8.05C3.105 7.85 3.175 7.68 3.315 7.54C3.455 7.4 3.625 7.33 3.825 7.33H12.155C12.355 7.33 12.535 7.4 12.675 7.54C12.815 7.68 12.885 7.85 12.885 8.05C12.885 8.25 12.815 8.42 12.675 8.56C12.535 8.7 12.365 8.77 12.165 8.77H3.835Z"/><path d="M1.715 5.44C1.515 5.44 1.345 5.37 1.205 5.23C1.065 5.09 0.994995 4.92 0.994995 4.72C0.994995 4.52 1.065 4.35 1.205 4.21C1.345 4.07 1.515 4 1.715 4H14.275C14.475 4 14.645 4.07 14.785 4.21C14.925 4.35 14.995 4.52 14.995 4.72C14.995 4.92 14.925 5.09 14.785 5.23C14.645 5.37 14.475 5.44 14.275 5.44H1.715Z"/><path d="M5.515 12.09C5.315 12.09 5.14499 12.02 5.00499 11.88C4.86499 11.74 4.795 11.57 4.795 11.37C4.795 11.17 4.86499 11 5.00499 10.86C5.14499 10.72 5.315 10.65 5.515 10.65H10.475C10.675 10.65 10.845 10.72 10.985 10.86C11.125 11 11.195 11.17 11.195 11.37C11.195 11.57 11.125 11.74 10.985 11.88C10.845 12.02 10.675 12.09 10.475 12.09H5.515Z"/></svg></span></th>
+                    <th style="width:8%;">Copied Files <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77C3.635 8.77 3.455 8.7 3.315 8.56C3.175 8.42 3.105 8.25 3.105 8.05C3.105 7.85 3.175 7.68 3.315 7.54C3.455 7.4 3.625 7.33 3.825 7.33H12.155C12.355 7.33 12.535 7.4 12.675 7.54C12.815 7.68 12.885 7.85 12.885 8.05C12.885 8.25 12.815 8.42 12.675 8.56C12.535 8.7 12.365 8.77 12.165 8.77H3.835Z"/><path d="M1.715 5.44C1.515 5.44 1.345 5.37 1.205 5.23C1.065 5.09 0.994995 4.92 0.994995 4.72C0.994995 4.52 1.065 4.35 1.205 4.21C1.345 4.07 1.515 4 1.715 4H14.275C14.475 4 14.645 4.07 14.785 4.21C14.925 4.35 14.995 4.52 14.995 4.72C14.995 4.92 14.925 5.09 14.785 5.23C14.645 5.37 14.475 5.44 14.275 5.44H1.715Z"/><path d="M5.515 12.09C5.315 12.09 5.14499 12.02 5.00499 11.88C4.86499 11.74 4.795 11.57 4.795 11.37C4.795 11.17 4.86499 11 5.00499 10.86C5.14499 10.72 5.315 10.65 5.515 10.65H10.475C10.675 10.65 10.845 10.72 10.985 10.86C11.125 11 11.195 11.17 11.195 11.37C11.195 11.57 11.125 11.74 10.985 11.88C10.845 12.02 10.675 12.09 10.475 12.09H5.515Z"/></svg></span></th>
+                    <th style="width:8%;">Moved Files <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77C3.635 8.77 3.455 8.7 3.315 8.56C3.175 8.42 3.105 8.25 3.105 8.05C3.105 7.85 3.175 7.68 3.315 7.54C3.455 7.4 3.625 7.33 3.825 7.33H12.155C12.355 7.33 12.535 7.4 12.675 7.54C12.815 7.68 12.885 7.85 12.885 8.05C12.885 8.25 12.815 8.42 12.675 8.56C12.535 8.7 12.365 8.77 12.165 8.77H3.835Z"/><path d="M1.715 5.44C1.515 5.44 1.345 5.37 1.205 5.23C1.065 5.09 0.994995 4.92 0.994995 4.72C0.994995 4.52 1.065 4.35 1.205 4.21C1.345 4.07 1.515 4 1.715 4H14.275C14.475 4 14.645 4.07 14.785 4.21C14.925 4.35 14.995 4.52 14.995 4.72C14.995 4.92 14.925 5.09 14.785 5.23C14.645 5.37 14.475 5.44 14.275 5.44H1.715Z"/><path d="M5.515 12.09C5.315 12.09 5.14499 12.02 5.00499 11.88C4.86499 11.74 4.795 11.57 4.795 11.37C4.795 11.17 4.86499 11 5.00499 10.86C5.14499 10.72 5.315 10.65 5.515 10.65H10.475C10.675 10.65 10.845 10.72 10.985 10.86C11.125 11 11.195 11.17 11.195 11.37C11.195 11.57 11.125 11.74 10.985 11.88C10.845 12.02 10.675 12.09 10.475 12.09H5.515Z"/></svg></span></th>
+                    <th style="width:8%;">Deleted Files <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77C3.635 8.77 3.455 8.7 3.315 8.56C3.175 8.42 3.105 8.25 3.105 8.05C3.105 7.85 3.175 7.68 3.315 7.54C3.455 7.4 3.625 7.33 3.825 7.33H12.155C12.355 7.33 12.535 7.4 12.675 7.54C12.815 7.68 12.885 7.85 12.885 8.05C12.885 8.25 12.815 8.42 12.675 8.56C12.535 8.7 12.365 8.77 12.165 8.77H3.835Z"/><path d="M1.715 5.44C1.515 5.44 1.345 5.37 1.205 5.23C1.065 5.09 0.994995 4.92 0.994995 4.72C0.994995 4.52 1.065 4.35 1.205 4.21C1.345 4.07 1.515 4 1.715 4H14.275C14.475 4 14.645 4.07 14.785 4.21C14.925 4.35 14.995 4.52 14.995 4.72C14.995 4.92 14.925 5.09 14.785 5.23C14.645 5.37 14.475 5.44 14.275 5.44H1.715Z"/><path d="M5.515 12.09C5.315 12.09 5.14499 12.02 5.00499 11.88C4.86499 11.74 4.795 11.57 4.795 11.37C4.795 11.17 4.86499 11 5.00499 10.86C5.14499 10.72 5.315 10.65 5.515 10.65H10.475C10.675 10.65 10.845 10.72 10.985 10.86C11.125 11 11.195 11.17 11.195 11.37C11.195 11.57 11.125 11.74 10.985 11.88C10.845 12.02 10.675 12.09 10.475 12.09H5.515Z"/></svg></span></th>
+                    <th style="width:10%;">Other Remediations <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77C3.635 8.77 3.455 8.7 3.315 8.56C3.175 8.42 3.105 8.25 3.105 8.05C3.105 7.85 3.175 7.68 3.315 7.54C3.455 7.4 3.625 7.33 3.825 7.33H12.155C12.355 7.33 12.535 7.4 12.675 7.54C12.815 7.68 12.885 7.85 12.885 8.05C12.885 8.25 12.815 8.42 12.675 8.56C12.535 8.7 12.365 8.77 12.165 8.77H3.835Z"/><path d="M1.715 5.44C1.515 5.44 1.345 5.37 1.205 5.23C1.065 5.09 0.994995 4.92 0.994995 4.72C0.994995 4.52 1.065 4.35 1.205 4.21C1.345 4.07 1.515 4 1.715 4H14.275C14.475 4 14.645 4.07 14.785 4.21C14.925 4.35 14.995 4.52 14.995 4.72C14.995 4.92 14.925 5.09 14.785 5.23C14.645 5.37 14.475 5.44 14.275 5.44H1.715Z"/><path d="M5.515 12.09C5.315 12.09 5.14499 12.02 5.00499 11.88C4.86499 11.74 4.795 11.57 4.795 11.37C4.795 11.17 4.86499 11 5.00499 10.86C5.14499 10.72 5.315 10.65 5.515 10.65H10.475C10.675 10.65 10.845 10.72 10.985 10.86C11.125 11 11.195 11.17 11.195 11.37C11.195 11.57 11.125 11.74 10.985 11.88C10.845 12.02 10.675 12.09 10.475 12.09H5.515Z"/></svg></span></th>
+                    <th style="width:8%;">Partition <span class="filter-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.835 8.77C3.635 8.77 3.455 8.7 3.315 8.56C3.175 8.42 3.105 8.25 3.105 8.05C3.105 7.85 3.175 7.68 3.315 7.54C3.455 7.4 3.625 7.33 3.825 7.33H12.155C12.355 7.33 12.535 7.4 12.675 7.54C12.815 7.68 12.885 7.85 12.885 8.05C12.885 8.25 12.815 8.42 12.675 8.56C12.535 8.7 12.365 8.77 12.165 8.77H3.835Z"/><path d="M1.715 5.44C1.515 5.44 1.345 5.37 1.205 5.23C1.065 5.09 0.994995 4.92 0.994995 4.72C0.994995 4.52 1.065 4.35 1.205 4.21C1.345 4.07 1.515 4 1.715 4H14.275C14.475 4 14.645 4.07 14.785 4.21C14.925 4.35 14.995 4.52 14.995 4.72C14.995 4.92 14.925 5.09 14.785 5.23C14.645 5.37 14.475 5.44 14.275 5.44H1.715Z"/><path d="M5.515 12.09C5.315 12.09 5.14499 12.02 5.00499 11.88C4.86499 11.74 4.795 11.57 4.795 11.37C4.795 11.17 4.86499 11 5.00499 10.86C5.14499 10.72 5.315 10.65 5.515 10.65H10.475C10.675 10.65 10.845 10.72 10.985 10.86C11.125 11 11.195 11.17 11.195 11.37C11.195 11.57 11.125 11.74 10.985 11.88C10.845 12.02 10.675 12.09 10.475 12.09H5.515Z"/></svg></span></th>
                     <th class="col-action"></th>
                   </tr>
                 </thead>
                 <tbody id="reportsTableBody">
-                  <tr>
+<tr>
                     <td class="col-cb"><input type="checkbox" class="cb"></td>
                     <td>Delta Real-Time Scan</td>
                     <td><span class="tag tag-warn">Stopped</span></td>
@@ -5593,9 +5601,17 @@
                     <td><span class="rpt-verdict detected"><span class="rpt-dot"></span> 178</span></td>
                     <td><span class="rpt-verdict detected"><span class="rpt-dot"></span> 45</span></td>
                     <td>Real-Time Scan</td>
+                                        <td>Default Workflow</td>
+                    <td>133,659</td>
+                    <td>133,659</td>
+                    <td>133,659</td>
+                    <td>133,659</td>
+                    <td>133,659</td>
+                    <td>133,659</td>
+                    <td>Full Scan</td>
                     <td class="col-action"><button class="cell-action"><svg viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="3" r="1.5"/><circle cx="8" cy="8" r="1.5"/><circle cx="8" cy="13" r="1.5"/></svg></button></td>
                   </tr>
-                  <tr>
+<tr>
                     <td class="col-cb"><input type="checkbox" class="cb"></td>
                     <td>Orion Full Scan</td>
                     <td><span class="tag tag-warn">Stopped</span></td>
@@ -5605,9 +5621,17 @@
                     <td><span class="rpt-verdict detected"><span class="rpt-dot"></span> 123</span></td>
                     <td><span class="rpt-verdict detected"><span class="rpt-dot"></span> 12</span></td>
                     <td>Scan Now</td>
+                                        <td>Default Workflow</td>
+                    <td>133,659</td>
+                    <td>133,659</td>
+                    <td>133,659</td>
+                    <td>133,659</td>
+                    <td>153,659</td>
+                    <td>133,659</td>
+                    <td>Full Scan</td>
                     <td class="col-action"><button class="cell-action"><svg viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="3" r="1.5"/><circle cx="8" cy="8" r="1.5"/><circle cx="8" cy="13" r="1.5"/></svg></button></td>
                   </tr>
-                  <tr>
+<tr>
                     <td class="col-cb"><input type="checkbox" class="cb"></td>
                     <td>Scheduled File Scan</td>
                     <td><span class="tag tag-success">Complete</span></td>
@@ -5617,9 +5641,17 @@
                     <td><span class="rpt-verdict none"><span class="rpt-dot"></span> None</span></td>
                     <td><span class="rpt-verdict none"><span class="rpt-dot"></span> None</span></td>
                     <td>Scheduled Scan</td>
+                                        <td>Discovery Only</td>
+                    <td>131,649</td>
+                    <td>131,649</td>
+                    <td>131,649</td>
+                    <td>131,649</td>
+                    <td>131,649</td>
+                    <td>131,649</td>
+                    <td>Full Scan</td>
                     <td class="col-action"><button class="cell-action"><svg viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="3" r="1.5"/><circle cx="8" cy="8" r="1.5"/><circle cx="8" cy="13" r="1.5"/></svg></button></td>
                   </tr>
-                  <tr>
+<tr>
                     <td class="col-cb"><input type="checkbox" class="cb"></td>
                     <td>Realtime Malware Scan</td>
                     <td><span class="tag tag-success">Complete</span></td>
@@ -5629,9 +5661,17 @@
                     <td><span class="rpt-verdict none"><span class="rpt-dot"></span> None</span></td>
                     <td><span class="rpt-verdict none"><span class="rpt-dot"></span> None</span></td>
                     <td>Scheduled Scan</td>
+                                        <td>Default Workflow</td>
+                    <td>130,159</td>
+                    <td>130,159</td>
+                    <td>130,159</td>
+                    <td>130,159</td>
+                    <td>130,159</td>
+                    <td>130,159</td>
+                    <td>Full Scan</td>
                     <td class="col-action"><button class="cell-action"><svg viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="3" r="1.5"/><circle cx="8" cy="8" r="1.5"/><circle cx="8" cy="13" r="1.5"/></svg></button></td>
                   </tr>
-                  <tr>
+<tr>
                     <td class="col-cb"><input type="checkbox" class="cb"></td>
                     <td>Scheduled DLP Scan</td>
                     <td><span class="tag tag-success">Complete</span></td>
@@ -5641,9 +5681,17 @@
                     <td><span class="rpt-verdict none"><span class="rpt-dot"></span> None</span></td>
                     <td><span class="rpt-verdict none"><span class="rpt-dot"></span> None</span></td>
                     <td>Scan Now</td>
+                                        <td>Default Workflow</td>
+                    <td>129,159</td>
+                    <td>129,159</td>
+                    <td>129,159</td>
+                    <td>129,159</td>
+                    <td>129,159</td>
+                    <td>129,159</td>
+                    <td>Full Scan</td>
                     <td class="col-action"><button class="cell-action"><svg viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="3" r="1.5"/><circle cx="8" cy="8" r="1.5"/><circle cx="8" cy="13" r="1.5"/></svg></button></td>
                   </tr>
-                  <tr>
+<tr>
                     <td class="col-cb"><input type="checkbox" class="cb"></td>
                     <td>On-Demand Malware Scan</td>
                     <td><span class="tag tag-success">Complete</span></td>
@@ -5653,9 +5701,17 @@
                     <td><span class="rpt-verdict detected"><span class="rpt-dot"></span> 1,957</span></td>
                     <td><span class="rpt-verdict detected"><span class="rpt-dot"></span> 1,957</span></td>
                     <td>Scheduled Scan</td>
+                                        <td>Default Workflow</td>
+                    <td>110,159</td>
+                    <td>110,159</td>
+                    <td>110,159</td>
+                    <td>110,159</td>
+                    <td>110,159</td>
+                    <td>110,159</td>
+                    <td>Ingest Folder</td>
                     <td class="col-action"><button class="cell-action"><svg viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="3" r="1.5"/><circle cx="8" cy="8" r="1.5"/><circle cx="8" cy="13" r="1.5"/></svg></button></td>
                   </tr>
-                  <tr>
+<tr>
                     <td class="col-cb"><input type="checkbox" class="cb"></td>
                     <td>Scheduled GDPR Scan</td>
                     <td><span class="tag tag-success">Complete</span></td>
@@ -5665,9 +5721,17 @@
                     <td><span class="rpt-verdict none"><span class="rpt-dot"></span> None</span></td>
                     <td><span class="rpt-verdict none"><span class="rpt-dot"></span> None</span></td>
                     <td>Scan Now</td>
+                                        <td>Default Workflow</td>
+                    <td>110,003</td>
+                    <td>110,003</td>
+                    <td>110,003</td>
+                    <td>110,003</td>
+                    <td>110,003</td>
+                    <td>110,003</td>
+                    <td>Ingest Folder</td>
                     <td class="col-action"><button class="cell-action"><svg viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="3" r="1.5"/><circle cx="8" cy="8" r="1.5"/><circle cx="8" cy="13" r="1.5"/></svg></button></td>
                   </tr>
-                  <tr>
+<tr>
                     <td class="col-cb"><input type="checkbox" class="cb"></td>
                     <td>Delta Vulnerability Scan</td>
                     <td><span class="tag tag-success">Complete</span></td>
@@ -5677,9 +5741,17 @@
                     <td><span class="rpt-verdict detected"><span class="rpt-dot"></span> 356</span></td>
                     <td><span class="rpt-verdict detected"><span class="rpt-dot"></span> 356</span></td>
                     <td>Scheduled Scan</td>
+                                        <td>Default Workflow</td>
+                    <td>110,003</td>
+                    <td>110,003</td>
+                    <td>110,003</td>
+                    <td>110,003</td>
+                    <td>110,003</td>
+                    <td>110,003</td>
+                    <td>Full Scan</td>
                     <td class="col-action"><button class="cell-action"><svg viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="3" r="1.5"/><circle cx="8" cy="8" r="1.5"/><circle cx="8" cy="13" r="1.5"/></svg></button></td>
                   </tr>
-                  <tr>
+<tr>
                     <td class="col-cb"><input type="checkbox" class="cb"></td>
                     <td>Full Storage Scan</td>
                     <td><span class="tag tag-alert">Failed</span></td>
@@ -5689,9 +5761,17 @@
                     <td><span class="rpt-verdict none"><span class="rpt-dot"></span> None</span></td>
                     <td><span class="rpt-verdict none"><span class="rpt-dot"></span> None</span></td>
                     <td>Scan Now</td>
+                                        <td>Default Workflow</td>
+                    <td>110,017</td>
+                    <td>110,017</td>
+                    <td>110,017</td>
+                    <td>110,017</td>
+                    <td>110,017</td>
+                    <td>110,017</td>
+                    <td>Full Scan</td>
                     <td class="col-action"><button class="cell-action"><svg viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="3" r="1.5"/><circle cx="8" cy="8" r="1.5"/><circle cx="8" cy="13" r="1.5"/></svg></button></td>
                   </tr>
-                  <tr>
+<tr>
                     <td class="col-cb"><input type="checkbox" class="cb"></td>
                     <td>Manual File Upload</td>
                     <td><span class="tag tag-success">Complete</span></td>
@@ -5701,9 +5781,17 @@
                     <td><span class="rpt-verdict none"><span class="rpt-dot"></span> None</span></td>
                     <td><span class="rpt-verdict none"><span class="rpt-dot"></span> None</span></td>
                     <td>Scheduled Scan</td>
+                                        <td>Default Workflow</td>
+                    <td>97,123</td>
+                    <td>97,123</td>
+                    <td>97,123</td>
+                    <td>97,123</td>
+                    <td>97,123</td>
+                    <td>97,123</td>
+                    <td>Full Scan</td>
                     <td class="col-action"><button class="cell-action"><svg viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="3" r="1.5"/><circle cx="8" cy="8" r="1.5"/><circle cx="8" cy="13" r="1.5"/></svg></button></td>
                   </tr>
-                  <tr>
+<tr>
                     <td class="col-cb"><input type="checkbox" class="cb"></td>
                     <td>Cloud Backup Scan</td>
                     <td><span class="tag tag-success">Complete</span></td>
@@ -5713,9 +5801,17 @@
                     <td><span class="rpt-verdict detected"><span class="rpt-dot"></span> 89</span></td>
                     <td><span class="rpt-verdict detected"><span class="rpt-dot"></span> 34</span></td>
                     <td>Scheduled Scan</td>
+                                        <td>Default Workflow</td>
+                    <td>89,421</td>
+                    <td>89,421</td>
+                    <td>89,421</td>
+                    <td>89,421</td>
+                    <td>89,421</td>
+                    <td>89,421</td>
+                    <td>Full Scan</td>
                     <td class="col-action"><button class="cell-action"><svg viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="3" r="1.5"/><circle cx="8" cy="8" r="1.5"/><circle cx="8" cy="13" r="1.5"/></svg></button></td>
                   </tr>
-                  <tr>
+<tr>
                     <td class="col-cb"><input type="checkbox" class="cb"></td>
                     <td>Compliance Audit Scan</td>
                     <td><span class="tag tag-success">Complete</span></td>
@@ -5725,9 +5821,17 @@
                     <td><span class="rpt-verdict none"><span class="rpt-dot"></span> None</span></td>
                     <td><span class="rpt-verdict none"><span class="rpt-dot"></span> None</span></td>
                     <td>Scan Now</td>
+                                        <td>Default Workflow</td>
+                    <td>76,302</td>
+                    <td>76,302</td>
+                    <td>76,302</td>
+                    <td>76,302</td>
+                    <td>76,302</td>
+                    <td>76,302</td>
+                    <td>Full Scan</td>
                     <td class="col-action"><button class="cell-action"><svg viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="3" r="1.5"/><circle cx="8" cy="8" r="1.5"/><circle cx="8" cy="13" r="1.5"/></svg></button></td>
                   </tr>
-                  <tr>
+<tr>
                     <td class="col-cb"><input type="checkbox" class="cb"></td>
                     <td>Weekly Incremental Scan</td>
                     <td><span class="tag tag-success">Complete</span></td>
@@ -5737,9 +5841,17 @@
                     <td><span class="rpt-verdict detected"><span class="rpt-dot"></span> 412</span></td>
                     <td><span class="rpt-verdict detected"><span class="rpt-dot"></span> 201</span></td>
                     <td>Scheduled Scan</td>
+                                        <td>Default Workflow</td>
+                    <td>68,944</td>
+                    <td>68,944</td>
+                    <td>68,944</td>
+                    <td>68,944</td>
+                    <td>68,944</td>
+                    <td>68,944</td>
+                    <td>Full Scan</td>
                     <td class="col-action"><button class="cell-action"><svg viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="3" r="1.5"/><circle cx="8" cy="8" r="1.5"/><circle cx="8" cy="13" r="1.5"/></svg></button></td>
                   </tr>
-                  <tr>
+<tr>
                     <td class="col-cb"><input type="checkbox" class="cb"></td>
                     <td>Archive Deep Scan</td>
                     <td><span class="tag tag-warn">Stopped</span></td>
@@ -5749,9 +5861,17 @@
                     <td><span class="rpt-verdict none"><span class="rpt-dot"></span> None</span></td>
                     <td><span class="rpt-verdict none"><span class="rpt-dot"></span> None</span></td>
                     <td>Real-Time Scan</td>
+                                        <td>Default Workflow</td>
+                    <td>54,210</td>
+                    <td>54,210</td>
+                    <td>54,210</td>
+                    <td>54,210</td>
+                    <td>54,210</td>
+                    <td>54,210</td>
+                    <td>Full Scan</td>
                     <td class="col-action"><button class="cell-action"><svg viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="3" r="1.5"/><circle cx="8" cy="8" r="1.5"/><circle cx="8" cy="13" r="1.5"/></svg></button></td>
                   </tr>
-                  <tr>
+<tr>
                     <td class="col-cb"><input type="checkbox" class="cb"></td>
                     <td>Email Attachment Scan</td>
                     <td><span class="tag tag-success">Complete</span></td>
@@ -5761,9 +5881,17 @@
                     <td><span class="rpt-verdict none"><span class="rpt-dot"></span> None</span></td>
                     <td><span class="rpt-verdict none"><span class="rpt-dot"></span> None</span></td>
                     <td>Scheduled Scan</td>
+                                        <td>Default Workflow</td>
+                    <td>45,887</td>
+                    <td>45,887</td>
+                    <td>45,887</td>
+                    <td>45,887</td>
+                    <td>45,887</td>
+                    <td>45,887</td>
+                    <td>Full Scan</td>
                     <td class="col-action"><button class="cell-action"><svg viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="3" r="1.5"/><circle cx="8" cy="8" r="1.5"/><circle cx="8" cy="13" r="1.5"/></svg></button></td>
                   </tr>
-                  <tr>
+<tr>
                     <td class="col-cb"><input type="checkbox" class="cb"></td>
                     <td>PII Detection Scan</td>
                     <td><span class="tag tag-alert">Failed</span></td>
@@ -5773,9 +5901,17 @@
                     <td><span class="rpt-verdict detected"><span class="rpt-dot"></span> 2,104</span></td>
                     <td><span class="rpt-verdict none"><span class="rpt-dot"></span> None</span></td>
                     <td>Scan Now</td>
+                                        <td>Default Workflow</td>
+                    <td>38,500</td>
+                    <td>38,500</td>
+                    <td>38,500</td>
+                    <td>38,500</td>
+                    <td>38,500</td>
+                    <td>38,500</td>
+                    <td>Full Scan</td>
                     <td class="col-action"><button class="cell-action"><svg viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="3" r="1.5"/><circle cx="8" cy="8" r="1.5"/><circle cx="8" cy="13" r="1.5"/></svg></button></td>
                   </tr>
-                  <tr>
+<tr>
                     <td class="col-cb"><input type="checkbox" class="cb"></td>
                     <td>Nightly CDR Process</td>
                     <td><span class="tag tag-success">Complete</span></td>
@@ -5785,9 +5921,17 @@
                     <td><span class="rpt-verdict none"><span class="rpt-dot"></span> None</span></td>
                     <td><span class="rpt-verdict detected"><span class="rpt-dot"></span> 1,847</span></td>
                     <td>Scheduled Scan</td>
+                                        <td>Default Workflow</td>
+                    <td>31,204</td>
+                    <td>31,204</td>
+                    <td>31,204</td>
+                    <td>31,204</td>
+                    <td>31,204</td>
+                    <td>31,204</td>
+                    <td>Full Scan</td>
                     <td class="col-action"><button class="cell-action"><svg viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="3" r="1.5"/><circle cx="8" cy="8" r="1.5"/><circle cx="8" cy="13" r="1.5"/></svg></button></td>
                   </tr>
-                  <tr>
+<tr>
                     <td class="col-cb"><input type="checkbox" class="cb"></td>
                     <td>Document Library Scan</td>
                     <td><span class="tag tag-success">Complete</span></td>
@@ -5797,9 +5941,17 @@
                     <td><span class="rpt-verdict detected"><span class="rpt-dot"></span> 15</span></td>
                     <td><span class="rpt-verdict detected"><span class="rpt-dot"></span> 8</span></td>
                     <td>Scan Now</td>
+                                        <td>Default Workflow</td>
+                    <td>24,650</td>
+                    <td>24,650</td>
+                    <td>24,650</td>
+                    <td>24,650</td>
+                    <td>24,650</td>
+                    <td>24,650</td>
+                    <td>Full Scan</td>
                     <td class="col-action"><button class="cell-action"><svg viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="3" r="1.5"/><circle cx="8" cy="8" r="1.5"/><circle cx="8" cy="13" r="1.5"/></svg></button></td>
                   </tr>
-                  <tr>
+<tr>
                     <td class="col-cb"><input type="checkbox" class="cb"></td>
                     <td>Shared Drive Monitor</td>
                     <td><span class="tag tag-success">Complete</span></td>
@@ -5809,9 +5961,17 @@
                     <td><span class="rpt-verdict none"><span class="rpt-dot"></span> None</span></td>
                     <td><span class="rpt-verdict none"><span class="rpt-dot"></span> None</span></td>
                     <td>Real-Time Scan</td>
+                                        <td>Default Workflow</td>
+                    <td>19,832</td>
+                    <td>19,832</td>
+                    <td>19,832</td>
+                    <td>19,832</td>
+                    <td>19,832</td>
+                    <td>19,832</td>
+                    <td>Full Scan</td>
                     <td class="col-action"><button class="cell-action"><svg viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="3" r="1.5"/><circle cx="8" cy="8" r="1.5"/><circle cx="8" cy="13" r="1.5"/></svg></button></td>
                   </tr>
-                  <tr>
+<tr>
                     <td class="col-cb"><input type="checkbox" class="cb"></td>
                     <td>Quarantine Review</td>
                     <td><span class="tag tag-success">Complete</span></td>
@@ -5821,6 +5981,14 @@
                     <td><span class="rpt-verdict detected"><span class="rpt-dot"></span> 743</span></td>
                     <td><span class="rpt-verdict detected"><span class="rpt-dot"></span> 512</span></td>
                     <td>Scheduled Scan</td>
+                                        <td>Default Workflow</td>
+                    <td>12,100</td>
+                    <td>12,100</td>
+                    <td>12,100</td>
+                    <td>12,100</td>
+                    <td>12,100</td>
+                    <td>12,100</td>
+                    <td>Full Scan</td>
                     <td class="col-action"><button class="cell-action"><svg viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="3" r="1.5"/><circle cx="8" cy="8" r="1.5"/><circle cx="8" cy="13" r="1.5"/></svg></button></td>
                   </tr>
                 </tbody>
